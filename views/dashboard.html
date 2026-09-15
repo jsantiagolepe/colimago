@@ -1,0 +1,2143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>colimago · Panel de administración</title>
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --panel: #ffffff;
+    --ink: #23241f;
+    --ink-soft: #6b6d63;
+    --line: #e3e0d6;
+    --teal: #2f5d5a;
+    --teal-dark: #23453f;
+    --coral: #c2543f;
+    --coral-soft: #f3e2dc;
+    --ok: #3f7256;
+    --ok-soft: #e2ede4;
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+  }
+
+  /* ---------- Estructura del dashboard ---------- */
+  .shell { display: flex; min-height: 100vh; }
+
+  .sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background: var(--teal-dark);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 14px;
+  }
+  .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 8px 10px 24px; }
+  .brand-mark {
+    width: 34px; height: 34px; border-radius: 9px; background: var(--coral);
+    display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; color: white; flex-shrink: 0;
+  }
+  .brand-text { font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+
+  .nav-group { margin-bottom: 24px; }
+  .nav-group-label { font-size: 12px; color: rgba(255,255,255,0.5); padding: 0 10px 8px; font-weight: 600; }
+  .sidebar-nav .tab {
+    width: 100%; display: flex; align-items: center; gap: 10px; text-align: left;
+    background: transparent; border: none; color: rgba(255,255,255,0.82);
+    padding: 10px 10px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    cursor: pointer; margin-bottom: 2px;
+  }
+  .sidebar-nav .tab:hover { background: rgba(255,255,255,0.08); color: white; }
+  .sidebar-nav .tab.active { background: rgba(255,255,255,0.16); color: white; }
+  .sidebar-nav .tab svg { width: 17px; height: 17px; flex-shrink: 0; }
+
+  .main-area { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px; border-bottom: 1px solid var(--line); background: var(--panel);
+  }
+  .topbar h1 { margin: 0; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+  .topbar-usuario { display: flex; align-items: center; gap: 14px; }
+  .bienvenida { font-size: 13.5px; color: var(--ink-soft); }
+  .avatar {
+    width: 32px; height: 32px; border-radius: 50%; background: var(--teal); color: white;
+    display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0;
+  }
+  .btn-cerrar-sesion { border: none; background: none; color: var(--ink-soft); font-size: 13px; cursor: pointer; font-weight: 600; }
+  .btn-cerrar-sesion:hover { color: var(--coral); }
+
+  .content { max-width: 760px; margin: 0 auto; padding: 28px 24px 80px; width: 100%; }
+  .estado-vacio { text-align: center; color: var(--ink-soft); padding: 60px 20px; font-size: 15px; }
+
+  .progreso { text-align: center; color: var(--ink-soft); font-size: 13px; margin-bottom: 14px; }
+
+  /* Tarjeta grande estilo Tinder, para Pendientes */
+  .card-grande {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .card-grande .imagen-wrap {
+    background: #eae7dc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 60vh;
+    min-height: 220px;
+    position: relative;
+  }
+  .card-grande .imagen-wrap img {
+    width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    display: block;
+  }
+  .nav-imagen {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(35,36,31,0.55);
+    color: white;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-imagen:hover { background: rgba(35,36,31,0.8); }
+  .nav-imagen.izq { left: 10px; }
+  .nav-imagen.der { right: 10px; }
+  .contador-imagenes {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    background: rgba(35,36,31,0.6);
+    color: white;
+    font-size: 11.5px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .card-grande .sin-imagen {
+    padding: 60px 20px;
+    color: var(--ink-soft);
+    font-size: 14px;
+  }
+  .card-grande .contenido { padding: 18px 20px; }
+
+  .meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12.5px; color: var(--ink-soft); flex-wrap: wrap; }
+  .badge { background: var(--teal); color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+
+  .texto { font-size: 14.5px; line-height: 1.55; margin: 0 0 10px; white-space: pre-wrap; }
+
+  .enlace-original {
+    display: inline-block; font-size: 13px; color: white; text-decoration: none; font-weight: 700;
+    background: var(--teal-dark); padding: 8px 14px; border-radius: 6px;
+  }
+  .enlace-original:hover { background: var(--teal); }
+
+  /* Asteriscos de campo obligatorio */
+  .req { color: var(--coral); font-weight: 700; }
+
+  /* Traducción al inglés (descriptionEnglish) */
+  .fila-traducir { margin-top: 10px; }
+  .btn-traducir {
+    border: 1px dashed var(--teal); background: white; color: var(--teal-dark);
+    padding: 7px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+  .btn-traducir:hover { background: #eef3f1; }
+  .btn-traducir:disabled { opacity: 0.6; cursor: default; }
+  .caja-traduccion {
+    margin-top: 10px; padding: 12px; background: var(--bg); border: 1px solid var(--line);
+    border-radius: 8px; display: flex; flex-direction: column; gap: 6px;
+  }
+  .caja-traduccion label { font-size: 12px; color: var(--ink-soft); font-weight: 600; }
+  .caja-traduccion textarea {
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13.5px;
+    font-family: inherit; color: var(--ink); resize: vertical; min-height: 80px;
+  }
+  .error-traduccion { color: var(--coral); font-size: 12.5px; margin: 6px 0 0; }
+
+  .form-fecha {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .checks { display: flex; gap: 18px; flex-wrap: wrap; }
+  .checks label { display: flex; align-items: center; gap: 6px; font-size: 13.5px; color: var(--ink); cursor: pointer; }
+  .checks input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--teal); cursor: pointer; }
+
+  .campos-fecha { display: flex; gap: 12px; flex-wrap: wrap; }
+  .campo-fecha { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 4px; }
+  .campo-fecha label { font-size: 12px; color: var(--ink-soft); font-weight: 600; }
+  .campo-fecha input {
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 13.5px;
+    font-family: inherit;
+    color: var(--ink);
+  }
+  /* Fecha/hora de inicio y término: angostos, no ocupan toda la fila */
+  .campo-fecha.campo-fecha-compacto { flex: 0 0 auto; min-width: 0; }
+  .campo-fecha.campo-fecha-compacto input { width: 210px; }
+  .fecha-amigable { font-size: 12.5px; color: var(--teal-dark); font-weight: 600; }
+
+  .acciones-grandes { display: flex; gap: 10px; margin-top: 18px; }
+  button.accion-grande {
+    flex: 1;
+    border: none;
+    padding: 13px 14px;
+    border-radius: 8px;
+    font-size: 14.5px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .btn-aprobar-g { background: var(--ok); color: white; }
+  .btn-aprobar-g:hover { background: #345f45; }
+  .btn-rechazar-g { background: var(--coral-soft); color: var(--coral); }
+  .btn-rechazar-g:hover { background: #ecd0c7; }
+
+  /* Tarjeta compacta, para Aprobados / Rechazados */
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 16px; margin-bottom: 14px; display: flex; gap: 14px;
+  }
+  .card img { width: 90px; height: 90px; object-fit: cover; border-radius: 8px; flex-shrink: 0; background: var(--line); }
+  .card .sin-imagen-chica {
+    width: 90px; height: 90px; border-radius: 8px; flex-shrink: 0; background: var(--line);
+    display: flex; align-items: center; justify-content: center; color: var(--ink-soft); font-size: 11px; text-align: center; padding: 6px;
+  }
+  .card-body { flex: 1; min-width: 0; }
+  .fecha-evento { font-size: 12.5px; color: var(--teal-dark); font-weight: 600; margin-bottom: 4px; }
+  .texto-chico {
+    font-size: 13.5px; line-height: 1.45; margin: 0 0 8px; white-space: pre-wrap;
+    max-height: 3.2em; overflow: hidden;
+  }
+  button.btn-deshacer { background: var(--line); color: var(--ink-soft); border: none; padding: 7px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+  button.btn-deshacer:hover { background: #d8d4c6; }
+
+  /* Directorio de municipios */
+  .form-directorio {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 16px; margin-bottom: 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: end;
+  }
+  .form-directorio .campo { display: flex; flex-direction: column; gap: 4px; }
+  .form-directorio label { font-size: 12px; color: var(--ink-soft); font-weight: 600; }
+  .form-directorio input, .form-directorio select {
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13.5px; font-family: inherit;
+  }
+  .form-directorio input[name="facebook_id"] { width: 160px; }
+  .form-directorio input[name="facebook_url"] { width: 220px; }
+  .btn-agregar-directorio {
+    background: var(--teal); color: white; border: none; padding: 9px 16px; border-radius: 6px;
+    font-size: 13.5px; font-weight: 700; cursor: pointer;
+  }
+  .btn-agregar-directorio:hover { background: var(--teal-dark); }
+
+  table.tabla-directorio { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  table.tabla-directorio th, table.tabla-directorio td { text-align: left; padding: 10px 12px; font-size: 13.5px; border-bottom: 1px solid var(--line); }
+  table.tabla-directorio th { color: var(--ink-soft); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em; }
+  table.tabla-directorio tr:last-child td { border-bottom: none; }
+  table.tabla-directorio a { color: var(--teal-dark); }
+  .acciones-fila { display: flex; gap: 8px; }
+  .acciones-fila button { border: none; background: none; cursor: pointer; font-size: 12.5px; font-weight: 600; padding: 0; }
+  .btn-editar-fila { color: var(--teal-dark); }
+  .btn-borrar-fila { color: var(--coral); }
+
+  /* Selects (municipio, tipo de evento) */
+  .campo-select { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 160px; }
+  .campo-select label { font-size: 12px; color: var(--ink-soft); font-weight: 600; }
+  .campo-select select {
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+    font-size: 13.5px; font-family: inherit; color: var(--ink); background: white;
+  }
+
+  /* Ubicación */
+  .fila-ubicacion { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .btn-ubicacion {
+    border: 1px dashed var(--teal); background: white; color: var(--teal-dark);
+    padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+  .btn-ubicacion:hover { background: #eef3f1; }
+  .ubicacion-elegida { font-size: 13px; color: var(--ink); display: flex; align-items: center; gap: 6px; }
+  .ubicacion-elegida button { border: none; background: none; color: var(--coral); cursor: pointer; font-size: 13px; padding: 0; }
+
+  /* Modal de ubicación */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(35,36,31,0.5);
+    display: flex; align-items: center; justify-content: center; z-index: 50; padding: 20px;
+  }
+  .modal-box {
+    background: white; border-radius: 12px; padding: 20px; width: 100%; max-width: 380px;
+    max-height: 80vh; overflow-y: auto;
+  }
+  .modal-box h3 { margin: 0 0 4px; font-size: 16px; }
+  .modal-box p.hint { margin: 0 0 14px; font-size: 12.5px; color: var(--ink-soft); }
+  .opcion-ubicacion {
+    display: block; width: 100%; text-align: left; padding: 10px 12px; margin-bottom: 6px;
+    border: 1px solid var(--line); border-radius: 8px; background: white; cursor: pointer; font-size: 13.5px;
+  }
+  .opcion-ubicacion:hover { background: var(--bg); border-color: var(--teal); }
+  .modal-box .otro-wrap { display: flex; gap: 6px; margin-top: 10px; }
+  .modal-box .otro-wrap input {
+    flex: 1; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13.5px; font-family: inherit;
+  }
+  .modal-box .otro-wrap button {
+    border: none; background: var(--teal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+  .modal-cerrar { display: block; margin: 14px auto 0; border: none; background: none; color: var(--ink-soft); font-size: 13px; cursor: pointer; }
+
+  /* Modal de "mismo día" (posibles eventos repetidos) */
+  .modal-box-repetidos { max-width: 440px; }
+  .item-evento-repetido {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 10px 12px; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
+  }
+  .item-evento-repetido .titulo-evento-repetido { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+  .item-evento-repetido .badge-estatus-repetido {
+    font-size: 11px; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  .item-evento-repetido .btn-ver-original-repetido {
+    flex-shrink: 0; border: none; background: var(--teal-dark); color: white; text-decoration: none;
+    padding: 7px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; white-space: nowrap;
+  }
+  .item-evento-repetido .btn-ver-original-repetido:hover { background: var(--teal); }
+  .btn-cerrar-grande {
+    display: block; width: 100%; margin-top: 14px; border: none; border-radius: 8px;
+    background: var(--coral-soft); color: var(--coral); padding: 12px; font-size: 14px; font-weight: 700; cursor: pointer;
+  }
+  .btn-cerrar-grande:hover { background: #ecd0c7; }
+
+  /* Posts locales */
+  .barra-locales {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 16px; margin-bottom: 18px; display: flex; flex-wrap: wrap; gap: 10px; align-items: end; justify-content: space-between;
+  }
+  .barra-locales .filtros { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
+  .barra-locales .acciones { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn-secundario {
+    border: 1px solid var(--teal); background: white; color: var(--teal-dark);
+    padding: 9px 14px; border-radius: 6px; font-size: 13.5px; font-weight: 700; cursor: pointer;
+  }
+  .btn-secundario:hover { background: #eef3f1; }
+  .badge-activo { background: var(--ok-soft); color: var(--ok); padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .badge-inactivo { background: var(--coral-soft); color: var(--coral); padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  tr.fila-inactiva { opacity: 0.65; }
+
+  .modal-box-local { max-width: 640px; }
+  .form-local { display: flex; flex-direction: column; gap: 14px; }
+  .form-local .fila-campos { display: flex; gap: 12px; flex-wrap: wrap; }
+  .form-local .campo-select, .form-local .campo-fecha { flex: 1; min-width: 200px; }
+  .form-local textarea {
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13.5px;
+    font-family: inherit; color: var(--ink); resize: vertical; min-height: 70px; width: 100%;
+  }
+  .form-local .seccion { border-top: 1px dashed var(--line); padding-top: 14px; display: flex; flex-direction: column; gap: 12px; }
+  .form-local .seccion-titulo { font-size: 13px; font-weight: 700; color: var(--teal-dark); }
+  .ayuda-campo { font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; }
+  .servicios-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .servicios-grid label { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
+  .schedule-filas { display: flex; flex-direction: column; gap: 8px; }
+  .schedule-fila { display: flex; gap: 8px; align-items: center; }
+  .schedule-fila input { flex: 1; }
+  .btn-quitar-fila { border: none; background: none; color: var(--coral); font-size: 18px; cursor: pointer; line-height: 1; padding: 0 6px; }
+  .btn-agregar-fila { align-self: flex-start; }
+  .id-asignado {
+    display: flex; align-items: center; gap: 10px; background: var(--ok-soft); color: var(--ok);
+    padding: 10px 14px; border-radius: 8px; font-size: 13.5px; font-weight: 600; margin-top: 10px;
+  }
+  .id-asignado code { background: white; padding: 3px 8px; border-radius: 5px; font-size: 13px; }
+  .id-asignado button { border: none; background: var(--teal); color: white; padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .error-form { color: var(--coral); font-size: 12.5px; margin: 0; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">CG</div>
+      <div class="brand-text">Colima Go</div>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-group">
+        <div class="nav-group-label">Revisión de eventos</div>
+        <button class="tab active" data-estatus="pendiente" data-titulo="Pendientes">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          Pendientes
+        </button>
+        <button class="tab" data-estatus="aprobado" data-titulo="Aprobados">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          Aprobados
+        </button>
+        <button class="tab" data-estatus="rechazado" data-titulo="Rechazados">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          Rechazados
+        </button>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Producción</div>
+        <button class="tab" data-estatus="activo" data-titulo="Activos">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          Activos
+        </button>
+        <button class="tab" data-estatus="pausado" data-titulo="Pausados">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+          Pausados
+        </button>
+        <button class="tab" data-estatus="papelera" data-titulo="Papelera">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          Papelera
+        </button>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Posts locales</div>
+        <button class="tab" data-estatus="locales" data-titulo="Posts locales">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Posts locales
+        </button>
+      </div>
+      <div class="nav-group">
+        <div class="nav-group-label">Configuración</div>
+        <button class="tab" data-estatus="directorio" data-titulo="Directorio de páginas">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          Directorio de páginas
+        </button>
+        <button class="tab" data-estatus="lugares" data-titulo="Lugares">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          Lugares
+        </button>
+        <button class="tab" data-estatus="posts-admin" data-titulo="Posts">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          Posts
+        </button>
+      </div>
+    </nav>
+  </aside>
+
+  <div class="main-area">
+    <header class="topbar">
+      <h1 id="titulo-pagina">Pendientes</h1>
+      <div class="topbar-usuario">
+        <span class="bienvenida" id="bienvenida">Bienvenido</span>
+        <div class="avatar" id="avatar-inicial">·</div>
+        <button class="btn-cerrar-sesion" id="btn-logout">Cerrar sesión</button>
+      </div>
+    </header>
+    <main id="lista" class="content"></main>
+  </div>
+</div>
+
+<script>
+  // Si el backend responde 401 (sesión vencida o nunca iniciada), regresa
+  // al login en vez de dejar la pantalla mostrando errores confusos. Esto
+  // cubre TODAS las llamadas fetch del panel sin tener que tocar cada una.
+  const _fetchOriginal = window.fetch.bind(window);
+  window.fetch = async (...args) => {
+    const res = await _fetchOriginal(...args);
+    if (res.status === 401) {
+      window.location.href = '/';
+    }
+    return res;
+  };
+
+  const lista = document.getElementById('lista');
+  let estatusActual = 'pendiente';
+  let eventosPendientes = []; // cola para el modo tarjeta grande
+  let descripcionIngles = ''; // texto de "descriptionEnglish" — se resetea con cada tarjeta
+  let subtituloSeleccionado = ''; // nombre del lugar elegido como "subtitle" — se resetea con cada tarjeta
+  let lugaresDisponibles = []; // lista de lugares para el select de subtítulo
+
+  // --- Ajusta estas listas libremente si no coinciden con tu app ---
+
+  const MUNICIPIOS = {
+    1: 'Colima',
+    2: 'Villa de Álvarez',
+    3: 'Manzanillo',
+    4: 'Comala',
+    5: 'Minatitlán',
+    6: 'Tecomán',
+    7: 'Armería',
+    8: 'Coquimatlán',
+    9: 'Cuauhtémoc',
+    10: 'Ixtlahuacán',
+  };
+
+  const TIPOS_EVENTO = {
+    1012: 'Deportivo',
+    1013: 'Social',
+    1014: 'Musical',
+    1015: 'Cultural',
+    1016: 'Ganadero',
+    1017: 'Religioso',
+    1018: 'Gastronómico',
+    1019: 'Otro',
+  };
+
+  // Categorías de posts locales (contrato §5). 10-13 ya existen en la app;
+  // 20-21 son hoteles/restaurantes.
+  const CATEGORIAS_LOCAL = {
+    10: 'Ríos',
+    11: 'Playas',
+    12: 'Lagos',
+    13: 'Montañas',
+    20: 'Hoteles',
+    21: 'Restaurantes',
+  };
+
+  // Claves de "services" que ya usa la app (contrato §4).
+  const SERVICIOS_LOCAL = {
+    restaurant: 'Restaurante',
+    bathroom: 'Baños',
+    'wi-fi': 'Wi-Fi',
+    pool: 'Alberca',
+    local_parking: 'Estacionamiento',
+    picnic_area: 'Área de picnic',
+    landscape: 'Paisaje',
+    tour_guide: 'Guía turístico',
+    food_drink: 'Alimentos y bebidas',
+  };
+
+  document.querySelector('.sidebar-nav').addEventListener('click', (e) => {
+    const tab = e.target.closest('.tab');
+    if (!tab) return;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    estatusActual = tab.dataset.estatus;
+    document.getElementById('titulo-pagina').textContent = tab.dataset.titulo;
+    cargarEventos();
+  });
+
+  document.getElementById('btn-logout').addEventListener('click', async () => {
+    await fetch('/auth/logout', { method: 'POST' });
+    window.location.href = '/';
+  });
+
+  (async () => {
+    try {
+      const res = await _fetchOriginal('/auth/me');
+      if (!res.ok) { window.location.href = '/'; return; }
+      const data = await res.json();
+      const nombre = data.name || 'Administrador';
+      document.getElementById('bienvenida').textContent = `Bienvenido, ${nombre}`;
+      document.getElementById('avatar-inicial').textContent = nombre.charAt(0).toUpperCase();
+    } catch (err) {
+      // Si falla la verificación no bloqueamos el panel; las llamadas a la
+      // API de todas formas exigen sesión y redirigen si hace falta.
+    }
+  })();
+
+  function formatearFecha(fechaStr) {
+    if (!fechaStr) return 'Sin fecha';
+    const f = new Date(fechaStr);
+    return f.toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' });
+  }
+
+  async function cargarEventos() {
+    lista.innerHTML = '<div class="estado-vacio">Cargando…</div>';
+    try {
+      if (estatusActual === 'directorio') {
+        await cargarDirectorio();
+        return;
+      }
+      if (estatusActual === 'lugares') {
+        await cargarLugares();
+        return;
+      }
+      if (estatusActual === 'locales') {
+        await cargarLocales();
+        return;
+      }
+      if (estatusActual === 'posts-admin') {
+        await cargarPostsAdmin();
+        return;
+      }
+      if (['activo', 'pausado', 'papelera'].includes(estatusActual)) {
+        await cargarPosts();
+        return;
+      }
+      const res = await fetch(`/api/pendientes?estatus=${estatusActual}`);
+      const eventos = await res.json();
+
+      if (estatusActual === 'pendiente') {
+        eventosPendientes = eventos;
+        try {
+          const resLugares = await fetch('/api/lugares');
+          lugaresDisponibles = await resLugares.json();
+        } catch (err) {
+          lugaresDisponibles = [];
+        }
+        renderTarjetaGrande();
+      } else {
+        renderListaCompacta(eventos);
+      }
+    } catch (err) {
+      lista.innerHTML = '<div class="estado-vacio">No se pudo conectar con el servidor. Revisa que server.js esté corriendo.</div>';
+    }
+  }
+
+  // ---------- Modo "Producción": Activos / Pausados / Papelera ----------
+
+  async function cargarPosts() {
+    try {
+      const res = await fetch(`/api/posts?estatus=${estatusActual}`);
+      const posts = await res.json();
+      renderPosts(posts);
+    } catch (err) {
+      lista.innerHTML = '<div class="estado-vacio">No se pudo cargar la lista de producción.</div>';
+    }
+  }
+
+  function renderPosts(posts) {
+    if (!posts.length) {
+      lista.innerHTML = `<div class="estado-vacio">No hay eventos en "${estatusActual}" por ahora.</div>`;
+      return;
+    }
+    lista.innerHTML = '';
+    posts.forEach(p => lista.appendChild(crearTarjetaPost(p)));
+  }
+
+  function crearTarjetaPost(p) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const primeraImagen = Array.isArray(p.images) ? p.images.find(Boolean) : null;
+    const imagenHtml = primeraImagen
+      ? `<img src="${primeraImagen}" alt="" />`
+      : `<div class="sin-imagen-chica">Sin imagen</div>`;
+
+    const nombreMunicipio = MUNICIPIOS[p.municipality] || 'Sin municipio';
+    const inicio = formatearFecha(p.date);
+    const fin = p.moreDays && p.finishDate ? ` – ${formatearFecha(p.finishDate)}` : '';
+
+    let botonesHtml = '';
+    if (estatusActual === 'activo') {
+      botonesHtml = `<button class="btn-deshacer" data-accion="pausar">Pausar</button>
+                      <button class="btn-deshacer" data-accion="papelera">Mover a papelera</button>`;
+    } else if (estatusActual === 'pausado') {
+      botonesHtml = `<button class="btn-deshacer" data-accion="activar">Reactivar</button>
+                      <button class="btn-deshacer" data-accion="papelera">Mover a papelera</button>`;
+    } else {
+      botonesHtml = `<button class="btn-deshacer" data-accion="restaurar">Restaurar</button>
+                      <button class="btn-deshacer" data-accion="eliminar" style="color: var(--coral);">Eliminar definitivo</button>`;
+    }
+
+    card.innerHTML = `
+      ${imagenHtml}
+      <div class="card-body">
+        <div class="meta">
+          <span class="badge">${nombreMunicipio}</span>
+          ${p.status ? '' : '<span style="color: var(--ink-soft); font-size:12px;">Pausado</span>'}
+        </div>
+        <div class="fecha-evento">📅 ${inicio}${fin}</div>
+        <p class="texto-chico" style="font-weight:600; -webkit-line-clamp: 1;">${p.title || 'Sin título'}</p>
+        <p class="texto-chico">${(p.description || '').trim()}</p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">${botonesHtml}</div>
+      </div>
+    `;
+
+    card.querySelectorAll('button[data-accion]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const accion = btn.dataset.accion;
+        if (accion === 'eliminar') {
+          if (!confirm('Esto borra el post de forma permanente y no se puede deshacer. ¿Continuar?')) return;
+          await fetch(`/api/posts/${p._id}`, { method: 'DELETE' });
+        } else {
+          await fetch(`/api/posts/${p._id}/${accion}`, { method: 'POST' });
+        }
+        card.remove();
+        if (!lista.children.length) {
+          lista.innerHTML = `<div class="estado-vacio">No hay eventos en "${estatusActual}" por ahora.</div>`;
+        }
+      });
+    });
+
+    return card;
+  }
+
+  // ---------- Modo "Directorio": municipios por ID de página de Facebook ----------
+
+  async function cargarDirectorio() {
+    try {
+      const res = await fetch('/api/directorio');
+      const registros = await res.json();
+      renderDirectorio(registros);
+    } catch (err) {
+      lista.innerHTML = '<div class="estado-vacio">No se pudo cargar el directorio.</div>';
+    }
+  }
+
+  function renderDirectorio(registros) {
+    const filasHtml = registros.length
+      ? registros.map(r => `
+          <tr data-id="${r._id}">
+            <td>${r.municipio_nombre || '—'}</td>
+            <td>${r.facebook_url ? `<a href="${r.facebook_url}" target="_blank" rel="noopener">${r.facebook_url}</a>` : '—'}</td>
+            <td>${r.facebook_id}</td>
+            <td>
+              <div class="acciones-fila">
+                <button class="btn-editar-fila" data-accion="editar">Editar</button>
+                <button class="btn-borrar-fila" data-accion="borrar">Borrar</button>
+              </div>
+            </td>
+          </tr>
+        `).join('')
+      : `<tr><td colspan="4" style="text-align:center; color: var(--ink-soft);">Sin registros todavía.</td></tr>`;
+
+    lista.innerHTML = `
+      <div class="form-directorio">
+        <div class="campo">
+          <label>Municipio</label>
+          <select id="dir-municipio">
+            <option value="">Sin municipio (ej. página estatal)</option>
+            ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
+          </select>
+        </div>
+        <div class="campo">
+          <label>URL de Facebook</label>
+          <input type="text" name="facebook_url" id="dir-url" placeholder="https://www.facebook.com/..." />
+        </div>
+        <div class="campo">
+          <label>ID de Facebook</label>
+          <input type="text" name="facebook_id" id="dir-id" placeholder="141016469255329" />
+        </div>
+        <button class="btn-agregar-directorio" id="btn-agregar-dir">Agregar</button>
+      </div>
+      <table class="tabla-directorio">
+        <thead>
+          <tr><th>Municipio</th><th>URL</th><th>ID de Facebook</th><th></th></tr>
+        </thead>
+        <tbody id="tbody-directorio">${filasHtml}</tbody>
+      </table>
+    `;
+
+    document.getElementById('btn-agregar-dir').addEventListener('click', async () => {
+      const municipioSelect = document.getElementById('dir-municipio');
+      const urlInput = document.getElementById('dir-url');
+      const idInput = document.getElementById('dir-id');
+
+      if (!idInput.value.trim()) {
+        alert('Ingresa el ID de Facebook.');
+        return;
+      }
+
+      const body = {
+        municipio_id: municipioSelect.value,
+        municipio_nombre: municipioSelect.value ? MUNICIPIOS[municipioSelect.value] : 'Sin municipio',
+        facebook_url: urlInput.value.trim(),
+        facebook_id: idInput.value.trim(),
+      };
+
+      try {
+        const res = await fetch('/api/directorio', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          alert(data.error || 'No se pudo agregar.');
+          return;
+        }
+        cargarDirectorio();
+      } catch (err) {
+        alert('Ocurrió un error, intenta de nuevo.');
+      }
+    });
+
+    document.querySelectorAll('#tbody-directorio tr[data-id]').forEach(fila => {
+      const id = fila.dataset.id;
+      fila.querySelector('[data-accion="borrar"]')?.addEventListener('click', async () => {
+        if (!confirm('¿Borrar este registro del directorio?')) return;
+        await fetch(`/api/directorio/${id}`, { method: 'DELETE' });
+        cargarDirectorio();
+      });
+      fila.querySelector('[data-accion="editar"]')?.addEventListener('click', async () => {
+        const nuevoId = prompt('Nuevo ID de Facebook (deja igual si no cambia):');
+        if (nuevoId === null) return;
+        const nuevaUrl = prompt('Nueva URL de Facebook (deja igual si no cambia):');
+        if (nuevaUrl === null) return;
+        await fetch(`/api/directorio/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ facebook_id: nuevoId, facebook_url: nuevaUrl }),
+        });
+        cargarDirectorio();
+      });
+    });
+  }
+
+  // ---------- Modo "Lugares": lugares para el subtítulo de los eventos ----------
+
+  async function cargarLugares() {
+    try {
+      const res = await fetch('/api/lugares');
+      const registros = await res.json();
+      renderLugares(registros);
+    } catch (err) {
+      lista.innerHTML = '<div class="estado-vacio">No se pudo cargar la lista de lugares.</div>';
+    }
+  }
+
+  function renderLugares(registros) {
+    const filasHtml = registros.length
+      ? registros.map(r => `
+          <tr data-id="${r._id}">
+            <td>${r.nombre || '—'}</td>
+            <td>${r.municipio_nombre || '—'}</td>
+            <td>${r.latitud ?? '—'}</td>
+            <td>${r.longitud ?? '—'}</td>
+            <td>${r.nota || '—'}</td>
+            <td>
+              <div class="acciones-fila">
+                <button class="btn-editar-fila" data-accion="editar">Editar</button>
+                <button class="btn-borrar-fila" data-accion="borrar">Borrar</button>
+              </div>
+            </td>
+          </tr>
+        `).join('')
+      : `<tr><td colspan="6" style="text-align:center; color: var(--ink-soft);">Sin lugares todavía.</td></tr>`;
+
+    lista.innerHTML = `
+      <div class="form-directorio">
+        <div class="campo">
+          <label>Nombre</label>
+          <input type="text" name="nombre" id="lug-nombre" placeholder="Jardín Libertad" />
+        </div>
+        <div class="campo">
+          <label>Municipio</label>
+          <select id="lug-municipio">
+            <option value="">Selecciona…</option>
+            ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
+          </select>
+        </div>
+        <div class="campo">
+          <label>Latitud</label>
+          <input type="text" name="latitud" id="lug-lat" placeholder="19.2433" style="width:120px;" />
+        </div>
+        <div class="campo">
+          <label>Longitud</label>
+          <input type="text" name="longitud" id="lug-lng" placeholder="-103.7247" style="width:120px;" />
+        </div>
+        <div class="campo">
+          <label>Nota (opcional)</label>
+          <input type="text" name="nota" id="lug-nota" placeholder="Referencia u otro dato" style="width:200px;" />
+        </div>
+        <button class="btn-agregar-directorio" id="btn-agregar-lugar">Agregar</button>
+      </div>
+      <table class="tabla-directorio">
+        <thead>
+          <tr><th>Nombre</th><th>Municipio</th><th>Latitud</th><th>Longitud</th><th>Nota</th><th></th></tr>
+        </thead>
+        <tbody id="tbody-lugares">${filasHtml}</tbody>
+      </table>
+    `;
+
+    document.getElementById('btn-agregar-lugar').addEventListener('click', async () => {
+      const nombreInput = document.getElementById('lug-nombre');
+      const municipioSelect = document.getElementById('lug-municipio');
+      const latInput = document.getElementById('lug-lat');
+      const lngInput = document.getElementById('lug-lng');
+      const notaInput = document.getElementById('lug-nota');
+
+      if (!nombreInput.value.trim()) {
+        alert('Ingresa el nombre del lugar.');
+        return;
+      }
+
+      const body = {
+        nombre: nombreInput.value.trim(),
+        municipio_id: municipioSelect.value,
+        municipio_nombre: municipioSelect.value ? MUNICIPIOS[municipioSelect.value] : '',
+        latitud: latInput.value.trim(),
+        longitud: lngInput.value.trim(),
+        nota: notaInput.value.trim(),
+      };
+
+      try {
+        const res = await fetch('/api/lugares', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          alert(data.error || 'No se pudo agregar.');
+          return;
+        }
+        cargarLugares();
+      } catch (err) {
+        alert('Ocurrió un error, intenta de nuevo.');
+      }
+    });
+
+    document.querySelectorAll('#tbody-lugares tr[data-id]').forEach(fila => {
+      const id = fila.dataset.id;
+      fila.querySelector('[data-accion="borrar"]')?.addEventListener('click', async () => {
+        if (!confirm('¿Borrar este lugar?')) return;
+        await fetch(`/api/lugares/${id}`, { method: 'DELETE' });
+        cargarLugares();
+      });
+      fila.querySelector('[data-accion="editar"]')?.addEventListener('click', async () => {
+        const nuevoNombre = prompt('Nuevo nombre (deja igual si no cambia):');
+        if (nuevoNombre === null) return;
+        const nuevaLat = prompt('Nueva latitud (deja igual si no cambia):');
+        if (nuevaLat === null) return;
+        const nuevaLng = prompt('Nueva longitud (deja igual si no cambia):');
+        if (nuevaLng === null) return;
+        const nuevaNota = prompt('Nueva nota (deja igual si no cambia):');
+        if (nuevaNota === null) return;
+        await fetch(`/api/lugares/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre: nuevoNombre,
+            latitud: nuevaLat,
+            longitud: nuevaLng,
+            nota: nuevaNota,
+          }),
+        });
+        cargarLugares();
+      });
+    });
+  }
+
+  // ---------- Modo "Posts locales": lugares fijos (ríos, playas, hoteles, restaurantes) ----------
+  // Ver docs/local-catalog-contract.md en el repo de la app: es la única
+  // fuente de verdad de los campos, códigos y ciclo de vida de esta sección.
+
+  let filtroLocalTipo = '';
+  let filtroLocalMunicipio = '';
+
+  async function cargarLocales() {
+    try {
+      const params = new URLSearchParams();
+      if (filtroLocalTipo) params.set('type', filtroLocalTipo);
+      if (filtroLocalMunicipio) params.set('municipalityId', filtroLocalMunicipio);
+      const res = await fetch(`/api/locales?${params}`);
+      const data = await res.json();
+      if (!res.ok) {
+        lista.innerHTML = `<div class="estado-vacio">${escapeHtml(data.error || 'No se pudo cargar el catálogo local.')}</div>`;
+        return;
+      }
+      renderLocales(data);
+    } catch (err) {
+      lista.innerHTML = '<div class="estado-vacio">No se pudo conectar con el servidor.</div>';
+    }
+  }
+
+  function renderLocales(locales) {
+    const filasHtml = locales.length
+      ? locales.map(loc => `
+          <tr data-id="${loc._id}" class="${loc.status ? '' : 'fila-inactiva'}">
+            <td>${escapeHtml(loc.title || 'Sin título')}</td>
+            <td>${CATEGORIAS_LOCAL[loc.type] || loc.type}</td>
+            <td>${MUNICIPIOS[loc.municipalityId] || '—'}</td>
+            <td>${loc.status ? '<span class="badge-activo">Activo</span>' : '<span class="badge-inactivo">Inactivo</span>'}</td>
+            <td>
+              <div class="acciones-fila">
+                <button class="btn-editar-fila" data-accion="editar">Editar</button>
+                ${loc.status
+                  ? '<button class="btn-borrar-fila" data-accion="baja">Dar de baja</button>'
+                  : '<button class="btn-editar-fila" data-accion="reactivar">Reactivar</button>'}
+              </div>
+            </td>
+          </tr>
+        `).join('')
+      : `<tr><td colspan="5" style="text-align:center; color: var(--ink-soft);">No hay posts locales con este filtro.</td></tr>`;
+
+    lista.innerHTML = `
+      <div class="barra-locales">
+        <div class="filtros">
+          <div class="campo-select">
+            <label>Categoría</label>
+            <select id="loc-filtro-tipo">
+              <option value="">Todas</option>
+              ${Object.entries(CATEGORIAS_LOCAL).map(([id, nombre]) => `<option value="${id}" ${filtroLocalTipo == id ? 'selected' : ''}>${nombre}</option>`).join('')}
+            </select>
+          </div>
+          <div class="campo-select">
+            <label>Municipio</label>
+            <select id="loc-filtro-municipio">
+              <option value="">Todos</option>
+              ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}" ${filtroLocalMunicipio == id ? 'selected' : ''}>${nombre}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <div class="acciones">
+          <button class="btn-secundario" id="btn-exportar-catalogo">⬇ Exportar catálogo para la app</button>
+          <button class="btn-agregar-directorio" id="btn-agregar-local">+ Agregar post local</button>
+        </div>
+      </div>
+      <table class="tabla-directorio">
+        <thead>
+          <tr><th>Título</th><th>Categoría</th><th>Municipio</th><th>Estatus</th><th></th></tr>
+        </thead>
+        <tbody id="tbody-locales">${filasHtml}</tbody>
+      </table>
+    `;
+
+    document.getElementById('loc-filtro-tipo').addEventListener('change', (e) => {
+      filtroLocalTipo = e.target.value;
+      cargarLocales();
+    });
+    document.getElementById('loc-filtro-municipio').addEventListener('change', (e) => {
+      filtroLocalMunicipio = e.target.value;
+      cargarLocales();
+    });
+    document.getElementById('btn-agregar-local').addEventListener('click', () => abrirModalLocal(null));
+    document.getElementById('btn-exportar-catalogo').addEventListener('click', exportarCatalogoLocal);
+
+    document.querySelectorAll('#tbody-locales tr[data-id]').forEach((fila, i) => {
+      const loc = locales[i];
+      fila.querySelector('[data-accion="editar"]')?.addEventListener('click', () => abrirModalLocal(loc));
+      fila.querySelector('[data-accion="baja"]')?.addEventListener('click', async () => {
+        if (!confirm(`¿Dar de baja "${loc.title}"? No se borra: solo deja de exportarse a la app y se puede reactivar después.`)) return;
+        await fetch(`/api/locales/${loc._id}/baja`, { method: 'POST' });
+        cargarLocales();
+      });
+      fila.querySelector('[data-accion="reactivar"]')?.addEventListener('click', async () => {
+        await fetch(`/api/locales/${loc._id}/reactivar`, { method: 'POST' });
+        cargarLocales();
+      });
+    });
+  }
+
+  async function exportarCatalogoLocal() {
+    const btn = document.getElementById('btn-exportar-catalogo');
+    btn.disabled = true;
+    const textoOriginal = btn.textContent;
+    btn.textContent = 'Exportando…';
+    try {
+      const res = await fetch('/api/locales/export');
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || 'No se pudo exportar el catálogo.');
+        return;
+      }
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const enlace = document.createElement('a');
+      enlace.href = url;
+      enlace.download = 'catalog.json';
+      document.body.appendChild(enlace);
+      enlace.click();
+      enlace.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      alert('Ocurrió un error al exportar, intenta de nuevo.');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = textoOriginal;
+    }
+  }
+
+  // Arma una fila de horario (día/hora) dentro del formulario de post local.
+  function crearFilaHorario(contenedor, dia = '', horas = '') {
+    const fila = document.createElement('div');
+    fila.className = 'schedule-fila';
+    fila.innerHTML = `
+      <input type="text" placeholder="Día (ej. Lunes a viernes)" class="loc-schedule-dia" value="${escapeHtml(dia)}" />
+      <input type="text" placeholder="Horario (ej. 9:00 - 18:00)" class="loc-schedule-horas" value="${escapeHtml(horas)}" />
+      <button type="button" class="btn-quitar-fila" title="Quitar">✕</button>
+    `;
+    fila.querySelector('.btn-quitar-fila').addEventListener('click', () => fila.remove());
+    contenedor.appendChild(fila);
+  }
+
+  function abrirModalLocal(local) {
+    const esNuevo = !local;
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+
+    const opcionesCategoria = Object.entries(CATEGORIAS_LOCAL)
+      .map(([id, nombre]) => `<option value="${id}" ${local && String(local.type) === id ? 'selected' : ''}>${nombre}</option>`)
+      .join('');
+    const opcionesMunicipio = Object.entries(MUNICIPIOS)
+      .map(([id, nombre]) => `<option value="${id}" ${local && String(local.municipalityId) === id ? 'selected' : ''}>${nombre}</option>`)
+      .join('');
+    const opcionesServicios = Object.entries(SERVICIOS_LOCAL)
+      .map(([clave, etiqueta]) => `
+        <label><input type="checkbox" class="loc-servicio" value="${clave}" ${local && Array.isArray(local.services) && local.services.includes(clave) ? 'checked' : ''} /> ${etiqueta}</label>
+      `).join('');
+
+    const loc = local || {};
+    const socialNetworks = loc.socialNetworks || {};
+    const location = loc.location || {};
+    const tieneUbicacion = !!(location && (location.name || location.latitude || location.longitude));
+
+    overlay.innerHTML = `
+      <div class="modal-box modal-box-local">
+        <h3>${esNuevo ? 'Agregar post local' : 'Editar post local'}</h3>
+        <p class="hint">Lugar fijo de Colima. Se captura una sola vez; la app lo recibe empaquetado en el siguiente release.</p>
+        <div class="form-local">
+          <div class="fila-campos">
+            <div class="campo-select">
+              <label>Categoría <span class="req">*</span></label>
+              <select id="loc-type">
+                <option value="">Selecciona…</option>
+                ${opcionesCategoria}
+              </select>
+            </div>
+            <div class="campo-select">
+              <label>Municipio <span class="req">*</span></label>
+              <select id="loc-municipio">
+                <option value="">Selecciona…</option>
+                ${opcionesMunicipio}
+              </select>
+            </div>
+            <div class="campo-select" style="max-width:140px;">
+              <label>Subcategoría</label>
+              <input type="number" id="loc-subtype" value="${loc.subType ?? 0}" />
+            </div>
+          </div>
+
+          <div class="campo-fecha">
+            <label>Título <span class="req">*</span></label>
+            <input type="text" id="loc-title" value="${escapeHtml(loc.title || '')}" placeholder="Ej. Río Los Amiales" />
+          </div>
+          <div class="campo-fecha">
+            <label>Subtítulo (normalmente municipio o zona)</label>
+            <input type="text" id="loc-subtitle" value="${escapeHtml(loc.subtitle || '')}" />
+          </div>
+          <div class="campo-fecha">
+            <label>Descripción (español) <span class="req">*</span></label>
+            <textarea id="loc-description">${escapeHtml(loc.description || '')}</textarea>
+          </div>
+          <div class="campo-fecha">
+            <label>Descripción (inglés)</label>
+            <textarea id="loc-description-en">${escapeHtml(loc.descriptionEnglish || '')}</textarea>
+          </div>
+          <div class="campo-fecha">
+            <label>Clave de imagen (imageKey)</label>
+            <input type="text" id="loc-imagekey" value="${escapeHtml(loc.imageKey || '')}" placeholder="ej. rio_los_amiales_1" />
+            <p class="ayuda-campo">Esta clave debe existir también en el repo de la app (imagesMappers) con la foto correspondiente, agregada ahí antes del próximo release.</p>
+          </div>
+          <div class="campo-fecha">
+            <label>Slug (opcional, informativo)</label>
+            <input type="text" id="loc-slug" value="${escapeHtml(loc.slug || '')}" placeholder="ej. rio-los-amiales" />
+          </div>
+
+          <div class="seccion">
+            <div class="seccion-titulo">Ubicación (opcional)</div>
+            <label><input type="checkbox" id="loc-tiene-ubicacion" ${tieneUbicacion ? 'checked' : ''} /> Este lugar tiene coordenadas / acceso que capturar</label>
+            <div id="loc-ubicacion-campos" style="display:${tieneUbicacion ? 'flex' : 'none'}; flex-wrap:wrap; gap:12px;">
+              <div class="campo-fecha" style="min-width:140px;">
+                <label>Latitud</label>
+                <input type="text" id="loc-lat" value="${location.latitude ?? ''}" />
+              </div>
+              <div class="campo-fecha" style="min-width:140px;">
+                <label>Longitud</label>
+                <input type="text" id="loc-lng" value="${location.longitude ?? ''}" />
+              </div>
+              <div class="campo-fecha" style="min-width:200px; flex:1;">
+                <label>Nombre del punto</label>
+                <input type="text" id="loc-loc-nombre" value="${escapeHtml(location.name || '')}" />
+              </div>
+              <div class="campo-fecha" style="min-width:200px; flex:1;">
+                <label>Descripción del acceso</label>
+                <input type="text" id="loc-loc-desc" value="${escapeHtml(location.descriptionLocation || '')}" />
+              </div>
+            </div>
+          </div>
+
+          <div class="seccion">
+            <div class="seccion-titulo">Servicios</div>
+            <div class="servicios-grid">${opcionesServicios}</div>
+          </div>
+
+          <div class="seccion">
+            <div class="seccion-titulo">Horario</div>
+            <label><input type="checkbox" id="loc-openallday" ${loc.openAllDay ? 'checked' : ''} /> Abierto todo el día</label>
+            <div class="schedule-filas" id="loc-schedule-filas"></div>
+            <button type="button" class="btn-secundario btn-agregar-fila" id="loc-agregar-horario">+ Agregar horario</button>
+          </div>
+
+          <div class="seccion">
+            <div class="seccion-titulo">Video y redes sociales</div>
+            <div class="campo-fecha">
+              <label>Video de TikTok (URL)</label>
+              <input type="text" id="loc-video" value="${escapeHtml(loc.videoTikTok || '')}" />
+            </div>
+            <div class="fila-campos">
+              <div class="campo-fecha"><label>Web</label><input type="text" id="loc-web" value="${escapeHtml(socialNetworks.web || '')}" /></div>
+              <div class="campo-fecha"><label>Facebook</label><input type="text" id="loc-facebook" value="${escapeHtml(socialNetworks.facebook || '')}" /></div>
+              <div class="campo-fecha"><label>WhatsApp</label><input type="text" id="loc-whatsapp" value="${escapeHtml(socialNetworks.whatsapp || '')}" /></div>
+            </div>
+            <div class="fila-campos">
+              <div class="campo-fecha"><label>Instagram</label><input type="text" id="loc-instagram" value="${escapeHtml(socialNetworks.instagram || '')}" /></div>
+              <div class="campo-fecha"><label>TikTok</label><input type="text" id="loc-tiktok" value="${escapeHtml(socialNetworks.tiktok || '')}" /></div>
+              <div class="campo-fecha"><label>YouTube</label><input type="text" id="loc-youtube" value="${escapeHtml(socialNetworks.youtube || '')}" /></div>
+            </div>
+          </div>
+
+          <div class="seccion" id="loc-seccion-hotel-restaurante" style="display:none;">
+            <div class="seccion-titulo">Datos de hotel / restaurante</div>
+            <div class="campo-fecha">
+              <label>Dirección</label>
+              <input type="text" id="loc-address" value="${escapeHtml(loc.address || '')}" />
+            </div>
+            <div class="fila-campos">
+              <div class="campo-fecha"><label>Teléfono</label><input type="text" id="loc-phone" value="${escapeHtml(loc.phone || '')}" /></div>
+              <div class="campo-fecha"><label>Sitio web</label><input type="text" id="loc-website" value="${escapeHtml(loc.website || '')}" /></div>
+              <div class="campo-fecha"><label>Correo</label><input type="text" id="loc-email" value="${escapeHtml(loc.email || '')}" /></div>
+            </div>
+            <div class="fila-campos">
+              <div class="campo-fecha" style="max-width:140px;"><label>Calificación</label><input type="number" step="0.1" min="0" max="5" id="loc-rating" value="${loc.rating ?? ''}" /></div>
+              <div class="campo-fecha" style="max-width:200px;"><label>Rango de precio</label><input type="text" id="loc-pricerange" value="${escapeHtml(loc.priceRange || '')}" placeholder="ej. $$" /></div>
+            </div>
+          </div>
+        </div>
+
+        <p id="loc-error" class="error-form" style="display:none;"></p>
+        <div id="loc-id-asignado"></div>
+
+        <div style="display:flex; gap:8px; margin-top:16px;">
+          <button type="button" class="modal-cerrar" id="loc-cancelar" style="margin:0; flex:1; border:1px solid var(--line); border-radius:6px; padding:9px;">${esNuevo ? 'Cancelar' : 'Cerrar'}</button>
+          <button type="button" class="btn-agregar-directorio" id="loc-guardar" style="flex:1; padding:9px;">${esNuevo ? 'Crear' : 'Guardar cambios'}</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const filasContenedor = overlay.querySelector('#loc-schedule-filas');
+    (loc.schedule || []).forEach(item => crearFilaHorario(filasContenedor, item.day, item.hours));
+    overlay.querySelector('#loc-agregar-horario').addEventListener('click', () => crearFilaHorario(filasContenedor));
+
+    const selectTipo = overlay.querySelector('#loc-type');
+    const seccionHotelRestaurante = overlay.querySelector('#loc-seccion-hotel-restaurante');
+    function actualizarSeccionHotelRestaurante() {
+      const esHotelORestaurante = ['20', '21'].includes(selectTipo.value);
+      seccionHotelRestaurante.style.display = esHotelORestaurante ? 'flex' : 'none';
+    }
+    selectTipo.addEventListener('change', actualizarSeccionHotelRestaurante);
+    actualizarSeccionHotelRestaurante();
+
+    const checkUbicacion = overlay.querySelector('#loc-tiene-ubicacion');
+    const camposUbicacion = overlay.querySelector('#loc-ubicacion-campos');
+    checkUbicacion.addEventListener('change', () => {
+      camposUbicacion.style.display = checkUbicacion.checked ? 'flex' : 'none';
+    });
+
+    overlay.querySelector('#loc-cancelar').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+
+    overlay.querySelector('#loc-guardar').addEventListener('click', () => guardarLocal(overlay, local));
+  }
+
+  // Junta un número de un input; devuelve undefined si está vacío (para no
+  // mandar campos numéricos opcionales vacíos, que el backend rechazaría).
+  function numeroOpcional(valor) {
+    if (valor === '' || valor === null || valor === undefined) return undefined;
+    const n = Number(valor);
+    return Number.isNaN(n) ? undefined : n;
+  }
+
+  function textoOpcional(valor) {
+    const v = (valor || '').trim();
+    return v === '' ? undefined : v;
+  }
+
+  async function guardarLocal(overlay, localExistente) {
+    // Ya se creó en un click anterior: el botón ahora solo cierra el modal
+    // (evita volver a enviar el alta si el usuario le da clic de nuevo).
+    if (overlay.querySelector('#loc-id-asignado').children.length) {
+      overlay.remove();
+      cargarLocales();
+      return;
+    }
+
+    const errorEl = overlay.querySelector('#loc-error');
+    errorEl.style.display = 'none';
+
+    const type = numeroOpcional(overlay.querySelector('#loc-type').value);
+    const municipalityId = numeroOpcional(overlay.querySelector('#loc-municipio').value);
+    const title = overlay.querySelector('#loc-title').value.trim();
+    const description = overlay.querySelector('#loc-description').value.trim();
+
+    if (type === undefined || municipalityId === undefined || !title || !description) {
+      errorEl.textContent = 'Completa categoría, municipio, título y descripción.';
+      errorEl.style.display = 'block';
+      return;
+    }
+
+    const body = {
+      kind: 'local',
+      type,
+      municipalityId,
+      subType: numeroOpcional(overlay.querySelector('#loc-subtype').value) ?? 0,
+      title,
+      description,
+      subtitle: textoOpcional(overlay.querySelector('#loc-subtitle').value),
+      descriptionEnglish: textoOpcional(overlay.querySelector('#loc-description-en').value),
+      imageKey: textoOpcional(overlay.querySelector('#loc-imagekey').value),
+      slug: textoOpcional(overlay.querySelector('#loc-slug').value),
+      openAllDay: overlay.querySelector('#loc-openallday').checked,
+      videoTikTok: textoOpcional(overlay.querySelector('#loc-video').value),
+    };
+
+    const servicios = Array.from(overlay.querySelectorAll('.loc-servicio:checked')).map(chk => chk.value);
+    if (servicios.length) body.services = servicios;
+
+    const schedule = Array.from(overlay.querySelectorAll('.schedule-fila')).map(fila => ({
+      day: fila.querySelector('.loc-schedule-dia').value.trim(),
+      hours: fila.querySelector('.loc-schedule-horas').value.trim(),
+    })).filter(item => item.day && item.hours);
+    if (schedule.length) body.schedule = schedule;
+
+    if (overlay.querySelector('#loc-tiene-ubicacion').checked) {
+      const lat = numeroOpcional(overlay.querySelector('#loc-lat').value);
+      const lng = numeroOpcional(overlay.querySelector('#loc-lng').value);
+      const nombreUbicacion = overlay.querySelector('#loc-loc-nombre').value.trim();
+      if (lat !== undefined && lng !== undefined && nombreUbicacion) {
+        body.location = {
+          latitude: lat,
+          longitude: lng,
+          name: nombreUbicacion,
+          descriptionLocation: overlay.querySelector('#loc-loc-desc').value.trim(),
+        };
+      }
+    }
+
+    const socialNetworks = {
+      web: textoOpcional(overlay.querySelector('#loc-web').value),
+      facebook: textoOpcional(overlay.querySelector('#loc-facebook').value),
+      whatsapp: textoOpcional(overlay.querySelector('#loc-whatsapp').value),
+      instagram: textoOpcional(overlay.querySelector('#loc-instagram').value),
+      tiktok: textoOpcional(overlay.querySelector('#loc-tiktok').value),
+      youtube: textoOpcional(overlay.querySelector('#loc-youtube').value),
+    };
+    if (Object.values(socialNetworks).some(v => v !== undefined)) {
+      body.socialNetworks = socialNetworks;
+    }
+
+    if ([20, 21].includes(type)) {
+      body.address = textoOpcional(overlay.querySelector('#loc-address').value);
+      body.phone = textoOpcional(overlay.querySelector('#loc-phone').value);
+      body.website = textoOpcional(overlay.querySelector('#loc-website').value);
+      body.email = textoOpcional(overlay.querySelector('#loc-email').value);
+      body.rating = numeroOpcional(overlay.querySelector('#loc-rating').value);
+      body.priceRange = textoOpcional(overlay.querySelector('#loc-pricerange').value);
+    }
+
+    // Limpia claves undefined: el backend rechaza cuerpos con campos que no
+    // reconoce, así que es mejor no mandarlos en vez de mandarlos en null/undefined.
+    Object.keys(body).forEach(key => { if (body[key] === undefined) delete body[key]; });
+
+    const btnGuardar = overlay.querySelector('#loc-guardar');
+    btnGuardar.disabled = true;
+    btnGuardar.textContent = 'Guardando…';
+
+    try {
+      const esNuevo = !localExistente;
+      const url = esNuevo ? '/api/locales' : `/api/locales/${localExistente._id}`;
+      const res = await fetch(url, {
+        method: esNuevo ? 'POST' : 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        errorEl.textContent = data.error || 'No se pudo guardar.';
+        errorEl.style.display = 'block';
+        btnGuardar.disabled = false;
+        btnGuardar.textContent = esNuevo ? 'Crear' : 'Guardar cambios';
+        return;
+      }
+
+      if (esNuevo && data.post && data.post._id) {
+        const idAsignadoEl = overlay.querySelector('#loc-id-asignado');
+        idAsignadoEl.innerHTML = `
+          <div class="id-asignado">
+            <span>Post local creado. Su id permanente es</span>
+            <code id="loc-id-texto">${data.post._id}</code>
+            <button type="button" id="loc-copiar-id">Copiar</button>
+          </div>
+        `;
+        idAsignadoEl.querySelector('#loc-copiar-id').addEventListener('click', () => {
+          navigator.clipboard.writeText(data.post._id);
+        });
+        btnGuardar.textContent = 'Cerrar';
+        btnGuardar.disabled = false;
+        overlay.querySelector('#loc-cancelar').textContent = 'Seguir editando aquí';
+      } else {
+        overlay.remove();
+        cargarLocales();
+      }
+    } catch (err) {
+      errorEl.textContent = 'Ocurrió un error, intenta de nuevo.';
+      errorEl.style.display = 'block';
+      btnGuardar.disabled = false;
+      btnGuardar.textContent = localExistente ? 'Guardar cambios' : 'Crear';
+    }
+  }
+
+  // ---------- Modo "Posts" (Configuración): buscar un post y editar sus campos ----------
+  // Reemplaza al viejo editor genérico de Mongo ("Base de Datos"): ya no hay
+  // acceso a Mongo crudo desde el panel — esto busca/edita solo dentro de la
+  // colección de posts (evento o local), pasando por el backend real.
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  let busquedaPostsAdmin = '';
+
+  async function cargarPostsAdmin() {
+    try {
+      const params = new URLSearchParams();
+      if (busquedaPostsAdmin) params.set('q', busquedaPostsAdmin);
+      const res = await fetch(`/api/posts-admin?${params}`);
+      const data = await res.json();
+      if (!res.ok) {
+        lista.innerHTML = `<div class="estado-vacio">${escapeHtml(data.error || 'No se pudieron buscar posts.')}</div>`;
+        return;
+      }
+      renderPostsAdmin(data);
+    } catch (err) {
+      lista.innerHTML = '<div class="estado-vacio">No se pudo conectar con el servidor.</div>';
+    }
+  }
+
+  function renderPostsAdmin(posts) {
+    const filasHtml = posts.length
+      ? posts.map(post => `
+          <tr data-id="${post._id}">
+            <td style="font-family: monospace; font-size: 11.5px; white-space: nowrap;">${post._id}</td>
+            <td>${escapeHtml(post.title || 'Sin título')}</td>
+            <td>${post.kind === 'local' ? 'Local' : 'Evento'}</td>
+            <td>${post.status ? '<span class="badge-activo">Activo</span>' : '<span class="badge-inactivo">Inactivo</span>'}</td>
+            <td>
+              <div class="acciones-fila">
+                <button class="btn-editar-fila" data-accion="editar">Editar</button>
+              </div>
+            </td>
+          </tr>
+        `).join('')
+      : `<tr><td colspan="5" style="text-align:center; color: var(--ink-soft);">${busquedaPostsAdmin ? 'Sin resultados para esa búsqueda.' : 'Sin posts todavía.'}</td></tr>`;
+
+    lista.innerHTML = `
+      <div class="barra-locales">
+        <div class="filtros">
+          <div class="campo-select" style="min-width:280px;">
+            <label>Buscar por título o pegar un _id</label>
+            <input type="text" id="posts-admin-buscar" value="${escapeHtml(busquedaPostsAdmin)}" placeholder="Ej. Feria del Hongo, o 66f1a2b3c4d5e6f7a8b9c0d1" />
+          </div>
+        </div>
+        <div class="acciones">
+          <button class="btn-agregar-directorio" id="btn-buscar-posts-admin">Buscar</button>
+        </div>
+      </div>
+      <p class="hint" style="margin: -8px 0 14px;">Sin buscar nada, muestra los ${posts.length} más recientes. Editar aquí es de campo libre — para dar de alta o dar de baja usa las secciones "Posts locales", "Producción" o "Pendientes".</p>
+      <table class="tabla-directorio">
+        <thead>
+          <tr><th>_id</th><th>Título</th><th>Tipo</th><th>Estatus</th><th></th></tr>
+        </thead>
+        <tbody id="tbody-posts-admin">${filasHtml}</tbody>
+      </table>
+    `;
+
+    const inputBuscar = document.getElementById('posts-admin-buscar');
+    const ejecutarBusqueda = () => {
+      busquedaPostsAdmin = inputBuscar.value.trim();
+      cargarPostsAdmin();
+    };
+    document.getElementById('btn-buscar-posts-admin').addEventListener('click', ejecutarBusqueda);
+    inputBuscar.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') ejecutarBusqueda();
+    });
+
+    document.querySelectorAll('#tbody-posts-admin tr[data-id]').forEach((fila, i) => {
+      const post = posts[i];
+      fila.querySelector('[data-accion="editar"]')?.addEventListener('click', () => {
+        abrirModalEditarPost(post);
+      });
+    });
+  }
+
+  function abrirModalEditarPost(post) {
+    const { _id, ...camposEditables } = post;
+    const textoInicial = JSON.stringify(camposEditables, null, 2);
+
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+      <div class="modal-box" style="max-width: 560px;">
+        <h3>Editar post</h3>
+        <p class="hint">_id: <code>${_id}</code>. Edita el JSON y guarda. Cambiar "kind" o los contadores sociales (likes, comments, views, favorites, hides) no tiene efecto: esos se manejan desde sus propios flujos.</p>
+        <textarea id="post-admin-json" rows="16" style="width:100%; border:1px solid var(--line); border-radius:6px; padding:8px 10px; font-size:12.5px; font-family: monospace; resize:vertical;">${escapeHtml(textoInicial)}</textarea>
+        <p id="post-admin-error" class="error-form" style="display:none;"></p>
+        <div style="display:flex; gap:8px; margin-top:14px;">
+          <button type="button" class="modal-cerrar" id="post-admin-cancelar" style="margin:0; flex:1; border:1px solid var(--line); border-radius:6px; padding:9px;">Cancelar</button>
+          <button type="button" class="btn-agregar-directorio" id="post-admin-guardar" style="flex:1; padding:9px;">Guardar</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    document.getElementById('post-admin-cancelar').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+
+    document.getElementById('post-admin-guardar').addEventListener('click', async () => {
+      const textarea = document.getElementById('post-admin-json');
+      const errorEl = document.getElementById('post-admin-error');
+      let cambios;
+      try {
+        cambios = JSON.parse(textarea.value);
+      } catch (err) {
+        errorEl.textContent = 'El JSON no es válido: ' + err.message;
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      const btnGuardar = document.getElementById('post-admin-guardar');
+      btnGuardar.disabled = true;
+      btnGuardar.textContent = 'Guardando…';
+
+      try {
+        const res = await fetch(`/api/posts-admin/${_id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(cambios),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          errorEl.textContent = data.error || 'No se pudo guardar.';
+          errorEl.style.display = 'block';
+          btnGuardar.disabled = false;
+          btnGuardar.textContent = 'Guardar';
+          return;
+        }
+        overlay.remove();
+        cargarPostsAdmin();
+      } catch (err) {
+        errorEl.textContent = 'Ocurrió un error, intenta de nuevo.';
+        errorEl.style.display = 'block';
+        btnGuardar.disabled = false;
+        btnGuardar.textContent = 'Guardar';
+      }
+    });
+  }
+
+  // ---------- Modo "Pendientes": una tarjeta grande a la vez ----------
+
+  // Modal que enumera los campos obligatorios que faltan al aprobar un evento.
+  function mostrarModalFaltantes(faltantes) {
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = `
+      <div class="modal-box">
+        <h3>Falta información</h3>
+        <p class="hint">Completa estos campos antes de aprobar el evento:</p>
+        <ul style="margin:0; padding-left:20px; font-size:13.5px; line-height:1.7;">
+          ${faltantes.map(f => `<li>${f}</li>`).join('')}
+        </ul>
+        <button type="button" class="modal-cerrar" id="btn-cerrar-faltantes">Entendido</button>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+    document.getElementById('btn-cerrar-faltantes').addEventListener('click', () => overlay.remove());
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+  }
+
+  // Busca eventos ya aprobados/publicados en la misma fecha (para detectar
+  // que un ayuntamiento repitió la misma publicación) y, si hay alguno,
+  // muestra un modal con el título de cada uno y un acceso al post original.
+  async function buscarYMostrarEventosMismoDia(fechaISO, idEventoActual) {
+    if (!fechaISO) return;
+    try {
+      const res = await fetch(`/api/pendientes/mismo-dia?fecha=${fechaISO}&excluir=${idEventoActual}`);
+      if (!res.ok) return;
+      const eventos = await res.json();
+      if (!Array.isArray(eventos) || !eventos.length) return;
+
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      overlay.innerHTML = `
+        <div class="modal-box modal-box-repetidos">
+          <h3>⚠️ Posible evento repetido</h3>
+          <p class="hint">Ya hay ${eventos.length} evento${eventos.length === 1 ? '' : 's'} aprobado${eventos.length === 1 ? '' : 's'} con fecha ${formatearFechaAmigable(fechaISO)}. Revisa si es el mismo antes de aprobar de nuevo:</p>
+          ${eventos.map(e => `
+            <div class="item-evento-repetido">
+              <div>
+                <div class="titulo-evento-repetido">${escapeHtml(e.title || 'Sin título')}</div>
+                <div class="badge-estatus-repetido">${escapeHtml(e.pagina_origen || '')} · ${e.estatus_revision}</div>
+              </div>
+              ${e.post_url ? `<a class="btn-ver-original-repetido" href="${e.post_url}" target="_blank" rel="noopener">Ver post ↗</a>` : ''}
+            </div>
+          `).join('')}
+          <button type="button" class="btn-cerrar-grande" id="btn-cerrar-repetidos">Cerrar</button>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+      document.getElementById('btn-cerrar-repetidos').addEventListener('click', () => overlay.remove());
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+    } catch (err) {
+      // Si falla la búsqueda no bloqueamos el flujo de aprobar/rechazar.
+    }
+  }
+
+  function fechaHoyISO() {
+    const ahora = new Date();
+    const dosDigitos = (n) => String(n).padStart(2, '0');
+    return `${ahora.getFullYear()}-${dosDigitos(ahora.getMonth() + 1)}-${dosDigitos(ahora.getDate())}`;
+  }
+
+  // Convierte el valor crudo de un <input type="date"|"datetime-local">
+  // (ej. "2026-09-12" o "2026-09-12T17:00") a un texto legible en español,
+  // ej. "Sábado 12 de septiembre 2026, 5:00 p.m.". Se arma la fecha con
+  // año/mes/día locales (sin pasar por Date-desde-string) para no correr
+  // un día por husos horarios.
+  function formatearFechaAmigable(valor) {
+    if (!valor) return '';
+    const [parteFecha, parteHora] = valor.split('T');
+    const [anio, mes, dia] = parteFecha.split('-').map(Number);
+    if (!anio || !mes || !dia) return '';
+    const fecha = new Date(anio, mes - 1, dia);
+    const diaSemana = fecha.toLocaleDateString('es-MX', { weekday: 'long' });
+    const mesNombre = fecha.toLocaleDateString('es-MX', { month: 'long' });
+    let texto = `${diaSemana.charAt(0).toUpperCase()}${diaSemana.slice(1)} ${dia} de ${mesNombre} ${anio}`;
+    if (parteHora) {
+      const [h, m] = parteHora.split(':').map(Number);
+      const horaFecha = new Date(2000, 0, 1, h, m);
+      const hora = horaFecha
+        .toLocaleTimeString('es-MX', { hour: 'numeric', minute: '2-digit', hourCycle: 'h12' })
+        .replace(/\s*([ap])\.?\s*m\.?/i, ' $1.m.'); // "5:00 p. m." -> "5:00 p.m."
+      texto += `, ${hora}`;
+    }
+    return texto;
+  }
+
+
+  function renderTarjetaGrande() {
+    if (!eventosPendientes.length) {
+      lista.innerHTML = '<div class="estado-vacio">No hay eventos pendientes por revisar. 🎉</div>';
+      return;
+    }
+
+    const total = eventosPendientes.length;
+    const ev = eventosPendientes[0];
+    const imagenes = Array.isArray(ev.imagenes) ? ev.imagenes.filter(Boolean) : [];
+    let indiceImagen = 0;
+
+    const imagenHtml = imagenes.length
+      ? `<div class="imagen-wrap">
+           <img id="img-actual" src="${imagenes[0]}" alt="" />
+           ${imagenes.length > 1 ? `
+             <button class="nav-imagen izq" id="btn-img-izq">‹</button>
+             <button class="nav-imagen der" id="btn-img-der">›</button>
+             <span class="contador-imagenes" id="contador-imagenes">1 / ${imagenes.length}</span>
+           ` : ''}
+         </div>`
+      : `<div class="imagen-wrap"><div class="sin-imagen">Este post no tiene imagen</div></div>`;
+
+    lista.innerHTML = `
+      <div class="progreso">Quedan ${total} por revisar</div>
+      <div class="card-grande">
+        ${imagenHtml}
+        <div class="contenido">
+          <div class="meta">
+            <span class="badge">${ev.plataforma || ''}</span>
+            <span>${ev.pagina_origen || 'Página desconocida'}</span>
+            <span>·</span>
+            <span>Detectado ${formatearFecha(ev.detectado_en)}</span>
+          </div>
+          <p class="texto">${(ev.contenido_crudo || '').trim()}</p>
+          <a class="enlace-original" href="${ev.post_url}" target="_blank" rel="noopener">Ver post original en Facebook ↗</a>
+
+          <div class="fila-traducir" id="fila-traducir">
+            <button type="button" class="btn-traducir" data-accion="traducir">🌐 Traducir</button>
+            <span style="font-size:12px; color: var(--ink-soft);">Obligatorio <span class="req">*</span></span>
+          </div>
+
+          <div class="form-fecha">
+            <div class="checks">
+              <label><input type="checkbox" id="chk-allday" checked /> Todo el día (sin hora específica)</label>
+              <label><input type="checkbox" id="chk-moredays" /> Dura más de un día</label>
+              <label><input type="checkbox" id="chk-iscover" /> Es Evento Padre</label>
+            </div>
+            <div class="campos-fecha">
+              <div class="campo-fecha campo-fecha-compacto">
+                <label id="lbl-inicio">Fecha del evento</label>
+                <input type="date" id="input-date" />
+                <span class="fecha-amigable" id="fecha-amigable-inicio"></span>
+              </div>
+              <div class="campo-fecha campo-fecha-compacto" id="wrap-finish" style="display:none;">
+                <label id="lbl-fin">Fecha de término</label>
+                <input type="date" id="input-finish" />
+                <span class="fecha-amigable" id="fecha-amigable-fin"></span>
+              </div>
+            </div>
+
+            <div class="campos-fecha">
+              <div class="campo-select">
+                <label>Municipio <span class="req">*</span> ${ev.municipio_sugerido ? '<span style="color: var(--teal-dark); font-weight: 700;">· autodetectado, verifica</span>' : ''}</label>
+                <select id="select-municipio">
+                  <option value="">Selecciona…</option>
+                  ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
+                </select>
+              </div>
+              <div class="campo-select">
+                <label>Tipo de evento <span class="req">*</span></label>
+                <select id="select-tipo">
+                  <option value="">Selecciona…</option>
+                  ${Object.entries(TIPOS_EVENTO).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
+                </select>
+              </div>
+            </div>
+
+            <div class="campo-fecha">
+              <label>Título <span class="req">*</span></label>
+              <input type="text" id="input-title" placeholder="Ej. Feria del Hongo - El Terrero 2026" />
+            </div>
+
+            <div class="campo-fecha">
+              <label>Subtítulo (lugar) <span class="req">*</span></label>
+              <div class="fila-ubicacion" id="fila-subtitulo">
+                <button type="button" class="btn-ubicacion" id="btn-elegir-subtitulo">📍 Agregar ubicación (subtítulo)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="acciones-grandes">
+            <button class="accion-grande btn-rechazar-g" id="btn-rechazar">Rechazar</button>
+            <button class="accion-grande btn-aprobar-g" id="btn-aprobar">Aprobar evento</button>
+          </div>
+        </div>
+      </div>
+    `;
+
+    const chkAllDay = document.getElementById('chk-allday');
+    const chkMoreDays = document.getElementById('chk-moredays');
+    const chkIsCover = document.getElementById('chk-iscover');
+
+    // --- Carrusel de imágenes ---
+    if (imagenes.length > 1) {
+      const imgActual = document.getElementById('img-actual');
+      const contador = document.getElementById('contador-imagenes');
+      const actualizarImagen = () => {
+        imgActual.src = imagenes[indiceImagen];
+        contador.textContent = `${indiceImagen + 1} / ${imagenes.length}`;
+      };
+      document.getElementById('btn-img-izq').addEventListener('click', () => {
+        indiceImagen = (indiceImagen - 1 + imagenes.length) % imagenes.length;
+        actualizarImagen();
+      });
+      document.getElementById('btn-img-der').addEventListener('click', () => {
+        indiceImagen = (indiceImagen + 1) % imagenes.length;
+        actualizarImagen();
+      });
+    }
+    const inputDate = document.getElementById('input-date');
+    const inputFinish = document.getElementById('input-finish');
+    const wrapFinish = document.getElementById('wrap-finish');
+    const lblInicio = document.getElementById('lbl-inicio');
+    const lblFin = document.getElementById('lbl-fin');
+    const fechaAmigableInicio = document.getElementById('fecha-amigable-inicio');
+    const fechaAmigableFin = document.getElementById('fecha-amigable-fin');
+
+    function actualizarTipoInputs() {
+      const tipo = chkAllDay.checked ? 'date' : 'datetime-local';
+      const hoy = fechaHoyISO();
+      // Al pedir hora, precargamos la fecha ya elegida (o la de hoy) con 01:00,
+      // porque los eventos casi siempre caen en horas en punto.
+      [inputDate, inputFinish].forEach((input) => {
+        const diaPrevio = (input.value || '').slice(0, 10);
+        input.type = tipo;
+        if (tipo === 'datetime-local') {
+          input.value = `${diaPrevio || hoy}T01:00`;
+        } else {
+          input.value = diaPrevio;
+        }
+      });
+      lblInicio.textContent = chkAllDay.checked ? 'Fecha del evento' : 'Fecha y hora de inicio';
+      lblFin.textContent = chkAllDay.checked ? 'Fecha de término' : 'Fecha y hora de término';
+      fechaAmigableInicio.textContent = formatearFechaAmigable(inputDate.value);
+      fechaAmigableFin.textContent = formatearFechaAmigable(inputFinish.value);
+    }
+    chkAllDay.addEventListener('change', actualizarTipoInputs);
+    inputDate.addEventListener('input', () => {
+      fechaAmigableInicio.textContent = formatearFechaAmigable(inputDate.value);
+    });
+    inputFinish.addEventListener('input', () => {
+      fechaAmigableFin.textContent = formatearFechaAmigable(inputFinish.value);
+    });
+    // Al terminar de elegir la fecha de inicio, busca si ya hay otro evento
+    // aprobado ese mismo día (ayuntamientos que repiten la misma publicación).
+    inputDate.addEventListener('change', () => {
+      const fechaISO = (inputDate.value || '').slice(0, 10);
+      if (fechaISO.length === 10) {
+        buscarYMostrarEventosMismoDia(fechaISO, ev._id);
+      }
+    });
+    actualizarTipoInputs();
+
+    // Preselecciona el municipio si coincide con algo en el directorio
+    if (ev.municipio_sugerido) {
+      const selectMunicipioAuto = document.getElementById('select-municipio');
+      selectMunicipioAuto.value = String(ev.municipio_sugerido);
+    }
+
+    chkMoreDays.addEventListener('change', () => {
+      wrapFinish.style.display = chkMoreDays.checked ? 'flex' : 'none';
+    });
+
+    // --- Traducción (descriptionEnglish) ---
+    descripcionIngles = '';
+    const filaTraducir = document.getElementById('fila-traducir');
+    const HTML_BOTON_TRADUCIR = `<button type="button" class="btn-traducir" data-accion="traducir">🌐 Traducir</button>`;
+
+    async function ejecutarTraduccion() {
+      filaTraducir.innerHTML = `<button type="button" class="btn-traducir" disabled>Traduciendo…</button>`;
+      try {
+        const res = await fetch(`/api/pendientes/${ev._id}/traducir`, { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok) {
+          filaTraducir.innerHTML = `${HTML_BOTON_TRADUCIR}<p class="error-traduccion">${data.error || 'No se pudo traducir.'}</p>`;
+          return;
+        }
+        descripcionIngles = data.descriptionEnglish || '';
+        filaTraducir.innerHTML = `
+          <div class="caja-traduccion">
+            <label>Descripción en inglés (descriptionEnglish) <span class="req">*</span></label>
+            <textarea id="input-description-english">${descripcionIngles}</textarea>
+            <button type="button" class="btn-traducir" data-accion="traducir" style="align-self:flex-start;">🌐 Volver a traducir</button>
+          </div>
+        `;
+        document.getElementById('input-description-english').addEventListener('input', (e) => {
+          descripcionIngles = e.target.value;
+        });
+      } catch (err) {
+        filaTraducir.innerHTML = `${HTML_BOTON_TRADUCIR}<p class="error-traduccion">Ocurrió un error, intenta de nuevo.</p>`;
+      }
+    }
+
+    // Delegación: el botón se reemplaza varias veces (traducir, reintentar,
+    // volver a traducir), así que escuchamos en el contenedor fijo.
+    filaTraducir.addEventListener('click', (e) => {
+      if (e.target.closest('[data-accion="traducir"]')) ejecutarTraduccion();
+    });
+
+    // Modal para dar de alta un lugar nuevo sin salir de Pendientes. Se usa
+    // tanto desde el picker de "Subtítulo (lugar)" como, si algún día se
+    // necesita, desde cualquier otro punto — por eso recibe un callback en
+    // vez de asumir a dónde va el nombre elegido.
+    function abrirModalAgregarLugar(alGuardar) {
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      overlay.innerHTML = `
+        <div class="modal-box">
+          <h3>Agregar lugar</h3>
+          <p class="hint">Se agrega al directorio de lugares y queda disponible aquí de inmediato.</p>
+          <div class="campo-fecha" style="margin-bottom:8px;">
+            <label>Nombre</label>
+            <input type="text" id="modal-lugar-nombre" placeholder="Jardín Libertad" />
+          </div>
+          <div class="campo-fecha" style="margin-bottom:8px;">
+            <label>Municipio</label>
+            <select id="modal-lugar-municipio">
+              <option value="">Selecciona…</option>
+              ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
+            </select>
+          </div>
+          <div class="campo-fecha" style="margin-bottom:8px;">
+            <label>Latitud (opcional)</label>
+            <input type="text" id="modal-lugar-lat" placeholder="19.2433" />
+          </div>
+          <div class="campo-fecha" style="margin-bottom:8px;">
+            <label>Longitud (opcional)</label>
+            <input type="text" id="modal-lugar-lng" placeholder="-103.7247" />
+          </div>
+          <div class="campo-fecha" style="margin-bottom:8px;">
+            <label>Nota (opcional)</label>
+            <input type="text" id="modal-lugar-nota" placeholder="Referencia u otro dato" />
+          </div>
+          <p id="modal-lugar-error" class="error-traduccion" style="display:none;"></p>
+          <div style="display:flex; gap:8px; margin-top:10px;">
+            <button type="button" class="modal-cerrar" id="modal-lugar-cancelar" style="margin:0; flex:1; border:1px solid var(--line); border-radius:6px; padding:9px;">Cancelar</button>
+            <button type="button" class="btn-agregar-directorio" id="modal-lugar-guardar" style="flex:1; padding:9px;">Guardar</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      document.getElementById('modal-lugar-cancelar').addEventListener('click', () => overlay.remove());
+      overlay.addEventListener('click', (e2) => { if (e2.target === overlay) overlay.remove(); });
+
+      const nombreInput = document.getElementById('modal-lugar-nombre');
+      const municipioSelect = document.getElementById('modal-lugar-municipio');
+      nombreInput.focus();
+
+      document.getElementById('modal-lugar-guardar').addEventListener('click', async () => {
+        const errorEl = document.getElementById('modal-lugar-error');
+        const nombre = nombreInput.value.trim();
+        if (!nombre) {
+          errorEl.textContent = 'Ingresa el nombre del lugar.';
+          errorEl.style.display = 'block';
+          return;
+        }
+
+        const municipioNombre = municipioSelect.value ? MUNICIPIOS[municipioSelect.value] : '';
+        const body = {
+          nombre,
+          municipio_id: municipioSelect.value,
+          municipio_nombre: municipioNombre,
+          latitud: document.getElementById('modal-lugar-lat').value.trim(),
+          longitud: document.getElementById('modal-lugar-lng').value.trim(),
+          nota: document.getElementById('modal-lugar-nota').value.trim(),
+        };
+
+        const btnGuardar = document.getElementById('modal-lugar-guardar');
+        btnGuardar.disabled = true;
+        btnGuardar.textContent = 'Guardando…';
+
+        try {
+          const res = await fetch('/api/lugares', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+          });
+          const data = await res.json();
+          if (!res.ok) {
+            errorEl.textContent = data.error || 'No se pudo agregar.';
+            errorEl.style.display = 'block';
+            btnGuardar.disabled = false;
+            btnGuardar.textContent = 'Guardar';
+            return;
+          }
+
+          // Disponible de inmediato para el resto de esta sesión, sin recargar nada.
+          lugaresDisponibles.push({ _id: data._id, nombre, municipio_nombre: municipioNombre });
+          overlay.remove();
+          alGuardar(nombre);
+        } catch (err) {
+          errorEl.textContent = 'Ocurrió un error, intenta de nuevo.';
+          errorEl.style.display = 'block';
+          btnGuardar.disabled = false;
+          btnGuardar.textContent = 'Guardar';
+        }
+      });
+    }
+
+    // --- Subtítulo (lugar): mismo patrón visual que "Agregar ubicación" ---
+    subtituloSeleccionado = '';
+    const filaSubtitulo = document.getElementById('fila-subtitulo');
+
+    function renderFilaSubtitulo() {
+      if (subtituloSeleccionado) {
+        filaSubtitulo.innerHTML = `
+          <span class="ubicacion-elegida">📍 ${subtituloSeleccionado} <button type="button" id="btn-quitar-subtitulo">Quitar</button></span>
+        `;
+        document.getElementById('btn-quitar-subtitulo').addEventListener('click', () => {
+          subtituloSeleccionado = '';
+          renderFilaSubtitulo();
+        });
+      } else {
+        filaSubtitulo.innerHTML = `<button type="button" class="btn-ubicacion" id="btn-elegir-subtitulo">📍 Agregar ubicación (subtítulo)</button>`;
+        document.getElementById('btn-elegir-subtitulo').addEventListener('click', abrirModalElegirSubtitulo);
+      }
+    }
+    document.getElementById('btn-elegir-subtitulo').addEventListener('click', abrirModalElegirSubtitulo);
+
+    function abrirModalElegirSubtitulo() {
+      const overlay = document.createElement('div');
+      overlay.className = 'modal-overlay';
+      overlay.innerHTML = `
+        <div class="modal-box">
+          <h3>Elige el lugar (subtítulo)</h3>
+          <p class="hint">Lugares de tu directorio, con su municipio para que no te equivoques de cuál es.</p>
+          ${lugaresDisponibles.length
+            ? lugaresDisponibles.map(l => `<button type="button" class="opcion-ubicacion" data-nombre="${l.nombre}">${l.nombre}${l.municipio_nombre ? ` - ${l.municipio_nombre}` : ''}</button>`).join('')
+            : `<p class="hint">Todavía no hay lugares guardados.</p>`
+          }
+          <button type="button" class="btn-agregar-directorio" id="btn-agregar-lugar-desde-picker" style="width:100%; margin-top:6px;">+ Agregar lugar</button>
+          <button type="button" class="modal-cerrar" id="btn-cerrar-modal-subtitulo">Cancelar</button>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      overlay.querySelectorAll('.opcion-ubicacion').forEach(btn => {
+        btn.addEventListener('click', () => {
+          subtituloSeleccionado = btn.dataset.nombre;
+          renderFilaSubtitulo();
+          overlay.remove();
+        });
+      });
+      document.getElementById('btn-agregar-lugar-desde-picker').addEventListener('click', () => {
+        overlay.remove();
+        abrirModalAgregarLugar((nombreNuevo) => {
+          subtituloSeleccionado = nombreNuevo;
+          renderFilaSubtitulo();
+        });
+      });
+      document.getElementById('btn-cerrar-modal-subtitulo').addEventListener('click', () => overlay.remove());
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+    }
+
+    document.getElementById('btn-rechazar').addEventListener('click', () => accionarPendiente(ev, 'rechazar'));
+    document.getElementById('btn-aprobar').addEventListener('click', () => {
+      const selectMunicipio = document.getElementById('select-municipio');
+      const selectTipo = document.getElementById('select-tipo');
+
+      const inputTitle = document.getElementById('input-title');
+
+      const faltantes = [];
+      if (!inputDate.value) faltantes.push('Fecha del evento');
+      if (!selectMunicipio.value) faltantes.push('Municipio');
+      if (!selectTipo.value) faltantes.push('Tipo de evento');
+      if (!inputTitle.value.trim()) faltantes.push('Título');
+      if (!subtituloSeleccionado) faltantes.push('Subtítulo (lugar)');
+      if (!descripcionIngles.trim()) faltantes.push('Descripción en inglés (usa el botón "Traducir")');
+      if (chkMoreDays.checked && !inputFinish.value) faltantes.push('Fecha de término (marcaste "dura más de un día")');
+      if (faltantes.length) {
+        mostrarModalFaltantes(faltantes);
+        return;
+      }
+
+      const body = {
+        date: inputDate.value,
+        allDay: chkAllDay.checked,
+        moreDays: chkMoreDays.checked,
+        isCover: chkIsCover.checked,
+        municipality: selectMunicipio.value,
+        title: inputTitle.value.trim(),
+        subtitle: subtituloSeleccionado,
+      };
+      body.subType = selectTipo.value;
+      if (chkMoreDays.checked) {
+        body.finishDate = inputFinish.value;
+      }
+      if (descripcionIngles.trim()) {
+        body.descriptionEnglish = descripcionIngles.trim();
+      }
+      accionarPendiente(ev, 'aprobar', body);
+    });
+  }
+
+  async function accionarPendiente(ev, accion, body) {
+    try {
+      await fetch(`/api/pendientes/${ev._id}/${accion}`, {
+        method: 'POST',
+        headers: body ? { 'Content-Type': 'application/json' } : undefined,
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      eventosPendientes = eventosPendientes.filter(e => e._id !== ev._id);
+      renderTarjetaGrande();
+    } catch (err) {
+      alert('Ocurrió un error, intenta de nuevo.');
+    }
+  }
+
+  // ---------- Modo "Aprobados" / "Rechazados": lista compacta ----------
+
+  function renderListaCompacta(eventos) {
+    if (!eventos.length) {
+      lista.innerHTML = `<div class="estado-vacio">No hay eventos en "${estatusActual}" por ahora.</div>`;
+      return;
+    }
+
+    lista.innerHTML = '';
+    eventos.forEach(ev => lista.appendChild(crearTarjetaCompacta(ev)));
+  }
+
+  function crearTarjetaCompacta(ev) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const primeraImagen = Array.isArray(ev.imagenes) ? ev.imagenes.find(Boolean) : null;
+    const imagenHtml = primeraImagen
+      ? `<img src="${primeraImagen}" alt="" />`
+      : `<div class="sin-imagen-chica">Sin imagen</div>`;
+
+    let fechaHtml = '';
+    if (ev.date) {
+      const inicio = formatearFecha(ev.date);
+      const fin = ev.moreDays && ev.finishDate ? ` – ${formatearFecha(ev.finishDate)}` : '';
+      const hora = ev.allDay ? ' · Todo el día' : '';
+      fechaHtml = `<div class="fecha-evento">📅 ${inicio}${fin}${hora}</div>`;
+    }
+
+    let botonesHistorial = `<button class="btn-deshacer" data-accion="deshacer">Regresar a pendiente</button> <a class="btn-deshacer" href="${ev.post_url}" target="_blank" rel="noopener" style="text-decoration:none; display:inline-block;">Ver original ↗</a>`;
+    if (estatusActual === 'aprobado') {
+      botonesHistorial += ` <button class="btn-agregar-directorio" data-accion="publicar" style="padding:7px 12px; font-size:12.5px;">Publicar a producción</button>`;
+    }
+
+    card.innerHTML = `
+      ${imagenHtml}
+      <div class="card-body">
+        <div class="meta">
+          <span class="badge">${ev.plataforma || ''}</span>
+          <span>${ev.pagina_origen || 'Página desconocida'}</span>
+        </div>
+        ${fechaHtml}
+        <p class="texto-chico">${(ev.contenido_crudo || '').trim()}</p>
+        ${botonesHistorial}
+      </div>
+    `;
+
+    card.querySelector('.btn-deshacer').addEventListener('click', async (e) => {
+      e.target.disabled = true;
+      e.target.textContent = 'Guardando…';
+      try {
+        await fetch(`/api/pendientes/${ev._id}/deshacer`, { method: 'POST' });
+        card.remove();
+      } catch (err) {
+        alert('Ocurrió un error, intenta de nuevo.');
+        e.target.disabled = false;
+      }
+    });
+
+    const btnPublicar = card.querySelector('[data-accion="publicar"]');
+    if (btnPublicar) {
+      btnPublicar.addEventListener('click', () => publicarAProduccion(ev, card, btnPublicar));
+    }
+
+    return card;
+  }
+
+  async function publicarAProduccion(ev, card, btn) {
+    btn.disabled = true;
+    btn.textContent = 'Publicando…';
+    try {
+      const res = await fetch(`/api/pendientes/${ev._id}/publicar`, { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.error || 'No se pudo publicar.');
+        btn.disabled = false;
+        btn.textContent = 'Publicar a producción';
+        return;
+      }
+      card.remove();
+    } catch (err) {
+      alert('Ocurrió un error, intenta de nuevo.');
+      btn.disabled = false;
+      btn.textContent = 'Publicar a producción';
+    }
+  }
+
+  cargarEventos();
+</script>
+
+</body>
+</html>
