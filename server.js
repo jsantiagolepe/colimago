@@ -19,10 +19,14 @@ const COLIMA_BACKEND_URL = process.env.COLIMA_BACKEND_URL;
 // POST /auth/google.
 const ADMIN_USER_ID = process.env.ADMIN_USER_ID || "6705a6ce37e1cf2548b7f44c";
 
+// Mismo aviso para consola, login y /api/*: dónde va la variable depende de
+// si corres en local (.env) o en Vercel (Settings → Environment Variables,
+// y un Redeploy después de guardarla, porque solo aplica a deploys nuevos).
+const MENSAJE_SIN_BACKEND =
+  "Falta la variable COLIMA_BACKEND_URL. En local va en el archivo .env (copia .env.example); en Vercel, en Settings → Environment Variables y luego Redeploy.";
+
 if (!COLIMA_BACKEND_URL) {
-  console.warn(
-    "Falta COLIMA_BACKEND_URL en tu archivo .env. Copia .env.example a .env y llena tus datos; mientras tanto, ninguna sección del panel podrá cargar datos.",
-  );
+  console.warn(`${MENSAJE_SIN_BACKEND} Mientras tanto, ninguna sección del panel podrá cargar datos.`);
 }
 if (!process.env.SESSION_SECRET) {
   console.warn(
@@ -59,7 +63,7 @@ app.use(
 app.post("/auth/google", async (req, res) => {
   try {
     if (!COLIMA_BACKEND_URL) {
-      return res.status(500).json({ error: "Falta COLIMA_BACKEND_URL en tu archivo .env." });
+      return res.status(500).json({ error: MENSAJE_SIN_BACKEND });
     }
     const { credential } = req.body || {};
     if (!credential) {
@@ -624,9 +628,7 @@ app.delete("/api/posts/:id", async (req, res) => {
 // montado en app.use("/api", ...) antes de llegar a cualquier handler.
 function backendConfigurado(res) {
   if (!COLIMA_BACKEND_URL) {
-    res.status(500).json({
-      error: "Falta COLIMA_BACKEND_URL en tu archivo .env. Revisa .env.example.",
-    });
+    res.status(500).json({ error: MENSAJE_SIN_BACKEND });
     return false;
   }
   return true;
