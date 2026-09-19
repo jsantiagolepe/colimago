@@ -9,7 +9,8 @@
     "node": ">=18"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "verificar": "node scripts/verificar-backend.js"
   },
   "dependencies": {
     "cookie-session": "^2.1.1",

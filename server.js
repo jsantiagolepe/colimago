@@ -2,6 +2,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const cookieSession = require("cookie-session");
+const { llamarBackend, BackendError } = require("./lib/colima-backend");
 
 const app = express();
 app.use(express.json());
@@ -10,7 +11,8 @@ const PORT = process.env.PORT || 3001;
 
 // Backend real de ColimaApp (NestJS): este panel ya no toca Mongo directo
 // para nada. Todo — login, eventos, producción, posts locales, lugares,
-// directorio y la búsqueda/edición libre de posts — pasa por aquí.
+// directorio, la búsqueda/edición libre de posts y la subida de imágenes —
+// pasa por aquí, siempre a través de lib/colima-backend.js.
 const COLIMA_BACKEND_URL = process.env.COLIMA_BACKEND_URL;
 
 // Debe coincidir con src/common/constants/admin.constant.ts en
@@ -58,7 +60,8 @@ app.use(
 // backend verifica ese id_token y nos da un JWT propio, y aquí revisamos
 // que el usuario devuelto sea exactamente ADMIN_USER_ID antes de abrir
 // sesión. El JWT de esa sesión (no un token fijo en .env) es lo que se
-// reenvía al backend en cada petición de este usuario.
+// reenvía al backend en cada petición de este usuario, como cabecera
+// `Authorization: Bearer <jwt>` (el backend ya no lo acepta en body/query).
 
 app.post("/auth/google", async (req, res) => {
   try {
@@ -70,16 +73,21 @@ app.post("/auth/google", async (req, res) => {
       return res.status(400).json({ error: "Falta el token de Google." });
     }
 
-    const respuesta = await fetch(`${COLIMA_BACKEND_URL}/login/google`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token: credential, platform: "web" }),
-    });
-    const datos = await respuesta.json();
-
-    if (!respuesta.ok || datos.response === false) {
-      return res.status(401).json({ error: datos.message || "No se pudo iniciar sesión." });
+    // Única llamada sin token de admin: es justo la que lo consigue.
+    let datos;
+    try {
+      datos = await llamarBackend(null, "/login/google", {
+        method: "POST",
+        body: { token: credential, platform: "web" },
+        mensajeError: "No se pudo iniciar sesión.",
+      });
+    } catch (err) {
+      if (err instanceof BackendError) {
+        return res.status(401).json({ error: err.message || "No se pudo iniciar sesión." });
+      }
+      throw err;
     }
+
     if (!datos.user || String(datos.user._id) !== ADMIN_USER_ID) {
       return res.status(403).json({ error: "Esta cuenta de Google no tiene permisos de administrador." });
     }
@@ -129,56 +137,85 @@ app.use("/api", (req, res, next) => {
   next();
 });
 
+// --- Helpers comunes a todas las rutas /api/* ---
+
+function backendConfigurado(res) {
+  if (!COLIMA_BACKEND_URL) {
+    res.status(500).json({ error: MENSAJE_SIN_BACKEND });
+    return false;
+  }
+  return true;
+}
+
+// Llama al backend con el token de la sesión (lib/colima-backend.js pone la
+// cabecera Authorization) y, si el backend respondió error, contesta al
+// panel con el mismo status y el "message" que devolvió:
+//   401 token inválido/expirado · 403 el usuario no es administrador ·
+//   429 rate limit (p. ej. "traducir", máx. 20 por hora) · 400 datos
+//   inválidos · 200 con { response:false, message } → 400.
+// Regresa null cuando ya respondió el error, para que la ruta solo siga
+// cuando hay datos.
+async function proxyBackend(req, res, ruta, opciones) {
+  try {
+    return await llamarBackend(req.session.adminToken, ruta, opciones);
+  } catch (err) {
+    if (err instanceof BackendError) {
+      res.status(err.status).json({ error: err.message, backendStatus: err.backendStatus });
+      return null;
+    }
+    throw err;
+  }
+}
+
+// Envuelve el handler de cada ruta: revisa que haya backend configurado y
+// convierte cualquier excepción (red caída, backend sin JSON) en el 500
+// genérico de siempre.
+function rutaBackend(handler) {
+  return async (req, res) => {
+    if (!backendConfigurado(res)) return;
+    try {
+      await handler(req, res);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
+    }
+  };
+}
+
 // --- Eventos pendientes (revisión de lo detectado por n8n) ---
 // Migrado a backColimaApp (fase 2): este panel ya no toca la colección
 // "eventos_pendientes" en Mongo, solo agrega el token de administrador y
 // reenvía al backend real.
 
 // Lista eventos por estatus. Ej: GET /api/pendientes?estatus=pendiente
-app.get("/api/pendientes", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const params = new URLSearchParams({
-      token: req.session.adminToken,
-      estatus: req.query.estatus || "pendiente",
+app.get(
+  "/api/pendientes",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/eventos-pendientes", {
+      query: { estatus: req.query.estatus || "pendiente" },
+      mensajeError: "No se pudieron cargar los eventos",
     });
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/eventos-pendientes?${params}`,
-      undefined,
-      "No se pudieron cargar los eventos",
-    );
     if (datos) res.json(datos.eventos || []);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // --- Directorio de municipios por ID de página de Facebook ---
 
 // Listar todo el directorio
-app.get("/api/directorio", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const params = new URLSearchParams({ token: req.session.adminToken });
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/directorio-municipios?${params}`,
-      undefined,
-      "No se pudo cargar el directorio",
-    );
+app.get(
+  "/api/directorio",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/directorio-municipios", {
+      mensajeError: "No se pudo cargar el directorio",
+    });
     if (datos) res.json(datos.registros || []);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Agregar un nuevo registro al directorio
-app.post("/api/directorio", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
+app.post(
+  "/api/directorio",
+  rutaBackend(async (req, res) => {
     const { municipio_id, municipio_nombre, facebook_url, facebook_id, nota } =
       req.body || {};
 
@@ -188,164 +225,108 @@ app.post("/api/directorio", async (req, res) => {
         .json({ error: "Falta el ID de Facebook o el nombre del municipio" });
     }
 
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/directorio-municipios`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          token: req.session.adminToken,
-          municipio_id,
-          municipio_nombre,
-          facebook_url,
-          facebook_id: String(facebook_id),
-          nota,
-        }),
+    const datos = await proxyBackend(req, res, "/directorio-municipios", {
+      method: "POST",
+      body: {
+        municipio_id,
+        municipio_nombre,
+        facebook_url,
+        facebook_id: String(facebook_id),
+        nota,
       },
-      "No se pudo agregar el registro",
-    );
+      mensajeError: "No se pudo agregar el registro",
+    });
     if (datos) res.json({ ok: true, _id: datos.registro?._id });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Editar un registro del directorio
-app.put("/api/directorio/:id", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const body = { ...req.body, id: req.params.id, token: req.session.adminToken };
+app.put(
+  "/api/directorio/:id",
+  rutaBackend(async (req, res) => {
+    const body = { ...req.body, id: req.params.id };
     if (body.facebook_id !== undefined) body.facebook_id = String(body.facebook_id);
 
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/directorio-municipios`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      },
-      "No se pudo editar el registro",
-    );
+    const datos = await proxyBackend(req, res, "/directorio-municipios", {
+      method: "PATCH",
+      body,
+      mensajeError: "No se pudo editar el registro",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Borrar un registro del directorio
-app.delete("/api/directorio/:id", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/directorio-municipios`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo borrar el registro",
-    );
+app.delete(
+  "/api/directorio/:id",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/directorio-municipios", {
+      method: "DELETE",
+      body: { id: req.params.id },
+      mensajeError: "No se pudo borrar el registro",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // --- Lugares (para el subtítulo de los eventos y para Configuración > Lugares) ---
 // Migrado a backColimaApp (fase 3): este panel ya no toca la colección
 // "lugares" en Mongo, solo agrega el token de administrador y reenvía.
 
 // Listar todos los lugares
-app.get("/api/lugares", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const params = new URLSearchParams({ token: req.session.adminToken });
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/lugares?${params}`,
-      undefined,
-      "No se pudo cargar la lista de lugares",
-    );
+app.get(
+  "/api/lugares",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/lugares", {
+      mensajeError: "No se pudo cargar la lista de lugares",
+    });
     if (datos) res.json(datos.lugares || []);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Agregar un nuevo lugar
-app.post("/api/lugares", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
+app.post(
+  "/api/lugares",
+  rutaBackend(async (req, res) => {
     const { nombre } = req.body || {};
     if (!nombre) {
       return res.status(400).json({ error: "Falta el nombre del lugar" });
     }
 
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/lugares`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...req.body, token: req.session.adminToken }),
-      },
-      "No se pudo agregar el lugar",
-    );
+    const datos = await proxyBackend(req, res, "/lugares", {
+      method: "POST",
+      body: { ...req.body },
+      mensajeError: "No se pudo agregar el lugar",
+    });
     if (datos) res.json({ ok: true, _id: datos.lugar?._id });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Editar un lugar
-app.put("/api/lugares/:id", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/lugares`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...req.body, id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo editar el lugar",
-    );
+app.put(
+  "/api/lugares/:id",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/lugares", {
+      method: "PATCH",
+      body: { ...req.body, id: req.params.id },
+      mensajeError: "No se pudo editar el lugar",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Borrar un lugar
-app.delete("/api/lugares/:id", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/lugares`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo borrar el lugar",
-    );
+app.delete(
+  "/api/lugares/:id",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/lugares", {
+      method: "DELETE",
+      body: { id: req.params.id },
+      mensajeError: "No se pudo borrar el lugar",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // --- "Posts" en Configuración: buscar cualquier post (evento o local) por
 // id o por título, y editar sus campos directamente. Reemplaza al viejo
@@ -353,184 +334,124 @@ app.delete("/api/lugares/:id", async (req, res) => {
 // crudo desde el panel, esto pasa por el backend igual que todo lo demás.
 
 // Buscar posts. Ej: GET /api/posts-admin?q=feria del hongo
-app.get("/api/posts-admin", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const params = new URLSearchParams({ token: req.session.adminToken });
-    if (req.query.q) params.set("q", req.query.q);
-
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/admin-search?${params}`,
-      undefined,
-      "No se pudo buscar posts",
-    );
+app.get(
+  "/api/posts-admin",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/post/admin-search", {
+      query: { q: req.query.q || undefined },
+      mensajeError: "No se pudo buscar posts",
+    });
     if (datos) res.json(datos.posts || []);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
-// Editar los campos de un post existente (JSON libre; el backend descarta
-// _id, kind y los arreglos sociales, que no se tocan desde aquí).
-app.put("/api/posts-admin/:id", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
+// Editar los campos de un post existente. "cambios" solo admite campos del
+// schema de Post (title, subtitle, description, descriptionEnglish, images,
+// date, finishDate, status, isTop, isCover, location, socialNetworks,
+// municipality, ...); si va algo fuera de eso el backend responde
+// { response:false, message:"Campos no permitidos: ..." } y ese mensaje
+// llega tal cual al panel vía proxyBackend. Aquí solo se quita _id.
+app.put(
+  "/api/posts-admin/:id",
+  rutaBackend(async (req, res) => {
     const cambios = { ...(req.body || {}) };
     delete cambios._id;
 
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/admin-update`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken, cambios }),
-      },
-      "No se pudo editar el post",
-    );
+    const datos = await proxyBackend(req, res, "/post/admin-update", {
+      method: "PATCH",
+      body: { id: req.params.id, cambios },
+      mensajeError: "No se pudo editar el post",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Traduce contenido_crudo al inglés con Claude Haiku (backend) y regresa el
 // resultado. No lo guarda todavía — el panel lo manda de vuelta como
-// "descriptionEnglish" cuando se aprueba el evento.
-app.post("/api/pendientes/:id/traducir", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/eventos-pendientes/traducir`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo traducir. Revisa tu ANTHROPIC_API_KEY y tu saldo.",
-    );
+// "descriptionEnglish" cuando se aprueba el evento. El backend limita esto
+// a 20 por hora: al pasarse responde 429 y el mensaje se muestra tal cual.
+app.post(
+  "/api/pendientes/:id/traducir",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/eventos-pendientes/traducir", {
+      method: "POST",
+      body: { id: req.params.id },
+      mensajeError: "No se pudo traducir. Revisa tu ANTHROPIC_API_KEY y tu saldo.",
+    });
     if (datos) res.json({ descriptionEnglish: datos.descriptionEnglish });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Busca eventos ya aprobados/publicados que caigan en la misma fecha, para
 // detectar publicaciones repetidas del mismo ayuntamiento antes de aprobar
 // otra vez el mismo evento. GET /api/pendientes/mismo-dia?fecha=YYYY-MM-DD&excluir=<id>
-app.get("/api/pendientes/mismo-dia", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
+app.get(
+  "/api/pendientes/mismo-dia",
+  rutaBackend(async (req, res) => {
     const { fecha, excluir } = req.query;
     if (!fecha || !/^\d{4}-\d{2}-\d{2}$/.test(fecha)) {
       return res.status(400).json({ error: "Falta una fecha válida (YYYY-MM-DD)" });
     }
 
-    const params = new URLSearchParams({ token: req.session.adminToken, fecha });
-    if (excluir) params.set("excluir", excluir);
-
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/eventos-pendientes/mismo-dia?${params}`,
-      undefined,
-      "No se pudo buscar eventos de esa fecha",
-    );
+    const datos = await proxyBackend(req, res, "/eventos-pendientes/mismo-dia", {
+      query: { fecha, excluir: excluir || undefined },
+      mensajeError: "No se pudo buscar eventos de esa fecha",
+    });
     if (datos) res.json(datos.eventos || []);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Aprobar un evento (recibe los datos capturados a mano por el revisor)
-app.post("/api/pendientes/:id/aprobar", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const body = { ...req.body, id: req.params.id, token: req.session.adminToken };
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/eventos-pendientes/aprobar`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      },
-      "No se pudo aprobar el evento",
-    );
+app.post(
+  "/api/pendientes/:id/aprobar",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/eventos-pendientes/aprobar", {
+      method: "POST",
+      body: { ...req.body, id: req.params.id },
+      mensajeError: "No se pudo aprobar el evento",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Rechazar un evento
-app.post("/api/pendientes/:id/rechazar", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/eventos-pendientes/rechazar`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo rechazar el evento",
-    );
+app.post(
+  "/api/pendientes/:id/rechazar",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/eventos-pendientes/rechazar", {
+      method: "POST",
+      body: { id: req.params.id },
+      mensajeError: "No se pudo rechazar el evento",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Devolver un evento a pendiente (por si te equivocas)
-app.post("/api/pendientes/:id/deshacer", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/eventos-pendientes/deshacer`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo deshacer",
-    );
+app.post(
+  "/api/pendientes/:id/deshacer",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/eventos-pendientes/deshacer", {
+      method: "POST",
+      body: { id: req.params.id },
+      mensajeError: "No se pudo deshacer",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Publicar un evento aprobado a producción (crea el Post kind:'event' en el backend)
-app.post("/api/pendientes/:id/publicar", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/eventos-pendientes/publicar`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo publicar el evento",
-    );
+app.post(
+  "/api/pendientes/:id/publicar",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/eventos-pendientes/publicar", {
+      method: "POST",
+      body: { id: req.params.id },
+      mensajeError: "No se pudo publicar el evento",
+    });
     if (datos) res.json({ ok: true, postId: datos.postId });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // --- Posts en producción (Activos / Pausados / Papelera) ---
 // Migrado a backColimaApp (fase 1 de mover colimago de Mongo directo
@@ -538,121 +459,57 @@ app.post("/api/pendientes/:id/publicar", async (req, res) => {
 // para estas acciones, solo agrega el token de administrador y reenvía.
 
 // Lista posts según su estado. Ej: GET /api/posts?estatus=activo
-app.get("/api/posts", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const params = new URLSearchParams({
-      token: req.session.adminToken,
-      estatus: req.query.estatus || "activo",
+app.get(
+  "/api/posts",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/post/production", {
+      query: { estatus: req.query.estatus || "activo" },
+      mensajeError: "No se pudieron cargar los posts",
     });
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/production?${params}`,
-      undefined,
-      "No se pudieron cargar los posts",
-    );
     if (datos) res.json(datos.posts || []);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
-async function accionProduccion(req, res, ruta, mensajeError) {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/production/${ruta}`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
+function accionProduccion(ruta, mensajeError) {
+  return rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, `/post/production/${ruta}`, {
+      method: "PATCH",
+      body: { id: req.params.id },
       mensajeError,
-    );
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
+  });
 }
 
 // Pausar (ocultar) un post activo
-app.post("/api/posts/:id/pausar", (req, res) =>
-  accionProduccion(req, res, "pause", "No se pudo pausar el post"),
-);
+app.post("/api/posts/:id/pausar", accionProduccion("pause", "No se pudo pausar el post"));
 
 // Reactivar un post pausado
-app.post("/api/posts/:id/activar", (req, res) =>
-  accionProduccion(req, res, "activate", "No se pudo activar el post"),
-);
+app.post("/api/posts/:id/activar", accionProduccion("activate", "No se pudo activar el post"));
 
 // Mover un post a la papelera (borrado suave, recuperable)
-app.post("/api/posts/:id/papelera", (req, res) =>
-  accionProduccion(req, res, "trash", "No se pudo mover a la papelera"),
-);
+app.post("/api/posts/:id/papelera", accionProduccion("trash", "No se pudo mover a la papelera"));
 
 // Restaurar un post de la papelera
-app.post("/api/posts/:id/restaurar", (req, res) =>
-  accionProduccion(req, res, "restore", "No se pudo restaurar el post"),
-);
+app.post("/api/posts/:id/restaurar", accionProduccion("restore", "No se pudo restaurar el post"));
 
 // Eliminar un post permanentemente (solo desde la papelera). Reutiliza el
 // endpoint genérico de borrado físico del backend (ya excluye kind:'local').
-app.delete("/api/posts/:id", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo eliminar el post",
-    );
+app.delete(
+  "/api/posts/:id",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/post", {
+      method: "DELETE",
+      body: { id: req.params.id },
+      mensajeError: "No se pudo eliminar el post",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // --- Posts locales (ríos, playas, lagos, montañas, hoteles, restaurantes) ---
 // Ver docs/local-catalog-contract.md en el repo de la app. Este panel es
 // cliente HTTP del backend real (backColimaApp); no toca Mongo directo aquí.
-
-// El token de admin ya no se revisa aquí: lo exige el middleware de sesión
-// montado en app.use("/api", ...) antes de llegar a cualquier handler.
-function backendConfigurado(res) {
-  if (!COLIMA_BACKEND_URL) {
-    res.status(500).json({ error: MENSAJE_SIN_BACKEND });
-    return false;
-  }
-  return true;
-}
-
-// Reenvía la respuesta del backend real como un error legible del panel.
-// El backend de posts locales responde 200 con { response:false, message }
-// para sus errores de negocio (token inválido, no encontrado, etc.), así que
-// hay que revisar ambos: el status HTTP y el campo "response".
-async function proxyBackend(res, url, options, mensajeError) {
-  const respuesta = await fetch(url, options);
-  const datos = await respuesta.json();
-  if (!respuesta.ok) {
-    res
-      .status(502)
-      .json({ error: `El backend de ColimaApp respondió ${respuesta.status}` });
-    return null;
-  }
-  if (datos.response === false) {
-    res.status(400).json({ error: datos.message || mensajeError });
-    return null;
-  }
-  return datos;
-}
 
 // El esquema de "location" en el backend real todavía carga el campo
 // "idLocation" (heredado de eventos, que sí referencian un lugar guardado).
@@ -666,141 +523,176 @@ function normalizarLocation(body) {
 
 // Listar posts locales (cualquier status, para poder ver también los dados
 // de baja), opcionalmente filtrados por categoría y/o municipio.
-app.get("/api/locales", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const params = new URLSearchParams({ token: req.session.adminToken });
-    if (req.query.type) params.set("type", req.query.type);
-    if (req.query.municipalityId)
-      params.set("municipalityId", req.query.municipalityId);
-
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/local?${params}`,
-      undefined,
-      "No se pudieron cargar los posts locales",
-    );
+app.get(
+  "/api/locales",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/post/local", {
+      query: {
+        type: req.query.type || undefined,
+        municipalityId: req.query.municipalityId || undefined,
+      },
+      mensajeError: "No se pudieron cargar los posts locales",
+    });
     if (datos) res.json(datos.locales || []);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Alta de un post local nuevo. El panel nunca manda campos de evento
 // (date, finishDate, isCover, etc.) porque el formulario del cliente solo
 // junta los campos de §4 del contrato.
-app.post("/api/locales", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const body = { ...req.body, token: req.session.adminToken };
+app.post(
+  "/api/locales",
+  rutaBackend(async (req, res) => {
+    const body = { ...req.body };
     normalizarLocation(body);
 
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/local`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      },
-      "No se pudo crear el post local",
-    );
+    const datos = await proxyBackend(req, res, "/post/local", {
+      method: "POST",
+      body,
+      mensajeError: "No se pudo crear el post local",
+    });
     if (datos) res.json({ ok: true, post: datos.post });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Editar un post local existente (incluye reactivarlo mandando status:true).
-app.put("/api/locales/:id", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const body = { ...req.body, token: req.session.adminToken, id: req.params.id };
+app.put(
+  "/api/locales/:id",
+  rutaBackend(async (req, res) => {
+    const body = { ...req.body, id: req.params.id };
     normalizarLocation(body);
 
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/local`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      },
-      "No se pudo editar el post local",
-    );
+    const datos = await proxyBackend(req, res, "/post/local", {
+      method: "PATCH",
+      body,
+      mensajeError: "No se pudo editar el post local",
+    });
     if (datos) res.json({ ok: true, post: datos.post });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Baja lógica (status:false). Nunca hay un endpoint de borrado físico para
 // posts locales: sus likes/comentarios/favoritos cuelgan de su _id permanente.
-app.post("/api/locales/:id/baja", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/local`,
-      {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: req.params.id, token: req.session.adminToken }),
-      },
-      "No se pudo dar de baja el post local",
-    );
+app.post(
+  "/api/locales/:id/baja",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/post/local", {
+      method: "DELETE",
+      body: { id: req.params.id },
+      mensajeError: "No se pudo dar de baja el post local",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Reactivar (status:true) un post local dado de baja.
-app.post("/api/locales/:id/reactivar", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/local`,
-      {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          id: req.params.id,
-          token: req.session.adminToken,
-          status: true,
-        }),
-      },
-      "No se pudo reactivar el post local",
-    );
+app.post(
+  "/api/locales/:id/reactivar",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/post/local", {
+      method: "PATCH",
+      body: { id: req.params.id, status: true },
+      mensajeError: "No se pudo reactivar el post local",
+    });
     if (datos) res.json({ ok: true });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
-  }
-});
+  }),
+);
 
 // Export del catálogo para empaquetar en el siguiente release de la app
 // (contrato §7). El panel solo reenvía el JSON tal cual; el navegador lo
 // descarga como archivo.
-app.get("/api/locales/export", async (req, res) => {
-  if (!backendConfigurado(res)) return;
-  try {
-    const datos = await proxyBackend(
-      res,
-      `${COLIMA_BACKEND_URL}/post/export-locales?token=${encodeURIComponent(req.session.adminToken)}`,
-      undefined,
-      "No se pudo exportar el catálogo",
-    );
+app.get(
+  "/api/locales/export",
+  rutaBackend(async (req, res) => {
+    const datos = await proxyBackend(req, res, "/post/export-locales", {
+      mensajeError: "No se pudo exportar el catálogo",
+    });
     if (datos) res.json(datos);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: "No se pudo conectar con el backend de ColimaApp" });
+  }),
+);
+
+// --- Imágenes (POST /images del backend → Cloudinary) ---
+// El panel recibe el multipart del navegador (campos "image" y "folder",
+// los mismos nombres que espera el backend), lo valida y lo reenvía con la
+// cabecera Authorization.
+
+const IMAGEN_MAX_BYTES = 8 * 1024 * 1024; // 8 MB
+const IMAGEN_TIPOS = new Set([
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/gif",
+  "image/heic",
+  "image/heif",
+]);
+// Solo letras, números, "_", "-" y "/": sin "&", espacios ni "..".
+const FOLDER_VALIDO = /^[A-Za-z0-9_\-/]+$/;
+
+app.post(
+  "/api/images",
+  // Se guarda el multipart crudo (con un margen sobre los 8 MB para las
+  // cabeceras del boundary); si lo excede, el manejador de errores de
+  // abajo responde 413 con un mensaje legible.
+  express.raw({ type: "multipart/form-data", limit: IMAGEN_MAX_BYTES + 512 * 1024 }),
+  rutaBackend(async (req, res) => {
+    if (!Buffer.isBuffer(req.body)) {
+      return res.status(400).json({ error: "La petición debe ser multipart/form-data con el campo \"image\"." });
+    }
+
+    let form;
+    try {
+      form = await new Response(req.body, {
+        headers: { "content-type": req.headers["content-type"] },
+      }).formData();
+    } catch {
+      return res.status(400).json({ error: "No se pudo leer el formulario de la imagen." });
+    }
+
+    const folder = form.get("folder");
+    if (folder !== null && (typeof folder !== "string" || !FOLDER_VALIDO.test(folder) || folder.includes(".."))) {
+      return res.status(400).json({
+        error: "La carpeta (folder) solo admite letras, números, \"_\", \"-\" y \"/\".",
+      });
+    }
+
+    const archivo = form.get("image");
+    if (!archivo || typeof archivo === "string") {
+      return res.status(400).json({ error: "Falta el archivo de imagen (campo \"image\")." });
+    }
+    if (!IMAGEN_TIPOS.has(archivo.type)) {
+      return res.status(400).json({ error: "La imagen debe ser JPEG, PNG, WebP, GIF o HEIC." });
+    }
+    if (archivo.size > IMAGEN_MAX_BYTES) {
+      return res.status(400).json({ error: "La imagen pesa más de 8 MB." });
+    }
+
+    // Se reconstruye el multipart en vez de reenviar el crudo para que al
+    // backend solo lleguen los campos ya validados.
+    const formData = new FormData();
+    formData.append("image", archivo, archivo.name || "imagen");
+    if (folder !== null) formData.append("folder", folder);
+
+    const datos = await proxyBackend(req, res, "/images", {
+      method: "POST",
+      formData,
+      mensajeError: "No se pudo subir la imagen",
+    });
+    if (datos) res.json(datos);
+  }),
+);
+
+// Errores que Express lanza antes de llegar a una ruta (body demasiado
+// grande, JSON malformado): se contestan en JSON para que el panel pueda
+// mostrar el mensaje en vez de una página HTML de error.
+app.use((err, req, res, next) => {
+  if (err && err.type === "entity.too.large") {
+    return res.status(413).json({ error: "La imagen pesa más de 8 MB." });
   }
+  if (err && err.type === "entity.parse.failed") {
+    return res.status(400).json({ error: "El cuerpo de la petición no es JSON válido." });
+  }
+  console.error(err);
+  res.status(err?.status || 500).json({ error: "Ocurrió un error en el panel." });
 });
 
 // En local (npm start) levantamos el puerto. En Vercel este archivo se

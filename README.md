@@ -53,6 +53,17 @@ habla directo, siempre lo hace este servidor.
 
 - `server.js` — la app de Express: login con Google, sesión, y proxy de
   todas las rutas `/api/*` hacia `backColimaApp`.
+- `lib/colima-backend.js` — el único cliente HTTP hacia `backColimaApp`.
+  Toda llamada al backend sale de aquí con la cabecera
+  `Authorization: Bearer <token de admin>` — la única forma en que el
+  backend acepta el token (ya no viaja como campo `token` en query/body).
+  Convierte los 401/403/429/400 del backend y los
+  `{ response:false, message }` en errores con el `message` original.
+- `scripts/verificar-backend.js` — `npm run verificar`: levanta un backend
+  falso, recorre todas las rutas `/api/*` y comprueba que cada llamada
+  llegó con la cabecera `Authorization` y sin `token` en query/body (y que
+  `POST /images` manda los campos `image` y `folder`). No necesita el
+  backend real.
 - `api/index.js` — punto de entrada para Vercel (solo exporta `server.js`).
 - `public/` — lo público: `index.html` (página + login).
 - `views/` — lo privado: `dashboard.html`, servido por Express solo con
@@ -77,3 +88,11 @@ El login usa Google Identity Services, restringido a una sola cuenta
 (`ADMIN_USER_ID`, verificado por el backend). La sesión es una cookie firmada
 con `SESSION_SECRET` (`cookie-session`) que guarda solo el JWT real de esa
 sesión — no hay ningún token ni contraseña fija compartida en el `.env`.
+Ese JWT es el que `lib/colima-backend.js` manda al backend en cada
+petición como `Authorization: Bearer <jwt>`. Si el backend responde 401
+(token inválido/expirado) el panel muestra el mensaje y regresa al login;
+los 403 (la cuenta no es administradora) y 429 (rate limit, p. ej.
+"traducir" máx. 20 por hora) se muestran tal cual al usuario.
+
+Para ver en consola cada llamada al backend y si lleva la cabecera, corre
+el panel con `COLIMA_DEBUG_BACKEND=1 npm start`.

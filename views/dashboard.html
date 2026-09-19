@@ -446,17 +446,39 @@
 </div>
 
 <script>
-  // Si el backend responde 401 (sesión vencida o nunca iniciada), regresa
+  // Si el servidor responde 401 (sesión vencida o nunca iniciada), regresa
   // al login en vez de dejar la pantalla mostrando errores confusos. Esto
   // cubre TODAS las llamadas fetch del panel sin tener que tocar cada una.
+  // Cuando el 401 viene del backend de ColimaApp (token inválido o
+  // expirado; server.js lo marca con "backendStatus"), primero se muestra
+  // el mensaje que mandó para que se entienda por qué hay que volver a
+  // entrar. Los 403 (no eres administrador) y 429 (rate limit) NO se
+  // interceptan aquí: llegan con su "message" en data.error y cada acción
+  // lo muestra con respuestaOk() o con su propio manejo de errores.
   const _fetchOriginal = window.fetch.bind(window);
   window.fetch = async (...args) => {
     const res = await _fetchOriginal(...args);
     if (res.status === 401) {
+      try {
+        const data = await res.clone().json();
+        if (data && data.backendStatus && data.error) alert(data.error);
+      } catch (err) { /* sin cuerpo JSON: solo redirige */ }
       window.location.href = '/';
     }
     return res;
   };
+
+  // Para las acciones que no necesitan leer la respuesta (pausar, borrar,
+  // aprobar…): si el servidor respondió error (403 no administrador, 429
+  // rate limit, 400 del backend, etc.) muestra el mensaje y regresa false,
+  // para que la acción no siga como si hubiera funcionado.
+  async function respuestaOk(res, mensajeGenerico = 'Ocurrió un error, intenta de nuevo.') {
+    if (res.ok) return true;
+    let data = {};
+    try { data = await res.json(); } catch (err) { /* sin JSON */ }
+    alert(data.error || mensajeGenerico);
+    return false;
+  }
 
   const lista = document.getElementById('lista');
   let estatusActual = 'pendiente';
@@ -656,12 +678,14 @@
     card.querySelectorAll('button[data-accion]').forEach(btn => {
       btn.addEventListener('click', async () => {
         const accion = btn.dataset.accion;
+        let res;
         if (accion === 'eliminar') {
           if (!confirm('Esto borra el post de forma permanente y no se puede deshacer. ¿Continuar?')) return;
-          await fetch(`/api/posts/${p._id}`, { method: 'DELETE' });
+          res = await fetch(`/api/posts/${p._id}`, { method: 'DELETE' });
         } else {
-          await fetch(`/api/posts/${p._id}/${accion}`, { method: 'POST' });
+          res = await fetch(`/api/posts/${p._id}/${accion}`, { method: 'POST' });
         }
+        if (!(await respuestaOk(res))) return;
         card.remove();
         if (!lista.children.length) {
           lista.innerHTML = `<div class="estado-vacio">No hay eventos en "${estatusActual}" por ahora.</div>`;
@@ -766,7 +790,8 @@
       const id = fila.dataset.id;
       fila.querySelector('[data-accion="borrar"]')?.addEventListener('click', async () => {
         if (!confirm('¿Borrar este registro del directorio?')) return;
-        await fetch(`/api/directorio/${id}`, { method: 'DELETE' });
+        const res = await fetch(`/api/directorio/${id}`, { method: 'DELETE' });
+        if (!(await respuestaOk(res))) return;
         cargarDirectorio();
       });
       fila.querySelector('[data-accion="editar"]')?.addEventListener('click', async () => {
@@ -774,11 +799,12 @@
         if (nuevoId === null) return;
         const nuevaUrl = prompt('Nueva URL de Facebook (deja igual si no cambia):');
         if (nuevaUrl === null) return;
-        await fetch(`/api/directorio/${id}`, {
+        const res = await fetch(`/api/directorio/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ facebook_id: nuevoId, facebook_url: nuevaUrl }),
         });
+        if (!(await respuestaOk(res))) return;
         cargarDirectorio();
       });
     });
@@ -892,7 +918,8 @@
       const id = fila.dataset.id;
       fila.querySelector('[data-accion="borrar"]')?.addEventListener('click', async () => {
         if (!confirm('¿Borrar este lugar?')) return;
-        await fetch(`/api/lugares/${id}`, { method: 'DELETE' });
+        const res = await fetch(`/api/lugares/${id}`, { method: 'DELETE' });
+        if (!(await respuestaOk(res))) return;
         cargarLugares();
       });
       fila.querySelector('[data-accion="editar"]')?.addEventListener('click', async () => {
@@ -904,7 +931,7 @@
         if (nuevaLng === null) return;
         const nuevaNota = prompt('Nueva nota (deja igual si no cambia):');
         if (nuevaNota === null) return;
-        await fetch(`/api/lugares/${id}`, {
+        const res = await fetch(`/api/lugares/${id}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -914,6 +941,7 @@
             nota: nuevaNota,
           }),
         });
+        if (!(await respuestaOk(res))) return;
         cargarLugares();
       });
     });
@@ -1010,11 +1038,13 @@
       fila.querySelector('[data-accion="editar"]')?.addEventListener('click', () => abrirModalLocal(loc));
       fila.querySelector('[data-accion="baja"]')?.addEventListener('click', async () => {
         if (!confirm(`¿Dar de baja "${loc.title}"? No se borra: solo deja de exportarse a la app y se puede reactivar después.`)) return;
-        await fetch(`/api/locales/${loc._id}/baja`, { method: 'POST' });
+        const res = await fetch(`/api/locales/${loc._id}/baja`, { method: 'POST' });
+        if (!(await respuestaOk(res))) return;
         cargarLocales();
       });
       fila.querySelector('[data-accion="reactivar"]')?.addEventListener('click', async () => {
-        await fetch(`/api/locales/${loc._id}/reactivar`, { method: 'POST' });
+        const res = await fetch(`/api/locales/${loc._id}/reactivar`, { method: 'POST' });
+        if (!(await respuestaOk(res))) return;
         cargarLocales();
       });
     });
@@ -2037,11 +2067,12 @@
 
   async function accionarPendiente(ev, accion, body) {
     try {
-      await fetch(`/api/pendientes/${ev._id}/${accion}`, {
+      const res = await fetch(`/api/pendientes/${ev._id}/${accion}`, {
         method: 'POST',
         headers: body ? { 'Content-Type': 'application/json' } : undefined,
         body: body ? JSON.stringify(body) : undefined,
       });
+      if (!(await respuestaOk(res))) return;
       eventosPendientes = eventosPendientes.filter(e => e._id !== ev._id);
       renderTarjetaGrande();
     } catch (err) {
@@ -2097,10 +2128,16 @@
     `;
 
     card.querySelector('.btn-deshacer').addEventListener('click', async (e) => {
+      const textoOriginalDeshacer = e.target.textContent;
       e.target.disabled = true;
       e.target.textContent = 'Guardando…';
       try {
-        await fetch(`/api/pendientes/${ev._id}/deshacer`, { method: 'POST' });
+        const res = await fetch(`/api/pendientes/${ev._id}/deshacer`, { method: 'POST' });
+        if (!(await respuestaOk(res))) {
+          e.target.disabled = false;
+          e.target.textContent = textoOriginalDeshacer;
+          return;
+        }
         card.remove();
       } catch (err) {
         alert('Ocurrió un error, intenta de nuevo.');
