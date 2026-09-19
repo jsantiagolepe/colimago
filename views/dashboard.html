@@ -2025,8 +2025,8 @@
       overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
     }
 
-    document.getElementById('btn-rechazar').addEventListener('click', () => accionarPendiente(ev, 'rechazar'));
-    document.getElementById('btn-aprobar').addEventListener('click', () => {
+    document.getElementById('btn-rechazar').addEventListener('click', (e) => accionarPendiente(ev, 'rechazar', undefined, e.target));
+    document.getElementById('btn-aprobar').addEventListener('click', (e) => {
       const selectMunicipio = document.getElementById('select-municipio');
       const selectTipo = document.getElementById('select-tipo');
 
@@ -2061,22 +2061,38 @@
       if (descripcionIngles.trim()) {
         body.descriptionEnglish = descripcionIngles.trim();
       }
-      accionarPendiente(ev, 'aprobar', body);
+      accionarPendiente(ev, 'aprobar', body, e.target);
     });
   }
 
-  async function accionarPendiente(ev, accion, body) {
+  // "aprobar" tarda más que las demás acciones porque el backend sube cada
+  // imagen de Facebook a Cloudinary (una migración a URLs permanentes)
+  // antes de responder, así que el botón se deshabilita con un texto de
+  // carga mientras se espera — evita doble clic y deja claro que sigue
+  // trabajando. Si el backend responde error (p. ej. falló la subida a
+  // Cloudinary), la tarjeta NO se quita de la lista: sigue pendiente y se
+  // puede reintentar.
+  async function accionarPendiente(ev, accion, body, btn) {
+    const textoOriginal = btn ? btn.textContent : null;
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = accion === 'aprobar' ? 'Aprobando…' : 'Guardando…';
+    }
     try {
       const res = await fetch(`/api/pendientes/${ev._id}/${accion}`, {
         method: 'POST',
         headers: body ? { 'Content-Type': 'application/json' } : undefined,
         body: body ? JSON.stringify(body) : undefined,
       });
-      if (!(await respuestaOk(res))) return;
+      if (!(await respuestaOk(res))) {
+        if (btn) { btn.disabled = false; btn.textContent = textoOriginal; }
+        return;
+      }
       eventosPendientes = eventosPendientes.filter(e => e._id !== ev._id);
       renderTarjetaGrande();
     } catch (err) {
       alert('Ocurrió un error, intenta de nuevo.');
+      if (btn) { btn.disabled = false; btn.textContent = textoOriginal; }
     }
   }
 
