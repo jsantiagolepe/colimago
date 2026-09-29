@@ -1,0 +1,80 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "public/index.html"
+        ],
+        "createdAt": "2026-09-29T01:55:22.440Z",
+        "reason": "agent: the only glows left are the literal fair light bulbs (.encendida .foco), the signature of the Noche de feria direction the user chose"
+      },
+      {
+        "rule": "clipped-overflow-container",
+        "value": "*",
+        "files": [
+          "public/index.html"
+        ],
+        "createdAt": "2026-09-29T01:55:22.456Z",
+        "reason": "agent: overflow clips only photos inside their frames (.marco, .pausa, .portada); no tooltip, menu or popover lives inside them"
+      },
+      {
+        "rule": "buried-raster",
+        "value": "*",
+        "files": [
+          "public/index.html"
+        ],
+        "createdAt": "2026-09-29T02:07:39.897Z",
+        "reason": "agent: the opacity-0 images are the inactive frames of the Playas crossfade stack; each becomes fully visible when its beach is selected on the board"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "public/index.html"
+        ],
+        "createdAt": "2026-09-29T02:07:39.920Z",
+        "reason": "agent: flagged wrappers are the hairline-ruled beach list (rows have 20px padding below the rule) and the full-bleed Fiestas band whose content sits in the centered .envoltura"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "*",
+        "files": [
+          "views/dashboard.html"
+        ],
+        "createdAt": "2026-09-29T02:14:15.025Z",
+        "reason": "agent: DESIGN.md governs only the public landing; it explicitly excludes views/dashboard.html, the pre-existing admin panel with its own incumbent system"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "*",
+        "files": [
+          "views/dashboard.html"
+        ],
+        "createdAt": "2026-09-29T02:14:15.044Z",
+        "reason": "agent: DESIGN.md governs only the public landing; it explicitly excludes views/dashboard.html, the pre-existing admin panel with its own incumbent system"
+      },
+      {
+        "rule": "design-system-font-size",
+        "value": "*",
+        "files": [
+          "views/dashboard.html"
+        ],
+        "createdAt": "2026-09-29T02:14:15.067Z",
+        "reason": "agent: DESIGN.md governs only the public landing; it explicitly excludes views/dashboard.html, the pre-existing admin panel with its own incumbent system"
+      },
+      {
+        "rule": "design-system-radius",
+        "value": "*",
+        "files": [
+          "views/dashboard.html"
+        ],
+        "createdAt": "2026-09-29T02:14:15.081Z",
+        "reason": "agent: DESIGN.md governs only the public landing; it explicitly excludes views/dashboard.html, the pre-existing admin panel with its own incumbent system"
+      }
+    ]
+  }
+}

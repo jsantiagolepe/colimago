@@ -1,0 +1,837 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-29T02:14:59.731715+00:00",
+  "title": "Design System: Colima Go",
+  "extensions": {
+    "scope": "Public landing only (/ and the /login modal in public/index.html). views/dashboard.html is a separate incumbent Operate surface and is not governed by this system.",
+    "themes": {
+      "noche": "default; :root tokens",
+      "dia": "[data-tema=\"claro\"] and @media (prefers-color-scheme: light) :root:not([data-tema=\"oscuro\"]); persisted in localStorage 'colimago-tema'"
+    },
+    "colorMeta": {
+      "suelo": {
+        "role": "neutral",
+        "displayName": "Wet Asphalt",
+        "canonical": "#0e1119",
+        "oklch": "oklch(17.8% 0.017 268.6)",
+        "tonalRamp": [
+          "#090b11",
+          "#22252c",
+          "#3f424a",
+          "#5d616b",
+          "#7e828d",
+          "#a1a5af",
+          "#c5c9d3",
+          "#eaeef8"
+        ]
+      },
+      "suelo-2": {
+        "role": "neutral",
+        "displayName": "Asphalt Raised",
+        "canonical": "#141926",
+        "oklch": "oklch(21.5% 0.027 267.9)",
+        "tonalRamp": [
+          "#080b14",
+          "#202530",
+          "#3d424f",
+          "#5b6170",
+          "#7b8293",
+          "#9ea5b5",
+          "#c3c9d9",
+          "#e8eefd"
+        ]
+      },
+      "suelo-3": {
+        "role": "neutral",
+        "displayName": "Asphalt Wash",
+        "canonical": "#1b2233",
+        "oklch": "oklch(25.4% 0.034 266.8)",
+        "tonalRamp": [
+          "#070b16",
+          "#1f2532",
+          "#3b4252",
+          "#596174",
+          "#798297",
+          "#9ca5b9",
+          "#c0c9dd",
+          "#e6eeff"
+        ]
+      },
+      "tinta": {
+        "role": "neutral",
+        "displayName": "Steam",
+        "canonical": "#f2f1ee",
+        "oklch": "oklch(95.8% 0.004 91.4)",
+        "tonalRamp": [
+          "#0c0b0a",
+          "#262523",
+          "#434240",
+          "#62615f",
+          "#838280",
+          "#a6a5a2",
+          "#cac9c6",
+          "#efeeec"
+        ]
+      },
+      "tinta-suave": {
+        "role": "neutral",
+        "displayName": "Soft Steam",
+        "canonical": "#bfc3cd",
+        "oklch": "oklch(81.7% 0.015 268.5)",
+        "tonalRamp": [
+          "#090b10",
+          "#23252b",
+          "#3f4249",
+          "#5e6169",
+          "#7e828b",
+          "#a1a5ae",
+          "#c6c9d2",
+          "#ebeef7"
+        ]
+      },
+      "tinta-tenue": {
+        "role": "neutral",
+        "displayName": "Faint Steam",
+        "canonical": "#8f96a6",
+        "oklch": "oklch(67.3% 0.025 266.8)",
+        "tonalRamp": [
+          "#080b13",
+          "#21252f",
+          "#3d424e",
+          "#5b616f",
+          "#7b8292",
+          "#9ea5b4",
+          "#c3c9d8",
+          "#e8eefc"
+        ]
+      },
+      "foco": {
+        "role": "primary",
+        "displayName": "Bulb Saffron",
+        "canonical": "#ffc347",
+        "oklch": "oklch(85.1% 0.151 81.9)",
+        "tonalRamp": [
+          "#200000",
+          "#411900",
+          "#633600",
+          "#885500",
+          "#ae7600",
+          "#d19b22",
+          "#f3c05e",
+          "#ffe78e"
+        ]
+      },
+      "foco-hondo": {
+        "role": "primary",
+        "displayName": "Deep Saffron",
+        "canonical": "#e9a318",
+        "oklch": "oklch(76.4% 0.155 76.8)",
+        "tonalRamp": [
+          "#220000",
+          "#441500",
+          "#683300",
+          "#8e5200",
+          "#b57200",
+          "#d7971d",
+          "#fabd5c",
+          "#ffe48d"
+        ]
+      },
+      "foco-hover": {
+        "role": "primary",
+        "displayName": "Fresh Paint Saffron",
+        "canonical": "#ffd06b",
+        "oklch": "oklch(87.9% 0.130 84.5)",
+        "tonalRamp": [
+          "#1c0300",
+          "#3c1d00",
+          "#5d3a00",
+          "#815900",
+          "#a67a00",
+          "#c89e41",
+          "#ebc370",
+          "#ffea9d"
+        ]
+      },
+      "sobre-foco": {
+        "role": "neutral",
+        "displayName": "Ink on Saffron",
+        "canonical": "#151822",
+        "oklch": "oklch(21.1% 0.020 271.6)",
+        "tonalRamp": [
+          "#090b12",
+          "#22252d",
+          "#3e424c",
+          "#5d616c",
+          "#7e828f",
+          "#a1a5b1",
+          "#c5c9d5",
+          "#eaeefa"
+        ]
+      },
+      "lona": {
+        "role": "secondary",
+        "displayName": "Lona Blue",
+        "canonical": "#2c56a8",
+        "oklch": "oklch(46.9% 0.140 262.1)",
+        "tonalRamp": [
+          "#000135",
+          "#031f5a",
+          "#1b3e81",
+          "#365eab",
+          "#5380d5",
+          "#78a4f6",
+          "#9ec9ff",
+          "#c6efff"
+        ]
+      },
+      "lona-hondo": {
+        "role": "secondary",
+        "displayName": "Lona Deep",
+        "canonical": "#1e3a6e",
+        "oklch": "oklch(35.7% 0.096 261.5)",
+        "tonalRamp": [
+          "#000728",
+          "#0e234a",
+          "#28416e",
+          "#446194",
+          "#6282bc",
+          "#86a6de",
+          "#abcaff",
+          "#d3f0ff"
+        ]
+      },
+      "bandera": {
+        "role": "tertiary",
+        "displayName": "Banner Red",
+        "canonical": "#bf3828",
+        "oklch": "oklch(54.0% 0.174 30.3)",
+        "tonalRamp": [
+          "#2f0000",
+          "#560000",
+          "#7f0700",
+          "#aa2e20",
+          "#d64f3d",
+          "#fa7965",
+          "#ffa28d",
+          "#ffcbb7"
+        ]
+      },
+      "cable": {
+        "role": "neutral",
+        "displayName": "Wire",
+        "canonical": "#3b4254",
+        "oklch": "oklch(38.0% 0.032 268.2)",
+        "tonalRamp": [
+          "#070b15",
+          "#202532",
+          "#3c4251",
+          "#5a6173",
+          "#7a8296",
+          "#9da5b8",
+          "#c1c9dc",
+          "#e7eeff"
+        ]
+      },
+      "vidrio": {
+        "role": "neutral",
+        "displayName": "Unlit Glass",
+        "canonical": "#2a3040",
+        "oklch": "oklch(31.1% 0.030 268.6)",
+        "tonalRamp": [
+          "#070b14",
+          "#202531",
+          "#3c4250",
+          "#5a6172",
+          "#7b8295",
+          "#9ea5b7",
+          "#c2c9db",
+          "#e8eeff"
+        ]
+      },
+      "franja-fiestas": {
+        "role": "neutral",
+        "displayName": "Fiesta Night",
+        "canonical": "#090b12",
+        "oklch": "oklch(15.1% 0.015 271.9)",
+        "tonalRamp": [
+          "#090b10",
+          "#23252b",
+          "#3f4249",
+          "#5e616a",
+          "#7f828c",
+          "#a2a5ae",
+          "#c6c9d2",
+          "#ebeef7"
+        ]
+      },
+      "letra-tabla": {
+        "role": "neutral",
+        "displayName": "Sign Letter White",
+        "canonical": "#f6f5f1",
+        "oklch": "oklch(97.0% 0.005 95.1)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#262523",
+          "#43423f",
+          "#62615e",
+          "#83827f",
+          "#a6a5a1",
+          "#cac9c6",
+          "#efeeeb"
+        ]
+      },
+      "filamento": {
+        "role": "primary",
+        "displayName": "Filament",
+        "canonical": "#ffe29a",
+        "oklch": "oklch(92.1% 0.096 88.5)",
+        "tonalRamp": [
+          "#170700",
+          "#342100",
+          "#543f00",
+          "#765e19",
+          "#9a7f38",
+          "#bca262",
+          "#dfc78b",
+          "#ffedb5"
+        ]
+      },
+      "dia-suelo": {
+        "role": "neutral",
+        "displayName": "Cal",
+        "canonical": "#f4f4f1",
+        "oklch": "oklch(96.6% 0.004 106.5)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#424240",
+          "#61615f",
+          "#828280",
+          "#a5a5a2",
+          "#c9c9c7",
+          "#efefec"
+        ]
+      },
+      "dia-suelo-2": {
+        "role": "neutral",
+        "displayName": "Cal Raised",
+        "canonical": "#eaebe7",
+        "oklch": "oklch(93.8% 0.005 117.9)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#424240",
+          "#61625e",
+          "#82837f",
+          "#a5a5a2",
+          "#c9c9c6",
+          "#eeefec"
+        ]
+      },
+      "dia-suelo-3": {
+        "role": "neutral",
+        "displayName": "Cal Wash",
+        "canonical": "#dfe1dc",
+        "oklch": "oklch(90.7% 0.007 124.5)",
+        "tonalRamp": [
+          "#0b0c09",
+          "#242623",
+          "#41433f",
+          "#60625e",
+          "#81837f",
+          "#a4a6a1",
+          "#c8cac6",
+          "#edefeb"
+        ]
+      },
+      "dia-tinta": {
+        "role": "neutral",
+        "displayName": "Day Ink",
+        "canonical": "#141824",
+        "oklch": "oklch(21.1% 0.025 270.0)",
+        "tonalRamp": [
+          "#080b13",
+          "#21252f",
+          "#3d424e",
+          "#5c616f",
+          "#7c8292",
+          "#9fa5b4",
+          "#c4c9d7",
+          "#e9eefc"
+        ]
+      },
+      "dia-tinta-suave": {
+        "role": "neutral",
+        "displayName": "Day Ink Soft",
+        "canonical": "#3f4554",
+        "oklch": "oklch(39.1% 0.027 268.0)",
+        "tonalRamp": [
+          "#080b13",
+          "#212530",
+          "#3d424f",
+          "#5b6170",
+          "#7b8293",
+          "#9ea5b5",
+          "#c3c9d9",
+          "#e8eefd"
+        ]
+      },
+      "dia-tinta-tenue": {
+        "role": "neutral",
+        "displayName": "Day Ink Faint",
+        "canonical": "#5b6272",
+        "oklch": "oklch(49.6% 0.027 266.7)",
+        "tonalRamp": [
+          "#080b14",
+          "#202530",
+          "#3c424f",
+          "#5b6170",
+          "#7b8293",
+          "#9ea5b5",
+          "#c2c9d9",
+          "#e8eefd"
+        ]
+      },
+      "dia-foco": {
+        "role": "primary",
+        "displayName": "Day Saffron",
+        "canonical": "#f7b52a",
+        "oklch": "oklch(81.4% 0.158 80.1)",
+        "tonalRamp": [
+          "#210000",
+          "#431600",
+          "#663400",
+          "#8c5300",
+          "#b27400",
+          "#d4990e",
+          "#f7bf57",
+          "#ffe589"
+        ]
+      },
+      "dia-foco-hondo": {
+        "role": "primary",
+        "displayName": "Day Saffron Deep",
+        "canonical": "#d99612",
+        "oklch": "oklch(72.1% 0.148 76.1)",
+        "tonalRamp": [
+          "#220000",
+          "#431600",
+          "#673300",
+          "#8c5200",
+          "#b37300",
+          "#d6982c",
+          "#f8bd63",
+          "#ffe492"
+        ]
+      },
+      "dia-foco-hover": {
+        "role": "primary",
+        "displayName": "Day Fresh Paint",
+        "canonical": "#ffc13f",
+        "oklch": "oklch(84.6% 0.155 81.7)",
+        "tonalRamp": [
+          "#200000",
+          "#411800",
+          "#643600",
+          "#895500",
+          "#b07600",
+          "#d29a18",
+          "#f5c05a",
+          "#ffe78b"
+        ]
+      },
+      "dia-lona": {
+        "role": "secondary",
+        "displayName": "Day Lona Blue",
+        "canonical": "#1e3a6e",
+        "oklch": "oklch(35.7% 0.096 261.5)",
+        "tonalRamp": [
+          "#000728",
+          "#0e234a",
+          "#28416e",
+          "#446194",
+          "#6282bc",
+          "#86a6de",
+          "#abcaff",
+          "#d3f0ff"
+        ]
+      },
+      "dia-lona-hondo": {
+        "role": "secondary",
+        "displayName": "Day Lona Deep",
+        "canonical": "#152a52",
+        "oklch": "oklch(29.2% 0.078 261.9)",
+        "tonalRamp": [
+          "#010923",
+          "#142443",
+          "#2e4266",
+          "#4a618b",
+          "#6983b1",
+          "#8ca6d3",
+          "#b2caf6",
+          "#d8f0ff"
+        ]
+      },
+      "dia-bandera": {
+        "role": "tertiary",
+        "displayName": "Day Banner Red",
+        "canonical": "#b8321f",
+        "oklch": "oklch(52.1% 0.174 31.3)",
+        "tonalRamp": [
+          "#2f0000",
+          "#560000",
+          "#7f0800",
+          "#aa2f1d",
+          "#d6503b",
+          "#f97963",
+          "#ffa28c",
+          "#ffcbb5"
+        ]
+      },
+      "dia-cable": {
+        "role": "neutral",
+        "displayName": "Day Wire",
+        "canonical": "#2a2f3c",
+        "oklch": "oklch(30.6% 0.025 268.5)",
+        "tonalRamp": [
+          "#080b13",
+          "#21252f",
+          "#3d424e",
+          "#5c616f",
+          "#7c8292",
+          "#9fa5b4",
+          "#c3c9d7",
+          "#e9eefc"
+        ]
+      },
+      "dia-vidrio": {
+        "role": "neutral",
+        "displayName": "Clear Glass",
+        "canonical": "#fbfbfa",
+        "oklch": "oklch(98.8% 0.001 106.4)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#424241",
+          "#616160",
+          "#828281",
+          "#a5a5a4",
+          "#c9c9c8",
+          "#eeeeee"
+        ]
+      },
+      "sombra-rotulo-foto": {
+        "role": "neutral",
+        "displayName": "Photo Legibility Shade",
+        "canonical": "rgba(0,0,0,0.35)"
+      },
+      "linea": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgba(242,241,238,0.12)"
+      },
+      "dia-linea": {
+        "role": "neutral",
+        "displayName": "Day Hairline",
+        "canonical": "rgba(20,24,36,0.14)"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Painted Display",
+        "purpose": "Hero H1 only."
+      },
+      "display-pausa": {
+        "displayName": "Pause Display",
+        "purpose": "Headline over the full-bleed volcano photo."
+      },
+      "display-cierre": {
+        "displayName": "Closing Display",
+        "purpose": "Closing call to install, max 12ch."
+      },
+      "headline-letrero": {
+        "displayName": "Letrero",
+        "purpose": "District titles on hanging sign boards."
+      },
+      "title-rotulo": {
+        "displayName": "Rótulo Title",
+        "purpose": "Painted secondary titles: municipality ficha, calendar, dish names, modal."
+      },
+      "title-tablero": {
+        "displayName": "Board Title",
+        "purpose": "Beach names, place card titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text, 30-34em measure; 16.5px under 860px."
+      },
+      "body-entrada": {
+        "displayName": "Lead",
+        "purpose": "Hero lead paragraph in soft steam."
+      },
+      "label-tablilla": {
+        "displayName": "Tablilla",
+        "purpose": "Uppercase condensed labels, 13.5-17px."
+      },
+      "label-boton": {
+        "displayName": "Button Label",
+        "purpose": "Painted button text."
+      },
+      "title-calendario": {
+        "displayName": "Calendar Title",
+        "purpose": "Fiestas calendar heading."
+      },
+      "title-platillo": {
+        "displayName": "Dish Name",
+        "purpose": "Sabores menu dish names."
+      },
+      "title-tabla-portada": {
+        "displayName": "Hero Board Name",
+        "purpose": "Name strips on hero boards."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Colima Go in the bar (17px in footer)."
+      },
+      "body-compacto": {
+        "displayName": "Body Compact",
+        "purpose": "Body under 860px."
+      },
+      "body-dato": {
+        "displayName": "Body Detail",
+        "purpose": "List descriptions, calendar note."
+      },
+      "body-pequeno": {
+        "displayName": "Body Small",
+        "purpose": "Place and dish notes."
+      },
+      "nota": {
+        "displayName": "Footnote",
+        "purpose": "Smallest note, login modal only."
+      },
+      "body-cierre": {
+        "displayName": "Closing Lead",
+        "purpose": "Closing paragraph."
+      },
+      "label-nav": {
+        "displayName": "Nav Label",
+        "purpose": "District links, municipality nickname, medallion names."
+      },
+      "label-chip": {
+        "displayName": "Chip Label",
+        "purpose": "Event-type chips, menu places, nav download button."
+      },
+      "label-boton-sub": {
+        "displayName": "Button Sub-line",
+        "purpose": "Sentence-case line above store button labels."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sombra-noche",
+        "value": "0 18px 40px -18px rgba(0,0,0,0.75)",
+        "purpose": "Hanging boards and medallions, night."
+      },
+      {
+        "name": "sombra-dia",
+        "value": "0 16px 34px -18px rgba(20,24,36,0.45)",
+        "purpose": "Hanging boards and medallions, day."
+      },
+      {
+        "name": "foco-encendido",
+        "value": "0 0 6px 1px rgba(255,195,71,0.9), 0 0 22px 6px rgba(255,170,40,0.28)",
+        "purpose": "Lit bulbs only, night only."
+      },
+      {
+        "name": "rotulo-sobre-foto",
+        "value": "text-shadow: 0 2px 30px rgba(0,0,0,0.35)",
+        "purpose": "Shrikhand lettering set directly on a full-bleed photo, with bottom scrim."
+      },
+      {
+        "name": "modal",
+        "value": "0 24px 60px -16px rgba(0,0,0,0.6)",
+        "purpose": "Login dialog."
+      }
+    ],
+    "motion": [
+      {
+        "name": "revela",
+        "value": "opacity/transform .9s cubic-bezier(.16,1,.3,1), from translateY(26px); delays .12s/.24s",
+        "purpose": "Scroll reveal on viewport entry (rootMargin 0 0 -6% 0)."
+      },
+      {
+        "name": "foco-enciende",
+        "value": "background .5s ease, box-shadow .8s ease; stagger 45ms per bulb",
+        "purpose": "Garland lights when it enters the viewport."
+      },
+      {
+        "name": "pintado-hover",
+        "value": "transform .18s cubic-bezier(.2,.9,.3,1.3)",
+        "purpose": "Painted button lift and tilt."
+      },
+      {
+        "name": "columpio",
+        "value": "1.6s cubic-bezier(.3,.7,.4,1), damped 4 / -2.6 / 1.3 / -0.5deg",
+        "purpose": "Hero board swing on hover/focus (desktop only)."
+      },
+      {
+        "name": "ola",
+        "value": "clip-path 1.1s cubic-bezier(.7,0,.2,1), stagger .1s",
+        "purpose": "Bottom-up photo wipe in Rincones strips."
+      },
+      {
+        "name": "tema",
+        "value": "background-color/color .4s ease",
+        "purpose": "Theme change."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "durations .01ms, no delays, no smooth scroll, reveals and clips shown",
+        "purpose": "prefers-reduced-motion: reduce."
+      }
+    ],
+    "microRadii": [
+      {
+        "name": "casquillo",
+        "value": "1px",
+        "purpose": "Bulb socket."
+      },
+      {
+        "name": "subrayado",
+        "value": "2px",
+        "purpose": "Active-nav underline."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compacto",
+        "value": "1080px"
+      },
+      {
+        "name": "columna",
+        "value": "860px"
+      },
+      {
+        "name": "telefono",
+        "value": "520px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Painted Button",
+      "kind": "button",
+      "refersTo": "button-pintado",
+      "description": "Saffron brush-stroke button for the one action: install the app.",
+      "html": "<a class=\"ds-btn-pintado\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M3.6 2.2c-.3.3-.4.7-.4 1.2v17.2c0 .5.1.9.4 1.2l.1.1 9.6-9.6v-.2L3.7 2.1l-.1.1zM16.5 15.5l-3.2-3.2v-.2l3.2-3.2.1.1 3.8 2.2c1.1.6 1.1 1.6 0 2.2l-3.8 2.2-.1-.1zM16.6 15.4 13.3 12l-9.7 9.7c.4.4 1 .4 1.7.1l11.3-6.4M16.6 8.6 5.3 2.2c-.7-.4-1.3-.3-1.7.1L13.3 12l3.3-3.4z\"/></svg><span><small>Disponible en</small>Google Play</span></a>",
+      "css": ":host{--suelo:#0e1119;--suelo-3:#1b2233;--tinta:#f2f1ee;--tinta-suave:#bfc3cd;--tinta-tenue:#8f96a6;--foco:#ffc347;--sobre-foco:#151822;--lona:#2c56a8;--lona-hondo:#1e3a6e;--bandera:#bf3828;--cable:#3b4254;--vidrio:#2a3040;--linea:rgba(242,241,238,0.12);--sombra:0 18px 40px -18px rgba(0,0,0,0.75);--brochazo:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'%3E%3Cpath d='M9 7C40 3 78 6 118 4s86-3 111 1c4 1 6 3 5 5l2 4-3 4 3 5-2 6 3 6-3 5 2 6-4 4c1 3-1 6-5 7-33 3-71 1-110 3S29 61 11 59c-4-1-6-3-5-6l-3-5 3-5-4-6 3-5-3-6 3-5-2-5 3-4c-1-3 1-5 3-6z'/%3E%3Cpath d='M20 60l38-2 2 3-38 2zM170 2l40 1-1 2-40-1z'/%3E%3C/svg%3E\");} .ds-btn-pintado{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--sobre-foco);padding:14px 26px 13px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:18px;letter-spacing:.03em;text-transform:uppercase;line-height:1.1;transition:transform .18s cubic-bezier(.2,.9,.3,1.3);} .ds-btn-pintado::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--foco);transition:background-color .2s;-webkit-mask:var(--brochazo) center/100% 100% no-repeat;mask:var(--brochazo) center/100% 100% no-repeat;} .ds-btn-pintado:hover{transform:translateY(-2px) rotate(-0.6deg);} .ds-btn-pintado:hover::before{background:#ffd06b;} .ds-btn-pintado:active{transform:translateY(1px) rotate(0);} .ds-btn-pintado:focus-visible{outline:3px solid var(--foco);outline-offset:4px;border-radius:6px;} .ds-btn-pintado svg{width:22px;height:22px;flex-shrink:0;} .ds-btn-pintado small{display:block;font-family:'Barlow',sans-serif;font-weight:500;font-size:12px;letter-spacing:0;text-transform:none;opacity:.8;}"
+    },
+    {
+      "name": "Hanging Sign Board",
+      "kind": "custom",
+      "refersTo": "letrero-colgante-bandera",
+      "description": "District title lettered on a lona or bandera board, rotated, hung by two strings.",
+      "html": "<div class=\"ds-calle\"><h2 class=\"ds-letrero\">Playas del Pacífico</h2></div>",
+      "css": ":host{--suelo:#0e1119;--suelo-3:#1b2233;--tinta:#f2f1ee;--tinta-suave:#bfc3cd;--tinta-tenue:#8f96a6;--foco:#ffc347;--sobre-foco:#151822;--lona:#2c56a8;--lona-hondo:#1e3a6e;--bandera:#bf3828;--cable:#3b4254;--vidrio:#2a3040;--linea:rgba(242,241,238,0.12);--sombra:0 18px 40px -18px rgba(0,0,0,0.75);--brochazo:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'%3E%3Cpath d='M9 7C40 3 78 6 118 4s86-3 111 1c4 1 6 3 5 5l2 4-3 4 3 5-2 6 3 6-3 5 2 6-4 4c1 3-1 6-5 7-33 3-71 1-110 3S29 61 11 59c-4-1-6-3-5-6l-3-5 3-5-4-6 3-5-3-6 3-5-2-5 3-4c-1-3 1-5 3-6z'/%3E%3Cpath d='M20 60l38-2 2 3-38 2zM170 2l40 1-1 2-40-1z'/%3E%3C/svg%3E\");} .ds-calle{background:var(--suelo);padding:56px 24px 24px;} .ds-letrero{position:relative;margin:0;width:fit-content;font-family:'Shrikhand',serif;font-weight:400;font-size:48px;line-height:.98;background:var(--bandera);color:#f6f5f1;padding:.2em .42em .26em;border-radius:6px;box-shadow:var(--sombra);rotate:-1.2deg;} .ds-letrero::before,.ds-letrero::after{content:'';position:absolute;bottom:100%;width:1px;height:40px;background:var(--cable);} .ds-letrero::before{left:14%;} .ds-letrero::after{right:14%;}"
+    },
+    {
+      "name": "Bulb Garland",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Catenary wire with bulbs; unlit glass until it enters the viewport, then lit with a 45ms stagger (night only).",
+      "html": "<div class=\"ds-guirnalda\"><svg viewBox=\"0 0 1000 100\" preserveAspectRatio=\"none\"><path d=\"M0,0 Q500,110 1000,0\"/></svg><span class=\"ds-foco\" style=\"left:4.2%;top:8.8%;--i:0\"></span><span class=\"ds-foco\" style=\"left:12.5%;top:24.1%;--i:1\"></span><span class=\"ds-foco\" style=\"left:20.8%;top:36.3%;--i:2\"></span><span class=\"ds-foco\" style=\"left:29.2%;top:45.5%;--i:3\"></span><span class=\"ds-foco\" style=\"left:37.5%;top:51.6%;--i:4\"></span><span class=\"ds-foco\" style=\"left:45.8%;top:54.6%;--i:5\"></span><span class=\"ds-foco\" style=\"left:54.2%;top:54.6%;--i:6\"></span><span class=\"ds-foco\" style=\"left:62.5%;top:51.6%;--i:7\"></span><span class=\"ds-foco\" style=\"left:70.8%;top:45.5%;--i:8\"></span><span class=\"ds-foco\" style=\"left:79.2%;top:36.3%;--i:9\"></span><span class=\"ds-foco\" style=\"left:87.5%;top:24.1%;--i:10\"></span><span class=\"ds-foco\" style=\"left:95.8%;top:8.8%;--i:11\"></span></div>",
+      "css": ":host{--suelo:#0e1119;--suelo-3:#1b2233;--tinta:#f2f1ee;--tinta-suave:#bfc3cd;--tinta-tenue:#8f96a6;--foco:#ffc347;--sobre-foco:#151822;--lona:#2c56a8;--lona-hondo:#1e3a6e;--bandera:#bf3828;--cable:#3b4254;--vidrio:#2a3040;--linea:rgba(242,241,238,0.12);--sombra:0 18px 40px -18px rgba(0,0,0,0.75);--brochazo:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'%3E%3Cpath d='M9 7C40 3 78 6 118 4s86-3 111 1c4 1 6 3 5 5l2 4-3 4 3 5-2 6 3 6-3 5 2 6-4 4c1 3-1 6-5 7-33 3-71 1-110 3S29 61 11 59c-4-1-6-3-5-6l-3-5 3-5-4-6 3-5-3-6 3-5-2-5 3-4c-1-3 1-5 3-6z'/%3E%3Cpath d='M20 60l38-2 2 3-38 2zM170 2l40 1-1 2-40-1z'/%3E%3C/svg%3E\");} .ds-guirnalda{position:relative;height:64px;background:var(--suelo);} .ds-guirnalda svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;} .ds-guirnalda path{fill:none;stroke:var(--cable);stroke-width:1.5;vector-effect:non-scaling-stroke;} .ds-foco{position:absolute;width:11px;height:15px;margin-left:-5.5px;margin-top:-1px;border-radius:45% 45% 50% 50%/38% 38% 62% 62%;background:var(--vidrio);border:1px solid var(--cable);transition:background-color .5s ease,box-shadow .8s ease,border-color .5s ease;} .ds-foco::before{content:'';position:absolute;left:2.5px;top:-4px;width:5px;height:4px;border-radius:1px;background:var(--cable);} .ds-guirnalda:hover .ds-foco{background:var(--foco);border-color:#ffe29a;box-shadow:0 0 6px 1px rgba(255,195,71,0.9),0 0 22px 6px rgba(255,170,40,0.28);transition-delay:calc(var(--i)*45ms);}"
+    },
+    {
+      "name": "Hero Board",
+      "kind": "card",
+      "refersTo": "tabla-portada",
+      "description": "Photo board hung from the hero wire; swings from its string on hover or focus.",
+      "html": "<div class=\"ds-rack\"><a class=\"ds-tabla\" href=\"#\"><span class=\"ds-cara\"><span class=\"ds-foto\"></span><span class=\"ds-nombre\">Playas</span></span></a></div>",
+      "css": ":host{--suelo:#0e1119;--suelo-3:#1b2233;--tinta:#f2f1ee;--tinta-suave:#bfc3cd;--tinta-tenue:#8f96a6;--foco:#ffc347;--sobre-foco:#151822;--lona:#2c56a8;--lona-hondo:#1e3a6e;--bandera:#bf3828;--cable:#3b4254;--vidrio:#2a3040;--linea:rgba(242,241,238,0.12);--sombra:0 18px 40px -18px rgba(0,0,0,0.75);--brochazo:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'%3E%3Cpath d='M9 7C40 3 78 6 118 4s86-3 111 1c4 1 6 3 5 5l2 4-3 4 3 5-2 6 3 6-3 5 2 6-4 4c1 3-1 6-5 7-33 3-71 1-110 3S29 61 11 59c-4-1-6-3-5-6l-3-5 3-5-4-6 3-5-3-6 3-5-2-5 3-4c-1-3 1-5 3-6z'/%3E%3Cpath d='M20 60l38-2 2 3-38 2zM170 2l40 1-1 2-40-1z'/%3E%3C/svg%3E\");} .ds-rack{background:var(--suelo);padding:48px 24px 24px;} .ds-tabla{position:relative;display:block;width:180px;text-decoration:none;transform-origin:50% -40px;} .ds-tabla::before,.ds-tabla::after{content:'';position:absolute;bottom:100%;width:1px;height:40px;background:var(--cable);} .ds-tabla::before{left:18%;} .ds-tabla::after{right:18%;} .ds-cara{display:block;border-radius:6px;overflow:hidden;box-shadow:var(--sombra);background:var(--lona-hondo);} .ds-foto{display:block;aspect-ratio:4/5;background:linear-gradient(160deg,#5a86b8,#8a7a5c);} .ds-nombre{display:block;text-align:center;background:var(--lona);color:#f6f5f1;font-family:'Shrikhand',serif;font-size:20px;line-height:1.05;padding:11px 8px 12px;} .ds-tabla:hover,.ds-tabla:focus-visible{animation:ds-columpio 1.6s cubic-bezier(.3,.7,.4,1) both;} .ds-tabla:focus-visible{outline:none;} .ds-tabla:focus-visible .ds-cara{outline:3px solid var(--foco);outline-offset:4px;} @keyframes ds-columpio{18%{transform:rotate(4deg);}40%{transform:rotate(-2.6deg);}62%{transform:rotate(1.3deg);}82%{transform:rotate(-.5deg);}100%{transform:rotate(0);}}"
+    },
+    {
+      "name": "District Nav",
+      "kind": "nav",
+      "refersTo": "nav-distrito",
+      "description": "Sticky translucent bar with wordmark, district pills, bulb theme switch and painted download.",
+      "html": "<nav class=\"ds-barra\"><span class=\"ds-marca\">Colima <span>Go</span></span><a href=\"#\">Playas</a><a href=\"#\" aria-current=\"true\">Rincones</a><a href=\"#\">Fiestas</a></nav>",
+      "css": ":host{--suelo:#0e1119;--suelo-3:#1b2233;--tinta:#f2f1ee;--tinta-suave:#bfc3cd;--tinta-tenue:#8f96a6;--foco:#ffc347;--sobre-foco:#151822;--lona:#2c56a8;--lona-hondo:#1e3a6e;--bandera:#bf3828;--cable:#3b4254;--vidrio:#2a3040;--linea:rgba(242,241,238,0.12);--sombra:0 18px 40px -18px rgba(0,0,0,0.75);--brochazo:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'%3E%3Cpath d='M9 7C40 3 78 6 118 4s86-3 111 1c4 1 6 3 5 5l2 4-3 4 3 5-2 6 3 6-3 5 2 6-4 4c1 3-1 6-5 7-33 3-71 1-110 3S29 61 11 59c-4-1-6-3-5-6l-3-5 3-5-4-6 3-5-3-6 3-5-2-5 3-4c-1-3 1-5 3-6z'/%3E%3Cpath d='M20 60l38-2 2 3-38 2zM170 2l40 1-1 2-40-1z'/%3E%3C/svg%3E\");} .ds-barra{display:flex;align-items:center;gap:4px;height:64px;padding:0 20px;background:color-mix(in srgb,var(--suelo) 86%,transparent);backdrop-filter:saturate(1.2) blur(12px);border-bottom:1px solid var(--linea);} .ds-marca{font-family:'Shrikhand',serif;font-size:21px;color:var(--tinta);margin-right:auto;} .ds-marca span{color:var(--foco);} .ds-barra a{display:block;padding:8px 12px;border-radius:999px;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:.03em;text-transform:uppercase;color:var(--tinta-suave);transition:color .2s,background-color .2s;} .ds-barra a:hover{color:var(--tinta);background:var(--suelo-3);} .ds-barra a:focus-visible{outline:3px solid var(--foco);outline-offset:3px;} .ds-barra a[aria-current=true]{color:var(--tinta);} .ds-barra a[aria-current=true]::after{content:'';display:block;height:2px;margin-top:2px;border-radius:2px;background:var(--foco);}"
+    },
+    {
+      "name": "Category Tabs",
+      "kind": "chip",
+      "refersTo": "pestana",
+      "description": "Outline pill tabs; the selected tab is an inverted steam pill.",
+      "html": "<div class=\"ds-pestanas\"><button aria-selected=\"true\">Ríos</button><button aria-selected=\"false\">Lagunas</button><button aria-selected=\"false\">Montañas</button></div>",
+      "css": ":host{--suelo:#0e1119;--suelo-3:#1b2233;--tinta:#f2f1ee;--tinta-suave:#bfc3cd;--tinta-tenue:#8f96a6;--foco:#ffc347;--sobre-foco:#151822;--lona:#2c56a8;--lona-hondo:#1e3a6e;--bandera:#bf3828;--cable:#3b4254;--vidrio:#2a3040;--linea:rgba(242,241,238,0.12);--sombra:0 18px 40px -18px rgba(0,0,0,0.75);--brochazo:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'%3E%3Cpath d='M9 7C40 3 78 6 118 4s86-3 111 1c4 1 6 3 5 5l2 4-3 4 3 5-2 6 3 6-3 5 2 6-4 4c1 3-1 6-5 7-33 3-71 1-110 3S29 61 11 59c-4-1-6-3-5-6l-3-5 3-5-4-6 3-5-3-6 3-5-2-5 3-4c-1-3 1-5 3-6z'/%3E%3Cpath d='M20 60l38-2 2 3-38 2zM170 2l40 1-1 2-40-1z'/%3E%3C/svg%3E\");} .ds-pestanas{display:flex;gap:8px;flex-wrap:wrap;background:var(--suelo);padding:16px;} .ds-pestanas button{background:transparent;border:1px solid var(--linea);color:var(--tinta-suave);cursor:pointer;padding:10px 20px;border-radius:999px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:17px;letter-spacing:.04em;text-transform:uppercase;transition:background-color .2s,color .2s,border-color .2s;} .ds-pestanas button:hover{color:var(--tinta);border-color:var(--tinta-tenue);} .ds-pestanas button:focus-visible{outline:3px solid var(--foco);outline-offset:3px;} .ds-pestanas button[aria-selected=true]{background:var(--tinta);color:var(--suelo);border-color:var(--tinta);}"
+    },
+    {
+      "name": "Beach Board Row",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Hairline-ruled list row: condensed name, municipality tag, description; selected shows a saffron dot.",
+      "html": "<ul class=\"ds-tablero\"><li><button aria-pressed=\"true\"><span class=\"n\">El Paraíso</span><span class=\"m\">Armería</span><span class=\"d\">Arena oscura volcánica y oleaje fuerte, ideal para surf.</span></button></li><li><button aria-pressed=\"false\"><span class=\"n\">Tecuanillo</span><span class=\"m\">Tecomán</span><span class=\"d\">Tranquila, con esteros y manglares.</span></button></li></ul>",
+      "css": ":host{--suelo:#0e1119;--suelo-3:#1b2233;--tinta:#f2f1ee;--tinta-suave:#bfc3cd;--tinta-tenue:#8f96a6;--foco:#ffc347;--sobre-foco:#151822;--lona:#2c56a8;--lona-hondo:#1e3a6e;--bandera:#bf3828;--cable:#3b4254;--vidrio:#2a3040;--linea:rgba(242,241,238,0.12);--sombra:0 18px 40px -18px rgba(0,0,0,0.75);--brochazo:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 64' preserveAspectRatio='none'%3E%3Cpath d='M9 7C40 3 78 6 118 4s86-3 111 1c4 1 6 3 5 5l2 4-3 4 3 5-2 6 3 6-3 5 2 6-4 4c1 3-1 6-5 7-33 3-71 1-110 3S29 61 11 59c-4-1-6-3-5-6l-3-5 3-5-4-6 3-5-3-6 3-5-2-5 3-4c-1-3 1-5 3-6z'/%3E%3Cpath d='M20 60l38-2 2 3-38 2zM170 2l40 1-1 2-40-1z'/%3E%3C/svg%3E\");} .ds-tablero{list-style:none;margin:0;padding:0 16px;background:var(--suelo);color:var(--tinta);font-family:'Barlow',sans-serif;border-top:1px solid var(--linea);} .ds-tablero li{border-bottom:1px solid var(--linea);} .ds-tablero button{width:100%;display:grid;grid-template-columns:1fr auto;gap:4px 16px;text-align:left;cursor:pointer;background:none;border:0;color:inherit;font:inherit;padding:20px 4px 20px 0;} .ds-tablero .n{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:30px;line-height:1.05;letter-spacing:.01em;transition:color .2s;} .ds-tablero .m{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta-tenue);align-self:center;} .ds-tablero .d{grid-column:1/-1;color:var(--tinta-suave);font-size:16px;} .ds-tablero button:hover .n,.ds-tablero button[aria-pressed=true] .n{color:var(--foco);} .ds-tablero button:focus-visible{outline:3px solid var(--foco);outline-offset:3px;} .ds-tablero button[aria-pressed=true] .n::before{content:'';display:inline-block;width:10px;height:10px;margin-right:12px;vertical-align:.2em;border-radius:50%;background:var(--foco);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Noche de feria",
+    "overview": "The public landing of Colima Go is a walk down a Colima fair street at night. A catenary wire of bulbs is the page's thread: it sags across the top of the first viewport and returns at the head of every district (Playas, Rincones Naturales, Fiestas del Pueblo, Sabores, Municipios). Each district title is a hand-lettered sign board hung from that wire, and the app's real photographs are the stalls. The ground is wet-asphalt indigo-black with a faint fixed grain; light comes only from the bulbs and from the saffron paint of the store buttons.\n\nBy day (light theme) the same street is whitewashed cal: the bulbs are unlit glass, the grain almost vanishes, and the awning inks (lona blue, banner red) carry the color. The theme follows the system preference unless the visitor flips the bulb switch in the bar, which is remembered (`localStorage` key `colimago-tema`, values `claro` / `oscuro`).\n\nDensity is generous and editorial: large painted display type, long district sections (120px bottom padding), photos with room around them. Motion is one orchestrated idea (bulbs light and content rises as a district enters the viewport) plus small physical gestures (boards swing, painted buttons tilt).\n\n**Scope boundary.** This world governs only the public landing (`/`, `public/index.html`) and the `/login` Google modal it hosts. The private admin panel (`views/dashboard.html`) is a separate, pre-existing Operate surface with its own incumbent look (warm off-white ground, teal sidebar, coral accents, system font stack). It is not part of this world: do not restyle the dashboard with feria tokens, and do not bring dashboard styling into the landing.",
+    "keyCharacteristics": [
+      "Night ground, bulb light; saffron is light and the primary action, never decoration.",
+      "Signs are painted boards hung on strings from a bulb wire, slightly rotated.",
+      "Three voices of type: Shrikhand for painted signs, Barlow Condensed for board labels, Barlow for reading.",
+      "Real photos of Colima in 10px-rounded frames; municipality illustrations in round medallions.",
+      "Two themes from one token set: noche (default dark) and día (cal, unlit glass)."
+    ],
+    "rules": [
+      {
+        "name": "The Only Light Rule",
+        "body": "Saffron means light or the one action (install the app). It paints bulbs, store buttons, focus and selection, and never a background panel or a district sign.",
+        "section": "colors"
+      },
+      {
+        "name": "The Awning Ink Rule",
+        "body": "District sign boards are painted only in Lona Blue or Banner Red, alternating down the page. The single saffron name strip on the hero board rack (Fiestas del Pueblo) is the only board that borrows the bulb color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Day Accent Swap Rule",
+        "body": "Anything that uses saffron as text by night uses Banner Red by day; saffron as paint (buttons) stays saffron in both themes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Sign Painter Rule",
+        "body": "Shrikhand is for signs and painted names only: never body copy, never labels, never UI chrome beyond the wordmark and modal title.",
+        "section": "typography"
+      },
+      {
+        "name": "The Stencil Rule",
+        "body": "Anything uppercase is Barlow Condensed and tracked; Barlow body text is never set in caps.",
+        "section": "typography"
+      },
+      {
+        "name": "The Only Glow Rule",
+        "body": "The glow belongs to lit bulbs. No other element glows, and by day nothing glows at all.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** open every new district with its own bulb garland and hang its title on a lona or bandera sign board with a small rotation and strings to the wire.",
+      "**Do** reserve saffron for bulbs, painted action buttons, focus rings, selection and small active markers.",
+      "**Do** swap saffron text for Banner Red in the día theme, and keep bulbs unlit by day.",
+      "**Do** use the app's real photographs in 10px frames and the watercolor illustrations in circular medallions.",
+      "**Do** ship every new motion behind the reduced-motion collapse and keep content visible without JS.",
+      "**Do** define any new color as a custom property in both the noche block and the two día blocks (the `[data-tema=\"claro\"]` block and the `prefers-color-scheme: light` block)."
+    ],
+    "donts": [
+      "**Don't** set body copy, labels or controls in Shrikhand; it is sign lettering only.",
+      "**Don't** add glows, neon or light effects to anything but lit bulbs.",
+      "**Don't** paint district sign boards saffron or use saffron as a panel background.",
+      "**Don't** fall back to a sunny full-bleed beach hero over a grid of destination cards; districts each get their own composition.",
+      "**Don't** apply this world to the admin dashboard (`views/dashboard.html`), or its teal/coral system to the landing."
+    ]
+  }
+}

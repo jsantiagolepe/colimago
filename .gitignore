@@ -2,3 +2,10 @@ node_modules/
 .env
 .vercel/
 .DS_Store
+
+# Artefactos locales de impeccable y Claude Code
+.impeccable/review/
+.impeccable/questions/
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.claude/settings.local.json
