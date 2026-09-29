@@ -119,6 +119,10 @@ app.post("/auth/logout", (req, res) => {
 // por esta revisión. Lo que sí es público (index.html con el login) va en
 // public/ y se sirve libremente más abajo.
 app.get("/dashboard.html", (req, res) => {
+  // El panel nunca debe aparecer en un buscador. robots.txt ya lo pide, pero
+  // una URL bloqueada ahí todavía puede indexarse sin contenido si alguien la
+  // enlaza; la cabecera es lo que de verdad la saca del índice.
+  res.set("X-Robots-Tag", "noindex, nofollow");
   if (!req.session || !req.session.adminToken) {
     return res.redirect("/login");
   }
@@ -128,13 +132,31 @@ app.get("/dashboard.html", (req, res) => {
 // /login es la misma index.html: el script de la página abre el modal de
 // login al ver esta ruta. No hay botón visible en la landing que lleve aquí.
 app.get("/login", (req, res) => {
+  // Devuelve el mismo HTML que "/", así que sin esto sería contenido
+  // duplicado. El <link rel="canonical"> de index.html apunta siempre a "/",
+  // y esta cabecera además mantiene /login fuera del índice.
+  res.set("X-Robots-Tag", "noindex, nofollow");
   if (req.session && req.session.adminToken) {
     return res.redirect("/dashboard.html");
   }
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-app.use(express.static(path.join(__dirname, "public")));
+// En Vercel estos archivos los sirve la CDN antes de llegar aquí; este
+// express.static es el que vale en local (npm start). El cacheo largo solo
+// se aplica a /img, cuyos nombres no cambian pero cuyo contenido tampoco:
+// index.html, robots.txt y sitemap.xml se revalidan siempre.
+app.use(
+  express.static(path.join(__dirname, "public"), {
+    setHeaders(res, ruta) {
+      if (ruta.includes(`${path.sep}img${path.sep}`) || ruta.endsWith("og-colima-go.jpg")) {
+        res.set("Cache-Control", "public, max-age=604800");
+      } else if (ruta.endsWith(".html")) {
+        res.set("Cache-Control", "public, max-age=0, must-revalidate");
+      }
+    },
+  }),
+);
 
 // Todo /api/* requiere sesión iniciada. El token que se reenvía al backend
 // en cada ruta de abajo es el de ESTA sesión (req.session.adminToken), no
@@ -689,6 +711,18 @@ app.post(
     if (datos) res.json(datos);
   }),
 );
+
+// 404: sin esto Express responde su página por defecto ("Cannot GET /x", en
+// inglés y sin marca). Las rutas del panel siguen contestando JSON; el resto
+// recibe una página en español, con noindex, que devuelve a la portada.
+app.use((req, res) => {
+  if (req.path.startsWith("/api/") || req.path.startsWith("/auth/")) {
+    return res.status(404).json({ error: "Esa ruta no existe en el panel." });
+  }
+  res.status(404);
+  res.set("X-Robots-Tag", "noindex, follow");
+  res.sendFile(path.join(__dirname, "views", "404.html"));
+});
 
 // Errores que Express lanza antes de llegar a una ruta (body demasiado
 // grande, JSON malformado): se contestan en JSON para que el panel pueda

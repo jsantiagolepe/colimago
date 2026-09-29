@@ -1,0 +1,64 @@
+# Colima Go
+
+> Colima Go es una app móvil gratuita (iOS y Android) para descubrir los
+> lugares, rincones naturales y fiestas de los diez municipios del estado de
+> Colima, México. colimago.mx es su página pública; el contenido de abajo es
+> el mismo que muestra la app.
+
+Idioma: español (es-MX). Cobertura: exclusivamente el estado de Colima.
+Descargas: App Store (id1665801713) y Google Play (mx.shago.colimaapp), gratis.
+
+## Playas del Pacífico
+
+- **Playa El Paraíso** (Armería): arena oscura volcánica y oleaje fuerte, ideal para surf; paseos en lancha por el estero.
+- **Playa Boca de Pascuales** (Tecomán): famosa por sus fuertes olas, ideales para el surf, y sus espectaculares atardeceres.
+- **Playa Tecuanillo** (Tecomán): tranquila, con esteros y manglares para el ecoturismo y la observación de aves.
+- **Playa La Boquita** (Manzanillo): aguas cálidas, palapas y mariscos frescos, lejos del bullicio de playas más turísticas.
+- **Playa El Real** (Tecomán): para nadar y surfear, con palapas y un ambiente familiar.
+
+## Rincones Naturales — ríos y balnearios
+
+- **Los Amiales** (Coquimatlán): pozas de agua cristalina que brotan de manantiales, con corriente suave y sombra natural.
+- **El Sauce** (Coquimatlán): balneario y restaurante con aguas cristalinas para nadar y comida típica de la región.
+- **Parajes** (Coquimatlán): aguas cristalinas, áreas verdes y zonas de descanso para disfrutar en familia.
+- **Agua Fría** (Villa de Álvarez): pozas de agua fresca y cristalina en un entorno tranquilo.
+- **Manantiales de Zacualpan** (Comala): aguas frescas rodeadas de vegetación, perfectas para nadar y relajarse.
+
+## Rincones Naturales — lagunas
+
+- **Laguna La María** (Comala): observación de aves, paseos en bote y caminatas alrededor de la laguna.
+- **Laguna Carrizalillo** (Comala): para acampar, pasear en kayak y disfrutar de la naturaleza, con el Volcán de Fuego al fondo.
+- **Laguna El Naranjal** (Comala): un tranquilo espejo de agua, sereno y fresco, para descansar y ver aves.
+
+## Rincones Naturales — montañas
+
+- **El Terrero** (Minatitlán): bosques de pino y encino, clima fresco, senderismo y campismo en la sierra.
+- **La Gloria Escondida** (Minatitlán): santuario natural de formaciones rocosas, senderos y agua que corre entre las piedras.
+
+## Fiestas del Pueblo
+
+Toritos, castillos, cabalgatas y ferias charrotaurinas. Entre lo más
+reconocible: la Feria de la Villa y sus cabalgatas, La Petatera (la plaza de
+toros de madera y petate de Villa de Álvarez) y las mojigangas. Los eventos
+del calendario de la app provienen de lo que publican los ayuntamientos y se
+revisan antes de aparecer. Tipos de evento: Cultural, Musical, Gastronómico,
+Deportivo, Religioso, Ganadero, Social.
+
+## Los diez municipios
+
+- **Colima** — la capital, fundada en 1523. Historia y modernidad: plazas, murales y arquitectura colonial.
+- **Villa de Álvarez** — Feria de la Villa y cabalgatas; fuerte identidad cultural junto a la capital.
+- **Comala** — el Pueblo Blanco de América: calles empedradas, casas blancas y tejas rojas al pie del Volcán de Fuego.
+- **Manzanillo** — Capital Mundial del Pez Vela; el puerto más importante del Pacífico mexicano, con playas y bahías.
+- **Tecomán** — Capital Mundial del Limón; agricultura, playas cercanas y sabores propios.
+- **Armería** — palmeras, playas tranquilas y el estero de Palo Verde.
+- **Minatitlán** — montañas y ríos; destino de ecoturismo y aventura.
+- **Coquimatlán** — encanto rural, campos fértiles y tradición agrícola.
+- **Cuauhtémoc** — el valle central: paisajes naturales, clima fresco y tradición agrícola.
+- **Ixtlahuacán** — refugio de tranquilidad entre montañas; turismo rural.
+
+## Notas
+
+- No publicamos número de descargas, calificaciones, reseñas ni fechas de
+  eventos en esta página: cambian o no son verificables aquí.
+- La sección de administración (/login, /dashboard.html) es privada.

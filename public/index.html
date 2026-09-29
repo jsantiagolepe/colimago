@@ -1,13 +1,49 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Colima Go — Colima en la palma de tu mano</title>
-<meta name="description" content="Colima Go: playas del Pacífico, rincones naturales, fiestas del pueblo y los diez municipios de Colima en una sola app. Gratis en App Store y Google Play." />
+<title>Qué hacer en Colima: playas, pueblos y fiestas | Colima Go</title>
+<meta name="description" content="Descubre qué hacer en Colima: playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios. App gratis para iPhone y Android." />
+
+<!-- Canonical: el dominio con www es el que sirve la página (colimago.mx
+     redirige ahí). Autorreferente, así /login —que devuelve este mismo
+     HTML— no compite con "/" como contenido duplicado. -->
+<link rel="canonical" href="https://www.colimago.mx/" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
 <meta name="theme-color" content="#0e1119" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#f4f4f1" media="(prefers-color-scheme: light)" />
 <link rel="icon" href="/img/perro-de-colima.webp" type="image/webp" />
+<link rel="apple-touch-icon" href="/img/perro-de-colima.webp" />
+
+<!-- Open Graph / Twitter: la foto de la Laguna Carrizalillo con el Volcán
+     de Fuego al fondo (la misma que ya usa la sección "Del volcán al mar",
+     recortada a 1200×630). -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Colima Go" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:url" content="https://www.colimago.mx/" />
+<meta property="og:title" content="Qué hacer en Colima: playas, pueblos y fiestas | Colima Go" />
+<meta property="og:description" content="Playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios de Colima, en una app gratuita." />
+<meta property="og:image" content="https://www.colimago.mx/og-colima-go.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="El Volcán de Fuego de Colima visto desde la Laguna Carrizalillo, en Comala" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Qué hacer en Colima: playas, pueblos y fiestas | Colima Go" />
+<meta name="twitter:description" content="Playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios de Colima, en una app gratuita." />
+<meta name="twitter:image" content="https://www.colimago.mx/og-colima-go.jpg" />
+<meta name="twitter:image:alt" content="El Volcán de Fuego de Colima visto desde la Laguna Carrizalillo, en Comala" />
+
+<!-- App links: los mismos identificadores reales de las tiendas que usan
+     los botones de descarga. -->
+<meta name="apple-itunes-app" content="app-id=1665801713" />
+<meta property="al:ios:app_store_id" content="1665801713" />
+<meta property="al:ios:app_name" content="Colima Go" />
+<meta property="al:android:package" content="mx.shago.colimaapp" />
+<meta property="al:android:app_name" content="Colima Go" />
 <script>
   // Tema antes de pintar (evita el destello): lo guardado gana; si no, el del sistema.
   (function () {
@@ -19,6 +55,9 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- LCP: la primera tabla del tendedero. Ya va con fetchpriority="high" en
+     el marcado; el preload la pide antes de que el parser llegue ahí. -->
+<link rel="preload" as="image" href="/img/playa-tecuanillo-420.webp" type="image/webp" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   /* ============ Tokens: noche de feria (oscuro) y feria de día (claro) ============ */
@@ -517,6 +556,642 @@
   }
   .login-cargando { text-align: center; color: var(--tinta-suave); font-size: 14px; margin-top: 14px; display: none; }
 </style>
+<!-- Datos estructurados (JSON-LD): solo entidades reales de la app —
+     los lugares, los diez municipios y la propia app en las tiendas.
+     Sin valoraciones ni eventos con fecha, que aquí se inventarían. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.colimago.mx/#organizacion",
+      "name": "Colima Go",
+      "url": "https://www.colimago.mx/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.colimago.mx/img/perro-de-colima.webp",
+        "width": 256,
+        "height": 256
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "Colima",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "Colima",
+          "addressCountry": "MX"
+        }
+      },
+      "sameAs": [
+        "https://apps.apple.com/mx/app/colima-go/id1665801713",
+        "https://play.google.com/store/apps/details?id=mx.shago.colimaapp"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.colimago.mx/#sitio",
+      "url": "https://www.colimago.mx/",
+      "name": "Colima Go",
+      "inLanguage": "es-MX",
+      "publisher": {
+        "@id": "https://www.colimago.mx/#organizacion"
+      }
+    },
+    {
+      "@type": "MobileApplication",
+      "@id": "https://www.colimago.mx/#app",
+      "name": "Colima Go",
+      "description": "App gratuita para descubrir los lugares, rincones naturales y fiestas de los diez municipios de Colima, México.",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "iOS, Android",
+      "inLanguage": "es-MX",
+      "publisher": {
+        "@id": "https://www.colimago.mx/#organizacion"
+      },
+      "installUrl": [
+        "https://apps.apple.com/mx/app/colima-go/id1665801713",
+        "https://play.google.com/store/apps/details?id=mx.shago.colimaapp"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "MXN",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://www.colimago.mx/#pagina",
+      "url": "https://www.colimago.mx/",
+      "name": "Qué hacer en Colima: playas, pueblos y fiestas | Colima Go",
+      "description": "Descubre qué hacer en Colima: playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios. App gratis para iPhone y Android.",
+      "inLanguage": "es-MX",
+      "isPartOf": {
+        "@id": "https://www.colimago.mx/#sitio"
+      },
+      "about": {
+        "@id": "https://www.colimago.mx/#app"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://www.colimago.mx/og-colima-go.jpg",
+        "width": 1200,
+        "height": 630,
+        "caption": "El Volcán de Fuego de Colima visto desde la Laguna Carrizalillo, en Comala"
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.colimago.mx/#lugares",
+      "name": "Playas y rincones naturales de Colima en Colima Go",
+      "numberOfItems": 15,
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "Beach"
+            ],
+            "name": "Playa El Paraíso",
+            "description": "Arena oscura volcánica y oleaje fuerte, ideal para surf; paseos en lancha por el estero.",
+            "image": "https://www.colimago.mx/img/playa-el-paraiso.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Armería",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Armería",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "Beach"
+            ],
+            "name": "Playa Boca de Pascuales",
+            "description": "Famosa por sus fuertes olas, ideales para el surf, y sus espectaculares atardeceres.",
+            "image": "https://www.colimago.mx/img/playa-boca-de-pascuales.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Tecomán",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Tecomán",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "Beach"
+            ],
+            "name": "Playa Tecuanillo",
+            "description": "Tranquila, con esteros y manglares para el ecoturismo y la observación de aves.",
+            "image": "https://www.colimago.mx/img/playa-tecuanillo.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Tecomán",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Tecomán",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "Beach"
+            ],
+            "name": "Playa La Boquita",
+            "description": "Aguas cálidas, palapas y mariscos frescos, lejos del bullicio de playas más turísticas.",
+            "image": "https://www.colimago.mx/img/playa-la-boquita.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Manzanillo",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Manzanillo",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "Beach"
+            ],
+            "name": "Playa El Real",
+            "description": "Para nadar y surfear, con palapas y un ambiente familiar.",
+            "image": "https://www.colimago.mx/img/playa-el-real.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Tecomán",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Tecomán",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "TouristAttraction",
+            "name": "Balneario Los Amiales",
+            "description": "Pozas de agua cristalina que brotan de manantiales, con corriente suave y sombra natural.",
+            "image": "https://www.colimago.mx/img/rio-los-amiales-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Coquimatlán",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Coquimatlán",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "item": {
+            "@type": "TouristAttraction",
+            "name": "Balneario El Sauce",
+            "description": "Balneario y restaurante con aguas cristalinas para nadar y comida típica de la región.",
+            "image": "https://www.colimago.mx/img/rio-el-sauce-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Coquimatlán",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Coquimatlán",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "item": {
+            "@type": "TouristAttraction",
+            "name": "Balneario Parajes",
+            "description": "Aguas cristalinas, áreas verdes y zonas de descanso para disfrutar en familia.",
+            "image": "https://www.colimago.mx/img/rio-parajes-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Coquimatlán",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Coquimatlán",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "item": {
+            "@type": "TouristAttraction",
+            "name": "Balneario Agua Fría",
+            "description": "Pozas de agua fresca y cristalina en un entorno tranquilo.",
+            "image": "https://www.colimago.mx/img/rio-agua-fria-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Villa de Álvarez",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Villa de Álvarez",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "item": {
+            "@type": "TouristAttraction",
+            "name": "Manantiales de Zacualpan",
+            "description": "Aguas frescas rodeadas de vegetación, perfectas para nadar y relajarse.",
+            "image": "https://www.colimago.mx/img/rio-zacualpan-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Comala",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Comala",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "LakeBodyOfWater"
+            ],
+            "name": "Laguna La María",
+            "description": "Observación de aves, paseos en bote y caminatas alrededor de la laguna.",
+            "image": "https://www.colimago.mx/img/laguna-la-maria-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Comala",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Comala",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "LakeBodyOfWater"
+            ],
+            "name": "Laguna Carrizalillo",
+            "description": "Para acampar, pasear en kayak y disfrutar de la naturaleza.",
+            "image": "https://www.colimago.mx/img/laguna-carrizalillo.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Comala",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Comala",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "LakeBodyOfWater"
+            ],
+            "name": "Laguna El Naranjal",
+            "description": "Un tranquilo espejo de agua, sereno y fresco, para descansar y ver aves.",
+            "image": "https://www.colimago.mx/img/laguna-el-naranjal-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Comala",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Comala",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "Mountain"
+            ],
+            "name": "El Terrero",
+            "description": "Bosques de pino y encino, clima fresco, senderismo y campismo en la sierra.",
+            "image": "https://www.colimago.mx/img/montana-el-terrero-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Minatitlán",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Minatitlán",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "item": {
+            "@type": [
+              "TouristAttraction",
+              "Mountain"
+            ],
+            "name": "La Gloria Escondida",
+            "description": "Santuario natural de formaciones rocosas, senderos y agua que corre entre las piedras.",
+            "image": "https://www.colimago.mx/img/montana-la-gloria-escondida-760.webp",
+            "touristType": "Turismo de naturaleza",
+            "containedInPlace": {
+              "@type": "City",
+              "name": "Minatitlán",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Minatitlán",
+                "addressRegion": "Colima",
+                "addressCountry": "MX"
+              }
+            },
+            "isAccessibleForFree": true
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://www.colimago.mx/#municipios",
+      "name": "Los diez municipios de Colima",
+      "numberOfItems": 10,
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "City",
+            "name": "Colima",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Colima",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "La capital, fundada en 1523",
+            "description": "La capital del estado combina historia y modernidad. Sus plazas, murales y arquitectura colonial se mezclan con un ambiente vibrante que la convierte en el punto de partida perfecto para conocer la esencia colimense.",
+            "image": "https://www.colimago.mx/img/estampa-colima.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "City",
+            "name": "Villa de Álvarez",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Villa de Álvarez",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "Feria de la Villa y cabalgatas",
+            "description": "Junto a la capital, este municipio es famoso por sus tradiciones, como la Feria de la Villa, sus cabalgatas y su fuerte identidad cultural. Un espacio donde lo urbano y lo festivo se encuentran.",
+            "image": "https://www.colimago.mx/img/estampa-villadealvarez.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "City",
+            "name": "Comala",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Comala",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "El Pueblo Blanco de América",
+            "description": "El famoso Pueblo Blanco de América, con calles empedradas, casas blancas y tejas rojas, es un lugar pintoresco lleno de historia, tradiciones y un ambiente tranquilo al pie del imponente Volcán de Fuego.",
+            "image": "https://www.colimago.mx/img/estampa-comala.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "City",
+            "name": "Manzanillo",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Manzanillo",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "Capital Mundial del Pez Vela",
+            "description": "El puerto más importante del Pacífico mexicano y un paraíso turístico con hermosas playas, bahías cristalinas y una vibrante vida nocturna. Un destino que combina comercio, aventura y descanso junto al mar.",
+            "image": "https://www.colimago.mx/img/estampa-manzanillo.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "City",
+            "name": "Tecomán",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Tecomán",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "Capital Mundial del Limón",
+            "description": "Conocido como la “Capital Mundial del Limón”, Tecomán combina agricultura, playas cercanas y un ambiente cálido y hospitalario. Es un municipio lleno de vida y sabores únicos.",
+            "image": "https://www.colimago.mx/img/estampa-tecoman.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "City",
+            "name": "Armería",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Armería",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "El estero de Palo Verde",
+            "description": "Entre palmeras y playas tranquilas, Armería es un destino ideal para descansar frente al mar. Conocido por el estero de Palo Verde y su cálida hospitalidad, este rincón costero te invita a relajarte y disfrutar de la naturaleza.",
+            "image": "https://www.colimago.mx/img/estampa-armeria.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "item": {
+            "@type": "City",
+            "name": "Minatitlán",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Minatitlán",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "Entre montañas y ríos",
+            "description": "Rodeado de montañas y ríos, Minatitlán es un municipio con gran riqueza natural. Su tranquilidad y entorno verde lo convierten en un destino perfecto para el ecoturismo y la aventura.",
+            "image": "https://www.colimago.mx/img/estampa-minatitlan.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "item": {
+            "@type": "City",
+            "name": "Coquimatlán",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Coquimatlán",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "Tradición agrícola",
+            "description": "Un pueblo con encanto rural, rodeado de campos fértiles y tradiciones agrícolas. Su ambiente sereno y hospitalidad lo convierten en un sitio ideal para conocer la vida sencilla y auténtica de Colima.",
+            "image": "https://www.colimago.mx/img/estampa-coquimatlan.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "item": {
+            "@type": "City",
+            "name": "Cuauhtémoc",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Cuauhtémoc",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "El valle central",
+            "description": "Ubicado en el valle central, este municipio ofrece paisajes naturales, clima fresco y una fuerte tradición agrícola. Es un lugar perfecto para quienes buscan tranquilidad y contacto con la tierra.",
+            "image": "https://www.colimago.mx/img/estampa-cuahutemoc.webp"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "item": {
+            "@type": "City",
+            "name": "Ixtlahuacán",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Ixtlahuacán",
+              "addressRegion": "Colima",
+              "addressCountry": "MX"
+            },
+            "alternateName": "Refugio entre montañas",
+            "description": "Pequeño y acogedor, Ixtlahuacán es un refugio de tranquilidad en medio de montañas y paisajes naturales. Ideal para quienes disfrutan del turismo rural y de la calma de la provincia.",
+            "image": "https://www.colimago.mx/img/estampa-ixtlahuacan.webp"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

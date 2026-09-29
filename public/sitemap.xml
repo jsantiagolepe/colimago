@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- colimago.mx es hoy una sola página pública: la portada. Las secciones
+     (playas, rincones, fiestas, sabores, municipios) son anclas dentro de
+     ella, no URLs propias, así que no van aquí. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.colimago.mx/</loc>
+    <lastmod>2026-09-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.colimago.mx/og-colima-go.jpg</image:loc>
+      <image:title>El Volcán de Fuego desde la Laguna Carrizalillo, Comala</image:title>
+    </image:image>
+  </url>
+</urlset>

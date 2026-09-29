@@ -1,0 +1,18 @@
+# colimago.mx — la única página pública es la portada; el resto es el panel
+# privado. Sin reglas por bot: los rastreadores de IA (GPTBot, ClaudeBot,
+# PerplexityBot, Google-Extended…) entran con las mismas reglas que Google,
+# porque las citas de la app en respuestas de IA nos interesan.
+User-agent: *
+Allow: /
+
+# Panel de administración y sus rutas de sesión: nada que indexar.
+Disallow: /dashboard.html
+Disallow: /login
+Disallow: /api/
+Disallow: /auth/
+
+# Fichas de procedencia de las imágenes (assets), no contenido.
+Disallow: /img/*.json$
+Disallow: /og-colima-go.jpg.json
+
+Sitemap: https://www.colimago.mx/sitemap.xml
