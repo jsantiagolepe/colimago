@@ -463,7 +463,7 @@
         const data = await res.clone().json();
         if (data && data.backendStatus && data.error) alert(data.error);
       } catch (err) { /* sin cuerpo JSON: solo redirige */ }
-      window.location.href = '/';
+      window.location.href = '/login';
     }
     return res;
   };
@@ -555,7 +555,7 @@
   (async () => {
     try {
       const res = await _fetchOriginal('/auth/me');
-      if (!res.ok) { window.location.href = '/'; return; }
+      if (!res.ok) { window.location.href = '/login'; return; }
       const data = await res.json();
       const nombre = data.name || 'Administrador';
       document.getElementById('bienvenida').textContent = `Bienvenido, ${nombre}`;

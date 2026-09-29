@@ -54,12 +54,6 @@
     width: 30px; height: 30px; border-radius: 8px; flex-shrink: 0;
     background: radial-gradient(circle at 30% 30%, var(--ember), var(--ember-dark));
   }
-  .btn-login {
-    background: transparent; border: 1px solid var(--line); color: var(--ink);
-    padding: 9px 18px; border-radius: 999px; font-size: 14px; font-weight: 600;
-    cursor: pointer; font-family: inherit; transition: border-color .15s, background .15s;
-  }
-  .btn-login:hover { border-color: var(--turquoise); background: rgba(46,196,182,0.08); }
 
   /* ---------- Hero ---------- */
   .hero { position: relative; overflow: hidden; padding: 96px 0 72px; }
@@ -210,7 +204,6 @@
 <nav class="top">
   <div class="wrap">
     <div class="logo"><div class="logo-mark"></div>Colima Go</div>
-    <button class="btn-login" id="btn-abrir-login">Iniciar sesión</button>
   </div>
 </nav>
 
@@ -326,12 +319,15 @@
   const loginError = document.getElementById('login-error');
   const loginCargando = document.getElementById('login-cargando');
 
-  document.getElementById('btn-abrir-login').addEventListener('click', () => {
-    overlay.classList.add('abierto');
-    inicializarBotonGoogle();
-  });
-  document.getElementById('modal-cerrar').addEventListener('click', () => overlay.classList.remove('abierto'));
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.remove('abierto'); });
+  // El login no se anuncia en la página pública: el modal solo se abre al
+  // entrar directo a /login. Cerrarlo deja la URL en "/" para que la página
+  // se vea como la landing normal.
+  function cerrarModal() {
+    overlay.classList.remove('abierto');
+    if (window.location.pathname === '/login') history.replaceState(null, '', '/');
+  }
+  document.getElementById('modal-cerrar').addEventListener('click', cerrarModal);
+  overlay.addEventListener('click', (e) => { if (e.target === overlay) cerrarModal(); });
 
   async function alRecibirCredencialGoogle(respuesta) {
     loginError.style.display = 'none';
@@ -390,6 +386,11 @@
       shape: 'pill',
     });
     botonGoogleListo = true;
+  }
+
+  if (window.location.pathname === '/login') {
+    overlay.classList.add('abierto');
+    inicializarBotonGoogle();
   }
 </script>
 

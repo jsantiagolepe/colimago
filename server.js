@@ -120,9 +120,18 @@ app.post("/auth/logout", (req, res) => {
 // public/ y se sirve libremente más abajo.
 app.get("/dashboard.html", (req, res) => {
   if (!req.session || !req.session.adminToken) {
-    return res.redirect("/");
+    return res.redirect("/login");
   }
   res.sendFile(path.join(__dirname, "views", "dashboard.html"));
+});
+
+// /login es la misma index.html: el script de la página abre el modal de
+// login al ver esta ruta. No hay botón visible en la landing que lleve aquí.
+app.get("/login", (req, res) => {
+  if (req.session && req.session.adminToken) {
+    return res.redirect("/dashboard.html");
+  }
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.use(express.static(path.join(__dirname, "public")));
