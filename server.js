@@ -143,29 +143,52 @@ app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Links cortos para las publicaciones en redes: colimago.mx/ios y
-// colimago.mx/android en vez del URL largo de cada tienda. La página abre la
-// tienda y, cuando la persona vuelve al navegador, la deja en la portada
-// (ver el script de views/descarga.html). Es HTML y no un redirect 302 para
-// que Facebook arme la tarjeta del link con la marca de Colima Go.
+// Links cortos para las publicaciones en redes, en vez del URL largo de cada
+// tienda. colimago.mx/app elige según el teléfono (iPhone/iPad → App Store,
+// Android → Google Play, PC → portada); /ios y /android abren siempre su
+// tienda. La página abre la tienda y, cuando la persona vuelve al navegador,
+// la deja en la portada (ver el script de views/descarga.html). Es HTML y no
+// un redirect 302 porque el iPad se anuncia como Mac y solo el navegador lo
+// distingue, y para que Facebook arme la tarjeta del link con la marca de
+// Colima Go.
 const TIENDAS = {
+  ios: { nombre: "App Store", url: "https://apps.apple.com/mx/app/colima-go/id1665801713" },
+  android: { nombre: "Google Play", url: "https://play.google.com/store/apps/details?id=mx.shago.colimaapp" },
+};
+const PAGINAS_DESCARGA = {
+  app: {
+    tiendas: ["ios", "android"],
+    titulo: "Descarga Colima Go para iPhone y Android",
+    dispositivo: "iPhone y Android",
+    encabezado: "Abriendo la tienda…",
+    texto: "Si no se abre sola, elige tu tienda para descargar Colima Go.",
+  },
   ios: {
-    nombre: "App Store",
+    tiendas: ["ios"],
+    titulo: "Descarga Colima Go en App Store",
     dispositivo: "iPhone",
-    url: "https://apps.apple.com/mx/app/colima-go/id1665801713",
+    encabezado: "Abriendo App Store…",
+    texto: "Si no se abre solo, toca el botón para descargar Colima Go en tu iPhone.",
   },
   android: {
-    nombre: "Google Play",
+    tiendas: ["android"],
+    titulo: "Descarga Colima Go en Google Play",
     dispositivo: "Android",
-    url: "https://play.google.com/store/apps/details?id=mx.shago.colimaapp",
+    encabezado: "Abriendo Google Play…",
+    texto: "Si no se abre solo, toca el botón para descargar Colima Go en tu Android.",
   },
 };
 const PLANTILLA_DESCARGA = fs.readFileSync(path.join(__dirname, "views", "descarga.html"), "utf8");
-for (const [ruta, tienda] of Object.entries(TIENDAS)) {
+for (const [ruta, pagina] of Object.entries(PAGINAS_DESCARGA)) {
+  const botones = pagina.tiendas
+    .map((clave) => `<a class="tienda" data-tienda="${clave}" href="${TIENDAS[clave].url}">Descargar en ${TIENDAS[clave].nombre}</a>`)
+    .join("\n      ");
   const html = PLANTILLA_DESCARGA.replaceAll("{{RUTA}}", ruta)
-    .replaceAll("{{TIENDA}}", tienda.nombre)
-    .replaceAll("{{DISPOSITIVO}}", tienda.dispositivo)
-    .replaceAll("{{URL_TIENDA}}", tienda.url);
+    .replaceAll("{{TITULO}}", pagina.titulo)
+    .replaceAll("{{DISPOSITIVO}}", pagina.dispositivo)
+    .replaceAll("{{ENCABEZADO}}", pagina.encabezado)
+    .replaceAll("{{TEXTO}}", pagina.texto)
+    .replaceAll("{{BOTONES}}", botones);
   app.get(`/${ruta}`, (req, res) => {
     // Es solo un trampolín a la tienda: nada que indexar.
     res.set("X-Robots-Tag", "noindex, follow");

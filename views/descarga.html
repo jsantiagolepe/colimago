@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Descarga Colima Go en {{TIENDA}}</title>
-<meta name="description" content="Playas, pueblos y fiestas de los diez municipios de Colima en una app gratuita. Descárgala para {{DISPOSITIVO}} en {{TIENDA}}." />
+<title>{{TITULO}}</title>
+<meta name="description" content="Playas, pueblos y fiestas de los diez municipios de Colima en una app gratuita para {{DISPOSITIVO}}." />
 <meta name="robots" content="noindex, follow" />
 <meta name="theme-color" content="#0e1119" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#f4f4f1" media="(prefers-color-scheme: light)" />
@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="Colima Go" />
 <meta property="og:locale" content="es_MX" />
 <meta property="og:url" content="https://www.colimago.mx/{{RUTA}}" />
-<meta property="og:title" content="Descarga Colima Go en {{TIENDA}}" />
+<meta property="og:title" content="{{TITULO}}" />
 <meta property="og:description" content="Playas, pueblos y fiestas de los diez municipios de Colima en una app gratuita para {{DISPOSITIVO}}." />
 <meta property="og:image" content="https://www.colimago.mx/og-colima-go.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
@@ -53,6 +53,7 @@
     font-size: clamp(28px, 7vw, 42px); line-height: 1.1; margin: 0 0 14px;
   }
   p { color: var(--tinta-suave); font-size: 17px; line-height: 1.6; margin: 0 auto 28px; max-width: 38ch; }
+  .tiendas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
   a.tienda {
     display: inline-block; padding: 13px 26px; border-radius: 999px;
     background: var(--foco); color: var(--sobre-foco);
@@ -66,9 +67,11 @@
 <body>
   <main>
     <img class="perro" src="/img/perro-de-colima.webp" alt="" width="72" height="72" />
-    <h1>Abriendo {{TIENDA}}…</h1>
-    <p>Si no se abre solo, toca el botón para descargar Colima Go en tu {{DISPOSITIVO}}.</p>
-    <a class="tienda" id="tienda" href="{{URL_TIENDA}}">Descargar en {{TIENDA}}</a>
+    <h1>{{ENCABEZADO}}</h1>
+    <p>{{TEXTO}}</p>
+    <div class="tiendas">
+      {{BOTONES}}
+    </div>
     <a class="portada" href="/">Ir a colimago.mx</a>
   </main>
 <script>
@@ -76,8 +79,18 @@
   // portada. replace() y no href: así esta página no queda en el historial y
   // "atrás" desde la tienda no vuelve a disparar la redirección.
   (function () {
-    var tienda = document.getElementById("tienda").href;
     var irAPortada = function () { location.replace("/"); };
+
+    // /ios y /android traen un solo botón: esa tienda, sea cual sea el equipo.
+    // /app trae los dos y elige por sistema; en una PC no hay app que bajar y
+    // se va directo a la portada. El iPad (iPadOS 13+) se anuncia como Mac,
+    // por eso la revisión de pantalla táctil.
+    var ua = navigator.userAgent;
+    var sistema = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1) ? "ios"
+      : /Android/i.test(ua) ? "android" : null;
+    var botones = document.querySelectorAll("a[data-tienda]");
+    var boton = botones.length === 1 ? botones[0] : document.querySelector('a[data-tienda="' + sistema + '"]');
+    if (!boton) return irAPortada();
 
     // En el celular la tienda se abre como app y esta pestaña se queda atrás
     // (oculta). Al regresar a ella, a la portada.
@@ -92,7 +105,7 @@
     // encima sin ocultar la pestaña; pasado un rato, la portada queda debajo.
     setTimeout(irAPortada, 4000);
 
-    location.replace(tienda);
+    location.replace(boton.href);
   })();
 </script>
 </body>
