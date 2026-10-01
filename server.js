@@ -1,4 +1,5 @@
 require("dotenv").config();
+const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const cookieSession = require("cookie-session");
@@ -141,6 +142,37 @@ app.get("/login", (req, res) => {
   }
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
+
+// Links cortos para las publicaciones en redes: colimago.mx/ios y
+// colimago.mx/android en vez del URL largo de cada tienda. La página abre la
+// tienda y, cuando la persona vuelve al navegador, la deja en la portada
+// (ver el script de views/descarga.html). Es HTML y no un redirect 302 para
+// que Facebook arme la tarjeta del link con la marca de Colima Go.
+const TIENDAS = {
+  ios: {
+    nombre: "App Store",
+    dispositivo: "iPhone",
+    url: "https://apps.apple.com/mx/app/colima-go/id1665801713",
+  },
+  android: {
+    nombre: "Google Play",
+    dispositivo: "Android",
+    url: "https://play.google.com/store/apps/details?id=mx.shago.colimaapp",
+  },
+};
+const PLANTILLA_DESCARGA = fs.readFileSync(path.join(__dirname, "views", "descarga.html"), "utf8");
+for (const [ruta, tienda] of Object.entries(TIENDAS)) {
+  const html = PLANTILLA_DESCARGA.replaceAll("{{RUTA}}", ruta)
+    .replaceAll("{{TIENDA}}", tienda.nombre)
+    .replaceAll("{{DISPOSITIVO}}", tienda.dispositivo)
+    .replaceAll("{{URL_TIENDA}}", tienda.url);
+  app.get(`/${ruta}`, (req, res) => {
+    // Es solo un trampolín a la tienda: nada que indexar.
+    res.set("X-Robots-Tag", "noindex, follow");
+    res.set("Cache-Control", "public, max-age=0, must-revalidate");
+    res.type("html").send(html);
+  });
+}
 
 // En Vercel estos archivos los sirve la CDN antes de llegar aquí; este
 // express.static es el que vale en local (npm start). El cacheo largo solo
