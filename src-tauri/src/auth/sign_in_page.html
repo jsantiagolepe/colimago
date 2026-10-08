@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light dark" />
+<meta name="referrer" content="no-referrer" />
+<title>Iniciar sesión · MyProject</title>
+<style>
+  :root {
+    --fondo: #f4f3f0;
+    --tarjeta: #ffffff;
+    --tinta: #1c1c1e;
+    --tinta-suave: #5f5f66;
+    --linea: rgba(28, 28, 30, 0.1);
+    --ok: #1f7a4d;
+    --error: #b4382a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --fondo: #141416;
+      --tarjeta: #1e1e21;
+      --tinta: #f2f2f4;
+      --tinta-suave: #a3a3ab;
+      --linea: rgba(242, 242, 244, 0.1);
+      --ok: #5fd39a;
+      --error: #ff8a7a;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    background: var(--fondo);
+    color: var(--tinta);
+    font: 15px/1.5 -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    width: 100%;
+    max-width: 380px;
+    padding: 36px 32px 28px;
+    background: var(--tarjeta);
+    border: 1px solid var(--linea);
+    border-radius: 18px;
+    text-align: center;
+  }
+  .marca { width: 52px; height: 52px; margin: 0 auto 18px; display: block; }
+  h1 { margin: 0 0 6px; font-size: 21px; font-weight: 650; letter-spacing: -0.01em; }
+  .sub { margin: 0 0 26px; color: var(--tinta-suave); font-size: 14px; }
+  #boton-google { display: flex; justify-content: center; min-height: 44px; }
+  #estado { min-height: 1.5em; margin: 16px 0 0; font-size: 14px; color: var(--tinta-suave); }
+  #estado[data-tipo="ok"] { color: var(--ok); font-weight: 600; }
+  #estado[data-tipo="error"] { color: var(--error); }
+  .nota { margin: 22px 0 0; padding-top: 16px; border-top: 1px solid var(--linea); font-size: 12px; color: var(--tinta-suave); }
+</style>
+</head>
+<body>
+<main>
+  <svg class="marca" viewBox="0 0 64 64" aria-hidden="true">
+    <rect width="64" height="64" rx="15" fill="#202027" />
+    <rect x="14" y="14" width="16" height="16" rx="4.5" fill="#f4f3f0" />
+    <rect x="34" y="14" width="16" height="16" rx="4.5" fill="#f4f3f0" opacity="0.55" />
+    <rect x="14" y="34" width="16" height="16" rx="4.5" fill="#f4f3f0" opacity="0.55" />
+    <rect x="34" y="34" width="16" height="16" rx="4.5" fill="#f2a93b" />
+  </svg>
+  <h1>Inicia sesión en MyProject</h1>
+  <p class="sub">Usa tu cuenta de Google. Al terminar vuelves solo a la app.</p>
+  <div id="boton-google"></div>
+  <p id="estado" role="status" aria-live="polite">Cargando Google…</p>
+  <p class="nota">Esta página la sirve MyProject desde tu Mac (localhost) y solo existe mientras inicias sesión.</p>
+</main>
+
+<script nonce="{{CSP_NONCE}}">
+  const CLIENT_ID = '{{CLIENT_ID}}';
+  const NONCE = '{{NONCE}}';
+  const STATE = '{{STATE}}';
+
+  const estado = document.getElementById('estado');
+  const boton = document.getElementById('boton-google');
+  let enviado = false;
+
+  function mostrar(texto, tipo) {
+    estado.textContent = texto;
+    if (tipo) estado.dataset.tipo = tipo; else delete estado.dataset.tipo;
+  }
+
+  async function alRecibirCredencial(respuesta) {
+    if (enviado) return;
+    enviado = true;
+    boton.hidden = true;
+    mostrar('Verificando tu cuenta…');
+    try {
+      const res = await fetch('/callback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ state: STATE, credential: respuesta.credential }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        mostrar(`Listo${data.name ? `, ${data.name}` : ''}. Ya puedes cerrar esta pestaña y volver a MyProject.`, 'ok');
+        setTimeout(() => window.close(), 1500);
+      } else {
+        mostrar(data.error || 'No se pudo iniciar sesión. Vuelve a MyProject e inténtalo de nuevo.', 'error');
+      }
+    } catch (err) {
+      mostrar('MyProject ya no está esperando este inicio de sesión. Vuelve a la app e inténtalo de nuevo.', 'error');
+    }
+  }
+
+  window.onGoogleLibraryLoad = () => {
+    const oscuro = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    google.accounts.id.initialize({
+      client_id: CLIENT_ID,
+      nonce: NONCE,
+      callback: alRecibirCredencial,
+      ux_mode: 'popup',
+      itp_support: true,
+    });
+    google.accounts.id.renderButton(boton, {
+      type: 'standard',
+      // En oscuro, el negro de Google casi no se distingue de la tarjeta.
+      theme: oscuro ? 'filled_blue' : 'outline',
+      size: 'large',
+      text: 'continue_with',
+      shape: 'pill',
+      width: 280,
+      locale: 'es',
+    });
+    mostrar('');
+  };
+
+  setTimeout(() => {
+    if (!window.google || !window.google.accounts) {
+      mostrar('No se pudo cargar Google. Revisa tu conexión o desactiva los bloqueadores de contenido para localhost.', 'error');
+    }
+  }, 8000);
+</script>
+<script src="https://accounts.google.com/gsi/client" nonce="{{CSP_NONCE}}" async defer></script>
+</body>
+</html>

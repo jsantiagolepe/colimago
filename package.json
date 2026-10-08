@@ -1,20 +1,39 @@
 {
-  "name": "colimago",
-  "version": "1.0.0",
-  "description": "colimago — panel de administración de Colima Go (colimago.mx): eventos, producción, posts locales, lugares y directorio, vía el backend real (backColimaApp)",
+  "name": "myproject",
   "private": true,
-  "main": "server.js",
-  "type": "commonjs",
+  "version": "0.1.0",
+  "description": "MyProject: aplicación personal de escritorio para macOS (Tauri + React + TypeScript).",
+  "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": ">=22.22.0"
   },
   "scripts": {
-    "start": "node server.js",
-    "verificar": "node scripts/verificar-backend.js"
+    "dev": "vite",
+    "build": "npm run typecheck && vite build",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
+    "test": "vitest run",
+    "tauri": "tauri",
+    "app:dev": "tauri dev",
+    "app:build": "node scripts/build-mac.mjs",
+    "app:install": "node scripts/build-mac.mjs --install"
   },
   "dependencies": {
-    "cookie-session": "^2.1.1",
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2"
+    "@tauri-apps/api": "^2.12.1",
+    "@tauri-apps/plugin-log": "^2.10.0",
+    "@tauri-apps/plugin-opener": "^2.7.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-router": "^8.4.0"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.1",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "jsdom": "^30.1.2",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.3",
+    "vitest": "^5.0.3"
   }
 }

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- Fuente del ícono de MyProject. Para regenerar todos los tamaños:
+       npx tauri icon src-tauri/icons/app-icon.svg -o src-tauri/icons -->
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2e2e37" />
+      <stop offset="1" stop-color="#17171c" />
+    </linearGradient>
+    <linearGradient id="acento" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7b955" />
+      <stop offset="1" stop-color="#e8952a" />
+    </linearGradient>
+    <linearGradient id="brillo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.10" />
+      <stop offset="0.5" stop-color="#ffffff" stop-opacity="0" />
+    </linearGradient>
+    <filter id="sombra" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.28" />
+    </filter>
+  </defs>
+  <g filter="url(#sombra)">
+    <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#fondo)" />
+  </g>
+  <rect x="100" y="100" width="824" height="824" rx="185" fill="url(#brillo)" />
+  <rect x="280" y="280" width="206" height="206" rx="58" fill="#f4f3f0" />
+  <rect x="538" y="280" width="206" height="206" rx="58" fill="#f4f3f0" fill-opacity="0.55" />
+  <rect x="280" y="538" width="206" height="206" rx="58" fill="#f4f3f0" fill-opacity="0.55" />
+  <rect x="538" y="538" width="206" height="206" rx="58" fill="url(#acento)" />
+</svg>

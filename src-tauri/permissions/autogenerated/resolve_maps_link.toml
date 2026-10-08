@@ -1,0 +1,11 @@
+# Automatically generated - DO NOT EDIT!
+
+[[permission]]
+identifier = "allow-resolve-maps-link"
+description = "Enables the resolve_maps_link command without any pre-configured scope."
+commands.allow = ["resolve_maps_link"]
+
+[[permission]]
+identifier = "deny-resolve-maps-link"
+description = "Denies the resolve_maps_link command without any pre-configured scope."
+commands.deny = ["resolve_maps_link"]

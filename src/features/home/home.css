@@ -1,0 +1,560 @@
+/* Inicio (pendientes y una tarjeta por módulo) y pantalla de módulo
+   vacío. Usa los tokens --mp- de base.css, así que sigue el modo
+   claro/oscuro de macOS.
+
+   El inicio se ajusta al alto de la ventana: las tarjetas se encogen
+   (hasta 160px) para que todo quepa sin scroll en la Mac de 14" (cabe
+   desde ~790px de alto), y en un monitor grande no pasan de 210px. Solo
+   en una ventana más baja aparece el scroll. */
+
+.home {
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--mp-bg);
+  color: var(--mp-ink);
+}
+
+/* ---------- Barra superior ---------- */
+
+.home-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 28px;
+}
+
+.home-bar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14.5px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.home-bar__account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.home-bar__email {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  color: var(--mp-ink-faint);
+}
+
+.home-bar__signout,
+.home-bar__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 8px;
+  background: none;
+  color: var(--mp-ink-soft);
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.home-bar__signout:hover,
+.home-bar__back:hover { background: var(--mp-surface-hover); color: var(--mp-ink); }
+.home-bar__signout:focus-visible,
+.home-bar__back:focus-visible { outline: 2px solid var(--mp-focus); outline-offset: 1px; }
+.home-bar__back { margin-left: -8px; }
+.home-bar__back svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Tarjetas ---------- */
+
+.home__main {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 8px 32px 20px;
+}
+
+/* ---------- Arriba: pendientes de hoy y la semana ---------- */
+
+/* Alto fijo: si hay más pendientes de los que caben, su lista se recorre. */
+.home-top {
+  flex-shrink: 0;
+  height: 196px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.pending,
+.week {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 18px 24px 14px;
+  border: 1px solid var(--mp-line);
+  border-radius: 22px;
+  background: var(--mp-surface);
+}
+
+.pending__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.pending__title { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.015em; }
+.pending__date { margin: 2px 0 0; font-size: 13.5px; color: var(--mp-ink-soft); }
+
+.pending__count {
+  min-width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--mp-accent);
+  color: #1c1c1e;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.pending__empty {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 26px 0 0;
+  font-size: 15px;
+  color: var(--mp-ink-soft);
+}
+.pending__empty-mark {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--mp-surface-hover);
+  color: var(--mp-ink-soft);
+}
+.pending__empty-mark .ui-icon { width: 15px; height: 15px; stroke-width: 2.6; }
+
+.pending__list {
+  flex: 1;
+  min-height: 0;
+  margin: 0 -8px;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+.pending__list.has-more {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 26px), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - 26px), transparent);
+}
+
+.pending-item {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+}
+.pending-item:hover { background: var(--mp-surface-hover); }
+
+.pending-item__toggle {
+  text-decoration: none;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 8px;
+  border: none;
+  border-radius: inherit;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.pending-item__toggle:focus-visible { outline: 2px solid var(--mp-focus); outline-offset: -2px; }
+
+.pending-item__box {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: 2px solid var(--c);
+  border-radius: 50%;
+  transition: background-color 0.15s, transform 0.15s ease-out;
+}
+.pending-item__toggle:active .pending-item__box { transform: scale(0.88); }
+.is-done .pending-item__box { background: var(--c); }
+.pending-item__box .ui-icon { width: 12px; height: 12px; stroke: #fff; stroke-width: 3.2; }
+
+.pending-item__title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14.5px;
+  font-weight: 550;
+}
+.is-done .pending-item__title {
+  color: var(--mp-ink-faint);
+  text-decoration: line-through;
+  text-decoration-color: var(--mp-line-strong);
+}
+
+.pending-item__detail { flex-shrink: 0; font-size: 12.5px; color: var(--mp-ink-faint); }
+.pending-item__detail.is-overdue { color: var(--mp-danger); font-weight: 600; }
+
+.pending-item__source {
+  flex-shrink: 0;
+  margin-right: 4px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--mp-ink-faint);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.pending-item__source:hover { background: var(--mp-surface); color: var(--mp-ink); }
+.pending-item__source:focus-visible { outline: 2px solid var(--mp-focus); outline-offset: 0; }
+
+/* ---------- La semana ---------- */
+
+/* Una sola serie: el azul validado para cada superficie (claro y oscuro). */
+.week { --week-bar: #2a78d6; }
+@media (prefers-color-scheme: dark) {
+  .week { --week-bar: #3987e5; }
+}
+
+.week__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.week__title { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -0.015em; }
+.week__range { margin: 2px 0 0; font-size: 13.5px; color: var(--mp-ink-soft); }
+
+.week__summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+.week__percent { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; }
+.week__caption { margin-top: 3px; font-size: 12.5px; color: var(--mp-ink-soft); }
+
+.week__chart {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.week__col {
+  position: relative;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+  border-radius: 10px;
+  outline: none;
+}
+.week__col:hover { background: var(--mp-surface-hover); }
+.week__col:focus-visible { box-shadow: 0 0 0 2px var(--mp-focus); }
+
+.week__value {
+  height: 16px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mp-ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+.is-future .week__value { color: var(--mp-ink-faint); }
+.week__check { width: 12px; height: 12px; stroke-width: 3; }
+
+/* La columna: el riel es un paso claro del mismo azul (lo que falta para
+   el 100%) y la barra crece desde abajo, redondeada solo arriba. */
+.week__track {
+  position: relative;
+  flex: 1;
+  min-height: 24px;
+  width: 22px;
+  border-radius: 4px 4px 0 0;
+  background: color-mix(in srgb, var(--week-bar) 14%, transparent);
+}
+.is-future .week__track { opacity: 0.5; }
+
+.week__bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--pct);
+  border-radius: 4px 4px 0 0;
+  background: var(--week-bar);
+}
+
+.week__day { font-size: 12px; font-weight: 600; color: var(--mp-ink-faint); }
+.is-today .week__day { color: var(--mp-ink); font-weight: 700; }
+
+.week__tip {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  z-index: 5;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background: #1c1c1e;
+  color: #f4f3f0;
+  font-size: 12.5px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity 0.12s;
+}
+/* En las orillas, que no se salga de la tarjeta. */
+.week__col:nth-child(-n + 2) .week__tip { left: 0; transform: none; }
+.week__col:nth-child(n + 6) .week__tip { left: auto; right: 0; transform: none; }
+.week__col:hover .week__tip,
+.week__col:focus-visible .week__tip { opacity: 1; }
+
+.home__grid {
+  flex: 1 1 0;
+  /* Tres filas de 160px como mínimo (la ventana nunca baja de 960px de
+     ancho, así que siempre son tres columnas). Sin esto, la cuadrícula
+     pediría su alto máximo y no se encogería. */
+  min-height: calc(3 * 160px + 2 * 14px);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-auto-rows: minmax(160px, 210px);
+  align-content: start;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-card {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 22px 24px;
+  border: 1px solid var(--mp-line);
+  border-radius: 22px;
+  background: var(--mp-surface);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s;
+}
+.home-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--mp-line-strong);
+  box-shadow: 0 14px 32px -16px rgba(20, 20, 26, 0.28);
+}
+.home-card:active { transform: translateY(-1px) scale(0.99); }
+.home-card:focus-visible { outline: 3px solid var(--mp-focus); outline-offset: 3px; }
+
+/* Número de pendientes de hoy, arriba a la derecha (ocupa el lugar de la flecha). */
+.home-card__count {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  min-width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0 9px;
+  border-radius: 999px;
+  background: var(--mp-accent);
+  color: #1c1c1e;
+  font-size: 14px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.home-card__count.is-zero { background: var(--mp-surface-hover); color: var(--mp-ink-soft); }
+.home-card:has(.home-card__count) .home-card__arrow { display: none; }
+
+.home-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.home-card__title {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.home-card__description {
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--mp-ink-soft);
+}
+.home-card--empty .home-card__description { color: var(--mp-ink-faint); }
+
+.home-card__arrow {
+  position: absolute;
+  top: 26px;
+  right: 24px;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: var(--mp-ink-faint);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.18s, transform 0.18s ease-out;
+}
+.home-card:hover .home-card__arrow,
+.home-card:focus-visible .home-card__arrow { opacity: 1; transform: none; }
+
+/* ---------- Ícono de módulo ---------- */
+
+.module-badge {
+  display: inline-grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 15px;
+  background: var(--module-color);
+  color: #fff;
+}
+.module-badge__icon { width: 26px; height: 26px; }
+
+.module-badge--large { width: 76px; height: 76px; border-radius: 22px; }
+.module-badge--large .module-badge__icon { width: 38px; height: 38px; }
+
+/* ---------- Módulo vacío ---------- */
+
+.empty-module {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px 96px;
+  text-align: center;
+}
+
+.empty-module__title {
+  margin: 22px 0 6px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.empty-module__text {
+  margin: 0;
+  font-size: 15px;
+  color: var(--mp-ink-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-card,
+  .home-card__arrow,
+  .pending-item__box,
+  .week__tip { transition: none; }
+  .home-card:hover,
+  .home-card:active { transform: none; }
+}
+
+/* ---------- Pantallas tipo inicio (English, Magenta, Score) ---------- */
+
+/* Tarjeta grande de arriba */
+.hub-big {
+  flex-shrink: 0;
+  height: 196px;
+  display: flex;
+  align-items: stretch;
+  gap: 32px;
+  margin-bottom: 14px;
+  padding: 18px 22px 18px 24px;
+  border: 1px solid var(--mp-line);
+  border-radius: 22px;
+  background: var(--mp-surface);
+}
+
+/* Una sola fila de tarjetas (el inicio pide tres filas) */
+.home__grid.hub-grid {
+  flex: 0 0 auto;
+  min-height: 0;
+  grid-template-columns: repeat(var(--hub-cols, 3), minmax(0, 1fr));
+  grid-auto-rows: 200px;
+}
+.hub-card { position: relative; }
+.hub-card .home-card__arrow { display: none; }
+.hub-card__plain { width: 100%; font: inherit; text-align: left; cursor: pointer; }
+
+.hub-done {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 2px solid var(--mp-line-strong);
+  border-radius: 50%;
+  background: var(--mp-surface);
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, transform 0.15s ease-out;
+}
+.hub-done.is-static { pointer-events: none; }
+.hub-done:hover { border-color: var(--c); }
+.hub-done:active { transform: scale(0.9); }
+.hub-done:focus-visible { outline: 3px solid var(--mp-focus); outline-offset: 2px; }
+.hub-done.is-done { border-color: var(--c); background: var(--c); }
+.hub-done .ui-icon { width: 18px; height: 18px; stroke: #fff; stroke-width: 3; }
+.hub-done--large { position: static; width: 38px; height: 38px; }
+.hub-done--large .ui-icon { width: 22px; height: 22px; }
+@media (prefers-reduced-motion: reduce) { .hub-done { transition: none; } }

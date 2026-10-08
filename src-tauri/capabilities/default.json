@@ -1,0 +1,24 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-window",
+  "description": "Lo único que puede hacer la ventana principal. El webview no tiene acceso directo a red, disco ni shell: todo pasa por estos comandos (data-read/data-write solo leen y escriben documentos JSON de la app por nombre, nunca rutas).",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "log:default",
+    {
+      "identifier": "opener:allow-open-url",
+      "allow": [{ "url": "https://*" }, { "url": "http://*" }, { "url": "mailto:*" }]
+    },
+    "allow-auth-get-session",
+    "allow-auth-sign-in-google",
+    "allow-auth-cancel-sign-in",
+    "allow-auth-reopen-sign-in",
+    "allow-auth-sign-out",
+    "allow-backend-request",
+    "allow-resolve-maps-link",
+    "allow-save-text-file",
+    "allow-data-read",
+    "allow-data-write"
+  ]
+}

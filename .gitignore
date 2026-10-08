@@ -1,11 +1,13 @@
 node_modules/
-.env
-.vercel/
+dist/
 .DS_Store
+.env
+.env.*
 
-# Artefactos locales de impeccable y Claude Code
-.impeccable/review/
-.impeccable/questions/
-.impeccable/config.local.json
-.impeccable/hook.cache.json
+# Rust / Tauri
+src-tauri/target/
+src-tauri/gen/schemas/
+
+# Artefactos locales de herramientas
+.impeccable/
 .claude/settings.local.json

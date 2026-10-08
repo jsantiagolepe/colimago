@@ -1,0 +1,45 @@
+[package]
+name = "myproject"
+version = "0.1.0"
+description = "MyProject: aplicación personal de escritorio para macOS"
+authors = ["Julio Santiago"]
+license = ""
+edition = "2024"
+rust-version = "1.90"
+
+[lib]
+# El sufijo _lib evita el choque de nombres entre la librería y el binario
+# (https://github.com/rust-lang/cargo/issues/8519).
+name = "myproject_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.7", features = [] }
+
+[dependencies]
+tauri = { version = "2.12", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-log = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-single-instance = "2"
+tauri-plugin-window-state = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+log = "0.4"
+thiserror = "2"
+tokio = { version = "1", features = ["sync", "time", "macros"] }
+# Cliente HTTP hacia el backend remoto. TLS nativo de macOS (Security.framework).
+reqwest = { version = "0.12", features = ["json"] }
+# Sesión guardada en el Llavero de macOS.
+keyring = { version = "3", features = ["apple-native"] }
+# Servidor loopback efímero para el inicio de sesión con Google (RFC 8252).
+tiny_http = "0.12"
+getrandom = "0.3"
+base64 = "0.22"
+url = "2"
+
+[profile.release]
+codegen-units = 1
+lto = true
+opt-level = "s"
+strip = true
