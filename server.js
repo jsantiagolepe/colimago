@@ -388,6 +388,41 @@ app.post(
   }),
 );
 
+// Resuelve un link corto de Google Maps (maps.app.goo.gl/..., el que da
+// "Compartir") al URL largo, que es el que trae nombre y coordenadas. El
+// navegador no puede seguir ese redirect por CORS, así que lo hace el
+// servidor. Solo se aceptan hosts de Google para que esto no sirva como
+// proxy abierto. GET /api/resolver-maps?url=<link corto>
+const HOSTS_MAPS_CORTOS = ["maps.app.goo.gl", "goo.gl"];
+app.get("/api/resolver-maps", async (req, res) => {
+  let actual;
+  try {
+    actual = new URL(String(req.query.url || ""));
+  } catch {
+    return res.status(400).json({ error: "El link no es válido." });
+  }
+  if (!HOSTS_MAPS_CORTOS.includes(actual.hostname)) {
+    return res.status(400).json({ error: "Solo se aceptan links cortos de Google Maps." });
+  }
+
+  try {
+    // Se siguen los redirects a mano (máx. 5) para validar cada salto.
+    for (let i = 0; i < 5; i++) {
+      const r = await fetch(actual, { redirect: "manual" });
+      const destino = r.headers.get("location");
+      if (!destino) break;
+      actual = new URL(destino, actual);
+      if (!/(^|\.)google\.[a-z.]+$/.test(actual.hostname) && !HOSTS_MAPS_CORTOS.includes(actual.hostname)) {
+        return res.status(400).json({ error: "El link no lleva a Google Maps." });
+      }
+    }
+    res.json({ url: actual.toString() });
+  } catch (err) {
+    console.error(err);
+    res.status(502).json({ error: "No se pudo abrir el link corto. Pega el link largo del navegador." });
+  }
+});
+
 // Editar un lugar
 app.put(
   "/api/lugares/:id",

@@ -17,6 +17,7 @@
     --coral-soft: #f3e2dc;
     --ok: #3f7256;
     --ok-soft: #e2ede4;
+    --foco: rgba(47,93,90,0.28);
   }
   * { box-sizing: border-box; }
   html, body { height: 100%; }
@@ -25,7 +26,35 @@
     font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--bg);
     color: var(--ink);
+    -webkit-font-smoothing: antialiased;
   }
+  ::selection { background: #cfe0dc; color: var(--teal-dark); }
+  :focus { outline: none; }
+  :focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 6px; }
+  .sidebar :focus-visible { outline-color: #f3e2dc; }
+  a { text-underline-offset: 2px; }
+  .tnum { font-variant-numeric: tabular-nums; }
+
+  /* Íconos SVG en línea (misma familia de trazo que la barra lateral) */
+  .ico { width: 1.05em; height: 1.05em; flex-shrink: 0; vertical-align: -0.16em; }
+
+  /* Campos de formulario: un solo estilo para todo el panel y los modales */
+  input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
+    font-family: inherit; font-size: 13.5px; color: var(--ink); background: white;
+    caret-color: var(--teal); transition: border-color .12s, box-shadow .12s;
+  }
+  input:not([type="checkbox"]):not([type="radio"]):hover, select:hover, textarea:hover { border-color: #cfcbbd; }
+  input:not([type="checkbox"]):not([type="radio"]):focus, select:focus, textarea:focus {
+    outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px var(--foco);
+  }
+  input::placeholder, textarea::placeholder { color: #8d8f84; }
+  input[type="checkbox"] { accent-color: var(--teal); }
+  button { font-family: inherit; }
+  button:disabled { opacity: 0.6; cursor: progress; }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .hint { margin: 0 0 14px; font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
 
   /* ---------- Estructura del dashboard ---------- */
   .shell { display: flex; min-height: 100vh; }
@@ -38,6 +67,10 @@
     display: flex;
     flex-direction: column;
     padding: 18px 14px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
   }
   .sidebar-brand { display: flex; align-items: center; gap: 10px; padding: 8px 10px 24px; }
   .brand-mark {
@@ -71,13 +104,15 @@
     width: 32px; height: 32px; border-radius: 50%; background: var(--teal); color: white;
     display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0;
   }
-  .btn-cerrar-sesion { border: none; background: none; color: var(--ink-soft); font-size: 13px; cursor: pointer; font-weight: 600; }
+  .btn-cerrar-sesion { border: none; background: none; color: var(--ink-soft); font-size: 13px; cursor: pointer; font-weight: 600; padding: 6px 4px; }
   .btn-cerrar-sesion:hover { color: var(--coral); }
 
   .content { max-width: 760px; margin: 0 auto; padding: 28px 24px 80px; width: 100%; }
-  .estado-vacio { text-align: center; color: var(--ink-soft); padding: 60px 20px; font-size: 15px; }
+  /* Secciones de tabla (directorio, lugares, posts locales, posts): más aire horizontal */
+  .content.content-ancho { max-width: 1040px; }
+  .estado-vacio { text-align: center; color: var(--ink-soft); padding: 60px 20px; font-size: 15px; line-height: 1.5; }
 
-  .progreso { text-align: center; color: var(--ink-soft); font-size: 13px; margin-bottom: 14px; }
+  .progreso { text-align: center; color: var(--ink-soft); font-size: 13px; margin-bottom: 14px; font-variant-numeric: tabular-nums; }
 
   /* Tarjeta grande estilo Tinder, para Pendientes */
   .card-grande {
@@ -111,12 +146,12 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  .nav-imagen .ico { width: 18px; height: 18px; }
   .nav-imagen:hover { background: rgba(35,36,31,0.8); }
   .nav-imagen.izq { left: 10px; }
   .nav-imagen.der { right: 10px; }
@@ -130,6 +165,7 @@
     padding: 3px 9px;
     border-radius: 20px;
     font-weight: 600;
+    font-variant-numeric: tabular-nums;
   }
   .card-grande .sin-imagen {
     padding: 60px 20px;
@@ -138,13 +174,39 @@
   }
   .card-grande .contenido { padding: 18px 20px; }
 
+  /* Pantallas anchas: imagen a la izquierda (alto de la pantalla) y todo
+     el texto + formulario a la derecha con su propio scroll, para no
+     bajar por toda la página en posts largos. Aprobar/Rechazar quedan
+     fijos al pie de la columna derecha. */
+  .content.content-pendientes { max-width: 1440px; }
+  @media (min-width: 1000px) {
+    .content.content-pendientes { padding-bottom: 24px; }
+    .card-grande {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(400px, 1fr);
+      height: calc(100dvh - 160px);
+      min-height: 520px;
+    }
+    .card-grande .imagen-wrap { max-height: none; min-height: 0; height: 100%; }
+    .card-grande .imagen-wrap img { width: 100%; height: 100%; max-height: none; }
+    .card-grande .contenido {
+      overflow-y: auto; min-height: 0; padding-bottom: 0;
+      border-left: 1px solid var(--line);
+    }
+    .card-grande .acciones-grandes {
+      position: sticky; bottom: 0; background: var(--panel);
+      padding: 12px 0 18px; margin-bottom: 0;
+      box-shadow: 0 -10px 12px -10px rgba(35,36,31,0.18);
+    }
+  }
+
   .meta { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12.5px; color: var(--ink-soft); flex-wrap: wrap; }
   .badge { background: var(--teal); color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
 
-  .texto { font-size: 14.5px; line-height: 1.55; margin: 0 0 10px; white-space: pre-wrap; }
+  .texto { font-size: 14.5px; line-height: 1.55; margin: 0 0 12px; white-space: pre-wrap; overflow-wrap: anywhere; max-width: 68ch; }
 
   .enlace-original {
-    display: inline-block; font-size: 13px; color: white; text-decoration: none; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: white; text-decoration: none; font-weight: 700;
     background: var(--teal-dark); padding: 8px 14px; border-radius: 6px;
   }
   .enlace-original:hover { background: var(--teal); }
@@ -153,22 +215,21 @@
   .req { color: var(--coral); font-weight: 700; }
 
   /* Traducción al inglés (descriptionEnglish) */
-  .fila-traducir { margin-top: 10px; }
+  .fila-traducir { margin-top: 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .fila-traducir .nota-obligatorio { font-size: 12px; color: var(--ink-soft); }
   .btn-traducir {
+    display: inline-flex; align-items: center; gap: 6px;
     border: 1px dashed var(--teal); background: white; color: var(--teal-dark);
     padding: 7px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
   }
   .btn-traducir:hover { background: #eef3f1; }
-  .btn-traducir:disabled { opacity: 0.6; cursor: default; }
   .caja-traduccion {
-    margin-top: 10px; padding: 12px; background: var(--bg); border: 1px solid var(--line);
+    flex: 1 1 100%; padding: 12px; background: var(--bg); border: 1px solid var(--line);
     border-radius: 8px; display: flex; flex-direction: column; gap: 6px;
   }
   .caja-traduccion label { font-size: 12px; color: var(--ink-soft); font-weight: 600; }
-  .caja-traduccion textarea {
-    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13.5px;
-    font-family: inherit; color: var(--ink); resize: vertical; min-height: 80px;
-  }
+  .caja-traduccion textarea { resize: vertical; min-height: 80px; }
+  .error-traduccion { flex: 1 1 100%; }
   .error-traduccion { color: var(--coral); font-size: 12.5px; margin: 6px 0 0; }
 
   .form-fecha {
@@ -186,18 +247,12 @@
   .campos-fecha { display: flex; gap: 12px; flex-wrap: wrap; }
   .campo-fecha { flex: 1; min-width: 160px; display: flex; flex-direction: column; gap: 4px; }
   .campo-fecha label { font-size: 12px; color: var(--ink-soft); font-weight: 600; }
-  .campo-fecha input {
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 8px 10px;
-    font-size: 13.5px;
-    font-family: inherit;
-    color: var(--ink);
-  }
   /* Fecha/hora de inicio y término: angostos, no ocupan toda la fila */
   .campo-fecha.campo-fecha-compacto { flex: 0 0 auto; min-width: 0; }
   .campo-fecha.campo-fecha-compacto input { width: 210px; }
-  .fecha-amigable { font-size: 12.5px; color: var(--teal-dark); font-weight: 600; }
+  /* La fecha legible ("Viernes 2 de octubre…") va a un lado del campo */
+  .fila-fecha { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .fecha-amigable { font-size: 15px; color: var(--teal-dark); font-weight: 600; }
 
   .acciones-grandes { display: flex; gap: 10px; margin-top: 18px; }
   button.accion-grande {
@@ -209,6 +264,7 @@
     font-weight: 700;
     cursor: pointer;
   }
+  button.accion-grande:disabled { cursor: progress; }
   .btn-aprobar-g { background: var(--ok); color: white; }
   .btn-aprobar-g:hover { background: #345f45; }
   .btn-rechazar-g { background: var(--coral-soft); color: var(--coral); }
@@ -225,13 +281,26 @@
     display: flex; align-items: center; justify-content: center; color: var(--ink-soft); font-size: 11px; text-align: center; padding: 6px;
   }
   .card-body { flex: 1; min-width: 0; }
-  .fecha-evento { font-size: 12.5px; color: var(--teal-dark); font-weight: 600; margin-bottom: 4px; }
-  .texto-chico {
-    font-size: 13.5px; line-height: 1.45; margin: 0 0 8px; white-space: pre-wrap;
-    max-height: 3.2em; overflow: hidden;
+  .fecha-evento {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12.5px; color: var(--teal-dark); font-weight: 600; margin-bottom: 4px; font-variant-numeric: tabular-nums;
   }
-  button.btn-deshacer { background: var(--line); color: var(--ink-soft); border: none; padding: 7px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; cursor: pointer; }
-  button.btn-deshacer:hover { background: #d8d4c6; }
+  .texto-chico {
+    font-size: 13.5px; line-height: 1.45; margin: 0 0 10px; overflow-wrap: anywhere;
+    display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+  }
+  .texto-chico.titulo-card { font-weight: 600; -webkit-line-clamp: 1; line-clamp: 1; margin-bottom: 4px; }
+  .texto-chico:empty { display: none; }
+  .estado-pausado { color: var(--ink-soft); font-size: 12px; }
+  .acciones-card { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .btn-deshacer {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--line); color: var(--ink-soft); border: none; padding: 7px 12px; border-radius: 6px;
+    font-size: 12.5px; font-weight: 600; cursor: pointer; text-decoration: none;
+  }
+  .btn-deshacer:hover { background: #d8d4c6; color: var(--ink); }
+  .btn-deshacer.peligro { color: var(--coral); }
+  .btn-deshacer.peligro:hover { background: var(--coral-soft); color: var(--coral); }
 
   /* Directorio de municipios */
   .form-directorio {
@@ -240,72 +309,93 @@
   }
   .form-directorio .campo { display: flex; flex-direction: column; gap: 4px; }
   .form-directorio label { font-size: 12px; color: var(--ink-soft); font-weight: 600; }
-  .form-directorio input, .form-directorio select {
-    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13.5px; font-family: inherit;
-  }
   .form-directorio input[name="facebook_id"] { width: 160px; }
   .form-directorio input[name="facebook_url"] { width: 220px; }
+  .form-directorio input[name="latitud"], .form-directorio input[name="longitud"] { width: 120px; font-variant-numeric: tabular-nums; }
+  .form-directorio input[name="nota"] { width: 200px; }
   .btn-agregar-directorio {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
     background: var(--teal); color: white; border: none; padding: 9px 16px; border-radius: 6px;
     font-size: 13.5px; font-weight: 700; cursor: pointer;
   }
   .btn-agregar-directorio:hover { background: var(--teal-dark); }
 
-  table.tabla-directorio { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-  table.tabla-directorio th, table.tabla-directorio td { text-align: left; padding: 10px 12px; font-size: 13.5px; border-bottom: 1px solid var(--line); }
-  table.tabla-directorio th { color: var(--ink-soft); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em; }
+  /* Las tablas se desplazan de lado dentro de su caja en pantallas angostas */
+  .tabla-wrap { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+  table.tabla-directorio { width: 100%; border-collapse: collapse; }
+  table.tabla-directorio th, table.tabla-directorio td { text-align: left; padding: 10px 12px; font-size: 13.5px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  table.tabla-directorio th { color: var(--ink-soft); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em; white-space: nowrap; }
+  table.tabla-directorio tbody tr:hover { background: #fbfaf7; }
   table.tabla-directorio tr:last-child td { border-bottom: none; }
-  table.tabla-directorio a { color: var(--teal-dark); }
-  .acciones-fila { display: flex; gap: 8px; }
-  .acciones-fila button { border: none; background: none; cursor: pointer; font-size: 12.5px; font-weight: 600; padding: 0; }
+  table.tabla-directorio a { color: var(--teal-dark); overflow-wrap: anywhere; }
+  table.tabla-directorio td.vacio { text-align: center; color: var(--ink-soft); padding: 28px 12px; }
+  table.tabla-directorio td.celda-id { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11.5px; white-space: nowrap; color: var(--ink-soft); }
+  .acciones-fila { display: flex; gap: 4px; justify-content: flex-end; }
+  .acciones-fila button { border: none; background: none; cursor: pointer; font-size: 12.5px; font-weight: 600; padding: 5px 6px; border-radius: 5px; white-space: nowrap; }
+  .acciones-fila button:hover { background: var(--bg); }
   .btn-editar-fila { color: var(--teal-dark); }
   .btn-borrar-fila { color: var(--coral); }
 
   /* Selects (municipio, tipo de evento) */
   .campo-select { display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 160px; }
   .campo-select label { font-size: 12px; color: var(--ink-soft); font-weight: 600; }
-  .campo-select select {
-    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px;
-    font-size: 13.5px; font-family: inherit; color: var(--ink); background: white;
-  }
+  .etiqueta-autodetectado { color: var(--teal-dark); font-weight: 700; }
 
   /* Ubicación */
   .fila-ubicacion { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .btn-ubicacion {
+    display: inline-flex; align-items: center; gap: 6px;
     border: 1px dashed var(--teal); background: white; color: var(--teal-dark);
     padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
   }
   .btn-ubicacion:hover { background: #eef3f1; }
-  .ubicacion-elegida { font-size: 13px; color: var(--ink); display: flex; align-items: center; gap: 6px; }
-  .ubicacion-elegida button { border: none; background: none; color: var(--coral); cursor: pointer; font-size: 13px; padding: 0; }
+  .ubicacion-elegida {
+    font-size: 13px; color: var(--ink); display: inline-flex; align-items: center; gap: 8px;
+    background: #eef3f1; border: 1px solid #d3e1dd; padding: 6px 6px 6px 10px; border-radius: 6px;
+  }
+  .ubicacion-elegida .ico { color: var(--teal); }
+  .ubicacion-elegida button { border: none; background: none; color: var(--coral); cursor: pointer; font-size: 12.5px; font-weight: 600; padding: 2px 6px; border-radius: 4px; }
+  .ubicacion-elegida button:hover { background: var(--coral-soft); }
 
-  /* Modal de ubicación */
+  /* Modales */
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(35,36,31,0.5);
     display: flex; align-items: center; justify-content: center; z-index: 50; padding: 20px;
+    animation: aparecerFondo .16s ease-out both;
   }
   .modal-box {
-    background: white; border-radius: 12px; padding: 20px; width: 100%; max-width: 380px;
-    max-height: 80vh; overflow-y: auto;
+    background: white; border-radius: 12px; padding: 22px; width: 100%; max-width: 380px;
+    max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 18px 50px -12px rgba(35,36,31,0.35);
+    animation: aparecerModal .2s cubic-bezier(.16,1,.3,1) both;
   }
-  .modal-box h3 { margin: 0 0 4px; font-size: 16px; }
-  .modal-box p.hint { margin: 0 0 14px; font-size: 12.5px; color: var(--ink-soft); }
+  @keyframes aparecerFondo { from { opacity: 0; } }
+  @keyframes aparecerModal { from { opacity: 0; transform: translateY(6px) scale(.985); } }
+  @media (prefers-reduced-motion: reduce) { .modal-overlay, .modal-box { animation: none; } }
+  .modal-box h3 { margin: 0 0 4px; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+  .modal-box .campo-fecha { margin-bottom: 10px; }
+  .lista-faltantes { margin: 0; padding-left: 20px; font-size: 13.5px; line-height: 1.7; }
   .opcion-ubicacion {
     display: block; width: 100%; text-align: left; padding: 10px 12px; margin-bottom: 6px;
-    border: 1px solid var(--line); border-radius: 8px; background: white; cursor: pointer; font-size: 13.5px;
+    border: 1px solid var(--line); border-radius: 8px; background: white; cursor: pointer; font-size: 13.5px; color: var(--ink);
   }
   .opcion-ubicacion:hover { background: var(--bg); border-color: var(--teal); }
-  .modal-box .otro-wrap { display: flex; gap: 6px; margin-top: 10px; }
-  .modal-box .otro-wrap input {
-    flex: 1; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13.5px; font-family: inherit;
+  .opcion-ubicacion .municipio-opcion { color: var(--ink-soft); }
+  .modal-cerrar { display: block; margin: 14px auto 0; border: none; background: none; color: var(--ink-soft); font-size: 13px; font-weight: 600; cursor: pointer; padding: 6px 10px; border-radius: 6px; }
+  .modal-cerrar:hover { color: var(--ink); background: var(--bg); }
+
+  /* Pie de modal: secundario a la izquierda, acción principal a la derecha */
+  .acciones-modal { display: flex; gap: 8px; margin-top: 16px; }
+  .acciones-modal > button { flex: 1; padding: 10px; }
+  .btn-terciario {
+    border: 1px solid var(--line); background: white; color: var(--ink-soft);
+    border-radius: 6px; font-size: 13.5px; font-weight: 600; cursor: pointer;
   }
-  .modal-box .otro-wrap button {
-    border: none; background: var(--teal); color: white; padding: 8px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
-  }
-  .modal-cerrar { display: block; margin: 14px auto 0; border: none; background: none; color: var(--ink-soft); font-size: 13px; cursor: pointer; }
+  .btn-terciario:hover { color: var(--ink); border-color: #cfcbbd; background: var(--bg); }
 
   /* Modal de "mismo día" (posibles eventos repetidos) */
   .modal-box-repetidos { max-width: 440px; }
+  .modal-box-repetidos h3 .ico { color: var(--coral); }
   .item-evento-repetido {
     display: flex; align-items: center; justify-content: space-between; gap: 10px;
     padding: 10px 12px; margin-bottom: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg);
@@ -315,6 +405,7 @@
     font-size: 11px; font-weight: 600; color: var(--ink-soft); text-transform: uppercase; letter-spacing: 0.02em;
   }
   .item-evento-repetido .btn-ver-original-repetido {
+    display: inline-flex; align-items: center; gap: 5px;
     flex-shrink: 0; border: none; background: var(--teal-dark); color: white; text-decoration: none;
     padding: 7px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600; white-space: nowrap;
   }
@@ -332,7 +423,11 @@
   }
   .barra-locales .filtros { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; }
   .barra-locales .acciones { display: flex; gap: 8px; flex-wrap: wrap; }
+  .barra-locales .campo-busqueda { min-width: 280px; }
+  .barra-locales + .hint { margin-top: -6px; }
+  .btn-publicar { padding: 7px 12px; font-size: 12.5px; }
   .btn-secundario {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
     border: 1px solid var(--teal); background: white; color: var(--teal-dark);
     padding: 9px 14px; border-radius: 6px; font-size: 13.5px; font-weight: 700; cursor: pointer;
   }
@@ -345,33 +440,80 @@
   .form-local { display: flex; flex-direction: column; gap: 14px; }
   .form-local .fila-campos { display: flex; gap: 12px; flex-wrap: wrap; }
   .form-local .campo-select, .form-local .campo-fecha { flex: 1; min-width: 200px; }
-  .form-local textarea {
-    border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; font-size: 13.5px;
-    font-family: inherit; color: var(--ink); resize: vertical; min-height: 70px; width: 100%;
-  }
+  .form-local textarea { resize: vertical; min-height: 70px; width: 100%; }
+  .form-local .campo-corto { max-width: 140px; }
   .form-local .seccion { border-top: 1px dashed var(--line); padding-top: 14px; display: flex; flex-direction: column; gap: 12px; }
   .form-local .seccion-titulo { font-size: 13px; font-weight: 700; color: var(--teal-dark); }
-  .ayuda-campo { font-size: 12px; color: var(--ink-soft); margin: 2px 0 0; }
+  .form-local .check-linea { display: flex; align-items: center; gap: 6px; font-size: 13.5px; cursor: pointer; }
+  .campos-ubicacion { display: flex; flex-wrap: wrap; gap: 12px; }
+  .campos-ubicacion[hidden] { display: none; }
+  .campos-ubicacion .campo-fecha { flex: 1; min-width: 140px; }
+  .ayuda-campo { font-size: 12px; line-height: 1.45; color: var(--ink-soft); margin: 2px 0 0; }
   .servicios-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
   .servicios-grid label { display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer; }
   .schedule-filas { display: flex; flex-direction: column; gap: 8px; }
+  .schedule-filas:empty { display: none; }
   .schedule-fila { display: flex; gap: 8px; align-items: center; }
-  .schedule-fila input { flex: 1; }
-  .btn-quitar-fila { border: none; background: none; color: var(--coral); font-size: 18px; cursor: pointer; line-height: 1; padding: 0 6px; }
+  .schedule-fila input { flex: 1; min-width: 0; }
+  .btn-quitar-fila {
+    border: none; background: none; color: var(--coral); cursor: pointer; padding: 7px; border-radius: 6px;
+    display: inline-flex;
+  }
+  .btn-quitar-fila:hover { background: var(--coral-soft); }
   .btn-agregar-fila { align-self: flex-start; }
   .id-asignado {
     display: flex; align-items: center; gap: 10px; background: var(--ok-soft); color: var(--ok);
     padding: 10px 14px; border-radius: 8px; font-size: 13.5px; font-weight: 600; margin-top: 10px;
   }
+  .id-asignado { flex-wrap: wrap; }
   .id-asignado code { background: white; padding: 3px 8px; border-radius: 5px; font-size: 13px; }
   .id-asignado button { border: none; background: var(--teal); color: white; padding: 5px 10px; border-radius: 5px; font-size: 12px; font-weight: 700; cursor: pointer; }
-  .error-form { color: var(--coral); font-size: 12.5px; margin: 0; }
+  .error-form { color: var(--coral); font-size: 12.5px; margin: 12px 0 0; }
+  .editor-json { width: 100%; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12.5px; line-height: 1.5; resize: vertical; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.92em; }
+
+  /* ---------- Pantallas angostas: la barra lateral pasa arriba ---------- */
+  @media (max-width: 860px) {
+    .shell { flex-direction: column; }
+    .sidebar {
+      width: 100%; height: auto; position: sticky; top: 0; z-index: 20;
+      flex-direction: row; align-items: center; gap: 8px; padding: 8px 10px; overflow: visible;
+    }
+    .sidebar-brand { padding: 0 4px; }
+    .sidebar-brand .brand-text { display: none; }
+    .brand-mark { width: 30px; height: 30px; font-size: 12px; }
+    .sidebar-nav {
+      display: flex; gap: 2px; overflow-x: auto; flex: 1; min-width: 0;
+      scrollbar-width: none; -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent);
+      mask-image: linear-gradient(90deg, #000 88%, transparent);
+    }
+    .sidebar-nav::-webkit-scrollbar { display: none; }
+    .nav-group { display: flex; gap: 2px; margin: 0; }
+    .nav-group + .nav-group { padding-left: 6px; margin-left: 4px; border-left: 1px solid rgba(255,255,255,0.14); }
+    .nav-group-label { display: none; }
+    .sidebar-nav .tab { width: auto; white-space: nowrap; padding: 8px 10px; margin: 0; font-size: 13.5px; }
+    .topbar { padding: 12px 16px; }
+    .topbar h1 { font-size: 17px; }
+    .bienvenida { display: none; }
+    .content { padding: 18px 16px 64px; }
+    .card-grande .contenido { padding: 16px; }
+    .campo-fecha.campo-fecha-compacto { flex: 1 1 100%; }
+    .campo-fecha.campo-fecha-compacto input { width: 100%; }
+    .checks { flex-direction: column; gap: 10px; }
+    .card { padding: 12px; gap: 12px; }
+    .card img, .card .sin-imagen-chica { width: 64px; height: 64px; }
+    .form-directorio > .campo, .form-directorio input { flex: 1 1 100%; width: 100% !important; }
+    .form-directorio > button, .barra-locales .acciones, .barra-locales .acciones > button { width: 100%; }
+    .barra-locales .filtros { width: 100%; }
+    .modal-overlay { padding: 12px; align-items: flex-end; }
+    .modal-box { max-height: 90vh; padding: 18px; }
+  }
 </style>
 </head>
 <body>
 
 <div class="shell">
-  <aside class="sidebar">
+  <aside class="sidebar" aria-label="Secciones del panel">
     <div class="sidebar-brand">
       <div class="brand-mark">CG</div>
       <div class="brand-text">Colima Go</div>
@@ -379,53 +521,53 @@
     <nav class="sidebar-nav">
       <div class="nav-group">
         <div class="nav-group-label">Revisión de eventos</div>
-        <button class="tab active" data-estatus="pendiente" data-titulo="Pendientes">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        <button class="tab active" aria-current="page" data-estatus="pendiente" data-titulo="Pendientes">
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
           Pendientes
         </button>
         <button class="tab" data-estatus="aprobado" data-titulo="Aprobados">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
           Aprobados
         </button>
         <button class="tab" data-estatus="rechazado" data-titulo="Rechazados">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
           Rechazados
         </button>
       </div>
       <div class="nav-group">
         <div class="nav-group-label">Producción</div>
         <button class="tab" data-estatus="activo" data-titulo="Activos">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
           Activos
         </button>
         <button class="tab" data-estatus="pausado" data-titulo="Pausados">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
           Pausados
         </button>
         <button class="tab" data-estatus="papelera" data-titulo="Papelera">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
           Papelera
         </button>
       </div>
       <div class="nav-group">
         <div class="nav-group-label">Posts locales</div>
         <button class="tab" data-estatus="locales" data-titulo="Posts locales">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
           Posts locales
         </button>
       </div>
       <div class="nav-group">
         <div class="nav-group-label">Configuración</div>
         <button class="tab" data-estatus="directorio" data-titulo="Directorio de páginas">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
           Directorio de páginas
         </button>
         <button class="tab" data-estatus="lugares" data-titulo="Lugares">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
           Lugares
         </button>
         <button class="tab" data-estatus="posts-admin" data-titulo="Posts">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
           Posts
         </button>
       </div>
@@ -437,7 +579,7 @@
       <h1 id="titulo-pagina">Pendientes</h1>
       <div class="topbar-usuario">
         <span class="bienvenida" id="bienvenida">Bienvenido</span>
-        <div class="avatar" id="avatar-inicial">·</div>
+        <div class="avatar" id="avatar-inicial" aria-hidden="true">·</div>
         <button class="btn-cerrar-sesion" id="btn-logout">Cerrar sesión</button>
       </div>
     </header>
@@ -480,11 +622,100 @@
     return false;
   }
 
+  // Todo lo que viene de Facebook o de la base (textos, títulos, URLs) pasa
+  // por aquí antes de meterse en innerHTML: un "<" en un post no debe
+  // romper la tarjeta ni inyectar HTML.
+  function escapeHtml(str) {
+    return String(str ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  // Íconos en línea, misma familia de trazo (Feather) que la barra lateral.
+  const svgIcono = (trazos) => `<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${trazos}</svg>`;
+  const ICONOS = {
+    calendario: svgIcono('<rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>'),
+    idioma: svgIcono('<circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>'),
+    pin: svgIcono('<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle>'),
+    alerta: svgIcono('<path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line>'),
+    descarga: svgIcono('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>'),
+    mas: svgIcono('<line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line>'),
+    cerrar: svgIcono('<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'),
+    externo: svgIcono('<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>'),
+    anterior: svgIcono('<polyline points="15 18 9 12 15 6"></polyline>'),
+    siguiente: svgIcono('<polyline points="9 18 15 12 9 6"></polyline>'),
+  };
+
+  // Saca nombre y coordenadas de un link largo de Google Maps, p. ej.
+  // .../maps/place/Jard%C3%ADn+principal/@19.28,-103.73,1355m/data=...!3d19.2867942!4d-103.7342375...
+  // Prefiere !3d/!4d (el pin del lugar) sobre @lat,lng (el centro del mapa,
+  // que se mueve si arrastraste la vista). Regresa null si no trae nada útil.
+  function extraerDatosDeLinkMaps(texto) {
+    let url;
+    try { url = new URL(texto); } catch { return null; }
+    if (!/(^|\.)google\.[a-z.]+$/.test(url.hostname) || !url.pathname.includes('/maps')) return null;
+
+    const decodificar = (t) => { try { return decodeURIComponent(t); } catch { return t; } };
+    const completo = decodificar(url.pathname);
+    const lugar = url.pathname.match(/\/place\/([^/]+)/);
+    const nombre = lugar ? decodificar(lugar[1].replace(/\+/g, ' ')).trim() : '';
+
+    const pin = completo.match(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/);
+    const vista = completo.match(/@(-?\d+(?:\.\d+)?),(-?\d+(?:\.\d+)?)/);
+    const q = (url.searchParams.get('q') || url.searchParams.get('query') || '').match(/^(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)$/);
+    const coords = pin || vista || q;
+
+    // Un "nombre" que en realidad son coordenadas (link de un pin suelto) no sirve como nombre.
+    const nombreUtil = /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/.test(nombre) ? '' : nombre;
+    if (!nombreUtil && !coords) return null;
+    return { nombre: nombreUtil, lat: coords ? coords[1] : '', lng: coords ? coords[2] : '' };
+  }
+
+  // Crea un modal accesible: role="dialog", cierra con Escape o clic en el
+  // fondo, enfoca el primer campo y devuelve el foco a donde estaba al
+  // cerrarse (sin importar cuál de los botones lo cerró).
+  function crearModal(htmlCaja) {
+    const focoPrevio = document.activeElement;
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.innerHTML = htmlCaja;
+    const caja = overlay.firstElementChild;
+    caja.setAttribute('role', 'dialog');
+    caja.setAttribute('aria-modal', 'true');
+    const titulo = caja.querySelector('h3');
+    if (titulo) {
+      titulo.id = `modal-titulo-${Date.now()}`;
+      caja.setAttribute('aria-labelledby', titulo.id);
+    }
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
+    const removerOriginal = overlay.remove.bind(overlay);
+    overlay.remove = () => {
+      removerOriginal();
+      if (focoPrevio && document.contains(focoPrevio)) focoPrevio.focus();
+    };
+    document.body.appendChild(overlay);
+    // Enfoca el primer campo de texto; si no hay, el propio diálogo (para no
+    // pintar el anillo de foco sobre una opción como si ya estuviera elegida).
+    const primerCampo = caja.querySelector('input:not([type="checkbox"]), select, textarea');
+    caja.tabIndex = -1;
+    (primerCampo || caja).focus();
+    return overlay;
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const abiertos = document.querySelectorAll('.modal-overlay');
+    if (abiertos.length) abiertos[abiertos.length - 1].remove();
+  });
+
   const lista = document.getElementById('lista');
   let estatusActual = 'pendiente';
   let eventosPendientes = []; // cola para el modo tarjeta grande
   let descripcionIngles = ''; // texto de "descriptionEnglish" — se resetea con cada tarjeta
   let subtituloSeleccionado = ''; // nombre del lugar elegido como "subtitle" — se resetea con cada tarjeta
+  let subtituloDespues = false; // true = aprobar sin lugar (no se manda "subtitle"; el backend guarda '') — se resetea con cada tarjeta
   let lugaresDisponibles = []; // lista de lugares para el select de subtítulo
 
   // --- Ajusta estas listas libremente si no coinciden con tu app ---
@@ -540,8 +771,12 @@
   document.querySelector('.sidebar-nav').addEventListener('click', (e) => {
     const tab = e.target.closest('.tab');
     if (!tab) return;
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => {
+      t.classList.remove('active');
+      t.removeAttribute('aria-current');
+    });
     tab.classList.add('active');
+    tab.setAttribute('aria-current', 'page');
     estatusActual = tab.dataset.estatus;
     document.getElementById('titulo-pagina').textContent = tab.dataset.titulo;
     cargarEventos();
@@ -566,13 +801,25 @@
     }
   })();
 
+  // Una fecha sin hora ("2026-10-10", o medianoche UTC como la guarda Mongo
+  // para eventos de todo el día) es un día de calendario, no un instante:
+  // se formatea en UTC para que en México no se muestre el día anterior.
   function formatearFecha(fechaStr) {
     if (!fechaStr) return 'Sin fecha';
     const f = new Date(fechaStr);
-    return f.toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' });
+    if (Number.isNaN(f.getTime())) return 'Sin fecha';
+    const esDiaCalendario = /^\d{4}-\d{2}-\d{2}(T00:00(:00(\.000)?)?Z)?$/.test(String(fechaStr));
+    return f.toLocaleDateString('es-MX', {
+      day: 'numeric', month: 'short', year: 'numeric',
+      ...(esDiaCalendario ? { timeZone: 'UTC' } : {}),
+    });
   }
 
+  const SECCIONES_TABLA = ['directorio', 'lugares', 'locales', 'posts-admin'];
+
   async function cargarEventos() {
+    lista.classList.toggle('content-ancho', SECCIONES_TABLA.includes(estatusActual));
+    lista.classList.toggle('content-pendientes', estatusActual === 'pendiente');
     lista.innerHTML = '<div class="estado-vacio">Cargando…</div>';
     try {
       if (estatusActual === 'directorio') {
@@ -627,9 +874,25 @@
     }
   }
 
+  // Texto de "vacío" por sección, en lenguaje del panel y no con la clave interna.
+  const MENSAJES_VACIO = {
+    aprobado: 'No hay eventos aprobados por ahora.',
+    rechazado: 'No hay eventos rechazados por ahora.',
+    activo: 'No hay eventos activos en producción.',
+    pausado: 'No hay eventos pausados.',
+    papelera: 'La papelera está vacía.',
+  };
+  const htmlVacio = () => `<div class="estado-vacio">${MENSAJES_VACIO[estatusActual] || 'No hay nada aquí por ahora.'}</div>`;
+
+  // Quita una tarjeta de la lista y, si era la última, muestra el estado vacío.
+  function quitarTarjeta(card) {
+    card.remove();
+    if (!lista.children.length) lista.innerHTML = htmlVacio();
+  }
+
   function renderPosts(posts) {
     if (!posts.length) {
-      lista.innerHTML = `<div class="estado-vacio">No hay eventos en "${estatusActual}" por ahora.</div>`;
+      lista.innerHTML = htmlVacio();
       return;
     }
     lista.innerHTML = '';
@@ -642,7 +905,7 @@
 
     const primeraImagen = Array.isArray(p.images) ? p.images.find(Boolean) : null;
     const imagenHtml = primeraImagen
-      ? `<img src="${primeraImagen}" alt="" />`
+      ? `<img src="${escapeHtml(primeraImagen)}" alt="" loading="lazy" />`
       : `<div class="sin-imagen-chica">Sin imagen</div>`;
 
     const nombreMunicipio = MUNICIPIOS[p.municipality] || 'Sin municipio';
@@ -658,7 +921,7 @@
                       <button class="btn-deshacer" data-accion="papelera">Mover a papelera</button>`;
     } else {
       botonesHtml = `<button class="btn-deshacer" data-accion="restaurar">Restaurar</button>
-                      <button class="btn-deshacer" data-accion="eliminar" style="color: var(--coral);">Eliminar definitivo</button>`;
+                      <button class="btn-deshacer peligro" data-accion="eliminar">Eliminar definitivo</button>`;
     }
 
     card.innerHTML = `
@@ -666,29 +929,38 @@
       <div class="card-body">
         <div class="meta">
           <span class="badge">${nombreMunicipio}</span>
-          ${p.status ? '' : '<span style="color: var(--ink-soft); font-size:12px;">Pausado</span>'}
+          ${p.status ? '' : '<span class="estado-pausado">Pausado</span>'}
         </div>
-        <div class="fecha-evento">📅 ${inicio}${fin}</div>
-        <p class="texto-chico" style="font-weight:600; -webkit-line-clamp: 1;">${p.title || 'Sin título'}</p>
-        <p class="texto-chico">${(p.description || '').trim()}</p>
-        <div style="display:flex; gap:8px; flex-wrap:wrap;">${botonesHtml}</div>
+        <div class="fecha-evento">${ICONOS.calendario} ${inicio}${fin}</div>
+        <p class="texto-chico titulo-card">${escapeHtml(p.title || 'Sin título')}</p>
+        <p class="texto-chico">${escapeHtml((p.description || '').trim())}</p>
+        <div class="acciones-card">${botonesHtml}</div>
       </div>
     `;
 
+    const TEXTO_CARGA = { pausar: 'Pausando…', papelera: 'Moviendo…', activar: 'Reactivando…', restaurar: 'Restaurando…', eliminar: 'Eliminando…' };
     card.querySelectorAll('button[data-accion]').forEach(btn => {
       btn.addEventListener('click', async () => {
         const accion = btn.dataset.accion;
-        let res;
-        if (accion === 'eliminar') {
-          if (!confirm('Esto borra el post de forma permanente y no se puede deshacer. ¿Continuar?')) return;
-          res = await fetch(`/api/posts/${p._id}`, { method: 'DELETE' });
-        } else {
-          res = await fetch(`/api/posts/${p._id}/${accion}`, { method: 'POST' });
-        }
-        if (!(await respuestaOk(res))) return;
-        card.remove();
-        if (!lista.children.length) {
-          lista.innerHTML = `<div class="estado-vacio">No hay eventos en "${estatusActual}" por ahora.</div>`;
+        if (accion === 'eliminar' && !confirm('Esto borra el post de forma permanente y no se puede deshacer. ¿Continuar?')) return;
+        // Mientras responde el backend, ningún botón de esta tarjeta se puede volver a pulsar.
+        const botones = card.querySelectorAll('button[data-accion]');
+        const textoOriginal = btn.textContent;
+        botones.forEach(b => { b.disabled = true; });
+        btn.textContent = TEXTO_CARGA[accion] || 'Guardando…';
+        const restaurar = () => {
+          botones.forEach(b => { b.disabled = false; });
+          btn.textContent = textoOriginal;
+        };
+        try {
+          const res = accion === 'eliminar'
+            ? await fetch(`/api/posts/${p._id}`, { method: 'DELETE' })
+            : await fetch(`/api/posts/${p._id}/${accion}`, { method: 'POST' });
+          if (!(await respuestaOk(res))) { restaurar(); return; }
+          quitarTarjeta(card);
+        } catch (err) {
+          alert('Ocurrió un error, intenta de nuevo.');
+          restaurar();
         }
       });
     });
@@ -711,10 +983,10 @@
   function renderDirectorio(registros) {
     const filasHtml = registros.length
       ? registros.map(r => `
-          <tr data-id="${r._id}">
-            <td>${r.municipio_nombre || '—'}</td>
-            <td>${r.facebook_url ? `<a href="${r.facebook_url}" target="_blank" rel="noopener">${r.facebook_url}</a>` : '—'}</td>
-            <td>${r.facebook_id}</td>
+          <tr data-id="${escapeHtml(r._id)}">
+            <td>${escapeHtml(r.municipio_nombre || '—')}</td>
+            <td>${r.facebook_url ? `<a href="${escapeHtml(r.facebook_url)}" target="_blank" rel="noopener">${escapeHtml(r.facebook_url)}</a>` : '—'}</td>
+            <td class="tnum">${escapeHtml(r.facebook_id)}</td>
             <td>
               <div class="acciones-fila">
                 <button class="btn-editar-fila" data-accion="editar">Editar</button>
@@ -723,33 +995,35 @@
             </td>
           </tr>
         `).join('')
-      : `<tr><td colspan="4" style="text-align:center; color: var(--ink-soft);">Sin registros todavía.</td></tr>`;
+      : `<tr><td colspan="4" class="vacio">Sin registros todavía. Agrega la primera página arriba.</td></tr>`;
 
     lista.innerHTML = `
       <div class="form-directorio">
         <div class="campo">
-          <label>Municipio</label>
+          <label for="dir-municipio">Municipio</label>
           <select id="dir-municipio">
             <option value="">Sin municipio (ej. página estatal)</option>
             ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
           </select>
         </div>
         <div class="campo">
-          <label>URL de Facebook</label>
-          <input type="text" name="facebook_url" id="dir-url" placeholder="https://www.facebook.com/..." />
+          <label for="dir-url">URL de Facebook</label>
+          <input type="url" name="facebook_url" id="dir-url" placeholder="https://www.facebook.com/..." />
         </div>
         <div class="campo">
-          <label>ID de Facebook</label>
-          <input type="text" name="facebook_id" id="dir-id" placeholder="141016469255329" />
+          <label for="dir-id">ID de Facebook <span class="req">*</span></label>
+          <input type="text" inputmode="numeric" name="facebook_id" id="dir-id" placeholder="141016469255329" />
         </div>
         <button class="btn-agregar-directorio" id="btn-agregar-dir">Agregar</button>
       </div>
-      <table class="tabla-directorio">
-        <thead>
-          <tr><th>Municipio</th><th>URL</th><th>ID de Facebook</th><th></th></tr>
-        </thead>
-        <tbody id="tbody-directorio">${filasHtml}</tbody>
-      </table>
+      <div class="tabla-wrap">
+        <table class="tabla-directorio">
+          <thead>
+            <tr><th>Municipio</th><th>URL</th><th>ID de Facebook</th><th><span class="sr-only">Acciones</span></th></tr>
+          </thead>
+          <tbody id="tbody-directorio">${filasHtml}</tbody>
+        </table>
+      </div>
     `;
 
     document.getElementById('btn-agregar-dir').addEventListener('click', async () => {
@@ -759,8 +1033,12 @@
 
       if (!idInput.value.trim()) {
         alert('Ingresa el ID de Facebook.');
+        idInput.focus();
         return;
       }
+      const btnAgregar = document.getElementById('btn-agregar-dir');
+      btnAgregar.disabled = true;
+      btnAgregar.textContent = 'Agregando…';
 
       const body = {
         municipio_id: municipioSelect.value,
@@ -778,16 +1056,21 @@
         const data = await res.json();
         if (!res.ok) {
           alert(data.error || 'No se pudo agregar.');
+          btnAgregar.disabled = false;
+          btnAgregar.textContent = 'Agregar';
           return;
         }
         cargarDirectorio();
       } catch (err) {
         alert('Ocurrió un error, intenta de nuevo.');
+        btnAgregar.disabled = false;
+        btnAgregar.textContent = 'Agregar';
       }
     });
 
-    document.querySelectorAll('#tbody-directorio tr[data-id]').forEach(fila => {
+    document.querySelectorAll('#tbody-directorio tr[data-id]').forEach((fila, i) => {
       const id = fila.dataset.id;
+      const registro = registros[i];
       fila.querySelector('[data-accion="borrar"]')?.addEventListener('click', async () => {
         if (!confirm('¿Borrar este registro del directorio?')) return;
         const res = await fetch(`/api/directorio/${id}`, { method: 'DELETE' });
@@ -795,9 +1078,11 @@
         cargarDirectorio();
       });
       fila.querySelector('[data-accion="editar"]')?.addEventListener('click', async () => {
-        const nuevoId = prompt('Nuevo ID de Facebook (deja igual si no cambia):');
+        // Cada prompt ya trae el valor actual: aceptar sin tocarlo lo deja igual
+        // (antes venían vacíos y dar Enter borraba el dato).
+        const nuevoId = prompt('ID de Facebook:', registro.facebook_id ?? '');
         if (nuevoId === null) return;
-        const nuevaUrl = prompt('Nueva URL de Facebook (deja igual si no cambia):');
+        const nuevaUrl = prompt('URL de Facebook:', registro.facebook_url ?? '');
         if (nuevaUrl === null) return;
         const res = await fetch(`/api/directorio/${id}`, {
           method: 'PUT',
@@ -825,12 +1110,12 @@
   function renderLugares(registros) {
     const filasHtml = registros.length
       ? registros.map(r => `
-          <tr data-id="${r._id}">
-            <td>${r.nombre || '—'}</td>
-            <td>${r.municipio_nombre || '—'}</td>
-            <td>${r.latitud ?? '—'}</td>
-            <td>${r.longitud ?? '—'}</td>
-            <td>${r.nota || '—'}</td>
+          <tr data-id="${escapeHtml(r._id)}">
+            <td>${escapeHtml(r.nombre || '—')}</td>
+            <td>${escapeHtml(r.municipio_nombre || '—')}</td>
+            <td class="tnum">${escapeHtml(r.latitud ?? '—')}</td>
+            <td class="tnum">${escapeHtml(r.longitud ?? '—')}</td>
+            <td>${escapeHtml(r.nota || '—')}</td>
             <td>
               <div class="acciones-fila">
                 <button class="btn-editar-fila" data-accion="editar">Editar</button>
@@ -839,41 +1124,43 @@
             </td>
           </tr>
         `).join('')
-      : `<tr><td colspan="6" style="text-align:center; color: var(--ink-soft);">Sin lugares todavía.</td></tr>`;
+      : `<tr><td colspan="6" class="vacio">Sin lugares todavía. Agrega el primero arriba.</td></tr>`;
 
     lista.innerHTML = `
       <div class="form-directorio">
         <div class="campo">
-          <label>Nombre</label>
+          <label for="lug-nombre">Nombre <span class="req">*</span></label>
           <input type="text" name="nombre" id="lug-nombre" placeholder="Jardín Libertad" />
         </div>
         <div class="campo">
-          <label>Municipio</label>
+          <label for="lug-municipio">Municipio</label>
           <select id="lug-municipio">
             <option value="">Selecciona…</option>
             ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
           </select>
         </div>
         <div class="campo">
-          <label>Latitud</label>
-          <input type="text" name="latitud" id="lug-lat" placeholder="19.2433" style="width:120px;" />
+          <label for="lug-lat">Latitud</label>
+          <input type="text" inputmode="decimal" name="latitud" id="lug-lat" placeholder="19.2433" />
         </div>
         <div class="campo">
-          <label>Longitud</label>
-          <input type="text" name="longitud" id="lug-lng" placeholder="-103.7247" style="width:120px;" />
+          <label for="lug-lng">Longitud</label>
+          <input type="text" inputmode="decimal" name="longitud" id="lug-lng" placeholder="-103.7247" />
         </div>
         <div class="campo">
-          <label>Nota (opcional)</label>
-          <input type="text" name="nota" id="lug-nota" placeholder="Referencia u otro dato" style="width:200px;" />
+          <label for="lug-nota">Nota (opcional)</label>
+          <input type="text" name="nota" id="lug-nota" placeholder="Referencia u otro dato" />
         </div>
         <button class="btn-agregar-directorio" id="btn-agregar-lugar">Agregar</button>
       </div>
-      <table class="tabla-directorio">
-        <thead>
-          <tr><th>Nombre</th><th>Municipio</th><th>Latitud</th><th>Longitud</th><th>Nota</th><th></th></tr>
-        </thead>
-        <tbody id="tbody-lugares">${filasHtml}</tbody>
-      </table>
+      <div class="tabla-wrap">
+        <table class="tabla-directorio">
+          <thead>
+            <tr><th>Nombre</th><th>Municipio</th><th>Latitud</th><th>Longitud</th><th>Nota</th><th><span class="sr-only">Acciones</span></th></tr>
+          </thead>
+          <tbody id="tbody-lugares">${filasHtml}</tbody>
+        </table>
+      </div>
     `;
 
     document.getElementById('btn-agregar-lugar').addEventListener('click', async () => {
@@ -885,8 +1172,12 @@
 
       if (!nombreInput.value.trim()) {
         alert('Ingresa el nombre del lugar.');
+        nombreInput.focus();
         return;
       }
+      const btnAgregar = document.getElementById('btn-agregar-lugar');
+      btnAgregar.disabled = true;
+      btnAgregar.textContent = 'Agregando…';
 
       const body = {
         nombre: nombreInput.value.trim(),
@@ -906,16 +1197,21 @@
         const data = await res.json();
         if (!res.ok) {
           alert(data.error || 'No se pudo agregar.');
+          btnAgregar.disabled = false;
+          btnAgregar.textContent = 'Agregar';
           return;
         }
         cargarLugares();
       } catch (err) {
         alert('Ocurrió un error, intenta de nuevo.');
+        btnAgregar.disabled = false;
+        btnAgregar.textContent = 'Agregar';
       }
     });
 
-    document.querySelectorAll('#tbody-lugares tr[data-id]').forEach(fila => {
+    document.querySelectorAll('#tbody-lugares tr[data-id]').forEach((fila, i) => {
       const id = fila.dataset.id;
+      const registro = registros[i];
       fila.querySelector('[data-accion="borrar"]')?.addEventListener('click', async () => {
         if (!confirm('¿Borrar este lugar?')) return;
         const res = await fetch(`/api/lugares/${id}`, { method: 'DELETE' });
@@ -923,13 +1219,14 @@
         cargarLugares();
       });
       fila.querySelector('[data-accion="editar"]')?.addEventListener('click', async () => {
-        const nuevoNombre = prompt('Nuevo nombre (deja igual si no cambia):');
+        // Igual que en el directorio: cada prompt viene con el valor actual.
+        const nuevoNombre = prompt('Nombre:', registro.nombre ?? '');
         if (nuevoNombre === null) return;
-        const nuevaLat = prompt('Nueva latitud (deja igual si no cambia):');
+        const nuevaLat = prompt('Latitud:', registro.latitud ?? '');
         if (nuevaLat === null) return;
-        const nuevaLng = prompt('Nueva longitud (deja igual si no cambia):');
+        const nuevaLng = prompt('Longitud:', registro.longitud ?? '');
         if (nuevaLng === null) return;
-        const nuevaNota = prompt('Nueva nota (deja igual si no cambia):');
+        const nuevaNota = prompt('Nota:', registro.nota ?? '');
         if (nuevaNota === null) return;
         const res = await fetch(`/api/lugares/${id}`, {
           method: 'PUT',
@@ -974,7 +1271,7 @@
   function renderLocales(locales) {
     const filasHtml = locales.length
       ? locales.map(loc => `
-          <tr data-id="${loc._id}" class="${loc.status ? '' : 'fila-inactiva'}">
+          <tr data-id="${escapeHtml(loc._id)}" class="${loc.status ? '' : 'fila-inactiva'}">
             <td>${escapeHtml(loc.title || 'Sin título')}</td>
             <td>${CATEGORIAS_LOCAL[loc.type] || loc.type}</td>
             <td>${MUNICIPIOS[loc.municipalityId] || '—'}</td>
@@ -989,20 +1286,20 @@
             </td>
           </tr>
         `).join('')
-      : `<tr><td colspan="5" style="text-align:center; color: var(--ink-soft);">No hay posts locales con este filtro.</td></tr>`;
+      : `<tr><td colspan="5" class="vacio">No hay posts locales con este filtro.</td></tr>`;
 
     lista.innerHTML = `
       <div class="barra-locales">
         <div class="filtros">
           <div class="campo-select">
-            <label>Categoría</label>
+            <label for="loc-filtro-tipo">Categoría</label>
             <select id="loc-filtro-tipo">
               <option value="">Todas</option>
               ${Object.entries(CATEGORIAS_LOCAL).map(([id, nombre]) => `<option value="${id}" ${filtroLocalTipo == id ? 'selected' : ''}>${nombre}</option>`).join('')}
             </select>
           </div>
           <div class="campo-select">
-            <label>Municipio</label>
+            <label for="loc-filtro-municipio">Municipio</label>
             <select id="loc-filtro-municipio">
               <option value="">Todos</option>
               ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}" ${filtroLocalMunicipio == id ? 'selected' : ''}>${nombre}</option>`).join('')}
@@ -1010,16 +1307,18 @@
           </div>
         </div>
         <div class="acciones">
-          <button class="btn-secundario" id="btn-exportar-catalogo">⬇ Exportar catálogo para la app</button>
-          <button class="btn-agregar-directorio" id="btn-agregar-local">+ Agregar post local</button>
+          <button class="btn-secundario" id="btn-exportar-catalogo">${ICONOS.descarga}<span>Exportar catálogo para la app</span></button>
+          <button class="btn-agregar-directorio" id="btn-agregar-local">${ICONOS.mas}<span>Agregar post local</span></button>
         </div>
       </div>
-      <table class="tabla-directorio">
-        <thead>
-          <tr><th>Título</th><th>Categoría</th><th>Municipio</th><th>Estatus</th><th></th></tr>
-        </thead>
-        <tbody id="tbody-locales">${filasHtml}</tbody>
-      </table>
+      <div class="tabla-wrap">
+        <table class="tabla-directorio">
+          <thead>
+            <tr><th>Título</th><th>Categoría</th><th>Municipio</th><th>Estatus</th><th><span class="sr-only">Acciones</span></th></tr>
+          </thead>
+          <tbody id="tbody-locales">${filasHtml}</tbody>
+        </table>
+      </div>
     `;
 
     document.getElementById('loc-filtro-tipo').addEventListener('change', (e) => {
@@ -1053,8 +1352,9 @@
   async function exportarCatalogoLocal() {
     const btn = document.getElementById('btn-exportar-catalogo');
     btn.disabled = true;
-    const textoOriginal = btn.textContent;
-    btn.textContent = 'Exportando…';
+    const etiqueta = btn.querySelector('span');
+    const textoOriginal = etiqueta.textContent;
+    etiqueta.textContent = 'Exportando…';
     try {
       const res = await fetch('/api/locales/export');
       const data = await res.json();
@@ -1075,7 +1375,7 @@
       alert('Ocurrió un error al exportar, intenta de nuevo.');
     } finally {
       btn.disabled = false;
-      btn.textContent = textoOriginal;
+      etiqueta.textContent = textoOriginal;
     }
   }
 
@@ -1084,9 +1384,9 @@
     const fila = document.createElement('div');
     fila.className = 'schedule-fila';
     fila.innerHTML = `
-      <input type="text" placeholder="Día (ej. Lunes a viernes)" class="loc-schedule-dia" value="${escapeHtml(dia)}" />
-      <input type="text" placeholder="Horario (ej. 9:00 - 18:00)" class="loc-schedule-horas" value="${escapeHtml(horas)}" />
-      <button type="button" class="btn-quitar-fila" title="Quitar">✕</button>
+      <input type="text" placeholder="Día (ej. Lunes a viernes)" aria-label="Día" class="loc-schedule-dia" value="${escapeHtml(dia)}" />
+      <input type="text" placeholder="Horario (ej. 9:00 - 18:00)" aria-label="Horario" class="loc-schedule-horas" value="${escapeHtml(horas)}" />
+      <button type="button" class="btn-quitar-fila" title="Quitar horario" aria-label="Quitar horario">${ICONOS.cerrar}</button>
     `;
     fila.querySelector('.btn-quitar-fila').addEventListener('click', () => fila.remove());
     contenedor.appendChild(fila);
@@ -1094,8 +1394,6 @@
 
   function abrirModalLocal(local) {
     const esNuevo = !local;
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
 
     const opcionesCategoria = Object.entries(CATEGORIAS_LOCAL)
       .map(([id, nombre]) => `<option value="${id}" ${local && String(local.type) === id ? 'selected' : ''}>${nombre}</option>`)
@@ -1113,7 +1411,7 @@
     const location = loc.location || {};
     const tieneUbicacion = !!(location && (location.name || location.latitude || location.longitude));
 
-    overlay.innerHTML = `
+    const overlay = crearModal(`
       <div class="modal-box modal-box-local">
         <h3>${esNuevo ? 'Agregar post local' : 'Editar post local'}</h3>
         <p class="hint">Lugar fijo de Colima. Se captura una sola vez; la app lo recibe empaquetado en el siguiente release.</p>
@@ -1133,8 +1431,8 @@
                 ${opcionesMunicipio}
               </select>
             </div>
-            <div class="campo-select" style="max-width:140px;">
-              <label>Subcategoría</label>
+            <div class="campo-select campo-corto">
+              <label for="loc-subtype">Subcategoría</label>
               <input type="number" id="loc-subtype" value="${loc.subType ?? 0}" />
             </div>
           </div>
@@ -1167,22 +1465,22 @@
 
           <div class="seccion">
             <div class="seccion-titulo">Ubicación (opcional)</div>
-            <label><input type="checkbox" id="loc-tiene-ubicacion" ${tieneUbicacion ? 'checked' : ''} /> Este lugar tiene coordenadas / acceso que capturar</label>
-            <div id="loc-ubicacion-campos" style="display:${tieneUbicacion ? 'flex' : 'none'}; flex-wrap:wrap; gap:12px;">
-              <div class="campo-fecha" style="min-width:140px;">
-                <label>Latitud</label>
-                <input type="text" id="loc-lat" value="${location.latitude ?? ''}" />
+            <label class="check-linea"><input type="checkbox" id="loc-tiene-ubicacion" ${tieneUbicacion ? 'checked' : ''} /> Este lugar tiene coordenadas / acceso que capturar</label>
+            <div id="loc-ubicacion-campos" class="campos-ubicacion" ${tieneUbicacion ? '' : 'hidden'}>
+              <div class="campo-fecha">
+                <label for="loc-lat">Latitud</label>
+                <input type="text" inputmode="decimal" id="loc-lat" value="${escapeHtml(location.latitude ?? '')}" />
               </div>
-              <div class="campo-fecha" style="min-width:140px;">
-                <label>Longitud</label>
-                <input type="text" id="loc-lng" value="${location.longitude ?? ''}" />
+              <div class="campo-fecha">
+                <label for="loc-lng">Longitud</label>
+                <input type="text" inputmode="decimal" id="loc-lng" value="${escapeHtml(location.longitude ?? '')}" />
               </div>
-              <div class="campo-fecha" style="min-width:200px; flex:1;">
-                <label>Nombre del punto</label>
+              <div class="campo-fecha">
+                <label for="loc-loc-nombre">Nombre del punto</label>
                 <input type="text" id="loc-loc-nombre" value="${escapeHtml(location.name || '')}" />
               </div>
-              <div class="campo-fecha" style="min-width:200px; flex:1;">
-                <label>Descripción del acceso</label>
+              <div class="campo-fecha">
+                <label for="loc-loc-desc">Descripción del acceso</label>
                 <input type="text" id="loc-loc-desc" value="${escapeHtml(location.descriptionLocation || '')}" />
               </div>
             </div>
@@ -1195,9 +1493,9 @@
 
           <div class="seccion">
             <div class="seccion-titulo">Horario</div>
-            <label><input type="checkbox" id="loc-openallday" ${loc.openAllDay ? 'checked' : ''} /> Abierto todo el día</label>
+            <label class="check-linea"><input type="checkbox" id="loc-openallday" ${loc.openAllDay ? 'checked' : ''} /> Abierto todo el día</label>
             <div class="schedule-filas" id="loc-schedule-filas"></div>
-            <button type="button" class="btn-secundario btn-agregar-fila" id="loc-agregar-horario">+ Agregar horario</button>
+            <button type="button" class="btn-secundario btn-agregar-fila" id="loc-agregar-horario">${ICONOS.mas}<span>Agregar horario</span></button>
           </div>
 
           <div class="seccion">
@@ -1230,8 +1528,8 @@
               <div class="campo-fecha"><label>Correo</label><input type="text" id="loc-email" value="${escapeHtml(loc.email || '')}" /></div>
             </div>
             <div class="fila-campos">
-              <div class="campo-fecha" style="max-width:140px;"><label>Calificación</label><input type="number" step="0.1" min="0" max="5" id="loc-rating" value="${loc.rating ?? ''}" /></div>
-              <div class="campo-fecha" style="max-width:200px;"><label>Rango de precio</label><input type="text" id="loc-pricerange" value="${escapeHtml(loc.priceRange || '')}" placeholder="ej. $$" /></div>
+              <div class="campo-fecha campo-corto"><label>Calificación</label><input type="number" step="0.1" min="0" max="5" id="loc-rating" value="${loc.rating ?? ''}" /></div>
+              <div class="campo-fecha campo-corto"><label>Rango de precio</label><input type="text" id="loc-pricerange" value="${escapeHtml(loc.priceRange || '')}" placeholder="ej. $$" /></div>
             </div>
           </div>
         </div>
@@ -1239,13 +1537,12 @@
         <p id="loc-error" class="error-form" style="display:none;"></p>
         <div id="loc-id-asignado"></div>
 
-        <div style="display:flex; gap:8px; margin-top:16px;">
-          <button type="button" class="modal-cerrar" id="loc-cancelar" style="margin:0; flex:1; border:1px solid var(--line); border-radius:6px; padding:9px;">${esNuevo ? 'Cancelar' : 'Cerrar'}</button>
-          <button type="button" class="btn-agregar-directorio" id="loc-guardar" style="flex:1; padding:9px;">${esNuevo ? 'Crear' : 'Guardar cambios'}</button>
+        <div class="acciones-modal">
+          <button type="button" class="btn-terciario" id="loc-cancelar">${esNuevo ? 'Cancelar' : 'Cerrar'}</button>
+          <button type="button" class="btn-agregar-directorio" id="loc-guardar">${esNuevo ? 'Crear' : 'Guardar cambios'}</button>
         </div>
       </div>
-    `;
-    document.body.appendChild(overlay);
+    `);
 
     const filasContenedor = overlay.querySelector('#loc-schedule-filas');
     (loc.schedule || []).forEach(item => crearFilaHorario(filasContenedor, item.day, item.hours));
@@ -1263,11 +1560,10 @@
     const checkUbicacion = overlay.querySelector('#loc-tiene-ubicacion');
     const camposUbicacion = overlay.querySelector('#loc-ubicacion-campos');
     checkUbicacion.addEventListener('change', () => {
-      camposUbicacion.style.display = checkUbicacion.checked ? 'flex' : 'none';
+      camposUbicacion.hidden = !checkUbicacion.checked;
     });
 
     overlay.querySelector('#loc-cancelar').addEventListener('click', () => overlay.remove());
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
 
     overlay.querySelector('#loc-guardar').addEventListener('click', () => guardarLocal(overlay, local));
   }
@@ -1401,8 +1697,13 @@
             <button type="button" id="loc-copiar-id">Copiar</button>
           </div>
         `;
-        idAsignadoEl.querySelector('#loc-copiar-id').addEventListener('click', () => {
-          navigator.clipboard.writeText(data.post._id);
+        idAsignadoEl.querySelector('#loc-copiar-id').addEventListener('click', async (e) => {
+          try {
+            await navigator.clipboard.writeText(data.post._id);
+            e.target.textContent = 'Copiado';
+          } catch (err) {
+            e.target.textContent = 'Selecciónalo y copia';
+          }
         });
         btnGuardar.textContent = 'Cerrar';
         btnGuardar.disabled = false;
@@ -1423,14 +1724,6 @@
   // Reemplaza al viejo editor genérico de Mongo ("Base de Datos"): ya no hay
   // acceso a Mongo crudo desde el panel — esto busca/edita solo dentro de la
   // colección de posts (evento o local), pasando por el backend real.
-
-  function escapeHtml(str) {
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
 
   let busquedaPostsAdmin = '';
 
@@ -1453,8 +1746,8 @@
   function renderPostsAdmin(posts) {
     const filasHtml = posts.length
       ? posts.map(post => `
-          <tr data-id="${post._id}">
-            <td style="font-family: monospace; font-size: 11.5px; white-space: nowrap;">${post._id}</td>
+          <tr data-id="${escapeHtml(post._id)}">
+            <td class="celda-id">${escapeHtml(post._id)}</td>
             <td>${escapeHtml(post.title || 'Sin título')}</td>
             <td>${post.kind === 'local' ? 'Local' : 'Evento'}</td>
             <td>${post.status ? '<span class="badge-activo">Activo</span>' : '<span class="badge-inactivo">Inactivo</span>'}</td>
@@ -1465,27 +1758,29 @@
             </td>
           </tr>
         `).join('')
-      : `<tr><td colspan="5" style="text-align:center; color: var(--ink-soft);">${busquedaPostsAdmin ? 'Sin resultados para esa búsqueda.' : 'Sin posts todavía.'}</td></tr>`;
+      : `<tr><td colspan="5" class="vacio">${busquedaPostsAdmin ? 'Sin resultados para esa búsqueda.' : 'Sin posts todavía.'}</td></tr>`;
 
     lista.innerHTML = `
       <div class="barra-locales">
         <div class="filtros">
-          <div class="campo-select" style="min-width:280px;">
-            <label>Buscar por título o pegar un _id</label>
-            <input type="text" id="posts-admin-buscar" value="${escapeHtml(busquedaPostsAdmin)}" placeholder="Ej. Feria del Hongo, o 66f1a2b3c4d5e6f7a8b9c0d1" />
+          <div class="campo-select campo-busqueda">
+            <label for="posts-admin-buscar">Buscar por título o pegar un _id</label>
+            <input type="search" id="posts-admin-buscar" value="${escapeHtml(busquedaPostsAdmin)}" placeholder="Ej. Feria del Hongo, o 66f1a2b3c4d5e6f7a8b9c0d1" />
           </div>
         </div>
         <div class="acciones">
           <button class="btn-agregar-directorio" id="btn-buscar-posts-admin">Buscar</button>
         </div>
       </div>
-      <p class="hint" style="margin: -8px 0 14px;">Sin buscar nada, muestra los ${posts.length} más recientes. Editar aquí es de campo libre — para dar de alta o dar de baja usa las secciones "Posts locales", "Producción" o "Pendientes".</p>
-      <table class="tabla-directorio">
-        <thead>
-          <tr><th>_id</th><th>Título</th><th>Tipo</th><th>Estatus</th><th></th></tr>
-        </thead>
-        <tbody id="tbody-posts-admin">${filasHtml}</tbody>
-      </table>
+      <p class="hint">${busquedaPostsAdmin ? `${posts.length} resultado${posts.length === 1 ? '' : 's'}.` : `Sin buscar nada, muestra los ${posts.length} más recientes.`} Editar aquí es de campo libre — para dar de alta o dar de baja usa las secciones "Posts locales", "Producción" o "Pendientes".</p>
+      <div class="tabla-wrap">
+        <table class="tabla-directorio">
+          <thead>
+            <tr><th>_id</th><th>Título</th><th>Tipo</th><th>Estatus</th><th><span class="sr-only">Acciones</span></th></tr>
+          </thead>
+          <tbody id="tbody-posts-admin">${filasHtml}</tbody>
+        </table>
+      </div>
     `;
 
     const inputBuscar = document.getElementById('posts-admin-buscar');
@@ -1510,24 +1805,20 @@
     const { _id, ...camposEditables } = post;
     const textoInicial = JSON.stringify(camposEditables, null, 2);
 
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
-    overlay.innerHTML = `
-      <div class="modal-box" style="max-width: 560px;">
+    const overlay = crearModal(`
+      <div class="modal-box modal-box-local">
         <h3>Editar post</h3>
-        <p class="hint">_id: <code>${_id}</code>. Edita el JSON y guarda. Cambiar "kind" o los contadores sociales (likes, comments, views, favorites, hides) no tiene efecto: esos se manejan desde sus propios flujos.</p>
-        <textarea id="post-admin-json" rows="16" style="width:100%; border:1px solid var(--line); border-radius:6px; padding:8px 10px; font-size:12.5px; font-family: monospace; resize:vertical;">${escapeHtml(textoInicial)}</textarea>
-        <p id="post-admin-error" class="error-form" style="display:none;"></p>
-        <div style="display:flex; gap:8px; margin-top:14px;">
-          <button type="button" class="modal-cerrar" id="post-admin-cancelar" style="margin:0; flex:1; border:1px solid var(--line); border-radius:6px; padding:9px;">Cancelar</button>
-          <button type="button" class="btn-agregar-directorio" id="post-admin-guardar" style="flex:1; padding:9px;">Guardar</button>
+        <p class="hint">_id: <code>${escapeHtml(_id)}</code>. Edita el JSON y guarda. Cambiar "kind" o los contadores sociales (likes, comments, views, favorites, hides) no tiene efecto: esos se manejan desde sus propios flujos.</p>
+        <textarea id="post-admin-json" class="editor-json" rows="16" spellcheck="false" aria-label="JSON del post">${escapeHtml(textoInicial)}</textarea>
+        <p id="post-admin-error" class="error-form" role="alert" style="display:none;"></p>
+        <div class="acciones-modal">
+          <button type="button" class="btn-terciario" id="post-admin-cancelar">Cancelar</button>
+          <button type="button" class="btn-agregar-directorio" id="post-admin-guardar">Guardar</button>
         </div>
       </div>
-    `;
-    document.body.appendChild(overlay);
+    `);
 
     document.getElementById('post-admin-cancelar').addEventListener('click', () => overlay.remove());
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
 
     document.getElementById('post-admin-guardar').addEventListener('click', async () => {
       const textarea = document.getElementById('post-admin-json');
@@ -1574,21 +1865,19 @@
 
   // Modal que enumera los campos obligatorios que faltan al aprobar un evento.
   function mostrarModalFaltantes(faltantes) {
-    const overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
-    overlay.innerHTML = `
+    const overlay = crearModal(`
       <div class="modal-box">
         <h3>Falta información</h3>
         <p class="hint">Completa estos campos antes de aprobar el evento:</p>
-        <ul style="margin:0; padding-left:20px; font-size:13.5px; line-height:1.7;">
+        <ul class="lista-faltantes">
           ${faltantes.map(f => `<li>${f}</li>`).join('')}
         </ul>
-        <button type="button" class="modal-cerrar" id="btn-cerrar-faltantes">Entendido</button>
+        <div class="acciones-modal">
+          <button type="button" class="btn-agregar-directorio" id="btn-cerrar-faltantes">Entendido</button>
+        </div>
       </div>
-    `;
-    document.body.appendChild(overlay);
+    `);
     document.getElementById('btn-cerrar-faltantes').addEventListener('click', () => overlay.remove());
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
   }
 
   // Busca eventos ya aprobados/publicados en la misma fecha (para detectar
@@ -1602,27 +1891,23 @@
       const eventos = await res.json();
       if (!Array.isArray(eventos) || !eventos.length) return;
 
-      const overlay = document.createElement('div');
-      overlay.className = 'modal-overlay';
-      overlay.innerHTML = `
+      const overlay = crearModal(`
         <div class="modal-box modal-box-repetidos">
-          <h3>⚠️ Posible evento repetido</h3>
+          <h3>${ICONOS.alerta} Posible evento repetido</h3>
           <p class="hint">Ya hay ${eventos.length} evento${eventos.length === 1 ? '' : 's'} aprobado${eventos.length === 1 ? '' : 's'} con fecha ${formatearFechaAmigable(fechaISO)}. Revisa si es el mismo antes de aprobar de nuevo:</p>
           ${eventos.map(e => `
             <div class="item-evento-repetido">
               <div>
                 <div class="titulo-evento-repetido">${escapeHtml(e.title || 'Sin título')}</div>
-                <div class="badge-estatus-repetido">${escapeHtml(e.pagina_origen || '')} · ${e.estatus_revision}</div>
+                <div class="badge-estatus-repetido">${[e.pagina_origen, e.estatus_revision].filter(Boolean).map(escapeHtml).join(' · ')}</div>
               </div>
-              ${e.post_url ? `<a class="btn-ver-original-repetido" href="${e.post_url}" target="_blank" rel="noopener">Ver post ↗</a>` : ''}
+              ${e.post_url ? `<a class="btn-ver-original-repetido" href="${escapeHtml(e.post_url)}" target="_blank" rel="noopener">Ver post ${ICONOS.externo}</a>` : ''}
             </div>
           `).join('')}
           <button type="button" class="btn-cerrar-grande" id="btn-cerrar-repetidos">Cerrar</button>
         </div>
-      `;
-      document.body.appendChild(overlay);
+      `);
       document.getElementById('btn-cerrar-repetidos').addEventListener('click', () => overlay.remove());
-      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
     } catch (err) {
       // Si falla la búsqueda no bloqueamos el flujo de aprobar/rechazar.
     }
@@ -1662,7 +1947,7 @@
 
   function renderTarjetaGrande() {
     if (!eventosPendientes.length) {
-      lista.innerHTML = '<div class="estado-vacio">No hay eventos pendientes por revisar. 🎉</div>';
+      lista.innerHTML = '<div class="estado-vacio">Todo revisado: no quedan eventos pendientes.</div>';
       return;
     }
 
@@ -1673,63 +1958,67 @@
 
     const imagenHtml = imagenes.length
       ? `<div class="imagen-wrap">
-           <img id="img-actual" src="${imagenes[0]}" alt="" />
+           <img id="img-actual" src="${escapeHtml(imagenes[0])}" alt="Imagen 1 del post" />
            ${imagenes.length > 1 ? `
-             <button class="nav-imagen izq" id="btn-img-izq">‹</button>
-             <button class="nav-imagen der" id="btn-img-der">›</button>
-             <span class="contador-imagenes" id="contador-imagenes">1 / ${imagenes.length}</span>
+             <button class="nav-imagen izq" id="btn-img-izq" aria-label="Imagen anterior">${ICONOS.anterior}</button>
+             <button class="nav-imagen der" id="btn-img-der" aria-label="Imagen siguiente">${ICONOS.siguiente}</button>
+             <span class="contador-imagenes" id="contador-imagenes" aria-live="polite">1 / ${imagenes.length}</span>
            ` : ''}
          </div>`
       : `<div class="imagen-wrap"><div class="sin-imagen">Este post no tiene imagen</div></div>`;
 
     lista.innerHTML = `
-      <div class="progreso">Quedan ${total} por revisar</div>
+      <div class="progreso">${total === 1 ? 'Queda 1 por revisar' : `Quedan ${total} por revisar`}</div>
       <div class="card-grande">
         ${imagenHtml}
         <div class="contenido">
           <div class="meta">
-            <span class="badge">${ev.plataforma || ''}</span>
-            <span>${ev.pagina_origen || 'Página desconocida'}</span>
-            <span>·</span>
+            ${ev.plataforma ? `<span class="badge">${escapeHtml(ev.plataforma)}</span>` : ''}
+            <span>${escapeHtml(ev.pagina_origen || 'Página desconocida')}</span>
+            <span aria-hidden="true">·</span>
             <span>Detectado ${formatearFecha(ev.detectado_en)}</span>
           </div>
-          <p class="texto">${(ev.contenido_crudo || '').trim()}</p>
-          <a class="enlace-original" href="${ev.post_url}" target="_blank" rel="noopener">Ver post original en Facebook ↗</a>
+          <p class="texto">${escapeHtml((ev.contenido_crudo || '').trim())}</p>
+          <a class="enlace-original" href="${escapeHtml(ev.post_url)}" target="_blank" rel="noopener">Ver post original en Facebook ${ICONOS.externo}</a>
 
           <div class="fila-traducir" id="fila-traducir">
-            <button type="button" class="btn-traducir" data-accion="traducir">🌐 Traducir</button>
-            <span style="font-size:12px; color: var(--ink-soft);">Obligatorio <span class="req">*</span></span>
+            <button type="button" class="btn-traducir" data-accion="traducir">${ICONOS.idioma} Traducir</button>
+            <span class="nota-obligatorio">Obligatorio <span class="req">*</span></span>
           </div>
 
           <div class="form-fecha">
             <div class="checks">
-              <label><input type="checkbox" id="chk-allday" checked /> Todo el día (sin hora específica)</label>
+              <label><input type="checkbox" id="chk-allday" /> Todo el día (sin hora específica)</label>
               <label><input type="checkbox" id="chk-moredays" /> Dura más de un día</label>
               <label><input type="checkbox" id="chk-iscover" /> Es Evento Padre</label>
             </div>
             <div class="campos-fecha">
               <div class="campo-fecha campo-fecha-compacto">
-                <label id="lbl-inicio">Fecha del evento</label>
-                <input type="date" id="input-date" />
-                <span class="fecha-amigable" id="fecha-amigable-inicio"></span>
+                <label id="lbl-inicio" for="input-date">Fecha del evento</label>
+                <div class="fila-fecha">
+                  <input type="date" id="input-date" />
+                  <span class="fecha-amigable" id="fecha-amigable-inicio"></span>
+                </div>
               </div>
               <div class="campo-fecha campo-fecha-compacto" id="wrap-finish" style="display:none;">
-                <label id="lbl-fin">Fecha de término</label>
-                <input type="date" id="input-finish" />
-                <span class="fecha-amigable" id="fecha-amigable-fin"></span>
+                <label id="lbl-fin" for="input-finish">Fecha de término</label>
+                <div class="fila-fecha">
+                  <input type="date" id="input-finish" />
+                  <span class="fecha-amigable" id="fecha-amigable-fin"></span>
+                </div>
               </div>
             </div>
 
             <div class="campos-fecha">
               <div class="campo-select">
-                <label>Municipio <span class="req">*</span> ${ev.municipio_sugerido ? '<span style="color: var(--teal-dark); font-weight: 700;">· autodetectado, verifica</span>' : ''}</label>
+                <label for="select-municipio">Municipio <span class="req">*</span> ${ev.municipio_sugerido ? '<span class="etiqueta-autodetectado">· autodetectado, verifica</span>' : ''}</label>
                 <select id="select-municipio">
                   <option value="">Selecciona…</option>
                   ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
                 </select>
               </div>
               <div class="campo-select">
-                <label>Tipo de evento <span class="req">*</span></label>
+                <label for="select-tipo">Tipo de evento <span class="req">*</span></label>
                 <select id="select-tipo">
                   <option value="">Selecciona…</option>
                   ${Object.entries(TIPOS_EVENTO).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
@@ -1738,14 +2027,14 @@
             </div>
 
             <div class="campo-fecha">
-              <label>Título <span class="req">*</span></label>
+              <label for="input-title">Título <span class="req">*</span></label>
               <input type="text" id="input-title" placeholder="Ej. Feria del Hongo - El Terrero 2026" />
             </div>
 
             <div class="campo-fecha">
               <label>Subtítulo (lugar) <span class="req">*</span></label>
               <div class="fila-ubicacion" id="fila-subtitulo">
-                <button type="button" class="btn-ubicacion" id="btn-elegir-subtitulo">📍 Agregar ubicación (subtítulo)</button>
+                <button type="button" class="btn-ubicacion" id="btn-elegir-subtitulo">${ICONOS.pin} Agregar ubicación (subtítulo)</button>
               </div>
             </div>
           </div>
@@ -1768,6 +2057,7 @@
       const contador = document.getElementById('contador-imagenes');
       const actualizarImagen = () => {
         imgActual.src = imagenes[indiceImagen];
+        imgActual.alt = `Imagen ${indiceImagen + 1} del post`;
         contador.textContent = `${indiceImagen + 1} / ${imagenes.length}`;
       };
       document.getElementById('btn-img-izq').addEventListener('click', () => {
@@ -1787,7 +2077,9 @@
     const fechaAmigableInicio = document.getElementById('fecha-amigable-inicio');
     const fechaAmigableFin = document.getElementById('fecha-amigable-fin');
 
-    function actualizarTipoInputs() {
+    // "inicial" = al abrir la tarjeta: no se precarga la fecha de hoy, para
+    // no aprobar por descuido un evento con la fecha equivocada.
+    function actualizarTipoInputs(inicial = false) {
       const tipo = chkAllDay.checked ? 'date' : 'datetime-local';
       const hoy = fechaHoyISO();
       // Al pedir hora, precargamos la fecha ya elegida (o la de hoy) con 01:00,
@@ -1796,7 +2088,7 @@
         const diaPrevio = (input.value || '').slice(0, 10);
         input.type = tipo;
         if (tipo === 'datetime-local') {
-          input.value = `${diaPrevio || hoy}T01:00`;
+          input.value = diaPrevio || !inicial ? `${diaPrevio || hoy}T01:00` : '';
         } else {
           input.value = diaPrevio;
         }
@@ -1806,7 +2098,7 @@
       fechaAmigableInicio.textContent = formatearFechaAmigable(inputDate.value);
       fechaAmigableFin.textContent = formatearFechaAmigable(inputFinish.value);
     }
-    chkAllDay.addEventListener('change', actualizarTipoInputs);
+    chkAllDay.addEventListener('change', () => actualizarTipoInputs());
     inputDate.addEventListener('input', () => {
       fechaAmigableInicio.textContent = formatearFechaAmigable(inputDate.value);
     });
@@ -1821,7 +2113,7 @@
         buscarYMostrarEventosMismoDia(fechaISO, ev._id);
       }
     });
-    actualizarTipoInputs();
+    actualizarTipoInputs(true);
 
     // Preselecciona el municipio si coincide con algo en el directorio
     if (ev.municipio_sugerido) {
@@ -1836,7 +2128,7 @@
     // --- Traducción (descriptionEnglish) ---
     descripcionIngles = '';
     const filaTraducir = document.getElementById('fila-traducir');
-    const HTML_BOTON_TRADUCIR = `<button type="button" class="btn-traducir" data-accion="traducir">🌐 Traducir</button>`;
+    const HTML_BOTON_TRADUCIR = `<button type="button" class="btn-traducir" data-accion="traducir">${ICONOS.idioma} Traducir</button>`;
 
     async function ejecutarTraduccion() {
       filaTraducir.innerHTML = `<button type="button" class="btn-traducir" disabled>Traduciendo…</button>`;
@@ -1844,22 +2136,22 @@
         const res = await fetch(`/api/pendientes/${ev._id}/traducir`, { method: 'POST' });
         const data = await res.json();
         if (!res.ok) {
-          filaTraducir.innerHTML = `${HTML_BOTON_TRADUCIR}<p class="error-traduccion">${data.error || 'No se pudo traducir.'}</p>`;
+          filaTraducir.innerHTML = `${HTML_BOTON_TRADUCIR}<p class="error-traduccion" role="alert">${escapeHtml(data.error || 'No se pudo traducir.')}</p>`;
           return;
         }
         descripcionIngles = data.descriptionEnglish || '';
         filaTraducir.innerHTML = `
           <div class="caja-traduccion">
-            <label>Descripción en inglés (descriptionEnglish) <span class="req">*</span></label>
-            <textarea id="input-description-english">${descripcionIngles}</textarea>
-            <button type="button" class="btn-traducir" data-accion="traducir" style="align-self:flex-start;">🌐 Volver a traducir</button>
+            <label for="input-description-english">Descripción en inglés (descriptionEnglish) <span class="req">*</span></label>
+            <textarea id="input-description-english">${escapeHtml(descripcionIngles)}</textarea>
+            <button type="button" class="btn-traducir" data-accion="traducir" style="align-self:flex-start;">${ICONOS.idioma} Volver a traducir</button>
           </div>
         `;
         document.getElementById('input-description-english').addEventListener('input', (e) => {
           descripcionIngles = e.target.value;
         });
       } catch (err) {
-        filaTraducir.innerHTML = `${HTML_BOTON_TRADUCIR}<p class="error-traduccion">Ocurrió un error, intenta de nuevo.</p>`;
+        filaTraducir.innerHTML = `${HTML_BOTON_TRADUCIR}<p class="error-traduccion" role="alert">Ocurrió un error, intenta de nuevo.</p>`;
       }
     }
 
@@ -1874,50 +2166,89 @@
     // necesita, desde cualquier otro punto — por eso recibe un callback en
     // vez de asumir a dónde va el nombre elegido.
     function abrirModalAgregarLugar(alGuardar) {
-      const overlay = document.createElement('div');
-      overlay.className = 'modal-overlay';
-      overlay.innerHTML = `
+      const overlay = crearModal(`
         <div class="modal-box">
           <h3>Agregar lugar</h3>
           <p class="hint">Se agrega al directorio de lugares y queda disponible aquí de inmediato.</p>
-          <div class="campo-fecha" style="margin-bottom:8px;">
-            <label>Nombre</label>
+          <div class="campo-fecha">
+            <label for="modal-lugar-url">Link de Google Maps (opcional)</label>
+            <input type="url" id="modal-lugar-url" placeholder="Pega aquí el link del lugar" />
+            <p id="modal-lugar-url-estado" class="hint" style="margin:4px 0 0; display:none;"></p>
+          </div>
+          <div class="campo-fecha">
+            <label for="modal-lugar-nombre">Nombre <span class="req">*</span></label>
             <input type="text" id="modal-lugar-nombre" placeholder="Jardín Libertad" />
           </div>
-          <div class="campo-fecha" style="margin-bottom:8px;">
-            <label>Municipio</label>
+          <div class="campo-fecha">
+            <label for="modal-lugar-municipio">Municipio</label>
             <select id="modal-lugar-municipio">
               <option value="">Selecciona…</option>
               ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}">${nombre}</option>`).join('')}
             </select>
           </div>
-          <div class="campo-fecha" style="margin-bottom:8px;">
-            <label>Latitud (opcional)</label>
-            <input type="text" id="modal-lugar-lat" placeholder="19.2433" />
+          <div class="campo-fecha">
+            <label for="modal-lugar-lat">Latitud (opcional)</label>
+            <input type="text" inputmode="decimal" id="modal-lugar-lat" placeholder="19.2433" />
           </div>
-          <div class="campo-fecha" style="margin-bottom:8px;">
-            <label>Longitud (opcional)</label>
-            <input type="text" id="modal-lugar-lng" placeholder="-103.7247" />
+          <div class="campo-fecha">
+            <label for="modal-lugar-lng">Longitud (opcional)</label>
+            <input type="text" inputmode="decimal" id="modal-lugar-lng" placeholder="-103.7247" />
           </div>
-          <div class="campo-fecha" style="margin-bottom:8px;">
-            <label>Nota (opcional)</label>
+          <div class="campo-fecha">
+            <label for="modal-lugar-nota">Nota (opcional)</label>
             <input type="text" id="modal-lugar-nota" placeholder="Referencia u otro dato" />
           </div>
-          <p id="modal-lugar-error" class="error-traduccion" style="display:none;"></p>
-          <div style="display:flex; gap:8px; margin-top:10px;">
-            <button type="button" class="modal-cerrar" id="modal-lugar-cancelar" style="margin:0; flex:1; border:1px solid var(--line); border-radius:6px; padding:9px;">Cancelar</button>
-            <button type="button" class="btn-agregar-directorio" id="modal-lugar-guardar" style="flex:1; padding:9px;">Guardar</button>
+          <p id="modal-lugar-error" class="error-form" role="alert" style="display:none;"></p>
+          <div class="acciones-modal">
+            <button type="button" class="btn-terciario" id="modal-lugar-cancelar">Cancelar</button>
+            <button type="button" class="btn-agregar-directorio" id="modal-lugar-guardar">Guardar</button>
           </div>
         </div>
-      `;
-      document.body.appendChild(overlay);
+      `);
 
       document.getElementById('modal-lugar-cancelar').addEventListener('click', () => overlay.remove());
-      overlay.addEventListener('click', (e2) => { if (e2.target === overlay) overlay.remove(); });
 
       const nombreInput = document.getElementById('modal-lugar-nombre');
       const municipioSelect = document.getElementById('modal-lugar-municipio');
-      nombreInput.focus();
+
+      // Al pegar un link de Google Maps llena nombre, latitud y longitud.
+      // El municipio no viene en el link, ese se elige a mano.
+      const urlInput = document.getElementById('modal-lugar-url');
+      const urlEstado = document.getElementById('modal-lugar-url-estado');
+      let ultimoLink = ''; // "paste" y "change" disparan los dos; se procesa una vez
+      async function aplicarLinkMaps() {
+        const texto = urlInput.value.trim();
+        if (texto === ultimoLink) return;
+        ultimoLink = texto;
+        if (!texto) { urlEstado.style.display = 'none'; return; }
+
+        let datos = extraerDatosDeLinkMaps(texto);
+        if (!datos && /^https?:\/\/(maps\.app\.)?goo\.gl\//i.test(texto)) {
+          urlEstado.textContent = 'Abriendo link corto…';
+          urlEstado.style.display = 'block';
+          try {
+            const res = await fetch(`/api/resolver-maps?url=${encodeURIComponent(texto)}`);
+            const r = await res.json();
+            if (res.ok) datos = extraerDatosDeLinkMaps(r.url);
+          } catch (err) { /* cae al mensaje de abajo */ }
+        }
+
+        if (!datos) {
+          urlEstado.textContent = 'No encontré el lugar en ese link. Ábrelo en Google Maps y copia el link de la barra del navegador.';
+          urlEstado.style.color = 'var(--coral)';
+          urlEstado.style.display = 'block';
+          return;
+        }
+        if (datos.nombre) nombreInput.value = datos.nombre;
+        if (datos.lat) document.getElementById('modal-lugar-lat').value = datos.lat;
+        if (datos.lng) document.getElementById('modal-lugar-lng').value = datos.lng;
+        urlEstado.textContent = `Listo: ${[datos.nombre, datos.lat && `${datos.lat}, ${datos.lng}`].filter(Boolean).join(' · ')}. Revisa y elige el municipio.`;
+        urlEstado.style.color = '';
+        urlEstado.style.display = 'block';
+        municipioSelect.focus();
+      }
+      urlInput.addEventListener('paste', () => setTimeout(aplicarLinkMaps, 0));
+      urlInput.addEventListener('change', aplicarLinkMaps);
 
       document.getElementById('modal-lugar-guardar').addEventListener('click', async () => {
         const errorEl = document.getElementById('modal-lugar-error');
@@ -1972,57 +2303,80 @@
 
     // --- Subtítulo (lugar): mismo patrón visual que "Agregar ubicación" ---
     subtituloSeleccionado = '';
+    subtituloDespues = false;
     const filaSubtitulo = document.getElementById('fila-subtitulo');
 
     function renderFilaSubtitulo() {
-      if (subtituloSeleccionado) {
+      if (subtituloDespues) {
         filaSubtitulo.innerHTML = `
-          <span class="ubicacion-elegida">📍 ${subtituloSeleccionado} <button type="button" id="btn-quitar-subtitulo">Quitar</button></span>
+          <span class="ubicacion-elegida">${ICONOS.pin} Sin lugar (se asigna después) <button type="button" id="btn-quitar-subtitulo">Cambiar</button></span>
+        `;
+        document.getElementById('btn-quitar-subtitulo').addEventListener('click', () => {
+          subtituloDespues = false;
+          renderFilaSubtitulo();
+          abrirModalElegirSubtitulo();
+        });
+      } else if (subtituloSeleccionado) {
+        filaSubtitulo.innerHTML = `
+          <span class="ubicacion-elegida">${ICONOS.pin} ${escapeHtml(subtituloSeleccionado)} <button type="button" id="btn-quitar-subtitulo">Quitar</button></span>
         `;
         document.getElementById('btn-quitar-subtitulo').addEventListener('click', () => {
           subtituloSeleccionado = '';
           renderFilaSubtitulo();
         });
       } else {
-        filaSubtitulo.innerHTML = `<button type="button" class="btn-ubicacion" id="btn-elegir-subtitulo">📍 Agregar ubicación (subtítulo)</button>`;
+        filaSubtitulo.innerHTML = `<button type="button" class="btn-ubicacion" id="btn-elegir-subtitulo">${ICONOS.pin} Agregar ubicación (subtítulo)</button>`;
         document.getElementById('btn-elegir-subtitulo').addEventListener('click', abrirModalElegirSubtitulo);
       }
     }
     document.getElementById('btn-elegir-subtitulo').addEventListener('click', abrirModalElegirSubtitulo);
 
     function abrirModalElegirSubtitulo() {
-      const overlay = document.createElement('div');
-      overlay.className = 'modal-overlay';
-      overlay.innerHTML = `
+      const overlay = crearModal(`
         <div class="modal-box">
           <h3>Elige el lugar (subtítulo)</h3>
           <p class="hint">Lugares de tu directorio, con su municipio para que no te equivoques de cuál es.</p>
           ${lugaresDisponibles.length
-            ? lugaresDisponibles.map(l => `<button type="button" class="opcion-ubicacion" data-nombre="${l.nombre}">${l.nombre}${l.municipio_nombre ? ` - ${l.municipio_nombre}` : ''}</button>`).join('')
+            ? lugaresDisponibles.map((l, i) => `<button type="button" class="opcion-ubicacion" data-indice="${i}">${escapeHtml(l.nombre)}${l.municipio_nombre ? ` <span class="municipio-opcion">· ${escapeHtml(l.municipio_nombre)}</span>` : ''}</button>`).join('')
             : `<p class="hint">Todavía no hay lugares guardados.</p>`
           }
-          <button type="button" class="btn-agregar-directorio" id="btn-agregar-lugar-desde-picker" style="width:100%; margin-top:6px;">+ Agregar lugar</button>
+          <button type="button" class="btn-agregar-directorio" id="btn-agregar-lugar-desde-picker" style="width:100%; margin-top:6px;">${ICONOS.mas}<span>Agregar lugar</span></button>
+          <button type="button" class="btn-terciario" id="btn-lugar-desde-link" style="width:100%; margin-top:6px; padding:10px;">Agregar desde link de Google Maps</button>
+          <button type="button" class="btn-terciario" id="btn-lugar-despues" style="width:100%; margin-top:6px; padding:10px;">Asignar lugar después</button>
           <button type="button" class="modal-cerrar" id="btn-cerrar-modal-subtitulo">Cancelar</button>
         </div>
-      `;
-      document.body.appendChild(overlay);
+      `);
 
       overlay.querySelectorAll('.opcion-ubicacion').forEach(btn => {
         btn.addEventListener('click', () => {
-          subtituloSeleccionado = btn.dataset.nombre;
+          subtituloSeleccionado = lugaresDisponibles[Number(btn.dataset.indice)].nombre;
+          subtituloDespues = false;
           renderFilaSubtitulo();
           overlay.remove();
         });
       });
+      const alGuardarLugarNuevo = (nombreNuevo) => {
+        subtituloSeleccionado = nombreNuevo;
+        subtituloDespues = false;
+        renderFilaSubtitulo();
+      };
       document.getElementById('btn-agregar-lugar-desde-picker').addEventListener('click', () => {
         overlay.remove();
-        abrirModalAgregarLugar((nombreNuevo) => {
-          subtituloSeleccionado = nombreNuevo;
-          renderFilaSubtitulo();
-        });
+        abrirModalAgregarLugar(alGuardarLugarNuevo);
+      });
+      // Mismo modal de alta; el campo del link es el primero, así que
+      // crearModal ya lo deja enfocado para pegar directo.
+      document.getElementById('btn-lugar-desde-link').addEventListener('click', () => {
+        overlay.remove();
+        abrirModalAgregarLugar(alGuardarLugarNuevo);
+      });
+      document.getElementById('btn-lugar-despues').addEventListener('click', () => {
+        subtituloSeleccionado = '';
+        subtituloDespues = true;
+        renderFilaSubtitulo();
+        overlay.remove();
       });
       document.getElementById('btn-cerrar-modal-subtitulo').addEventListener('click', () => overlay.remove());
-      overlay.addEventListener('click', (e) => { if (e.target === overlay) overlay.remove(); });
     }
 
     document.getElementById('btn-rechazar').addEventListener('click', (e) => accionarPendiente(ev, 'rechazar', undefined, e.target));
@@ -2037,7 +2391,7 @@
       if (!selectMunicipio.value) faltantes.push('Municipio');
       if (!selectTipo.value) faltantes.push('Tipo de evento');
       if (!inputTitle.value.trim()) faltantes.push('Título');
-      if (!subtituloSeleccionado) faltantes.push('Subtítulo (lugar)');
+      if (!subtituloSeleccionado && !subtituloDespues) faltantes.push('Subtítulo (lugar) — o elige "Asignar lugar después"');
       if (!descripcionIngles.trim()) faltantes.push('Descripción en inglés (usa el botón "Traducir")');
       if (chkMoreDays.checked && !inputFinish.value) faltantes.push('Fecha de término (marcaste "dura más de un día")');
       if (faltantes.length) {
@@ -2052,8 +2406,11 @@
         isCover: chkIsCover.checked,
         municipality: selectMunicipio.value,
         title: inputTitle.value.trim(),
-        subtitle: subtituloSeleccionado,
       };
+      // Con "Asignar lugar después" no se manda subtitle: el backend guarda
+      // '' (mismo default del schema de Post), así que el móvil recibe un
+      // string vacío como en cualquier post sin subtítulo — nunca null.
+      if (subtituloSeleccionado) body.subtitle = subtituloSeleccionado;
       body.subType = selectTipo.value;
       if (chkMoreDays.checked) {
         body.finishDate = inputFinish.value;
@@ -2100,7 +2457,7 @@
 
   function renderListaCompacta(eventos) {
     if (!eventos.length) {
-      lista.innerHTML = `<div class="estado-vacio">No hay eventos en "${estatusActual}" por ahora.</div>`;
+      lista.innerHTML = htmlVacio();
       return;
     }
 
@@ -2114,7 +2471,7 @@
 
     const primeraImagen = Array.isArray(ev.imagenes) ? ev.imagenes.find(Boolean) : null;
     const imagenHtml = primeraImagen
-      ? `<img src="${primeraImagen}" alt="" />`
+      ? `<img src="${escapeHtml(primeraImagen)}" alt="" loading="lazy" />`
       : `<div class="sin-imagen-chica">Sin imagen</div>`;
 
     let fechaHtml = '';
@@ -2122,42 +2479,47 @@
       const inicio = formatearFecha(ev.date);
       const fin = ev.moreDays && ev.finishDate ? ` – ${formatearFecha(ev.finishDate)}` : '';
       const hora = ev.allDay ? ' · Todo el día' : '';
-      fechaHtml = `<div class="fecha-evento">📅 ${inicio}${fin}${hora}</div>`;
+      fechaHtml = `<div class="fecha-evento">${ICONOS.calendario} ${inicio}${fin}${hora}</div>`;
     }
 
-    let botonesHistorial = `<button class="btn-deshacer" data-accion="deshacer">Regresar a pendiente</button> <a class="btn-deshacer" href="${ev.post_url}" target="_blank" rel="noopener" style="text-decoration:none; display:inline-block;">Ver original ↗</a>`;
+    let botonesHistorial = `<button class="btn-deshacer" data-accion="deshacer">Regresar a pendiente</button>`;
+    if (ev.post_url) {
+      botonesHistorial += `<a class="btn-deshacer" href="${escapeHtml(ev.post_url)}" target="_blank" rel="noopener">Ver original ${ICONOS.externo}</a>`;
+    }
     if (estatusActual === 'aprobado') {
-      botonesHistorial += ` <button class="btn-agregar-directorio" data-accion="publicar" style="padding:7px 12px; font-size:12.5px;">Publicar a producción</button>`;
+      botonesHistorial += `<button class="btn-agregar-directorio btn-publicar" data-accion="publicar">Publicar a producción</button>`;
     }
 
     card.innerHTML = `
       ${imagenHtml}
       <div class="card-body">
         <div class="meta">
-          <span class="badge">${ev.plataforma || ''}</span>
-          <span>${ev.pagina_origen || 'Página desconocida'}</span>
+          ${ev.plataforma ? `<span class="badge">${escapeHtml(ev.plataforma)}</span>` : ''}
+          <span>${escapeHtml(ev.pagina_origen || 'Página desconocida')}</span>
         </div>
         ${fechaHtml}
-        <p class="texto-chico">${(ev.contenido_crudo || '').trim()}</p>
-        ${botonesHistorial}
+        <p class="texto-chico">${escapeHtml((ev.contenido_crudo || '').trim())}</p>
+        <div class="acciones-card">${botonesHistorial}</div>
       </div>
     `;
 
-    card.querySelector('.btn-deshacer').addEventListener('click', async (e) => {
-      const textoOriginalDeshacer = e.target.textContent;
-      e.target.disabled = true;
-      e.target.textContent = 'Guardando…';
+    const btnDeshacer = card.querySelector('[data-accion="deshacer"]');
+    btnDeshacer.addEventListener('click', async () => {
+      const textoOriginalDeshacer = btnDeshacer.textContent;
+      btnDeshacer.disabled = true;
+      btnDeshacer.textContent = 'Regresando…';
       try {
         const res = await fetch(`/api/pendientes/${ev._id}/deshacer`, { method: 'POST' });
         if (!(await respuestaOk(res))) {
-          e.target.disabled = false;
-          e.target.textContent = textoOriginalDeshacer;
+          btnDeshacer.disabled = false;
+          btnDeshacer.textContent = textoOriginalDeshacer;
           return;
         }
-        card.remove();
+        quitarTarjeta(card);
       } catch (err) {
         alert('Ocurrió un error, intenta de nuevo.');
-        e.target.disabled = false;
+        btnDeshacer.disabled = false;
+        btnDeshacer.textContent = textoOriginalDeshacer;
       }
     });
 
@@ -2181,7 +2543,7 @@
         btn.textContent = 'Publicar a producción';
         return;
       }
-      card.remove();
+      quitarTarjeta(card);
     } catch (err) {
       alert('Ocurrió un error, intenta de nuevo.');
       btn.disabled = false;
