@@ -74,6 +74,15 @@
         ],
         "createdAt": "2026-09-29T02:14:15.081Z",
         "reason": "agent: DESIGN.md governs only the public landing; it explicitly excludes views/dashboard.html, the pre-existing admin panel with its own incumbent system"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "public/index.html"
+        ],
+        "createdAt": "2026-10-11T00:15:18.479Z",
+        "reason": "Claude triage: all 9 uppercase rules predate this session and style short labels only (nav, buttons, tabs, municipality names, ficha apodo); DESIGN.md documents Barlow Condensed as uppercase, tracked board text"
       }
     ]
   }
