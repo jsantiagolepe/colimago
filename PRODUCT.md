@@ -29,6 +29,7 @@ Colima Go covers only Colima: its ten municipalities, its natural spots and its 
 
 - Express server (`server.js`) deployed on Vercel; `public/` is static, `views/dashboard.html` is session-gated. No build step, no front-end framework; the landing is a single static HTML file and must stay dependency-free.
 - `/login` opens the Google sign-in modal on the landing page; the login is intentionally not advertised on the public page. This behavior and the Google client id must be preserved.
+- Since October 2026 the admin panel is switched off (`PANEL_ACTIVO` in `server.js`): `/login`, `/dashboard.html`, `/auth/*` and `/api/*` return 404. Its code, including the login modal, is kept on purpose for a future reactivation; see "Panel de administración: desactivado" in the README.
 - The landing's content is static. There is no public events endpoint; the landing must not show dated events that can go stale.
 
 ## Brand Commitments

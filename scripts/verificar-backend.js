@@ -19,6 +19,8 @@ const assert = require("assert");
 const TOKEN = "jwt-de-prueba-" + Date.now();
 process.env.SESSION_SECRET = process.env.SESSION_SECRET || "secreto-de-prueba";
 process.env.NODE_ENV = "test";
+// El panel está apagado por default; esta prueba necesita sus rutas /api/*.
+process.env.PANEL_ACTIVO = "1";
 
 // --- 1. Backend falso: responde 200 { response:true } y anota cada petición ---
 const recibidas = [];

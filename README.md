@@ -5,6 +5,73 @@ detectados por el flujo de n8n, administrar posts (eventos y locales), lugares
 y el directorio de páginas de Facebook. No toca MongoDB directo: todo pasa por
 el backend real de ColimaApp (`backColimaApp`, NestJS, desplegado en Heroku).
 
+## Panel de administración: desactivado
+
+Desde el 10 de octubre de 2026 el panel está **apagado**, para que nadie
+pueda iniciar sesión ni modificar datos desde colimago.mx mientras no se
+usa. Se apagó con un interruptor, no borrando código: se puede prender de
+nuevo en minutos.
+
+**Qué sigue funcionando:** la portada (`/`), los links de descarga (`/app`,
+`/ios`, `/android`), las imágenes, `robots.txt`, `sitemap.xml`, `llms.txt` y
+la página 404.
+
+**Qué está apagado:** `/login`, `/dashboard.html`, `/auth/*` y `/api/*`
+responden el 404 normal del sitio, como si no existieran. El corte ocurre
+antes de revisar la sesión, así que aunque alguien tuviera una cookie de
+sesión vigente, ninguna petición llega al backend.
+
+**Qué no se tocó:**
+
+- Todo el código del panel: `views/dashboard.html`, las rutas de
+  `server.js`, `lib/colima-backend.js` y el modal de login de
+  `public/index.html` (solo se abre en `/login`, que ahora da 404).
+- Las reglas de `robots.txt` para `/login`, `/dashboard.html`, `/api/` y
+  `/auth/` (sirven igual al reactivar).
+- Las variables de Vercel (`COLIMA_BACKEND_URL`, `SESSION_SECRET`,
+  `ADMIN_USER_ID`).
+- El backend (`backColimaApp`): este interruptor solo cierra la puerta de
+  colimago.mx; la app sigue funcionando igual. Si el flujo de n8n sigue
+  corriendo, los eventos que detecte se acumulan como pendientes y
+  aparecen en **Pendientes** al reactivar el panel.
+
+### Cómo reactivarlo
+
+Todo depende de una sola variable, `PANEL_ACTIVO` (ver el inicio de
+`server.js`). Solo el valor `1` lo prende; sin la variable, o con
+cualquier otro valor, queda apagado.
+
+**En colimago.mx (producción):**
+
+1. Vercel → el proyecto → Settings → Environment Variables → agrega
+   `PANEL_ACTIVO` con valor `1` (en Production, y en Preview si también
+   lo quieres ahí).
+2. Deployments → el más reciente → **Redeploy**. Las variables solo
+   aplican a deploys nuevos.
+3. Confirma que siguen capturadas `COLIMA_BACKEND_URL`, `SESSION_SECRET`
+   y `ADMIN_USER_ID` (ver [Despliegue en Vercel](#despliegue-en-vercel-colimagomx)).
+4. Abre https://colimago.mx/login e inicia sesión con la cuenta de Google
+   administradora.
+5. Si el botón de Google no carga, revisa en Google Cloud Console que el
+   cliente OAuth siga teniendo los orígenes autorizados (sección de
+   Vercel, abajo).
+
+**Solo en tu computadora, sin abrirlo en internet:** agrega
+`PANEL_ACTIVO=1` a tu `.env` y corre `npm start` (ver
+[Cómo correrlo en local](#cómo-correrlo-en-local)). Si `COLIMA_BACKEND_URL`
+apunta al backend de producción, puedes administrar desde
+http://localhost:3001 mientras colimago.mx sigue con el panel apagado.
+
+**Para volver a apagarlo:** borra `PANEL_ACTIVO` en Vercel (o ponle `0`) y
+haz Redeploy.
+
+### Cómo saber en qué estado está
+
+- https://colimago.mx/login: si da la página 404, está apagado; si abre la
+  ventana de "Bienvenido de vuelta", está prendido.
+- En los logs (Vercel o la terminal), al arrancar con el panel apagado se
+  imprime: `Panel de administración desactivado (PANEL_ACTIVO no es 1)…`.
+
 ## Cómo correrlo en local
 
 1. Necesitas `backColimaApp` accesible (local en `http://localhost:3000/api` o
@@ -18,6 +85,8 @@ el backend real de ColimaApp (`backColimaApp`, NestJS, desplegado en Heroku).
    - `SESSION_SECRET`: un valor aleatorio para firmar la cookie de sesión.
    - `ADMIN_USER_ID`: debe coincidir con `src/common/constants/admin.constant.ts`
      en `backColimaApp` (ya trae el valor correcto por default).
+   - `PANEL_ACTIVO`: `1` para usar el panel. Sin eso, `/login` y
+     `/dashboard.html` dan 404 (ver [Panel de administración: desactivado](#panel-de-administración-desactivado)).
 4. Corre el servidor:
    ```
    npm start
@@ -40,6 +109,7 @@ captura (para Production y Preview):
 | `COLIMA_BACKEND_URL` | `https://colimaapp.herokuapp.com/api`        |
 | `SESSION_SECRET`     | un valor aleatorio largo (ver `.env.example`) |
 | `ADMIN_USER_ID`      | `6705a6ce37e1cf2548b7f44c`                   |
+| `PANEL_ACTIVO`       | `1` solo para prender el panel (hoy no está: apagado) |
 
 Y en Google Cloud Console, en el cliente OAuth web que usa `public/index.html`
 (`GOOGLE_CLIENT_ID_WEB`), agrega como **Orígenes de JavaScript autorizados**:
@@ -63,7 +133,7 @@ habla directo, siempre lo hace este servidor.
   falso, recorre todas las rutas `/api/*` y comprueba que cada llamada
   llegó con la cabecera `Authorization` y sin `token` en query/body (y que
   `POST /images` manda los campos `image` y `folder`). No necesita el
-  backend real.
+  backend real, y prende el panel solo para su prueba (`PANEL_ACTIVO=1`).
 - `api/index.js` — punto de entrada para Vercel (solo exporta `server.js`).
 - `public/` — lo público: `index.html` (página + login).
 - `views/` — lo privado: `dashboard.html`, servido por Express solo con

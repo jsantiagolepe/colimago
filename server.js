@@ -22,19 +22,32 @@ const COLIMA_BACKEND_URL = process.env.COLIMA_BACKEND_URL;
 // POST /auth/google.
 const ADMIN_USER_ID = process.env.ADMIN_USER_ID || "6705a6ce37e1cf2548b7f44c";
 
+// Interruptor del panel de administración. Apagado por default (desde
+// octubre 2026): /login, /dashboard.html, /auth/* y /api/* responden el 404
+// normal, como si no existieran, así que nadie puede iniciar sesión ni
+// modificar datos desde colimago.mx. El código del panel sigue completo;
+// para prenderlo de nuevo basta PANEL_ACTIVO=1 (en .env en local; en
+// Vercel, Settings → Environment Variables y Redeploy). Ver "Panel de
+// administración: desactivado" en el README.
+const PANEL_ACTIVO = process.env.PANEL_ACTIVO === "1";
+
 // Mismo aviso para consola, login y /api/*: dónde va la variable depende de
 // si corres en local (.env) o en Vercel (Settings → Environment Variables,
 // y un Redeploy después de guardarla, porque solo aplica a deploys nuevos).
 const MENSAJE_SIN_BACKEND =
   "Falta la variable COLIMA_BACKEND_URL. En local va en el archivo .env (copia .env.example); en Vercel, en Settings → Environment Variables y luego Redeploy.";
 
-if (!COLIMA_BACKEND_URL) {
-  console.warn(`${MENSAJE_SIN_BACKEND} Mientras tanto, ninguna sección del panel podrá cargar datos.`);
-}
-if (!process.env.SESSION_SECRET) {
-  console.warn(
-    "Falta SESSION_SECRET en tu archivo .env — usando un valor de desarrollo. Ponle uno real antes de desplegar este panel en cualquier lugar que no sea tu máquina.",
-  );
+if (!PANEL_ACTIVO) {
+  console.log("Panel de administración desactivado (PANEL_ACTIVO no es 1): /login, /dashboard.html, /auth/* y /api/* responden 404.");
+} else {
+  if (!COLIMA_BACKEND_URL) {
+    console.warn(`${MENSAJE_SIN_BACKEND} Mientras tanto, ninguna sección del panel podrá cargar datos.`);
+  }
+  if (!process.env.SESSION_SECRET) {
+    console.warn(
+      "Falta SESSION_SECRET en tu archivo .env — usando un valor de desarrollo. Ponle uno real antes de desplegar este panel en cualquier lugar que no sea tu máquina.",
+    );
+  }
 }
 
 // La sesión vive firmada dentro de la cookie (cookie-session), no en la
@@ -54,6 +67,14 @@ app.use(
     maxAge: 12 * 60 * 60 * 1000, // 12 horas
   }),
 );
+
+// Con el panel apagado, sus rutas se cortan aquí, antes que cualquier otra:
+// ni el login con Google ni una cookie de sesión vieja llegan al backend.
+// Sin distinción de mayúsculas ni "/" final, igual que el ruteo de Express.
+const RUTAS_PANEL = /^\/(login|dashboard\.html|auth|api)(\/|$)/i;
+if (!PANEL_ACTIVO) {
+  app.use((req, res, next) => (RUTAS_PANEL.test(req.path) ? noEncontrado(req, res) : next()));
+}
 
 // --- Sesión: login con Google, restringido a la cuenta administradora ---
 // Reemplaza al modal de "login" de index.html que antes no validaba nada y
@@ -805,14 +826,16 @@ app.post(
 // 404: sin esto Express responde su página por defecto ("Cannot GET /x", en
 // inglés y sin marca). Las rutas del panel siguen contestando JSON; el resto
 // recibe una página en español, con noindex, que devuelve a la portada.
-app.use((req, res) => {
+// También es lo que contestan las rutas del panel mientras está apagado.
+function noEncontrado(req, res) {
   if (req.path.startsWith("/api/") || req.path.startsWith("/auth/")) {
     return res.status(404).json({ error: "Esa ruta no existe en el panel." });
   }
   res.status(404);
   res.set("X-Robots-Tag", "noindex, follow");
   res.sendFile(path.join(__dirname, "views", "404.html"));
-});
+}
+app.use(noEncontrado);
 
 // Errores que Express lanza antes de llegar a una ruta (body demasiado
 // grande, JSON malformado): se contestan en JSON para que el panel pueda
