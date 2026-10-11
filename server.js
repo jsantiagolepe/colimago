@@ -220,12 +220,17 @@ for (const [ruta, pagina] of Object.entries(PAGINAS_DESCARGA)) {
 
 // En Vercel estos archivos los sirve la CDN antes de llegar aquí; este
 // express.static es el que vale en local (npm start). El cacheo largo solo
-// se aplica a /img, cuyos nombres no cambian pero cuyo contenido tampoco:
-// index.html, robots.txt y sitemap.xml se revalidan siempre.
+// se aplica a /img y /fonts, cuyos nombres no cambian pero cuyo contenido
+// tampoco: index.html, robots.txt y sitemap.xml se revalidan siempre.
+// /index.html redirige a "/" (igual que en vercel.json) para que la portada
+// tenga una sola URL.
+app.get("/index.html", (req, res) => res.redirect(301, "/"));
 app.use(
   express.static(path.join(__dirname, "public"), {
     setHeaders(res, ruta) {
-      if (ruta.includes(`${path.sep}img${path.sep}`) || ruta.endsWith("og-colima-go.jpg")) {
+      if (ruta.includes(`${path.sep}fonts${path.sep}`)) {
+        res.set("Cache-Control", "public, max-age=31536000, immutable");
+      } else if (ruta.includes(`${path.sep}img${path.sep}`) || ruta.endsWith("og-colima-go.jpg")) {
         res.set("Cache-Control", "public, max-age=604800");
       } else if (ruta.endsWith(".html")) {
         res.set("Cache-Control", "public, max-age=0, must-revalidate");

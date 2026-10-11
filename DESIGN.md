@@ -282,7 +282,7 @@ A night palette: indigo-black asphalt, steam-white text, one warm light source (
 **Label Font:** Barlow Condensed 500/600/700 (fallback Barlow, sans-serif)
 **Body Font:** Barlow 400/500/600, italic 400 (fallback system-ui, sans-serif)
 
-**Character:** Shrikhand is hand-painted rótulo lettering, the voice of fair signs; Barlow Condensed is stencilled board text, uppercase and tracked; Barlow is a quiet, warm grotesque for reading. All loaded from Google Fonts with `display=swap`.
+**Character:** Shrikhand is hand-painted rótulo lettering, the voice of fair signs; Barlow Condensed is stencilled board text, uppercase and tracked; Barlow is a quiet, warm grotesque for reading. On the landing they are self-hosted from `public/fonts/` (the latin-subset files from Google Fonts, OFL) with `font-display: swap`, and the two first-screen faces (Barlow 400, Shrikhand) are preloaded; the 404 and download pages still load them from Google Fonts.
 
 ### Hierarchy
 - **Display** (Shrikhand 400, clamp 46–112px, line-height 0.98): the hero H1 only, two lines, second line in accent text. The volcano pause headline scales larger (clamp 48–148px) over a full-bleed photo; the closing headline sits between (clamp 42–96px, max 12ch).

@@ -53,13 +53,26 @@
     document.documentElement.classList.add('js');
   })();
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <!-- LCP: la primera tabla del tendedero. Ya va con fetchpriority="high" en
      el marcado; el preload la pide antes de que el parser llegue ahí. -->
 <link rel="preload" as="image" href="/img/playa-tecuanillo-420.webp" type="image/webp" fetchpriority="high">
-<link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- Fuentes servidas desde este mismo dominio (antes, Google Fonts): la hoja
+     de fonts.googleapis.com bloqueaba el primer pintado ~2 s en móvil. Se
+     precargan solo las dos de la primera pantalla: el texto de entrada
+     (Barlow) y el rótulo (Shrikhand); las demás se piden al usarse. -->
+<link rel="preload" as="font" href="/fonts/barlow-400.woff2" type="font/woff2" crossorigin>
+<link rel="preload" as="font" href="/fonts/shrikhand-400.woff2" type="font/woff2" crossorigin>
 <style>
+  /* ============ Fuentes (subconjunto latin de Google Fonts, licencia OFL) ============ */
+  @font-face { font-family: 'Shrikhand'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/shrikhand-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/barlow-condensed-500.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 600; font-display: swap; src: url(/fonts/barlow-condensed-600.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Barlow Condensed'; font-style: normal; font-weight: 700; font-display: swap; src: url(/fonts/barlow-condensed-700.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 400; font-display: swap; src: url(/fonts/barlow-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Barlow'; font-style: italic; font-weight: 400; font-display: swap; src: url(/fonts/barlow-400-italic.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 500; font-display: swap; src: url(/fonts/barlow-500.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Barlow'; font-style: normal; font-weight: 600; font-display: swap; src: url(/fonts/barlow-600.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
   /* ============ Tokens: noche de feria (oscuro) y feria de día (claro) ============ */
   :root {
     color-scheme: dark;
@@ -1318,31 +1331,31 @@
       </div>
 
       <div class="tira" id="panel-rios" role="tabpanel" aria-labelledby="tab-rios" tabindex="0">
-        <figure class="rincon"><div class="marco"><img src="/img/rio-los-amiales-760.webp" alt="Balneario Los Amiales" width="760" height="428" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/rio-los-amiales-760.webp" alt="Balneario Los Amiales, Coquimatlán" width="760" height="428" loading="lazy" /></div>
           <figcaption><h3>Los Amiales</h3><p class="muni">Coquimatlán</p><p>Pozas de agua cristalina que brotan de manantiales, con corriente suave y sombra natural.</p></figcaption></figure>
-        <figure class="rincon"><div class="marco"><img src="/img/rio-el-sauce-760.webp" alt="Balneario El Sauce" width="760" height="570" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/rio-el-sauce-760.webp" alt="Balneario El Sauce, Coquimatlán" width="760" height="570" loading="lazy" /></div>
           <figcaption><h3>El Sauce</h3><p class="muni">Coquimatlán</p><p>Balneario y restaurante con aguas cristalinas para nadar y comida típica de la región.</p></figcaption></figure>
-        <figure class="rincon"><div class="marco"><img src="/img/rio-parajes-760.webp" alt="Balneario Parajes" width="760" height="570" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/rio-parajes-760.webp" alt="Balneario Parajes, Coquimatlán" width="760" height="570" loading="lazy" /></div>
           <figcaption><h3>Parajes</h3><p class="muni">Coquimatlán</p><p>Aguas cristalinas, áreas verdes y zonas de descanso para disfrutar en familia.</p></figcaption></figure>
-        <figure class="rincon"><div class="marco"><img src="/img/rio-agua-fria-760.webp" alt="Balneario Agua Fría" width="760" height="427" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/rio-agua-fria-760.webp" alt="Balneario Agua Fría, Villa de Álvarez" width="760" height="427" loading="lazy" /></div>
           <figcaption><h3>Agua Fría</h3><p class="muni">Villa de Álvarez</p><p>Pozas de agua fresca y cristalina en un entorno tranquilo.</p></figcaption></figure>
-        <figure class="rincon"><div class="marco"><img src="/img/rio-zacualpan-760.webp" alt="Manantiales de Zacualpan" width="760" height="427" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/rio-zacualpan-760.webp" alt="Manantiales de Zacualpan, Comala" width="760" height="427" loading="lazy" /></div>
           <figcaption><h3>Manantiales de Zacualpan</h3><p class="muni">Comala</p><p>Aguas frescas rodeadas de vegetación, perfectas para nadar y relajarse.</p></figcaption></figure>
       </div>
 
       <div class="tira" id="panel-lagunas" role="tabpanel" aria-labelledby="tab-lagunas" tabindex="0" hidden>
-        <figure class="rincon"><div class="marco"><img src="/img/laguna-la-maria-760.webp" alt="Laguna La María" width="760" height="505" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/laguna-la-maria-760.webp" alt="Laguna La María, Comala" width="760" height="505" loading="lazy" /></div>
           <figcaption><h3>Laguna La María</h3><p class="muni">Comala</p><p>Observación de aves, paseos en bote y caminatas alrededor de la laguna.</p></figcaption></figure>
-        <figure class="rincon"><div class="marco"><img src="/img/laguna-carrizalillo-760.webp" alt="Laguna Carrizalillo con el volcán al fondo" width="760" height="570" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/laguna-carrizalillo-760.webp" alt="Laguna Carrizalillo con el volcán al fondo, Comala" width="760" height="570" loading="lazy" /></div>
           <figcaption><h3>Carrizalillo</h3><p class="muni">Comala</p><p>Para acampar, pasear en kayak y disfrutar de la naturaleza.</p></figcaption></figure>
-        <figure class="rincon"><div class="marco"><img src="/img/laguna-el-naranjal-760.webp" alt="Laguna El Naranjal" width="760" height="570" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/laguna-el-naranjal-760.webp" alt="Laguna El Naranjal, Comala" width="760" height="570" loading="lazy" /></div>
           <figcaption><h3>El Naranjal</h3><p class="muni">Comala</p><p>Un tranquilo espejo de agua, sereno y fresco, para descansar y ver aves.</p></figcaption></figure>
       </div>
 
       <div class="tira" id="panel-montanas" role="tabpanel" aria-labelledby="tab-montanas" tabindex="0" hidden>
-        <figure class="rincon"><div class="marco"><img src="/img/montana-el-terrero-760.webp" alt="Bosque de El Terrero" width="760" height="951" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/montana-el-terrero-760.webp" alt="Bosque de El Terrero, Minatitlán" width="760" height="951" loading="lazy" /></div>
           <figcaption><h3>El Terrero</h3><p class="muni">Minatitlán</p><p>Bosques de pino y encino, clima fresco, senderismo y campismo en la sierra.</p></figcaption></figure>
-        <figure class="rincon"><div class="marco"><img src="/img/montana-la-gloria-escondida-760.webp" alt="Formaciones rocosas de La Gloria Escondida" width="760" height="570" loading="lazy" /></div>
+        <figure class="rincon"><div class="marco"><img src="/img/montana-la-gloria-escondida-760.webp" alt="Formaciones rocosas de La Gloria Escondida, Minatitlán" width="760" height="570" loading="lazy" /></div>
           <figcaption><h3>La Gloria Escondida</h3><p class="muni">Minatitlán</p><p>Santuario natural de formaciones rocosas, senderos y agua que corre entre las piedras.</p></figcaption></figure>
       </div>
     </div>
@@ -1439,12 +1452,61 @@
         <li><button type="button" data-muni="cuahutemoc" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-cuahutemoc.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Cuauhtémoc</span></button></li>
         <li><button type="button" data-muni="ixtlahuacan" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-ixtlahuacan.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Ixtlahuacán</span></button></li>
       </ul>
+      <!-- Las diez fichas van en el HTML (no en el script) para que los
+           buscadores lean todas, no solo la de Colima: la estampa elegida
+           solo cambia cuál está visible. Textos tomados de la app (es.json:
+           smallDescription*); los apodos salen de sus descripciones. -->
       <div class="ficha" id="ficha" aria-live="polite">
         <span class="medallon" aria-hidden="true"><img id="ficha-img" src="/img/estampa-colima.webp" alt="" width="200" height="200" loading="lazy" /></span>
-        <div class="ficha-texto">
-          <h3 id="ficha-nombre">Colima</h3>
-          <p class="apodo" id="ficha-apodo">La capital, fundada en 1523</p>
-          <p id="ficha-texto">La capital del estado combina historia y modernidad. Sus plazas, murales y arquitectura colonial se mezclan con un ambiente vibrante que la convierte en el punto de partida perfecto para conocer la esencia colimense.</p>
+        <div class="ficha-texto" data-muni="colima">
+          <h3>Colima</h3>
+          <p class="apodo">La capital, fundada en 1523</p>
+          <p>La capital del estado combina historia y modernidad. Sus plazas, murales y arquitectura colonial se mezclan con un ambiente vibrante que la convierte en el punto de partida perfecto para conocer la esencia colimense.</p>
+        </div>
+        <div class="ficha-texto" data-muni="villadealvarez" hidden>
+          <h3>Villa de Álvarez</h3>
+          <p class="apodo">Feria de la Villa y cabalgatas</p>
+          <p>Junto a la capital, este municipio es famoso por sus tradiciones, como la Feria de la Villa, sus cabalgatas y su fuerte identidad cultural. Un espacio donde lo urbano y lo festivo se encuentran.</p>
+        </div>
+        <div class="ficha-texto" data-muni="comala" hidden>
+          <h3>Comala</h3>
+          <p class="apodo">Pueblo Mágico, el Pueblo Blanco de América</p>
+          <p>El famoso Pueblo Blanco de América, con calles empedradas, casas blancas y tejas rojas, es un lugar pintoresco lleno de historia, tradiciones y un ambiente tranquilo al pie del imponente Volcán de Fuego.</p>
+        </div>
+        <div class="ficha-texto" data-muni="manzanillo" hidden>
+          <h3>Manzanillo</h3>
+          <p class="apodo">Capital Mundial del Pez Vela</p>
+          <p>El puerto más importante del Pacífico mexicano y un paraíso turístico con hermosas playas, bahías cristalinas y una vibrante vida nocturna. Un destino que combina comercio, aventura y descanso junto al mar.</p>
+        </div>
+        <div class="ficha-texto" data-muni="tecoman" hidden>
+          <h3>Tecomán</h3>
+          <p class="apodo">Capital Mundial del Limón</p>
+          <p>Conocido como la “Capital Mundial del Limón”, Tecomán combina agricultura, playas cercanas y un ambiente cálido y hospitalario. Es un municipio lleno de vida y sabores únicos.</p>
+        </div>
+        <div class="ficha-texto" data-muni="armeria" hidden>
+          <h3>Armería</h3>
+          <p class="apodo">El estero de Palo Verde</p>
+          <p>Entre palmeras y playas tranquilas, Armería es un destino ideal para descansar frente al mar. Conocido por el estero de Palo Verde y su cálida hospitalidad, este rincón costero te invita a relajarte y disfrutar de la naturaleza.</p>
+        </div>
+        <div class="ficha-texto" data-muni="minatitlan" hidden>
+          <h3>Minatitlán</h3>
+          <p class="apodo">Entre montañas y ríos</p>
+          <p>Rodeado de montañas y ríos, Minatitlán es un municipio con gran riqueza natural. Su tranquilidad y entorno verde lo convierten en un destino perfecto para el ecoturismo y la aventura.</p>
+        </div>
+        <div class="ficha-texto" data-muni="coquimatlan" hidden>
+          <h3>Coquimatlán</h3>
+          <p class="apodo">Tradición agrícola</p>
+          <p>Un pueblo con encanto rural, rodeado de campos fértiles y tradiciones agrícolas. Su ambiente sereno y hospitalidad lo convierten en un sitio ideal para conocer la vida sencilla y auténtica de Colima.</p>
+        </div>
+        <div class="ficha-texto" data-muni="cuahutemoc" hidden>
+          <h3>Cuauhtémoc</h3>
+          <p class="apodo">El valle central</p>
+          <p>Ubicado en el valle central, este municipio ofrece paisajes naturales, clima fresco y una fuerte tradición agrícola. Es un lugar perfecto para quienes buscan tranquilidad y contacto con la tierra.</p>
+        </div>
+        <div class="ficha-texto" data-muni="ixtlahuacan" hidden>
+          <h3>Ixtlahuacán</h3>
+          <p class="apodo">Refugio entre montañas</p>
+          <p>Pequeño y acogedor, Ixtlahuacán es un refugio de tranquilidad en medio de montañas y paisajes naturales. Ideal para quienes disfrutan del turismo rural y de la calma de la provincia.</p>
         </div>
       </div>
     </div>
@@ -1482,6 +1544,10 @@
   </div>
 </footer>
 
+<!-- El modal de login vive en un <template>: solo se monta en /login, así la
+     portada no lleva su encabezado ni sus textos al contenido que lee el
+     buscador, ni carga el script de Google en cada visita. -->
+<template id="plantilla-login">
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal-login" role="dialog" aria-modal="true" aria-labelledby="modal-login-titulo" tabindex="-1">
     <button class="modal-cerrar" id="modal-cerrar" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
@@ -1494,8 +1560,8 @@
     <p class="modal-nota">Solo la cuenta administradora puede entrar al panel.</p>
   </div>
 </div>
+</template>
 
-<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
   const reducirMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -1643,116 +1709,95 @@
     });
   });
 
-  // ---------- Municipios: la estampa elegida abre su ficha ----------
-  // Textos tomados de la app (es.json: smallDescription*); los apodos salen de sus descripciones.
-  const MUNICIPIOS = {
-    colima: ['Colima', 'La capital, fundada en 1523', 'La capital del estado combina historia y modernidad. Sus plazas, murales y arquitectura colonial se mezclan con un ambiente vibrante que la convierte en el punto de partida perfecto para conocer la esencia colimense.'],
-    villadealvarez: ['Villa de Álvarez', 'Feria de la Villa y cabalgatas', 'Junto a la capital, este municipio es famoso por sus tradiciones, como la Feria de la Villa, sus cabalgatas y su fuerte identidad cultural. Un espacio donde lo urbano y lo festivo se encuentran.'],
-    comala: ['Comala', 'El Pueblo Blanco de América', 'El famoso Pueblo Blanco de América, con calles empedradas, casas blancas y tejas rojas, es un lugar pintoresco lleno de historia, tradiciones y un ambiente tranquilo al pie del imponente Volcán de Fuego.'],
-    manzanillo: ['Manzanillo', 'Capital Mundial del Pez Vela', 'El puerto más importante del Pacífico mexicano y un paraíso turístico con hermosas playas, bahías cristalinas y una vibrante vida nocturna. Un destino que combina comercio, aventura y descanso junto al mar.'],
-    tecoman: ['Tecomán', 'Capital Mundial del Limón', 'Conocido como la “Capital Mundial del Limón”, Tecomán combina agricultura, playas cercanas y un ambiente cálido y hospitalario. Es un municipio lleno de vida y sabores únicos.'],
-    armeria: ['Armería', 'El estero de Palo Verde', 'Entre palmeras y playas tranquilas, Armería es un destino ideal para descansar frente al mar. Conocido por el estero de Palo Verde y su cálida hospitalidad, este rincón costero te invita a relajarte y disfrutar de la naturaleza.'],
-    minatitlan: ['Minatitlán', 'Entre montañas y ríos', 'Rodeado de montañas y ríos, Minatitlán es un municipio con gran riqueza natural. Su tranquilidad y entorno verde lo convierten en un destino perfecto para el ecoturismo y la aventura.'],
-    coquimatlan: ['Coquimatlán', 'Tradición agrícola', 'Un pueblo con encanto rural, rodeado de campos fértiles y tradiciones agrícolas. Su ambiente sereno y hospitalidad lo convierten en un sitio ideal para conocer la vida sencilla y auténtica de Colima.'],
-    cuahutemoc: ['Cuauhtémoc', 'El valle central', 'Ubicado en el valle central, este municipio ofrece paisajes naturales, clima fresco y una fuerte tradición agrícola. Es un lugar perfecto para quienes buscan tranquilidad y contacto con la tierra.'],
-    ixtlahuacan: ['Ixtlahuacán', 'Refugio entre montañas', 'Pequeño y acogedor, Ixtlahuacán es un refugio de tranquilidad en medio de montañas y paisajes naturales. Ideal para quienes disfrutan del turismo rural y de la calma de la provincia.'],
-  };
+  // ---------- Municipios: la estampa elegida muestra su ficha ----------
+  // Las diez fichas ya están en el HTML; aquí solo se elige cuál se ve.
   const ficha = document.getElementById('ficha');
+  const textosFicha = ficha.querySelectorAll('.ficha-texto');
   document.querySelectorAll('.regla button').forEach((btn) => {
     btn.addEventListener('click', () => {
-      const [nombre, apodo, texto] = MUNICIPIOS[btn.dataset.muni];
       document.querySelectorAll('.regla button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
-      document.getElementById('ficha-nombre').textContent = nombre;
-      document.getElementById('ficha-apodo').textContent = apodo;
-      document.getElementById('ficha-texto').textContent = texto;
+      textosFicha.forEach((t) => { t.hidden = t.dataset.muni !== btn.dataset.muni; });
       document.getElementById('ficha-img').src = `/img/estampa-${btn.dataset.muni}.webp`;
       if (!reducirMovimiento.matches) { ficha.classList.remove('cambia'); void ficha.offsetWidth; ficha.classList.add('cambia'); }
     });
   });
 
   // ---------- Login (solo en /login; la página pública no lo anuncia) ----------
-  const DASHBOARD_URL = '/dashboard.html';
-  // Client id público de Google para este proyecto (mismo GOOGLE_CLIENT_ID_WEB
-  // que usa backColimaApp) — no es secreto, todo client id de OAuth para web
-  // se embebe así en la página que lo usa.
-  const GOOGLE_CLIENT_ID_WEB = '1099296294747-n5pk9f851nee646ce5vo437cp9ted6ms.apps.googleusercontent.com';
+  // Todo esto, incluido el script de Google, se monta únicamente en /login.
+  if (window.location.pathname === '/login') abrirLogin();
 
-  const overlay = document.getElementById('modal-overlay');
-  const loginError = document.getElementById('login-error');
-  const loginCargando = document.getElementById('login-cargando');
+  function abrirLogin() {
+    const DASHBOARD_URL = '/dashboard.html';
+    // Client id público de Google para este proyecto (mismo GOOGLE_CLIENT_ID_WEB
+    // que usa backColimaApp) — no es secreto, todo client id de OAuth para web
+    // se embebe así en la página que lo usa.
+    const GOOGLE_CLIENT_ID_WEB = '1099296294747-n5pk9f851nee646ce5vo437cp9ted6ms.apps.googleusercontent.com';
 
-  // Cerrarlo deja la URL en "/" para que la página se vea como la landing normal.
-  function cerrarModal() {
-    overlay.classList.remove('abierto');
-    if (window.location.pathname === '/login') history.replaceState(null, '', '/');
-  }
-  document.getElementById('modal-cerrar').addEventListener('click', cerrarModal);
-  overlay.addEventListener('click', (e) => { if (e.target === overlay) cerrarModal(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('abierto')) cerrarModal();
-  });
+    document.body.appendChild(document.getElementById('plantilla-login').content.cloneNode(true));
+    const overlay = document.getElementById('modal-overlay');
+    const loginError = document.getElementById('login-error');
+    const loginCargando = document.getElementById('login-cargando');
 
-  async function alRecibirCredencialGoogle(respuesta) {
-    loginError.style.display = 'none';
-    loginCargando.style.display = 'block';
-    try {
-      const res = await fetch('/auth/google', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ credential: respuesta.credential }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        loginCargando.style.display = 'none';
-        loginError.textContent = data.error || 'No se pudo iniciar sesión.';
-        loginError.style.display = 'block';
-        return;
-      }
-      window.location.href = DASHBOARD_URL;
-    } catch (err) {
+    function mostrarError(mensaje) {
       loginCargando.style.display = 'none';
-      loginError.textContent = 'Ocurrió un error, intenta de nuevo.';
+      loginError.textContent = mensaje;
       loginError.style.display = 'block';
     }
-  }
 
-  // Renderizar el botón mientras el modal está oculto (display:none) deja el
-  // iframe de Google con tamaño cero, así que esto corre al ABRIR el modal.
-  // El script de Google carga con "async": reintenta un rato antes de rendirse.
-  let botonGoogleListo = false;
-  let intentosInicializar = 0;
+    // Cerrarlo deja la URL en "/" para que la página se vea como la landing normal.
+    function cerrarModal() {
+      overlay.classList.remove('abierto');
+      if (window.location.pathname === '/login') history.replaceState(null, '', '/');
+    }
+    document.getElementById('modal-cerrar').addEventListener('click', cerrarModal);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) cerrarModal(); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('abierto')) cerrarModal();
+    });
 
-  function inicializarBotonGoogle() {
-    if (botonGoogleListo) return;
-    if (!window.google || !window.google.accounts) {
-      intentosInicializar++;
-      if (intentosInicializar > 20) { // ~5 segundos
-        loginError.textContent = 'No se pudo cargar el inicio de sesión de Google. Revisa tu conexión o desactiva bloqueadores de anuncios para este sitio.';
-        loginError.style.display = 'block';
-        return;
+    async function alRecibirCredencialGoogle(respuesta) {
+      loginError.style.display = 'none';
+      loginCargando.style.display = 'block';
+      try {
+        const res = await fetch('/auth/google', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ credential: respuesta.credential }),
+        });
+        const data = await res.json();
+        if (!res.ok) return mostrarError(data.error || 'No se pudo iniciar sesión.');
+        window.location.href = DASHBOARD_URL;
+      } catch (err) {
+        mostrarError('Ocurrió un error, intenta de nuevo.');
       }
-      setTimeout(inicializarBotonGoogle, 250);
-      return;
     }
 
-    google.accounts.id.initialize({
-      client_id: GOOGLE_CLIENT_ID_WEB,
-      callback: alRecibirCredencialGoogle,
-    });
-    google.accounts.id.renderButton(document.getElementById('google-btn-wrap'), {
-      type: 'standard',
-      theme: temaActual() === 'oscuro' ? 'filled_black' : 'outline',
-      size: 'large',
-      text: 'signin_with',
-      shape: 'pill',
-    });
-    botonGoogleListo = true;
-  }
+    // Renderizar el botón mientras el modal está oculto (display:none) deja el
+    // iframe de Google con tamaño cero: por eso el modal se abre antes de que
+    // termine de cargar el script, y el botón se pinta en su onload.
+    function inicializarBotonGoogle() {
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID_WEB,
+        callback: alRecibirCredencialGoogle,
+      });
+      google.accounts.id.renderButton(document.getElementById('google-btn-wrap'), {
+        type: 'standard',
+        theme: temaActual() === 'oscuro' ? 'filled_black' : 'outline',
+        size: 'large',
+        text: 'signin_with',
+        shape: 'pill',
+      });
+    }
 
-  if (window.location.pathname === '/login') {
     overlay.classList.add('abierto');
     overlay.querySelector('.modal-login').focus();
-    inicializarBotonGoogle();
+
+    const scriptGoogle = document.createElement('script');
+    scriptGoogle.src = 'https://accounts.google.com/gsi/client';
+    scriptGoogle.async = true;
+    scriptGoogle.onload = inicializarBotonGoogle;
+    scriptGoogle.onerror = () => mostrarError('No se pudo cargar el inicio de sesión de Google. Revisa tu conexión o desactiva bloqueadores de anuncios para este sitio.');
+    document.head.appendChild(scriptGoogle);
   }
 </script>
 
