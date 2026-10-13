@@ -173,40 +173,70 @@ app.get("/login", (req, res) => {
 // distingue, y para que Facebook arme la tarjeta del link con la marca de
 // Colima Go.
 const TIENDAS = {
-  ios: { nombre: "App Store", url: "https://apps.apple.com/mx/app/colima-go/id1665801713" },
-  android: { nombre: "Google Play", url: "https://play.google.com/store/apps/details?id=mx.shago.colimaapp" },
+  colimago: {
+    ios: { nombre: "App Store", url: "https://apps.apple.com/mx/app/colima-go/id1665801713" },
+    android: { nombre: "Google Play", url: "https://play.google.com/store/apps/details?id=mx.shago.colimaapp" },
+  },
+  realestate: {
+    ios: { nombre: "App Store", url: "https://apps.apple.com/mx/app/real-estate-colima/id6444501425" },
+    android: { nombre: "Google Play", url: "https://play.google.com/store/apps/details?id=mx.shago.realestate&hl=es_MX" },
+  },
 };
 const PAGINAS_DESCARGA = {
   app: {
+    app: "colimago",
+    sitio: "Colima Go",
     tiendas: ["ios", "android"],
     titulo: "Descarga Colima Go para iPhone y Android",
-    dispositivo: "iPhone y Android",
+    descripcion: "Playas, pueblos y fiestas de los diez municipios de Colima en una app gratuita para iPhone y Android.",
     encabezado: "Abriendo la tienda…",
     texto: "Si no se abre sola, elige tu tienda para descargar Colima Go.",
   },
   ios: {
+    app: "colimago",
+    sitio: "Colima Go",
     tiendas: ["ios"],
     titulo: "Descarga Colima Go en App Store",
-    dispositivo: "iPhone",
+    descripcion: "Playas, pueblos y fiestas de los diez municipios de Colima en una app gratuita para iPhone.",
     encabezado: "Abriendo App Store…",
     texto: "Si no se abre solo, toca el botón para descargar Colima Go en tu iPhone.",
   },
   android: {
+    app: "colimago",
+    sitio: "Colima Go",
     tiendas: ["android"],
     titulo: "Descarga Colima Go en Google Play",
-    dispositivo: "Android",
+    descripcion: "Playas, pueblos y fiestas de los diez municipios de Colima en una app gratuita para Android.",
     encabezado: "Abriendo Google Play…",
     texto: "Si no se abre solo, toca el botón para descargar Colima Go en tu Android.",
+  },
+  // La app de bienes raíces de Julio Santiago (Servicios Inmobiliarios de
+  // Colima), para los anuncios de Facebook. Es otra app, con sus propias
+  // tiendas; no lleva el perro de Colima Go porque no es su marca.
+  realestate: {
+    app: "realestate",
+    sitio: "Real Estate Colima",
+    logo: false,
+    tiendas: ["ios", "android"],
+    titulo: "Descarga Real Estate para iPhone y Android",
+    descripcion: "Encuentra la casa de tus sueños en Colima con la app Real Estate Colima, para iPhone y Android.",
+    encabezado: "Abriendo la tienda…",
+    texto: "Si no se abre sola, elige tu tienda para descargar Real Estate Colima.",
   },
 };
 const PLANTILLA_DESCARGA = fs.readFileSync(path.join(__dirname, "views", "descarga.html"), "utf8");
 for (const [ruta, pagina] of Object.entries(PAGINAS_DESCARGA)) {
   const botones = pagina.tiendas
-    .map((clave) => `<a class="tienda" data-tienda="${clave}" href="${TIENDAS[clave].url}">Descargar en ${TIENDAS[clave].nombre}</a>`)
+    .map((clave) => {
+      const tienda = TIENDAS[pagina.app][clave];
+      return `<a class="tienda" data-tienda="${clave}" href="${tienda.url.replaceAll("&", "&amp;")}">Descargar en ${tienda.nombre}</a>`;
+    })
     .join("\n      ");
   const html = PLANTILLA_DESCARGA.replaceAll("{{RUTA}}", ruta)
     .replaceAll("{{TITULO}}", pagina.titulo)
-    .replaceAll("{{DISPOSITIVO}}", pagina.dispositivo)
+    .replaceAll("{{SITIO}}", pagina.sitio)
+    .replaceAll("{{DESCRIPCION}}", pagina.descripcion)
+    .replaceAll("{{LOGO}}", pagina.logo === false ? "" : '<img class="perro" src="/img/perro-de-colima.webp" alt="" width="72" height="72" />')
     .replaceAll("{{ENCABEZADO}}", pagina.encabezado)
     .replaceAll("{{TEXTO}}", pagina.texto)
     .replaceAll("{{BOTONES}}", botones);

@@ -13,7 +13,7 @@ usa. Se apagó con un interruptor, no borrando código: se puede prender de
 nuevo en minutos.
 
 **Qué sigue funcionando:** la portada (`/`), los links de descarga (`/app`,
-`/ios`, `/android`), las imágenes, `robots.txt`, `sitemap.xml`, `llms.txt` y
+`/ios`, `/android`, `/realestate`), las imágenes, `robots.txt`, `sitemap.xml`, `llms.txt` y
 la página 404.
 
 **Qué está apagado:** `/login`, `/dashboard.html`, `/auth/*` y `/api/*`
