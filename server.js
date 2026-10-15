@@ -4,6 +4,7 @@ const path = require("path");
 const express = require("express");
 const cookieSession = require("cookie-session");
 const { llamarBackend, BackendError } = require("./lib/colima-backend");
+const { armarEvento, esBot, idValido } = require("./lib/visitas");
 
 const app = express();
 app.use(express.json());
@@ -162,6 +163,37 @@ app.get("/login", (req, res) => {
     return res.redirect("/dashboard.html");
   }
   res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// --- Registro de visitas: el `app_opened` de la web ---
+// La portada avisa aquí, una vez por visita (ver el script del final de
+// public/index.html), y este servidor lo manda a POST /logs del backend: la
+// misma colección `logs` donde la app móvil guarda el suyo, con platform
+// "web". El navegador no habla con el backend (ver README), solo aporta su
+// id de visitante; lib/visitas.js arma el resto. No usa el interruptor del
+// panel: el registro de visitas no depende de él.
+//
+// Solo se registra en producción de Vercel (VERCEL_ENV), para que ni tu
+// computadora ni los deploys de prueba ensucien los datos reales; en local,
+// VISITAS_ACTIVO=1 lo prende para probarlo contra un backend de desarrollo.
+// Al navegador nunca se le explica un fallo: la respuesta existe para
+// depurar y la portada la ignora.
+const REGISTRAR_VISITAS = process.env.VERCEL_ENV === "production" || process.env.VISITAS_ACTIVO === "1";
+
+app.post("/visita", async (req, res) => {
+  const userId = req.body && req.body.userId;
+  if (!idValido(userId)) return res.status(400).end();
+
+  const userAgent = req.get("user-agent");
+  if (!REGISTRAR_VISITAS || !COLIMA_BACKEND_URL || esBot(userAgent)) return res.status(204).end();
+
+  try {
+    await llamarBackend(null, "/logs", { method: "POST", body: armarEvento(userId, userAgent) });
+    res.status(204).end();
+  } catch (err) {
+    console.error("No se pudo registrar la visita:", err instanceof BackendError ? err.message : err);
+    res.status(502).end();
+  }
 });
 
 // Links cortos para las publicaciones en redes, en vez del URL largo de cada

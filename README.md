@@ -116,8 +116,9 @@ Y en Google Cloud Console, en el cliente OAuth web que usa `public/index.html`
 `https://colimago.mx`, `https://www.colimago.mx` y la URL `*.vercel.app` del
 proyecto. Sin eso el botón de Google no carga en producción.
 
-El backend de Heroku no necesita cambios (ni CORS): el navegador nunca le
-habla directo, siempre lo hace este servidor.
+El backend de Heroku no necesita CORS: el navegador nunca le habla directo,
+siempre lo hace este servidor. Lo único que necesita es aceptar
+`platform: "web"` en `POST /logs` (ver [Registro de visitas](#registro-de-visitas)).
 
 ### Estructura
 
@@ -134,10 +135,68 @@ habla directo, siempre lo hace este servidor.
   llegó con la cabecera `Authorization` y sin `token` en query/body (y que
   `POST /images` manda los campos `image` y `folder`). No necesita el
   backend real, y prende el panel solo para su prueba (`PANEL_ACTIVO=1`).
+- `lib/visitas.js` — arma el evento `app_opened` de una visita (navegador,
+  sistema, versión del sitio) y descarta bots.
+- `scripts/verificar-visitas.js` — `npm run verificar:visitas`: con un
+  backend falso, comprueba que cada visita llega a `POST /logs` con
+  `platform: "web"` y solo los campos que ese endpoint acepta.
 - `api/index.js` — punto de entrada para Vercel (solo exporta `server.js`).
 - `public/` — lo público: `index.html` (página + login).
 - `views/` — lo privado: `dashboard.html`, servido por Express solo con
   sesión iniciada (por eso no está en `public/`).
+
+## Registro de visitas
+
+Cada visita a la portada (`/`) guarda un `app_opened` en la colección `logs`
+de Mongo, la misma donde la app móvil guarda el suyo, con `platform: "web"`:
+
+```js
+{
+  event: 'app_opened',
+  userId: '6acd5bfd8677ca46b7ae4296',  // id aleatorio que guarda el navegador
+  platform: 'web',
+  deviceModel: 'Chrome 126',           // el navegador (o 'Facebook', 'Instagram')
+  osVersion: 'iOS 17.5',               // el sistema; 'Android', 'Windows', 'macOS' sin versión
+  appVersion: '1.0.0',                 // versión de package.json
+  appBuild: '3669c93',                 // commit desplegado; 'local' fuera de Vercel
+  timestamp: ISODate('2026-10-12T22:15:24.662Z')
+}
+```
+
+**Cómo llega ahí:** el script del final de `public/index.html` manda
+`POST /visita` con solo el `userId`; `server.js` lo completa con
+`lib/visitas.js` y lo envía a `POST /logs` del backend, sin
+`Authorization` (el endpoint es público). Igual que en la app, no se guarda
+IP, user agent, cookies ni nada de una cuenta.
+
+**Qué cuenta como una visita:**
+
+- Una por pestaña: recargar la página no suma, abrirla en otra pestaña sí.
+- `userId` se guarda en `localStorage` (`colimago-visitante`); si el
+  navegador no deja guardarlo, no se registra nada (la app hace lo mismo
+  con su id).
+- Solo la portada. `/app`, `/ios`, `/android` y `/realestate` no registran.
+- Se descartan los bots (Googlebot, Lighthouse, Chrome headless, curl…) por
+  su user agent.
+
+**Cuándo está prendido:** en Vercel solo en Production (`VERCEL_ENV`), para
+que los deploys de prueba no ensucien los datos. En local queda apagado; para
+probarlo, `VISITAS_ACTIVO=1` en `.env` y un `COLIMA_BACKEND_URL` de
+desarrollo. `npm run verificar:visitas` lo prueba sin backend real.
+
+**Límites que conviene saber:**
+
+- Chrome oculta la versión de Android (siempre dice 10), y Windows y macOS
+  tampoco la dan en el user agent, por eso `osVersion` es solo `Android`,
+  `Windows` o `macOS` en esos casos. El iPad en modo escritorio se ve como
+  `macOS`.
+- Todas las visitas llegan al backend desde este servidor, así que su límite
+  de 30 por minuto por IP (`THROTTLE_LOGS` en `backColimaApp`) cuenta a todos
+  los visitantes juntos. Más de 30 portadas abiertas en un minuto pierden
+  eventos (el backend responde 429; queda en los logs de Vercel).
+- Requiere que `backColimaApp` acepte `platform: "web"` (`LOG_PLATFORMS` en
+  `src/logs/entities/log.entity.ts`); mientras no esté desplegado, el backend
+  rechaza el evento con 400 y no se guarda nada.
 
 ## Qué hace
 

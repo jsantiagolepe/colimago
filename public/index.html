@@ -1801,5 +1801,43 @@
   }
 </script>
 
+<script>
+  // ---------- Visitas: un app_opened por visita, con platform "web" ----------
+  // Solo manda un id aleatorio que este navegador guarda; el resto lo arma el
+  // servidor (ver "Registro de visitas" en server.js). Espera a que la página
+  // termine de cargar para no competir con ella, y nunca avisa de un fallo.
+  (function () {
+    if (location.pathname !== '/') return; // /login sirve este mismo HTML
+
+    function idDeVisitante() {
+      var id = localStorage.getItem('colimago-visitante');
+      if (id) return id;
+      var bytes = crypto.getRandomValues(new Uint8Array(12));
+      id = Array.prototype.map.call(bytes, function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+      localStorage.setItem('colimago-visitante', id); // si falla, no se manda un id que no se pudo guardar
+      return id;
+    }
+
+    function registrarVisita() {
+      try {
+        if (sessionStorage.getItem('colimago-visita')) return; // recargar no es otra visita
+      } catch (e) { /* sin sessionStorage: se registra en cada carga */ }
+      try {
+        var userId = idDeVisitante();
+        fetch('/visita', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: userId }),
+          keepalive: true,
+        }).catch(function () {});
+        try { sessionStorage.setItem('colimago-visita', '1'); } catch (e) {}
+      } catch (e) { /* sin almacenamiento o sin crypto: la visita no se registra */ }
+    }
+
+    if (document.readyState === 'complete') registrarVisita();
+    else window.addEventListener('load', registrarVisita);
+  })();
+</script>
+
 </body>
 </html>
