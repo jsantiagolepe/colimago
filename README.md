@@ -100,10 +100,16 @@ framework ni build), con CSS y JS vanilla. Documentación a fondo:
 - **Cuentas:** login con Google (`platform: "web"`). Me gusta, comentarios,
   favoritos de cuenta y reportar exigen sesión; favoritos también funcionan sin
   cuenta (en el navegador). La sesión es una cookie cifrada, httpOnly.
-- **Anuncios:** la app usa AdMob; la web usa Google AdSense cuando están
-  `ADSENSE_CLIENT` (`ca-pub-…`), `ADSENSE_SLOT_BANNER` y `ADSENSE_SLOT_FEED`;
-  sin ellas cada espacio muestra una promo propia de Colima Go. Para AdSense
-  también hace falta publicar `ads.txt` y que la cuenta apruebe el dominio.
+- **Anuncios:** la app usa AdMob; la web usa Google AdSense. El ID de editor
+  (`ca-pub-5479273904422379`) ya está en el código: la guía carga el script de
+  AdSense, publica `/ads.txt` y la portada lleva solo la etiqueta
+  `google-adsense-account` (sin cargar nada). Los bloques de anuncio se piden
+  cuando están `ADSENSE_SLOT_BANNER` y `ADSENSE_SLOT_FEED` (los números de las
+  unidades que se crean en AdSense → Anuncios → Por unidad de anuncio); sin
+  ellos cada espacio muestra una promo propia de Colima Go, a lo más una por ~9
+  elementos. Con los bloques activos, la cadencia es la de la app (cada 3).
+  Mantén apagados los "anuncios automáticos" del sitio en AdSense: el diseño
+  reserva el espacio de cada anuncio y no admite anuncios sobre el contenido.
 - **SEO:** `/sitemap.xml` es dinámico (lugares, municipios, fiestas, eventos
   vigentes, es/en con hreflang). Favoritos, ajustes y sugerencias llevan
   `noindex`.
@@ -115,7 +121,7 @@ llena el Top 10, `FALLA=1` simula un error), y en otra
 http://localhost:3001/inicio. Verificaciones sin red: `npm run verificar:datos`
 y `npm run verificar:guia`.
 
-Variables de entorno nuevas (todas opcionales): `ADSENSE_CLIENT`,
+Variables de entorno nuevas (todas opcionales): `ADSENSE_CLIENT` (vacía apaga AdSense),
 `ADSENSE_SLOT_BANNER`, `ADSENSE_SLOT_FEED`, `GOOGLE_CLIENT_ID_WEB` (por defecto,
 el de la portada). En Vercel debe estar definida `SESSION_SECRET`: con ella se
 cifra la cookie de sesión de los usuarios. Para que el login de Google funcione
