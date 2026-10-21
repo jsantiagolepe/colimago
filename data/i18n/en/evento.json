@@ -1,0 +1,18 @@
+{
+  "sinFoto": "No photo",
+  "altCartel": "Poster for {titulo}",
+  "volver": "Back",
+  "fecha": "Date",
+  "lugar": "Location",
+  "fechaHora": "{fecha} at {hora}",
+  "rango": "{inicio} to {fin}",
+  "rangoHora": "{rango}, starting at {hora}",
+  "verMapa": "View on map",
+  "yaPaso": "This event has already happened",
+  "verProximos": "See upcoming events",
+  "programa": "Events in this program",
+  "redes": "Social media",
+  "comentarios": "Comments",
+  "sinJs": "Turn on JavaScript to read and write comments.",
+  "verMasEventos": "See more events"
+}

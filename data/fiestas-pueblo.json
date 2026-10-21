@@ -1,0 +1,984 @@
+[
+  {
+    "id": "chayacates-ixtlahuacan",
+    "nombre": "Fiesta de los Santos Reyes y los Chayacates",
+    "inicio": {
+      "mes": 1,
+      "dia": 5
+    },
+    "fin": {
+      "mes": 1,
+      "dia": 6
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Ixtlahuacán",
+    "municipioId": 10,
+    "descripcion": {
+      "es": "Tradición de siglos en la que los Chayacates, cuatro ermitaños con muñecos de trapo, salen al encuentro de los peregrinos. Mezcla la fe cristiana de la Epifanía con rezos indígenas por una buena cosecha de maíz."
+    },
+    "fuente": {
+      "nombre": "Colima Digital",
+      "url": "https://colimadigital.com/ixtlahuacan-celebra-su-tradicion-con-la-fiesta-de-los-chayacates-2026/"
+    }
+  },
+  {
+    "id": "senor-expiracion-lo-de-villa",
+    "nombre": "Entrada del Señor de la Expiración",
+    "inicio": {
+      "mes": 1,
+      "dia": 7
+    },
+    "fin": null,
+    "fechaTexto": "El martes siguiente al 6 de enero",
+    "aproximada": true,
+    "localidad": "Lo de Villa",
+    "municipioId": 1,
+    "descripcion": {
+      "es": "Celebra el regreso de la imagen del Señor de la Expiración, que pasa parte del año prestada en Coquimatlán. Hay desfiles, danzas, fuegos artificiales y jaripeos."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  },
+  {
+    "id": "feria-cafe-mineria-minatitlan",
+    "nombre": "Feria del Café y la Minería",
+    "inicio": {
+      "mes": 1,
+      "dia": 8
+    },
+    "fin": {
+      "mes": 1,
+      "dia": 19
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Minatitlán",
+    "municipioId": 5,
+    "descripcion": {
+      "es": "La feria de la sierra: conciertos, jaripeo en el ruedo La Macarena, coronación de reina y, por supuesto, café de la región. En 2025 fue del 8 al 19; en 2024, del 8 al 14."
+    },
+    "fuente": {
+      "nombre": "Tus Buenas Noticias",
+      "url": "https://www.tusbuenasnoticias.com/noticias/mexico/2024/12/29/40096-feria-minatitlan-colima-2025-cuando-inicia-actividades-y-artistas-que-se-presentaran"
+    }
+  },
+  {
+    "id": "fiestas-zacualpan",
+    "nombre": "Fiestas de Zacualpan",
+    "inicio": {
+      "mes": 1,
+      "dia": 15
+    },
+    "fin": {
+      "mes": 1,
+      "dia": 25
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Zacualpan",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Fiestas en honor a Santiago Apóstol, cuyo día grande es el 25 de enero. Once días de actos religiosos, charrería y festejos taurinos en este pueblo de Comala."
+    },
+    "fuente": {
+      "nombre": "H. Ayuntamiento de Comala",
+      "url": "http://www.comala.gob.mx/turismo/zacualpan"
+    }
+  },
+  {
+    "id": "candelaria-suchitlan",
+    "nombre": "Fiesta de la Candelaria en Suchitlán",
+    "inicio": {
+      "mes": 1,
+      "dia": 24
+    },
+    "fin": {
+      "mes": 2,
+      "dia": 2
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Suchitlán",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "La fiesta más importante de la región indígena de Suchitlán, que empieza nueve días antes del 2 de febrero. Destacan las danzas de los gallitos, los apaches y los morenos, estos dos últimos con máscaras de madera talladas."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  },
+  {
+    "id": "feria-limon-tecoman",
+    "nombre": "Feria del Limón",
+    "inicio": {
+      "mes": 1,
+      "dia": 23
+    },
+    "fin": {
+      "mes": 2,
+      "dia": 3
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Tecomán",
+    "municipioId": 6,
+    "descripcion": {
+      "es": "Feria de la capital mundial del limón, que coincide con el aniversario de Tecomán como ciudad (23 de enero). Palenque, exposiciones, comida y las fiestas de la Candelaria. La edición 71 fue del 23 de enero al 3 de febrero de 2026."
+    },
+    "fuente": {
+      "nombre": "Ferias en México",
+      "url": "https://www.feriasenmexico.com.mx/feria-del-limon-tecoman-2026/"
+    }
+  },
+  {
+    "id": "candelaria-tecoman",
+    "nombre": "Fiesta de la Virgen de la Candelaria",
+    "inicio": {
+      "mes": 2,
+      "dia": 1
+    },
+    "fin": {
+      "mes": 2,
+      "dia": 2
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Tecomán",
+    "municipioId": 6,
+    "descripcion": {
+      "es": "Una novena con danzas apaches antecede la fiesta. El 1 de febrero se viste a la Virgen y hay vigilia con mañanitas; el 2, la imagen recorre el centro en andas. La procesión de los angelitos reparte décimas. Llegan más de 15 mil visitantes de Colima, Jalisco y Michoacán."
+    },
+    "fuente": {
+      "nombre": "Secretaría de Cultura (SIC)",
+      "url": "https://sic.cultura.gob.mx/ficha.php?table=frpintangible&table_id=306"
+    }
+  },
+  {
+    "id": "virgen-salud-colima",
+    "nombre": "Fiesta de la Virgen de la Salud",
+    "inicio": {
+      "mes": 2,
+      "dia": 2
+    },
+    "fin": null,
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Colima",
+    "municipioId": 1,
+    "descripcion": {
+      "es": "Fiesta de la capital, precedida por nueve días de música y danzas."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  },
+  {
+    "id": "san-felipe-villa-de-alvarez",
+    "nombre": "Fiestas Charrotaurinas de Villa de Álvarez",
+    "inicio": {
+      "mes": 2,
+      "dia": 6
+    },
+    "fin": {
+      "mes": 2,
+      "dia": 23
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Villa de Álvarez",
+    "municipioId": 2,
+    "descripcion": {
+      "es": "Las fiestas de San Felipe de Jesús, santo patrono de la villa: cabalgatas, mojigangas, corridas en La Petatera y feria. La Petatera es Patrimonio Cultural Inmaterial. Fechas de la edición 2026, con sede en el recinto ferial de Villas Providencia."
+    },
+    "fuente": {
+      "nombre": "Visit México",
+      "url": "https://visitmexico.com/en/actividad/721/fiestas-charro-taurinas-de-villa-de-alvarez-2026"
+    }
+  },
+  {
+    "id": "candelaria-trapiche",
+    "nombre": "Fiesta de la Virgen de la Candelaria",
+    "inicio": {
+      "mes": 2,
+      "dia": 2
+    },
+    "fin": null,
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "El Trapiche",
+    "municipioId": 9,
+    "descripcion": {
+      "es": "La comunidad de El Trapiche celebra a la Virgen de la Candelaria en febrero; el día de la Candelaria es el 2."
+    },
+    "fuente": {
+      "nombre": "H. Ayuntamiento de Cuauhtémoc",
+      "url": "https://www.cuauhtemoc-col.gob.mx/portal/?atractivos-culturales="
+    }
+  },
+  {
+    "id": "carnaval-manzanillo",
+    "nombre": "Carnaval de Manzanillo",
+    "inicio": {
+      "mes": 2,
+      "dia": 1
+    },
+    "fin": null,
+    "fechaTexto": "Febrero, antes de Cuaresma (la fecha cambia cada año)",
+    "aproximada": true,
+    "localidad": "Manzanillo",
+    "municipioId": 3,
+    "descripcion": {
+      "es": "El carnaval del puerto se celebra cada año antes de que empiece la Cuaresma, con desfiles de carros alegóricos y comparsas."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://escapadas.mexicodesconocido.com.mx/festividades/carnaval-manzanillo/"
+    }
+  },
+  {
+    "id": "carnaval-cuyutlan",
+    "nombre": "Carnaval de Cuyutlán",
+    "inicio": {
+      "mes": 3,
+      "dia": 6
+    },
+    "fin": {
+      "mes": 3,
+      "dia": 8
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Cuyutlán",
+    "municipioId": 7,
+    "descripcion": {
+      "es": "Carnaval en la playa de arena negra y la laguna salinera, que se celebra cada año en marzo. Fechas de la edición 2025 (6 al 8 de marzo)."
+    },
+    "fuente": {
+      "nombre": "Colima al Día",
+      "url": "https://colimaaldia.com/notas/notaCompleta/40174"
+    }
+  },
+  {
+    "id": "comal-y-fuego-comala",
+    "nombre": "Festival Comal y Fuego",
+    "inicio": {
+      "mes": 3,
+      "dia": 29
+    },
+    "fin": {
+      "mes": 3,
+      "dia": 30
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Comala",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Festival nacional gastronómico en el Jardín Principal: 28 cocineras tradicionales de todo México, cena maridaje con cerveza artesanal, pláticas, música y ballet folclórico. Datos de la primera edición (2025)."
+    },
+    "fuente": {
+      "nombre": "Visita Colima",
+      "url": "https://visitacolima.mx/eventos-colima/festivalcomalyfuego"
+    }
+  },
+  {
+    "id": "paspaques-suchitlan",
+    "nombre": "Paspaques",
+    "inicio": {
+      "mes": 3,
+      "dia": 19
+    },
+    "fin": null,
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Suchitlán",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Ritual prehispánico ligado a la siembra y al maíz. Se acompaña de una feria con tortillas, tamales y pozole."
+    },
+    "fuente": {
+      "nombre": "Lifeder",
+      "url": "https://www.lifeder.com/tradiciones-costumbres-de-colima/"
+    }
+  },
+  {
+    "id": "feria-ponche-pan-cafe-comala",
+    "nombre": "Feria del Ponche, Pan y Café",
+    "inicio": {
+      "mes": 3,
+      "dia": 27
+    },
+    "fin": {
+      "mes": 4,
+      "dia": 12
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Comala",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Más de 150 expositores en el Jardín Principal: café, pan y ponche de Comala, música en vivo, danzas, teatro y el tradicional picón más grande. Datos de la edición 24 (2026); se repite cada año hacia Semana Santa."
+    },
+    "fuente": {
+      "nombre": "Visita Colima",
+      "url": "https://visitacolima.mx/eventos-colima/feria-del-ponche-pan-y-cafe-2026"
+    }
+  },
+  {
+    "id": "canas-sones-sabores-cuauhtemoc",
+    "nombre": "Cañas, Sones y Sabores",
+    "inicio": {
+      "mes": 4,
+      "dia": 17
+    },
+    "fin": {
+      "mes": 4,
+      "dia": 19
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Cuauhtémoc",
+    "municipioId": 9,
+    "descripcion": {
+      "es": "Festival de la identidad cañera: música, gastronomía y la Ruta de la Caña con paradas en el Museo Quesería, una fábrica de ron, Chocolate Maravilla, la Hacienda de Chiapa y la Cervecería de Colima. Datos de la edición 2026."
+    },
+    "fuente": {
+      "nombre": "UnoTV",
+      "url": "https://www.unotv.com/turismo/ruta-cana-colima-festival-canas-sones-sabores-2026-fechas-actividades/"
+    }
+  },
+  {
+    "id": "fiestas-de-mayo-manzanillo",
+    "nombre": "Fiestas de Mayo",
+    "inicio": {
+      "mes": 4,
+      "dia": 29
+    },
+    "fin": {
+      "mes": 5,
+      "dia": 10
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Manzanillo",
+    "municipioId": 3,
+    "descripcion": {
+      "es": "La feria principal del puerto, que conmemora su nombramiento como Puerto de Altura. Dos semanas de conciertos, danzas, deportes, exposiciones, desfiles y jaripeos repartidas por todo el municipio."
+    },
+    "fuente": {
+      "nombre": "Barceló Pin&Travel",
+      "url": "https://www.barcelo.com/pinandtravel/es/fiestas-de-manzanillo-mexico/"
+    }
+  },
+  {
+    "id": "festival-costero-papalote-manzanillo",
+    "nombre": "Festival Costero del Papalote",
+    "inicio": {
+      "mes": 5,
+      "dia": 24
+    },
+    "fin": {
+      "mes": 5,
+      "dia": 25
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Manzanillo",
+    "municipioId": 3,
+    "descripcion": {
+      "es": "Fin de semana de papalotes gigantes en Playa Azul, junto a Plaza Punto Bahía. Entrada libre, juegos inflables, música y gastronomía local. Datos de la tercera edición (2025)."
+    },
+    "fuente": {
+      "nombre": "Visita Colima",
+      "url": "https://visitacolima.mx/eventos-colima/festivalcosteropapalote2025"
+    }
+  },
+  {
+    "id": "santa-cruz-suchitlan",
+    "nombre": "Día de la Santa Cruz",
+    "inicio": {
+      "mes": 5,
+      "dia": 3
+    },
+    "fin": null,
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Suchitlán",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Procesiones y danzas, entre ellas la de los morenos, de origen indígena. También la celebran los salineros en la laguna de Cuyutlán."
+    },
+    "fuente": {
+      "nombre": "Lifeder",
+      "url": "https://www.lifeder.com/tradiciones-costumbres-de-colima/"
+    }
+  },
+  {
+    "id": "cristo-de-cana-queseria",
+    "nombre": "Fiestas del Cristo de Caña",
+    "inicio": {
+      "mes": 5,
+      "dia": 5
+    },
+    "fin": {
+      "mes": 5,
+      "dia": 14
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Quesería",
+    "municipioId": 9,
+    "descripcion": {
+      "es": "Veneran a un Cristo de pasta de caña del siglo XVIII traido de la región de Pátzcuaro. Hay cabalgatas, mojigangas, danzas de sonajas, procesiones y música."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  },
+  {
+    "id": "fiestas-san-antonio",
+    "nombre": "Fiestas de San Antonio",
+    "inicio": {
+      "mes": 6,
+      "dia": 4
+    },
+    "fin": {
+      "mes": 6,
+      "dia": 13
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "San Antonio",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Fiestas del santo patrono en la antigua hacienda de San Antonio, con danzas, fuegos artificiales y una pequeña feria."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  },
+  {
+    "id": "senor-santiago-manzanillo",
+    "nombre": "Fiestas del Señor Santiago",
+    "inicio": {
+      "mes": 7,
+      "dia": 16
+    },
+    "fin": {
+      "mes": 7,
+      "dia": 25
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Santiago",
+    "municipioId": 3,
+    "descripcion": {
+      "es": "Fiesta religiosa con peregrinaciones, bailes populares y fuegos artificiales. El 25 de julio es el día de Santiago Apóstol."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  },
+  {
+    "id": "tonelhuayo",
+    "nombre": "Encuentro de Pueblos Originarios Tonelhuayo",
+    "inicio": {
+      "mes": 8,
+      "dia": 6
+    },
+    "fin": {
+      "mes": 8,
+      "dia": 11
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Zacualpan y Suchitlán",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Encuentro cultural en torno al Día Internacional de los Pueblos Indigenas (9 de agosto): danzas, música, gastronomía, talleres y artesanías en Zacualpan, Suchitlán e Ixtlahuacán. Fechas de la edición 2024."
+    },
+    "fuente": {
+      "nombre": "Portal Colimote",
+      "url": "https://portalcolimote.com/2024/07/31/decimo-encuentro-de-pueblos-originarios-tonelhuayo-2024-celebracion-de-nuestras-raices-en-ixtlahuacan-zacualpan-y-suchitlan-del-6-al-11-de-agosto-emiliano-zizumbo/"
+    }
+  },
+  {
+    "id": "feria-hongo-minatitlan",
+    "nombre": "Feria Regional del Hongo",
+    "inicio": {
+      "mes": 8,
+      "dia": 10
+    },
+    "fin": {
+      "mes": 8,
+      "dia": 25
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "El Terrero",
+    "municipioId": 5,
+    "descripcion": {
+      "es": "Tres fines de semana de temporada de lluvias en la Reserva de la Biosfera Sierra de Manantlán: caminatas guiadas, campamento y cocina con hongos, como el pozole de hongos. En 2024 fue 10-11, 17-18 y 24-25 de agosto."
+    },
+    "fuente": {
+      "nombre": "N+ Colima",
+      "url": "https://www.nmas.com.mx/colima/estilo-de-vida/lugares/asi-se-vive-la-feria-del-hongo-2026-en-colima-comida-cultura-y-naturaleza/"
+    }
+  },
+  {
+    "id": "mariachi-mezcal-comala",
+    "nombre": "Festival Mariachi y Mezcal",
+    "inicio": {
+      "mes": 9,
+      "dia": 12
+    },
+    "fin": {
+      "mes": 9,
+      "dia": 16
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Comala",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Cinco días de fiestas patrias en el Jardín Principal: galas de mariachi, cata de mezcal y tusca, cabalgata el 14, Grito el 15 y juegos tradicionales el 16. Datos de la edición 2025."
+    },
+    "fuente": {
+      "nombre": "Visita Colima",
+      "url": "https://visitacolima.mx/eventos-colima/mariachiymezcalcomala25"
+    }
+  },
+  {
+    "id": "festival-mariachi-charreria-villa-de-alvarez",
+    "nombre": "Festival del Mariachi y la Charrería",
+    "inicio": {
+      "mes": 9,
+      "dia": 13
+    },
+    "fin": {
+      "mes": 9,
+      "dia": 16
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Villa de Álvarez",
+    "municipioId": 2,
+    "descripcion": {
+      "es": "Entrada libre en el Jardín Independencia: mariachis locales e invitados, escaramuzas, danza folclórica y espectáculos ecuestres. Datos de la cuarta edición (2026)."
+    },
+    "fuente": {
+      "nombre": "Crónica",
+      "url": "https://www.cronica.com.mx/negocios/2026/09/08/festival-del-mariachi-villa-de-alvarez-2026-fechas-actividades-y-programa/"
+    }
+  },
+  {
+    "id": "fiestas-patrias-tepames",
+    "nombre": "Fiestas Patrias de Tepames",
+    "inicio": {
+      "mes": 9,
+      "dia": 5
+    },
+    "fin": {
+      "mes": 9,
+      "dia": 16
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Tepames",
+    "municipioId": 1,
+    "descripcion": {
+      "es": "Casi dos semanas de eventos cívicos, deportivos y culturales por el aniversario del inicio de la Independencia: coronación de la reina, mariachi, callejoneada, Grito el 15 de septiembre y desfile cívico el 16. Fechas del programa 2026."
+    },
+    "fuente": {
+      "nombre": "Fiestas Pueblos Colima (Facebook)",
+      "url": "https://www.facebook.com/fiestas.pueblos.colima/posts/pfbid02THYrangGhMKQ7m56JxiVyu3kZ32YjSFTjyvyiQLL8SF21STASm5k4yfEzpg1iGAbl"
+    }
+  },
+  {
+    "id": "san-miguel-alcaraces",
+    "nombre": "Fiesta de San Miguel Arcángel",
+    "inicio": {
+      "mes": 9,
+      "dia": 29
+    },
+    "fin": null,
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Alcaraces",
+    "municipioId": 9,
+    "descripcion": {
+      "es": "Fiestas patronales y charrotaurinas de Alcaraces en septiembre, en honor a San Miguel Arcángel, cuyo día es el 29. El ayuntamiento solo da el mes; el día sale del calendario del santo. En 2026 la tradicional entrada de la música fue el 13 de septiembre."
+    },
+    "fuente": {
+      "nombre": "H. Ayuntamiento de Cuauhtémoc",
+      "url": "https://www.cuauhtemoc-col.gob.mx/portal/?atractivos-culturales="
+    }
+  },
+  {
+    "id": "virgen-merced-queseria",
+    "nombre": "Fiesta de la Virgen de la Merced",
+    "inicio": {
+      "mes": 9,
+      "dia": 24
+    },
+    "fin": null,
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Quesería",
+    "municipioId": 9,
+    "descripcion": {
+      "es": "Fiesta de Quesería en septiembre en honor a la Virgen de la Merced, cuyo día es el 24. El ayuntamiento solo da el mes; el día sale del calendario del santo."
+    },
+    "fuente": {
+      "nombre": "H. Ayuntamiento de Cuauhtémoc",
+      "url": "https://www.cuauhtemoc-col.gob.mx/portal/?atractivos-culturales="
+    }
+  },
+  {
+    "id": "san-miguel-tamala",
+    "nombre": "Fiesta de San Miguel",
+    "inicio": {
+      "mes": 9,
+      "dia": 29
+    },
+    "fin": null,
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "San Miguel Tamala",
+    "municipioId": 10,
+    "descripcion": {
+      "es": "Cambio de mayordomos de la cofradía de San Miguel con danzas y procesión. La peregrinación une Tamala con Tecomán."
+    },
+    "fuente": {
+      "nombre": "Secretaría de Cultura (SIC)",
+      "url": "https://sic.cultura.gob.mx/ficha.php?table=frpintangible&table_id=309"
+    }
+  },
+  {
+    "id": "fiestas-madrid-tecoman",
+    "nombre": "Fiestas de Madrid",
+    "inicio": {
+      "mes": 10,
+      "dia": 2
+    },
+    "fin": {
+      "mes": 10,
+      "dia": 9
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Madrid",
+    "municipioId": 6,
+    "descripcion": {
+      "es": "Fiestas patronales en honor a la Virgen del Rosario en la comunidad de Madrid. Rango de fechas por confirmar con la comunidad."
+    },
+    "fuente": {
+      "nombre": "Colima Noticias",
+      "url": "https://www.colimanoticias.com/tragedia-en-las-fiestas-patronales-de-la-comunidad-de-madrid-un-muerto-y-dos-heridos/"
+    }
+  },
+  {
+    "id": "paraiso-de-las-olas-armeria",
+    "nombre": "Paraíso de las Olas",
+    "inicio": {
+      "mes": 10,
+      "dia": 17
+    },
+    "fin": {
+      "mes": 10,
+      "dia": 19
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Armería",
+    "municipioId": 7,
+    "descripcion": {
+      "es": "Competencia de surf y bodyboard en Playa El Paraíso, con corredor gastronómico, artesanías y música local en vivo. Datos de la edición 14 (2025)."
+    },
+    "fuente": {
+      "nombre": "Visita Colima",
+      "url": "https://visitacolima.mx/eventos-colima/paraisodelasolas25"
+    }
+  },
+  {
+    "id": "queso-y-tinto-comala",
+    "nombre": "Festival del Queso y Tinto",
+    "inicio": {
+      "mes": 10,
+      "dia": 15
+    },
+    "fin": {
+      "mes": 10,
+      "dia": 18
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Comala",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Cuatro días de exposición y venta de queso y vino tinto, catas guiadas, cenas maridaje, talleres y música en el centro del Pueblo Blanco. Vinícolas de Ensenada, Valle de Guadalupe y Querétaro con productores de queso de Comala."
+    },
+    "fuente": {
+      "nombre": "Ferias en México",
+      "url": "https://www.feriasenmexico.com.mx/festival-del-queso-y-tinto-comala/"
+    }
+  },
+  {
+    "id": "san-rafael-cuauhtemoc",
+    "nombre": "Fiestas Patronales y Charrotaurinas de San Rafael",
+    "inicio": {
+      "mes": 10,
+      "dia": 9
+    },
+    "fin": {
+      "mes": 10,
+      "dia": 25
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Cuauhtémoc",
+    "municipioId": 9,
+    "descripcion": {
+      "es": "Diecisiete días de fiesta del santo patrono: toro de once al mediodía, recibimientos diarios con los municipios vecinos, cabalgatas, jaripeos, conciertos en el Teatro del Pueblo y la corrida del pueblo para cerrar. Fechas de la edición 2026; en 2025 fue del 11 al 25 de octubre."
+    },
+    "fuente": {
+      "nombre": "Ferias en México",
+      "url": "https://www.feriasenmexico.com.mx/fiestas-charrotaurinas-cuauhtemoc/"
+    }
+  },
+  {
+    "id": "feria-todos-los-santos",
+    "nombre": "Feria de Todos los Santos",
+    "inicio": {
+      "mes": 10,
+      "dia": 31
+    },
+    "fin": {
+      "mes": 11,
+      "dia": 16
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Colima",
+    "municipioId": 1,
+    "descripcion": {
+      "es": "La fiesta más importante del estado: exposición agrícola, ganadera y artesanal, juegos mecánicos, concursos de catrinas, cabalgatas y conciertos. En 2026 se anuncia del 31 de octubre al 16 de noviembre."
+    },
+    "fuente": {
+      "nombre": "Zona Turística",
+      "url": "https://www.zonaturistica.com/eventos-en/colima"
+    }
+  },
+  {
+    "id": "festival-coximatlan",
+    "nombre": "Festival Internacional Coximatlán",
+    "inicio": {
+      "mes": 11,
+      "dia": 22
+    },
+    "fin": {
+      "mes": 11,
+      "dia": 29
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Coquimatlán",
+    "municipioId": 8,
+    "descripcion": {
+      "es": "Festival cultural con artistas de Colima y de más de diez países. Desde 2016 reúne a compañías y creadores. Fechas de la octava edición (2025)."
+    },
+    "fuente": {
+      "nombre": "Gobierno de México",
+      "url": "https://www.gob.mx/cultura/prensa/cultura-colima-y-ayuntamiento-de-coquimatlan-presentan-la-convocatoria-para-el-8-festival-internacional-coximatlan"
+    }
+  },
+  {
+    "id": "torneo-pesca-manzanillo",
+    "nombre": "Torneo Internacional de Pesca Deportiva",
+    "inicio": {
+      "mes": 11,
+      "dia": 27
+    },
+    "fin": {
+      "mes": 11,
+      "dia": 29
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Manzanillo",
+    "municipioId": 3,
+    "descripcion": {
+      "es": "Torneo con categorías de marlin, dorado y atún, con sede en Plaza Juárez, en el centro histórico. Fechas de la edición 72 (2025)."
+    },
+    "fuente": {
+      "nombre": "Visit México",
+      "url": "https://visitmexico.com/en/actividad/508/72-torneo-internacional-de-pesca-deportiva-manzanillo"
+    }
+  },
+  {
+    "id": "feria-armeria",
+    "nombre": "Feria de Armería",
+    "inicio": {
+      "mes": 11,
+      "dia": 28
+    },
+    "fin": {
+      "mes": 12,
+      "dia": 14
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Armería",
+    "municipioId": 7,
+    "descripcion": {
+      "es": "Feria en honor a la Virgen de Guadalupe, con cabalgata de apertura, elección de reina, expo ganadera, palenque, juegos mecánicos y bailes populares. Tradicionalmente es del 1 al 12 de diciembre; en 2025 se amplió del 28 de noviembre al 14 de diciembre."
+    },
+    "fuente": {
+      "nombre": "El Comentario (UCol)",
+      "url": "https://elcomentario.ucol.mx/?p=254203"
+    }
+  },
+  {
+    "id": "inmaculada-minatitlan",
+    "nombre": "Fiestas de la Inmaculada Concepción",
+    "inicio": {
+      "mes": 12,
+      "dia": 1
+    },
+    "fin": {
+      "mes": 12,
+      "dia": 8
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Minatitlán",
+    "municipioId": 5,
+    "descripcion": {
+      "es": "Peregrinaciones, bailes, fuegos artificiales y feria."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  },
+  {
+    "id": "guadalupe-comala",
+    "nombre": "Fiestas de la Virgen de Guadalupe",
+    "inicio": {
+      "mes": 12,
+      "dia": 1
+    },
+    "fin": {
+      "mes": 12,
+      "dia": 12
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Comala",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Doce días de procesiones, corridas, jaripeos y peleas de gallos, con baile popular y fuegos artificiales el 8 de diciembre."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  },
+  {
+    "id": "guadalupe-manzanillo",
+    "nombre": "Fiestas de la Virgen de Guadalupe",
+    "inicio": {
+      "mes": 12,
+      "dia": 1
+    },
+    "fin": {
+      "mes": 12,
+      "dia": 12
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Manzanillo",
+    "municipioId": 3,
+    "descripcion": {
+      "es": "Fiesta de la patrona del puerto: desfiles, danzas y ofrendas a la Virgen durante doce días."
+    },
+    "fuente": {
+      "nombre": "Barceló Pin&Travel",
+      "url": "https://www.barcelo.com/pinandtravel/es/fiestas-de-manzanillo-mexico/"
+    }
+  },
+  {
+    "id": "senor-expiracion-coquimatlan",
+    "nombre": "Fiestas del Señor de la Expiración",
+    "inicio": {
+      "mes": 12,
+      "dia": 28
+    },
+    "fin": {
+      "mes": 1,
+      "dia": 12
+    },
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Coquimatlán",
+    "municipioId": 8,
+    "descripcion": {
+      "es": "Las máximas fiestas del municipio: actos religiosos, charrotaurinas y culturales que cruzan el fin de año. Fechas de la edición 2025–2026 (28 de diciembre al 12 de enero)."
+    },
+    "fuente": {
+      "nombre": "Ayuntamiento de Coquimatlán (X)",
+      "url": "https://x.com/AdColima/status/2000228249931321355"
+    }
+  },
+  {
+    "id": "manzanillo-se-ilumina",
+    "nombre": "Manzanillo se Ilumina",
+    "inicio": {
+      "mes": 12,
+      "dia": 31
+    },
+    "fin": null,
+    "fechaTexto": null,
+    "aproximada": true,
+    "localidad": "Manzanillo",
+    "municipioId": 3,
+    "descripcion": {
+      "es": "Fiesta de fin de año en la bahía con drones, fuegos artificiales y música en vivo. Cumplió 20 años en la edición que se consultó y sumó una sede en la capital."
+    },
+    "fuente": {
+      "nombre": "Visita Colima",
+      "url": "https://visitacolima.mx/eventos-colima/20manzanilloseilumina2024"
+    }
+  },
+  {
+    "id": "pastorela-suchitlan",
+    "nombre": "Pastorela de Suchitlán",
+    "inicio": {
+      "mes": 12,
+      "dia": 23
+    },
+    "fin": {
+      "mes": 12,
+      "dia": 24
+    },
+    "fechaTexto": null,
+    "aproximada": false,
+    "localidad": "Suchitlán",
+    "municipioId": 4,
+    "descripcion": {
+      "es": "Representación de la pastorela navideña en Suchitlán."
+    },
+    "fuente": {
+      "nombre": "México Desconocido",
+      "url": "https://www.mexicodesconocido.com.mx/costumbres-fiestas-y-tradiciones-en-colima.html"
+    }
+  }
+]

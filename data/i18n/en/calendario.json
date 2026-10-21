@@ -1,0 +1,22 @@
+{
+  "titulo": "Calendar",
+  "entrada": "Pick a day to see what's on in Colima.",
+  "metaTitulo": "Colima events calendar",
+  "metaDescripcion": "See what's on each day in Colima: festivals, concerts, sports and cultural activities across the ten municipalities.",
+  "sugerir": "Suggest",
+  "sugerirAria": "Suggest an event",
+  "mesAnterior": "Previous month",
+  "mesSiguiente": "Next month",
+  "irAHoy": "Go to today",
+  "hoy": "today",
+  "nEventos": {
+    "uno": "{n} event",
+    "otros": "{n} events"
+  },
+  "eventosHoy": "Events for today",
+  "eventosDia": "Events for {fecha}",
+  "fechaDia": "{mes} {d}",
+  "vacioTitulo": "No events this day",
+  "vacioTexto": "Pick another day: days with events have a colored dot.",
+  "errorFeed": "We couldn't load the events. Check your connection and try again."
+}

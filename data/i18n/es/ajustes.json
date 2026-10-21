@@ -1,0 +1,64 @@
+{
+  "titulo": "Ajustes",
+  "descripcion": "Tu cuenta, el idioma y la apariencia de Colima Go, y cómo escribirnos, invitar a un amigo o calificar la app.",
+  "letrero": "Ajustes",
+  "externo": "se abre en una pestaña nueva",
+  "tarjeta": {
+    "etiqueta": "Tu cuenta",
+    "invitado": "Estás como invitado",
+    "invitadoTexto": "Inicia sesión para comentar y guardar tus favoritos.",
+    "iniciar": "Iniciar sesión",
+    "sinNombre": "Tu cuenta de Google"
+  },
+  "colima": {
+    "titulo": "Colima Go",
+    "idea": "¿Tienes una idea?",
+    "ideaSub": "Escríbenos y ayúdanos a mejorar la app juntos",
+    "ideaMensaje": "Tengo una idea",
+    "invitar": "Invitar a un amigo",
+    "invitarSub": "Comparte Colima Go por WhatsApp, Messenger o donde quieras",
+    "calificar": "Califica la app",
+    "calificarSub": "Déjanos 5 estrellas y sigamos creciendo juntos",
+    "appStore": "Calificar en el App Store",
+    "googlePlay": "Calificar en Google Play",
+    "acerca": "Acerca de"
+  },
+  "preferencias": {
+    "titulo": "Preferencias",
+    "idioma": "Idioma",
+    "idiomaActual": "Español",
+    "idiomaOtro": "English",
+    "idiomaSub": "Cambiar a English",
+    "apariencia": "Apariencia",
+    "aparienciaSub": "Elige cómo se ve la feria: de noche, de día o como tu dispositivo.",
+    "grupoApariencia": "Apariencia de la guía",
+    "sistema": "Sistema",
+    "noche": "Noche",
+    "dia": "Día",
+    "ahoraNoche": "Ahora se ve de noche.",
+    "ahoraDia": "Ahora se ve de día.",
+    "cuenta": "Cuenta",
+    "cuentaSub": "Tu sesión y la eliminación de tu cuenta"
+  },
+  "sesion": {
+    "titulo": "Sesión",
+    "cerrar": "Cerrar sesión"
+  },
+  "cuenta": {
+    "titulo": "Cuenta",
+    "descripcion": "Tu sesión en Colima Go y cómo eliminar tu cuenta y tus datos.",
+    "letrero": "Cuenta",
+    "volver": "Volver a Ajustes",
+    "sesionComo": "Sesión iniciada como {nombre}.",
+    "eliminar": "Eliminar cuenta",
+    "eliminarTexto": "¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer y perderás todos tus datos.",
+    "requiereSesion": "Inicia sesión para poder eliminar tu cuenta.",
+    "iniciar": "Iniciar sesión",
+    "confirmarTitulo": "Confirmar Eliminación",
+    "confirmarTexto": "Al presionar \"Eliminar\", toda tu información será borrada, incluyendo tu usuario, comentarios y likes. ¿Estás seguro?",
+    "confirmarBoton": "Eliminar",
+    "eliminando": "Eliminando…",
+    "exito": "Tu cuenta y tus datos fueron eliminados.",
+    "error": "No se pudo eliminar la cuenta. Inténtalo de nuevo."
+  }
+}

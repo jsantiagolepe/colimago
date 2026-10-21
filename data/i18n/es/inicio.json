@@ -1,0 +1,54 @@
+{
+  "titulo": "Colima Go: eventos, playas, ríos, fiestas y municipios de Colima",
+  "descripcion": "Descubre Colima con Colima Go: el mapa de los diez municipios, playas, ríos, fiestas del pueblo, tianguis, las Fiestas Charrotaurinas y los eventos del estado.",
+  "letrero": "Del mar al volcán",
+  "entrada": "Toca un foco para conocer cada municipio de Colima.",
+  "mapa": {
+    "titulo": "Los diez municipios de Colima",
+    "etiqueta": "Mapa de feria: los diez municipios de Colima, del mar al volcán",
+    "ayuda": "Cada foco es un municipio. Usa las flechas del teclado para moverte entre ellos.",
+    "volcan": "Volcán de Fuego",
+    "oceano": "Océano Pacífico",
+    "elegido": "Municipio elegido: {nombre}. {apodo}"
+  },
+  "ficha": {
+    "ver": "Ver municipio",
+    "verNombre": "Ver municipio {nombre}"
+  },
+  "lista": {
+    "etiqueta": "Los diez municipios"
+  },
+  "top10": {
+    "titulo": "Top 10",
+    "carrusel": "Top 10 de Colima Go",
+    "diapositiva": "Diapositiva {n} de {total}",
+    "anterior": "Diapositiva anterior",
+    "siguiente": "Diapositiva siguiente",
+    "pausar": "Pausar el avance automático",
+    "reanudar": "Reanudar el avance automático",
+    "ir": "Ir a la diapositiva {n}: {titulo}",
+    "indicadores": "Diapositivas"
+  },
+  "explora": {
+    "titulo": "Explora Colima",
+    "feria": {
+      "titulo": "Fiestas Charrotaurinas",
+      "subtitulo": "Villa de Álvarez",
+      "detalle": "La Petatera, cabalgatas, mojigangos y el programa de la feria."
+    },
+    "fiestasPueblo": "Fiestas del Pueblo",
+    "rincones": "Rincones Naturales",
+    "playas": "Playas",
+    "municipios": "Municipios",
+    "tianguis": {
+      "titulo": "Tianguis y mercados",
+      "subtitulo": "En los 10 municipios",
+      "detalle": "Qué día y dónde se pone cada tianguis, y los mercados que abren todos los días."
+    }
+  },
+  "cierre": {
+    "titulo": "Llévate Colima a donde vayas",
+    "texto": "Gratis para iPhone y Android: los diez municipios, las playas, los ríos y las fiestas del pueblo en tu bolsillo.",
+    "sugerir": "Cuéntanos qué te parece"
+  }
+}

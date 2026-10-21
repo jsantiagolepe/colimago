@@ -1,0 +1,38 @@
+{
+  "letrero": "Tianguis & markets",
+  "entrada": "Which day and where each tianguis sets up, plus the markets that open every day.",
+  "sugerir": "Suggest",
+  "tipoEtiqueta": "Type of place",
+  "tabTianguis": "Tianguis",
+  "tabMercados": "Markets",
+  "diaEtiqueta": "Day of the week",
+  "diaTodos": "All",
+  "diaTodosAria": "Every day: {n}",
+  "diaAria": "{dia}: {n}",
+  "hoy": "Today",
+  "municipioEtiqueta": "Municipality",
+  "municipioTodos": "All",
+  "resumenTianguis": {
+    "uno": "1 tianguis",
+    "otros": "{n} tianguis"
+  },
+  "resumenMercados": {
+    "uno": "1 market",
+    "otros": "{n} markets"
+  },
+  "vacioTitulo": "No tianguis match those filters.",
+  "vacioTexto": "Try another day or municipality.",
+  "vacioMercados": "No markets match those filters.",
+  "quitarFiltros": "Clear filters",
+  "temporada": "Seasonal",
+  "tituloTianguis": "Tianguis and markets in Colima: which day and where each one sets up",
+  "descripcionTianguis": "Which day and where each of Colima's {n} tianguis sets up, by day and municipality. Plus the traditional markets of all ten municipalities.",
+  "tituloMercados": "Markets in Colima: the {n} municipal markets",
+  "descripcionMercados": "Colima's {n} markets by municipality: where they are and when they open. Plus the week's tianguis.",
+  "tituloDia": "Tianguis on {dia} in Colima",
+  "tituloDiaMunicipio": "Tianguis on {dia} in {municipio}",
+  "tituloMunicipio": "Tianguis in {municipio}",
+  "tituloMercadosMunicipio": "Markets in {municipio}",
+  "descripcionFiltrada": "{titulo}: {resumen}. Days, hours and location.",
+  "migasInicio": "Home"
+}

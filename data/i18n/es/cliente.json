@@ -1,0 +1,76 @@
+{
+  "favoritoAgregado": "Agregado a favoritos",
+  "favoritoQuitado": "Quitado de favoritos",
+  "favoritoError": "No se pudo guardar el favorito. Inténtalo de nuevo.",
+  "pitchMeGusta": "Inicia sesión para dar me gusta.",
+  "pitchComentar": "Inicia sesión para poder comentar.",
+  "pitchGeneral": "Inicia sesión para guardar tus favoritos, comentar y dar me gusta a los lugares de Colima.",
+  "pitchAcciones": "Inicia sesión para usar esta función.",
+  "errorGenerico": "Hubo un error, inténtalo de nuevo.",
+  "demasiadas": "Demasiadas solicitudes, intenta de nuevo en un momento.",
+  "sinConexion": "Sin conexión. Revisa tu internet e inténtalo de nuevo.",
+  "cerrar": "Cerrar",
+  "cancelar": "Cancelar",
+  "login": {
+    "titulo": "Iniciar sesión",
+    "aceptoPre": "Al continuar aceptas las",
+    "politicas": "políticas de privacidad",
+    "condiciones": "condiciones de uso",
+    "y": "y el",
+    "cargando": "Verificando…",
+    "error": "No se pudo iniciar sesión. Inténtalo de nuevo.",
+    "bloqueado": "No se pudo cargar el inicio de sesión de Google. Revisa tu conexión o desactiva bloqueadores de anuncios para este sitio.",
+    "bienvenido": "Bienvenido: {nombre}",
+    "cerrada": "Sesión cerrada",
+    "expirada": "Tu sesión expiró, inicia sesión de nuevo."
+  },
+  "compartir": {
+    "titulo": "Compartir",
+    "copiar": "Copiar enlace",
+    "copiado": "Enlace copiado",
+    "whatsapp": "WhatsApp",
+    "facebook": "Facebook",
+    "x": "X",
+    "correo": "Correo"
+  },
+  "comentarios": {
+    "titulo": "Comentarios",
+    "vacioTitulo": "Aún no hay comentarios",
+    "vacioTexto": "Sé la primera persona en contar cómo le fue.",
+    "placeholder": "Escribe un comentario...",
+    "enviar": "Enviar",
+    "eliminar": "Eliminar",
+    "borrado": "Comentario borrado",
+    "errorCargar": "No se pudieron cargar los comentarios.",
+    "errorEnviar": "No se pudo enviar el comentario.",
+    "errorBorrar": "No se pudo borrar el comentario.",
+    "limite": "El comentario no puede superar los 500 caracteres.",
+    "publicado": "Comentario publicado",
+    "iniciarSesion": "Inicia sesión para comentar"
+  },
+  "menu": {
+    "reportar": "Reportar",
+    "ocultar": "Ocultar publicación"
+  },
+  "reportar": {
+    "titulo": "Reportar",
+    "motivo": "Seleccione motivo",
+    "motivos": ["Spam", "Bullying o acoso", "Información falsa", "Violencia o amenazas", "Discursos de odio", "Autolesiones o suicidio", "Violencia de género", "Contenido inapropiado", "Contenido sexual"],
+    "motivosEs": ["Spam", "Bullying/Acoso", "Información falsa", "Violencia o amenazas", "Discursos de odio", "Autolesiones o suicidio", "Violencia de género", "Contenido inapropiado", "Contenido sexual"],
+    "otro": "Otro tipo de reporte",
+    "enviar": "Enviar reporte",
+    "enviado": "Gracias, revisaremos el reporte.",
+    "limite": "El reporte no puede superar los 1000 caracteres.",
+    "vacio": "Elige un motivo o cuéntanos qué pasó.",
+    "error": "No se pudo enviar el reporte."
+  },
+  "ocultar": {
+    "listo": "Listo, ya no verás esta publicación.",
+    "error": "No se pudo ocultar la publicación."
+  },
+  "favoritos": {
+    "quitarTitulo": "¿Quitar de favoritos?",
+    "quitarTexto": "¿Seguro que deseas eliminar este favorito?",
+    "quitar": "Eliminar"
+  }
+}

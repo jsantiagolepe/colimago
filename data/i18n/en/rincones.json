@@ -1,0 +1,67 @@
+{
+  "titulo": "Nature Spots",
+  "entrada": "Spring-fed pools, lagoons at the foot of the volcano and pine forests in the mountains. The places the app brings together, with their location, services and hours.",
+  "categorias": "Nature Spots categories",
+  "sugerir": "Suggest",
+  "sugerirAria": "Suggest a place for Nature Spots",
+  "contador": { "uno": "{n} place", "otros": "{n} places" },
+  "vacioTitulo": "No content available right now.",
+  "inicio": "Home",
+  "migas": "Breadcrumb",
+  "cat": {
+    "rios": {
+      "titulo": "Rivers and waterfalls in Colima: {n} places to visit",
+      "meta": "The {n} rivers and waterfalls in Colima Go: {destacados}. Location, services and directions in {munis}.",
+      "intro": "Rivers, waterfalls and springs in {munis}. Among them, {destacados}.",
+      "destacados": "Los Amiales, El Sauce and Agua Fría"
+    },
+    "playas": {
+      "titulo": "Beaches in Colima: {n} places on the Pacific",
+      "meta": "Colima's beaches: {destacados}. Dark volcanic sand, surf-ready waves and fresh seafood by the sea in {munis}.",
+      "intro": "Dark volcanic sand, surf-ready waves and fresh seafood by the sea in {munis}. Among them, {destacados}.",
+      "destacados": "Boca de Pascuales, Tecuanillo and La Boquita"
+    },
+    "lagunas": {
+      "titulo": "Lagoons and estuaries in Colima: {n} places to visit",
+      "meta": "The {n} lagoons and estuaries in Colima Go: {destacados}. Location, services and directions in {munis}.",
+      "intro": "Lagoons and estuaries in {munis}. Among them, {destacados}.",
+      "destacados": "Laguna La María, Carrizalillo and Laguna de Alcuzahue"
+    },
+    "montanas": {
+      "titulo": "Mountains and volcanoes in Colima: {n} places to explore",
+      "meta": "The {n} mountains and volcanoes in Colima Go: {destacados}. Location, services and directions in {munis}.",
+      "intro": "Volcanoes, hills, viewpoints and sierra in {munis}. Among them, {destacados}.",
+      "destacados": "the Colima Volcano, the Nevado de Colima and El Terrero"
+    },
+    "arqueologia": {
+      "titulo": "Archaeology in Colima: sites and museums to meet the past",
+      "meta": "Archaeological sites and museums in Colima: {destacados}. Location, hours and directions in {munis}.",
+      "intro": "Archaeological sites and museums in {munis}. Among them, {destacados}.",
+      "destacados": "the El Chanal archaeological site, La Campana and the Caxitlán Archaeological Museum"
+    },
+    "parques": {
+      "titulo": "Parks and gardens in Colima: {n} places for a stroll",
+      "meta": "The {n} parks, gardens and promenades in Colima Go: {destacados}. Location, services and directions in {munis}.",
+      "intro": "Parks, gardens and promenades in {munis}. Among them, {destacados}.",
+      "destacados": "the Griselda Álvarez Regional Park, the Nogueras Ecopark and the Jardín Libertad"
+    },
+    "patrimonio": {
+      "titulo": "Colima heritage: churches, museums and historic centers",
+      "meta": "Churches, museums and historic centers in Colima: {destacados}. Location, hours and directions in {munis}.",
+      "intro": "Churches, museums, plazas and historic centers in {munis}. Among them, {destacados}.",
+      "destacados": "the Colima Cathedral Basilica, the Historic Center of Comala and the La Petatera bullring"
+    },
+    "balnearios": {
+      "titulo": "Pools and spas in Colima: {n} places to cool off",
+      "meta": "The {n} pools and spas in Colima Go: {destacados}. Location, services and directions in {munis}.",
+      "intro": "Pools and spas in {munis}. Among them, {destacados}.",
+      "destacados": "El Hervidero, Las Peñitas and Póksika"
+    },
+    "rutas": {
+      "titulo": "Routes in Colima: salt, coffee, sugarcane and more",
+      "meta": "Themed routes in Colima: {destacados}. Location, hours and directions in {munis}.",
+      "intro": "Themed routes in {munis}. Among them, {destacados}.",
+      "destacados": "the salt route, the coffee route and the sugarcane route"
+    }
+  }
+}

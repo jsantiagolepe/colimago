@@ -1,0 +1,38 @@
+{
+  "titulo": "Explore",
+  "entrada": "What's happening in Colima: events, festivals and places to visit.",
+  "metaTitulo": "Explore: events, festivals and places in Colima",
+  "metaDescripcion": "What's happening in Colima: upcoming events, town festivals and places to visit across the ten municipalities, in a single feed.",
+  "sugerir": "Suggest",
+  "sugerirAria": "Suggest an event",
+  "feedAria": "Events and places",
+  "filtros": "Filters",
+  "mostrar": "Show",
+  "proximos": "Upcoming",
+  "todos": "All",
+  "municipio": "Municipality",
+  "todosMunicipios": "All municipalities",
+  "mostrando": "Showing",
+  "quitarFiltros": "Clear filters",
+  "eventosProximos": {
+    "uno": "{n} upcoming event",
+    "otros": "{n} upcoming events"
+  },
+  "eventosPasados": {
+    "uno": "{n} past",
+    "otros": "{n} past"
+  },
+  "hoy": "Today",
+  "yaPaso": "Past",
+  "lugar": "Place",
+  "sugerirTitulo": "Know of an event?",
+  "sugerirTexto": "Tell us about a concert, fair or event that isn't here and we'll review it to publish it.",
+  "sugerirBoton": "Suggest an event",
+  "paginas": "Feed pages",
+  "anteriores": "Previous",
+  "paginaDe": "Page {n} of {total}",
+  "sinEventos": "No upcoming events right now. In the meantime, these places are waiting for you.",
+  "sinEventosMunicipio": "No upcoming events in {municipio} right now. In the meantime, these places are waiting for you.",
+  "errorFeed": "We couldn't load the content. Check your connection and try again.",
+  "vacio": "No content available right now."
+}

@@ -1,0 +1,67 @@
+{
+  "titulo": "Rincones Naturales",
+  "entrada": "Balnearios de manantial, lagunas al pie del volcán y bosques de pino en la sierra. Los lugares que la app reúne, con su ubicación, servicios y horarios.",
+  "categorias": "Categorías de Rincones Naturales",
+  "sugerir": "Sugerir",
+  "sugerirAria": "Sugerir un lugar para Rincones Naturales",
+  "contador": { "uno": "{n} lugar", "otros": "{n} lugares" },
+  "vacioTitulo": "No hay contenido disponible por el momento.",
+  "inicio": "Inicio",
+  "migas": "Ruta de navegación",
+  "cat": {
+    "rios": {
+      "titulo": "Ríos y cascadas en Colima: {n} lugares para visitar",
+      "meta": "Los {n} ríos y cascadas de Colima Go: {destacados}. Ubicación, servicios y cómo llegar en {munis}.",
+      "intro": "Ríos, cascadas y manantiales de {munis}. Entre ellos, {destacados}.",
+      "destacados": "Los Amiales, El Sauce y Agua Fría"
+    },
+    "playas": {
+      "titulo": "Playas de Colima: {n} lugares frente al Pacífico",
+      "meta": "Las playas de Colima: {destacados}. Arena oscura de origen volcánico, oleaje para surfear y mariscos frente al mar en {munis}.",
+      "intro": "Arena oscura de origen volcánico, oleaje para surfear y mariscos frente al mar en {munis}. Entre ellas, {destacados}.",
+      "destacados": "Boca de Pascuales, Tecuanillo y La Boquita"
+    },
+    "lagunas": {
+      "titulo": "Lagunas y esteros en Colima: {n} lugares para visitar",
+      "meta": "Las {n} lagunas y esteros de Colima Go: {destacados}. Ubicación, servicios y cómo llegar en {munis}.",
+      "intro": "Lagunas y esteros de {munis}. Entre ellos, {destacados}.",
+      "destacados": "La Laguna La María, Carrizalillo y la Laguna de Alcuzahue"
+    },
+    "montanas": {
+      "titulo": "Montañas y volcanes en Colima: {n} lugares para explorar",
+      "meta": "Las {n} montañas y volcanes de Colima Go: {destacados}. Ubicación, servicios y cómo llegar en {munis}.",
+      "intro": "Volcanes, cerros, miradores y sierra en {munis}. Entre ellos, {destacados}.",
+      "destacados": "el Volcán de Colima, el Nevado de Colima y El Terrero"
+    },
+    "arqueologia": {
+      "titulo": "Arqueología en Colima: zonas y museos para conocer el pasado",
+      "meta": "Zonas arqueológicas y museos de Colima: {destacados}. Ubicación, horarios y cómo llegar en {munis}.",
+      "intro": "Zonas arqueológicas y museos de {munis}. Entre ellos, {destacados}.",
+      "destacados": "la zona arqueológica El Chanal, La Campana y el Museo Arqueológico Caxitlán"
+    },
+    "parques": {
+      "titulo": "Parques y jardines en Colima: {n} lugares para pasear",
+      "meta": "Los {n} parques, jardines y paseos de Colima Go: {destacados}. Ubicación, servicios y cómo llegar en {munis}.",
+      "intro": "Parques, jardines y paseos de {munis}. Entre ellos, {destacados}.",
+      "destacados": "el Parque Regional Griselda Álvarez, el Ecoparque Nogueras y el Jardín Libertad"
+    },
+    "patrimonio": {
+      "titulo": "Patrimonio de Colima: templos, museos y centros históricos",
+      "meta": "Templos, museos y centros históricos de Colima: {destacados}. Ubicación, horarios y cómo llegar en {munis}.",
+      "intro": "Templos, museos, plazas y centros históricos de {munis}. Entre ellos, {destacados}.",
+      "destacados": "la Catedral Basílica Menor de Colima, el Centro Histórico de Comala y la Plaza de Toros La Petatera"
+    },
+    "balnearios": {
+      "titulo": "Balnearios y albercas en Colima: {n} lugares para refrescarse",
+      "meta": "Los {n} balnearios y albercas de Colima Go: {destacados}. Ubicación, servicios y cómo llegar en {munis}.",
+      "intro": "Balnearios y albercas de {munis}. Entre ellos, {destacados}.",
+      "destacados": "El Hervidero, Las Peñitas y Póksika"
+    },
+    "rutas": {
+      "titulo": "Rutas en Colima: la sal, el café, la caña y más",
+      "meta": "Rutas temáticas de Colima: {destacados}. Ubicación, horarios y cómo llegar en {munis}.",
+      "intro": "Rutas temáticas de {munis}. Entre ellas, {destacados}.",
+      "destacados": "la ruta de la sal, la del café y la de la caña"
+    }
+  }
+}

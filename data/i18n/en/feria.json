@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "titulo": "Fiestas Charrotaurinas of Villa de Álvarez {anio}",
+    "descripcion": "La Petatera, cabalgatas, mojigangos and the program of edition {numero} of the Fiestas Charrotaurinas in Villa de Álvarez, Colima: posters and location."
+  },
+  "edicion": "Edition {numero} · {anio}",
+  "portadaAlt": "General program of the Fiestas de la Villa {anio}, edition {numero}: February 6 to 23",
+  "ampliarPrograma": "Enlarge the program",
+  "leerTema": "Read: {titulo}",
+  "autorEdicion": "Message from the edition",
+  "masSobre": "More about the fair",
+  "masSobreTexto": "The edition's messages and each tradition, in full.",
+  "carteles": {
+    "anterior": "Earlier posters",
+    "siguiente": "More posters",
+    "ampliar": "Enlarge the poster for {nombre}, {fecha}"
+  },
+  "visor": {
+    "cerrar": "Close",
+    "anterior": "Previous poster",
+    "siguiente": "Next poster",
+    "contador": "{n} of {total}",
+    "zoom": "Tap the image to see it full size",
+    "zoomQuitar": "Tap the image to fit it to the screen"
+  },
+  "soloEspanol": "The fair's texts and posters are published in Spanish.",
+  "cartelAlt": "Poster: {nombre}, {fecha}"
+}

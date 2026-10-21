@@ -1,0 +1,235 @@
+{
+  "categorias": {
+    "rios": {
+      "nombre": "Rivers"
+    },
+    "playas": {
+      "nombre": "Beaches"
+    },
+    "lagunas": {
+      "nombre": "Lakes"
+    },
+    "montanas": {
+      "nombre": "Mountains"
+    },
+    "arqueologia": {
+      "nombre": "Archaeology"
+    },
+    "parques": {
+      "nombre": "Parks"
+    },
+    "patrimonio": {
+      "nombre": "Heritage"
+    },
+    "balnearios": {
+      "nombre": "Pools & spas"
+    },
+    "rutas": {
+      "nombre": "Routes"
+    },
+    "tianguis": {
+      "nombre": "Tianguis"
+    },
+    "mercados": {
+      "nombre": "Markets"
+    },
+    "hoteles": {
+      "nombre": "Hotels"
+    },
+    "restaurantes": {
+      "nombre": "Restaurants"
+    }
+  },
+  "serviciosNombre": {
+    "bathroom": "Restrooms",
+    "camping": "Camping",
+    "directions_boat": "Boat",
+    "directions_car": "Car",
+    "equipment_rental": "Equipment rental",
+    "food_drink": "Food and drinks",
+    "hotel": "Hotel",
+    "local_parking": "Parking",
+    "picnic_area": "Picnic area",
+    "pool": "Pool",
+    "restaurant": "Restaurant",
+    "sports_tennis": "Tennis",
+    "tour_guide": "Tour guide",
+    "wifi": "Wi-Fi",
+    "umbrella": "Palapas",
+    "fishing": "Fishing",
+    "bbq": "Grills",
+    "cabain_rental": "Cabins",
+    "kayak_rental": "Small boats",
+    "pet_friendly": "Pets welcome",
+    "hiking": "Hiking",
+    "nature_people": "Nature observation",
+    "mountain_biking": "Cycling",
+    "park": "Park",
+    "landscape": "Scenery",
+    "cleaning_services": "Cleaning",
+    "wi-fi": "Wi-Fi",
+    "fireplace": "Campfire",
+    "cabin_rental": "Cabins",
+    "local_dining": "Food"
+  },
+  "diasLargos": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+  "diasCortos": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  "mesesLargos": [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ],
+  "mesesCortos": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  "lugar": {
+    "services": "Services",
+    "description": "Description",
+    "video": "Video",
+    "location": "Location",
+    "schedules": "Schedules",
+    "openallday": "Open All Day",
+    "today": "today",
+    "watchVideo": "Watch video on TikTok",
+    "socialMedia": "Social media",
+    "photoBy": "Photo: {autor} · {licencia} · Wikimedia Commons",
+    "sendPhotoTitle": "Do you have a photo of this place?",
+    "sendPhotoText": "We do not have a real photo of this place yet. If you have one, send it to us and we will publish it with your credit.",
+    "sendPhotoButton": "Send a photo",
+    "noDescription": "No description yet.",
+    "noContentAvailable": "No content available right now.",
+    "attractions": "Attractions",
+    "hotels": "Hotels",
+    "restaurants": "Restaurants",
+    "activities": "Activities",
+    "noRestaurantsAvailable": "No restaurants listed here yet.",
+    "noAttractionsAvailable": "No attractions listed here yet.",
+    "noActivities": "No activities listed yet.",
+    "knowOne": "Know one?",
+    "letUsKnow": "Let us know",
+    "recommendPlaceMessage": "Hi 👋 I want to recommend a place for Colima Go.",
+    "cerrado": "Closed",
+    "horarioPorConfirmar": "Hours to be confirmed",
+    "verEnMaps": "View on Maps"
+  },
+  "tianguis": {
+    "markets": "Tianguis & Markets",
+    "tianguis": "Tianguis",
+    "marketsOnly": "Markets",
+    "marketsSubtitle": "In all 10 municipalities",
+    "marketsPitch": "Which day and where each tianguis sets up, plus the markets that open every day.",
+    "filterAll": "All",
+    "everyDay": "Every day",
+    "marketsEmpty": "No tianguis match those filters.",
+    "marketsEmptyHint": "Try another day or municipality.",
+    "marketsFilterDay": "Day of the week",
+    "marketsFilterMunicipality": "Municipality",
+    "marketsNoteTitle": "Did something change?",
+    "marketsNoteText": "Tianguis sometimes change day, place or hours. If you notice something different, let us know so we can fix it.",
+    "marketsReportButton": "Report a change",
+    "temporada": "Seasonal"
+  },
+  "fiestas": {
+    "townFestivals": "Town Festivals",
+    "townFestivalsIntro": "Patron saint festivals, fairs and cabalgatas across the ten municipalities, month by month.",
+    "festivalDatesApprox": "Dates may shift a few days from year to year.",
+    "festivalSource": "Source: {fuente}",
+    "festivalSourceHint": "Opens the source in your browser",
+    "noFestivals": "No festivals on the calendar yet",
+    "fechasTexto": {
+      "senor-expiracion-lo-de-villa": "The Tuesday after January 6",
+      "carnaval-manzanillo": "February, before Lent (the date changes every year)"
+    }
+  },
+  "feria": {
+    "feriaPitch": "La Petatera, cabalgatas, mojigangos and the fair's program.",
+    "feriaHistory": "The fair",
+    "featuredEvents": "Featured events"
+  },
+  "municipios": {
+    "municipalities": "Municipalities",
+    "municipalitiesIntro": "Colima's ten municipalities, from sea to volcano.",
+    "seeMunicipality": "See municipality",
+    "mapTitle": "From sea to volcano",
+    "mapHint": "Tap a light to meet each of Colima's municipalities.",
+    "volcanoName": "Volcán de Fuego",
+    "pacificOcean": "Pacific Ocean",
+    "placesCount": "{count} places to visit",
+    "placesCountOne": "1 place to visit",
+    "lugares": {
+      "uno": "1 place to visit",
+      "otros": "{n} places to visit"
+    }
+  },
+  "rincones": {
+    "natureSpots": "Nature Spots",
+    "exploreColima": "Explore Colima"
+  },
+  "compartir": {
+    "share": "Share",
+    "inviteFriend": "Invite a friend",
+    "inviteFriendHint": "Share Colima Go on WhatsApp, Messenger or anywhere",
+    "shareInviteMessage": "Discover Colima with Colima Go: events, town festivals, rivers and beaches in one place. Download it here: {enlace}",
+    "shareItemMessage": "{detalle}\nI saw it on Colima Go, download it here: {enlace}"
+  },
+  "sugerir": {
+    "suggestShort": "Suggest",
+    "suggestButton": "Suggest a festival",
+    "suggestNewTitle": "Suggest a festival",
+    "suggestNewIntro": "Is a festival from your town missing? Tell us and we will review it before adding it to the calendar.",
+    "suggestName": "Festival name",
+    "suggestNameExample": "San Antonio festival",
+    "suggestMunicipality": "Municipality",
+    "suggestLocality": "Town or locality",
+    "suggestLocalityExample": "Zacualpan",
+    "suggestDates": "Dates",
+    "suggestDatesExample": "January 15 to 25, every year",
+    "suggestMore": "More details (optional)",
+    "suggestFixButton": "Something wrong? Fix it",
+    "suggestFixTitle": "Fix this festival",
+    "suggestFixIntro": "Tell us what changed, or that everything is right. We check it before updating the calendar.",
+    "suggestType_correcta": "The details are correct",
+    "suggestType_fechas": "The dates are different",
+    "suggestType_lugar": "The place is wrong",
+    "suggestType_cancelada": "It is no longer held",
+    "suggestType_otro": "Another correction",
+    "suggestNoteOptional": "Comment (optional)",
+    "suggestNoteDates": "What are the dates?",
+    "suggestNotePlace": "Where is it held?",
+    "suggestNoteOther": "What should be corrected?",
+    "suggestSend": "Send via Messenger",
+    "suggestMessengerNote": "Colima Go Messenger opens with your message already written. Just send it.",
+    "suggestOpenError": "Could not open Messenger. Please try again.",
+    "suggestPlaceButton": "Suggest a place",
+    "suggestPlaceTitle": "Suggest a place",
+    "suggestPlaceIntro": "Do you know a river, beach, lagoon, mountain, park, pool, historic site, tianguis or market that is not here? Tell us and we will review it before adding it.",
+    "suggestPlaceName": "Place name",
+    "suggestPlaceNameExample": "Agua Fría spa",
+    "suggestCategory": "Type of place",
+    "suggestReference": "Where it is or how to get there (optional)",
+    "suggestReferenceExample": "10 minutes from Comala, on the road to Suchitlán"
+  },
+  "contacto": {
+    "contact": "Contact",
+    "email": "Email",
+    "privacyPolicy": "Privacy policy",
+    "followUs": "Follow us",
+    "developedBy": "Developed by",
+    "aboutTitle": "About"
+  },
+  "generales": {
+    "close": "Close",
+    "goBack": "Go back",
+    "tryAgain": "Try again",
+    "somethingWentWrong": "Something went wrong",
+    "couldNotLoadContent": "Couldn't load the content. Check your connection and try again.",
+    "postNotAvailable": "This post is no longer available."
+  }
+}

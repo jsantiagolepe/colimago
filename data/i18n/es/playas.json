@@ -1,0 +1,14 @@
+{
+  "titulo": "Playas",
+  "entrada": "Arena oscura de origen volcánico, oleaje para surfear y mariscos frente al mar. Del estero de Tecuanillo a las olas de Boca de Pascuales.",
+  "contador": { "uno": "{n} lugar para visitar", "otros": "{n} lugares para visitar" },
+  "tablero": "Playas de Colima",
+  "tituloPagina": "Playas de Colima: {n} lugares frente al Pacífico",
+  "meta": "Las playas de Colima: Boca de Pascuales, Tecuanillo, La Boquita, El Paraíso y más. Arena oscura de origen volcánico, oleaje para surfear y mariscos frente al mar.",
+  "verFicha": "Ver ficha",
+  "fotoDe": "{lugar}, {municipio}",
+  "credito": "Foto: {autor} · {licencia} · Wikimedia Commons",
+  "sinFotoAria": "Sin foto",
+  "inicio": "Inicio",
+  "vacioTitulo": "No hay contenido disponible por el momento."
+}

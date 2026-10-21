@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "etiqueta": "What do you want to tell us",
+    "evento": "An event",
+    "fiesta": "A festival",
+    "lugar": "A place",
+    "general": "Tell us"
+  },
+  "evento": {
+    "titulo": "Suggest an event",
+    "intro": "Do you know about a concert, fair or event that is not in the app? Tell us and we will review it before publishing.",
+    "nombre": "Event name",
+    "nombreEjemplo": "Concert in the garden",
+    "fecha": "Date and time",
+    "fechaEjemplo": "Friday, October 16, 9 pm",
+    "lugar": "Place (optional)",
+    "lugarEjemplo": "Jardín Libertad, Colima",
+    "notas": "More details or link (optional)"
+  },
+  "general": {
+    "titulo": "Tell us",
+    "intro": "Your opinion helps us improve Colima Go. What do you think of the app? What is missing?",
+    "tipo": "What do you want to tell us?",
+    "idea": "I have an idea",
+    "falta": "Something is missing (place, festival or event)",
+    "error": "Something is not working",
+    "opinion": "What I think of the app",
+    "otro": "Something else",
+    "calificacion": "How would you rate it? (optional)",
+    "calificacionValor": "{n} of {max}",
+    "sinCalificacion": "No rating",
+    "comentario": "Tell us"
+  },
+  "foto": {
+    "titulo": "Send a photo",
+    "contexto": "Photo for: {lugar}",
+    "ayuda": "After Messenger opens, attach your photo in the conversation (if you write by email, attach it to the message)."
+  },
+  "cambio": {
+    "titulo": "Report a change",
+    "contexto": "Tianguis or market: {lugar}",
+    "campo": "What changed (day, place or hours)",
+    "ejemplo": "It now sets up on Saturdays, next to the garden"
+  },
+  "correccion": {
+    "contexto": "Festival: {nombre} · {lugar} · {fecha}"
+  },
+  "obligatorio": "Required",
+  "contador": "{n}/{max}",
+  "errores": {
+    "texto": "This is required.",
+    "opcion": "Pick an option.",
+    "resumen": "Still missing: {campos}. Fill them in and try again."
+  },
+  "vistaPrevia": "How your message will arrive",
+  "mensajeEnEspanol": "The message is always written in Spanish so our team can read it.",
+  "enviarCorreo": "Send by email",
+  "copiar": "Copy message",
+  "copiado": "Message copied",
+  "copiarError": "Could not copy. Select the message and copy it by hand.",
+  "notaEscritorio": "On a computer, Messenger sometimes opens without the text. If that happens, use “Copy message” and paste it into the conversation.",
+  "sinJs": {
+    "titulo": "Your message",
+    "ayuda": "Fill in the text below and send it: copy the message and paste it into Messenger, or use the email link.",
+    "messenger": "Open Colima Go Messenger",
+    "correo": "Send by email"
+  }
+}

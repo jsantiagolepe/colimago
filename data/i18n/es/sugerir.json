@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "etiqueta": "Qué quieres contarnos",
+    "evento": "Un evento",
+    "fiesta": "Una fiesta",
+    "lugar": "Un lugar",
+    "general": "Cuéntanos"
+  },
+  "evento": {
+    "titulo": "Sugerir un evento",
+    "intro": "¿Sabes de un concierto, feria o evento que no está en la app? Cuéntanos y lo revisamos para publicarlo.",
+    "nombre": "Nombre del evento",
+    "nombreEjemplo": "Concierto en el jardín",
+    "fecha": "Fecha y hora",
+    "fechaEjemplo": "Viernes 16 de octubre, 9 pm",
+    "lugar": "Lugar (opcional)",
+    "lugarEjemplo": "Jardín Libertad, Colima",
+    "notas": "Más datos o enlace (opcional)"
+  },
+  "general": {
+    "titulo": "Cuéntanos",
+    "intro": "Tu opinión nos ayuda a mejorar Colima Go. ¿Qué te parece la app? ¿Qué le falta?",
+    "tipo": "¿Qué quieres contarnos?",
+    "idea": "Tengo una idea",
+    "falta": "Falta algo (lugar, fiesta o evento)",
+    "error": "Algo no funciona",
+    "opinion": "Qué me parece la app",
+    "otro": "Otra cosa",
+    "calificacion": "¿Cómo la calificas? (opcional)",
+    "calificacionValor": "{n} de {max}",
+    "sinCalificacion": "Sin calificación",
+    "comentario": "Cuéntanos"
+  },
+  "foto": {
+    "titulo": "Enviar una foto",
+    "contexto": "Foto para: {lugar}",
+    "ayuda": "Después de abrir Messenger, adjunta tu foto en la conversación (si escribes por correo, adjúntala al mensaje)."
+  },
+  "cambio": {
+    "titulo": "Avisar de un cambio",
+    "contexto": "Tianguis o mercado: {lugar}",
+    "campo": "Qué cambió (día, lugar u horario)",
+    "ejemplo": "Ahora se pone los sábados, junto al jardín"
+  },
+  "correccion": {
+    "contexto": "Fiesta: {nombre} · {lugar} · {fecha}"
+  },
+  "obligatorio": "Obligatorio",
+  "contador": "{n}/{max}",
+  "errores": {
+    "texto": "Falta este dato.",
+    "opcion": "Elige una opción.",
+    "resumen": "Falta completar: {campos}. Llénalo y vuelve a intentarlo."
+  },
+  "vistaPrevia": "Así llegará tu mensaje",
+  "mensajeEnEspanol": "",
+  "enviarCorreo": "Enviar por correo",
+  "copiar": "Copiar mensaje",
+  "copiado": "Mensaje copiado",
+  "copiarError": "No se pudo copiar. Selecciona el mensaje y cópialo a mano.",
+  "notaEscritorio": "En computadora, Messenger a veces abre sin el texto. Si pasa, usa «Copiar mensaje» y pégalo en la conversación.",
+  "sinJs": {
+    "titulo": "Tu mensaje",
+    "ayuda": "Completa el texto de abajo y envíalo: copia el mensaje y pégalo en Messenger, o usa el enlace de correo.",
+    "messenger": "Abrir Messenger de Colima Go",
+    "correo": "Enviar por correo"
+  }
+}

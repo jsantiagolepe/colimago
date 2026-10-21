@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "titulo": "Colima town festivals, month by month",
+    "descripcion": "A calendar of the patron saint festivals, fairs, cabalgatas and festivals of Colima's ten municipalities: dates, place and source for each one.",
+    "detalleTitulo": "{nombre}, {lugar}",
+    "detalleDescripcion": "{nombre} ({lugar}): {fecha}. {resumen}"
+  },
+  "notaGeneral": "Dates repeat every year and can shift by a few days. Tap a festival to see its source.",
+  "navMeses": "Jump to a month",
+  "hoy": "Today",
+  "esteMes": "This month",
+  "fiestasMes": {
+    "uno": "1 festival",
+    "otros": "{n} festivals"
+  },
+  "sinFiestasMes": "No festivals listed for this month.",
+  "cabalgataTitulo": "Town Festivals",
+  "volver": "All town festivals",
+  "municipioDe": "{nombre} municipality",
+  "masFiestas": "More festivals",
+  "fuenteAbre": "opens in a new tab",
+  "soloEspanol": "Festival descriptions are written in Spanish.",
+  "listaEtiqueta": "Festivals in {mes}",
+  "fechaVariable": "Date varies"
+}

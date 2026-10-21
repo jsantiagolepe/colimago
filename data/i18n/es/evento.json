@@ -1,0 +1,18 @@
+{
+  "sinFoto": "Sin foto",
+  "altCartel": "Cartel de {titulo}",
+  "volver": "Volver",
+  "fecha": "Fecha",
+  "lugar": "Lugar",
+  "fechaHora": "{fecha} a las {hora}",
+  "rango": "Del {inicio} al {fin}",
+  "rangoHora": "{rango}, desde las {hora}",
+  "verMapa": "Ver en el mapa",
+  "yaPaso": "Este evento ya pasó",
+  "verProximos": "Ver próximos eventos",
+  "programa": "Eventos de este programa",
+  "redes": "Redes sociales",
+  "comentarios": "Comentarios",
+  "sinJs": "Activa JavaScript para leer y escribir comentarios.",
+  "verMasEventos": "Ver más eventos"
+}

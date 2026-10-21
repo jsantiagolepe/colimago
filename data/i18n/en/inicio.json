@@ -1,0 +1,54 @@
+{
+  "titulo": "Colima Go: events, beaches, rivers, festivals and municipalities of Colima",
+  "descripcion": "Discover Colima with Colima Go: a map of the ten municipalities, beaches, rivers, town festivals, tianguis markets, the Fiestas Charrotaurinas and events across the state.",
+  "letrero": "From sea to volcano",
+  "entrada": "Tap a light to meet each of Colima's municipalities.",
+  "mapa": {
+    "titulo": "The ten municipalities of Colima",
+    "etiqueta": "Fair map: the ten municipalities of Colima, from sea to volcano",
+    "ayuda": "Each light is a municipality. Use the arrow keys to move between them.",
+    "volcan": "Volcán de Fuego",
+    "oceano": "Pacific Ocean",
+    "elegido": "Selected municipality: {nombre}. {apodo}"
+  },
+  "ficha": {
+    "ver": "See municipality",
+    "verNombre": "See municipality {nombre}"
+  },
+  "lista": {
+    "etiqueta": "The ten municipalities"
+  },
+  "top10": {
+    "titulo": "Top 10",
+    "carrusel": "Colima Go Top 10",
+    "diapositiva": "Slide {n} of {total}",
+    "anterior": "Previous slide",
+    "siguiente": "Next slide",
+    "pausar": "Pause automatic advance",
+    "reanudar": "Resume automatic advance",
+    "ir": "Go to slide {n}: {titulo}",
+    "indicadores": "Slides"
+  },
+  "explora": {
+    "titulo": "Explore Colima",
+    "feria": {
+      "titulo": "Fiestas Charrotaurinas",
+      "subtitulo": "Villa de Álvarez",
+      "detalle": "La Petatera, cabalgatas, mojigangos and the fair's program."
+    },
+    "fiestasPueblo": "Town Festivals",
+    "rincones": "Nature Spots",
+    "playas": "Beaches",
+    "municipios": "Municipalities",
+    "tianguis": {
+      "titulo": "Tianguis & Markets",
+      "subtitulo": "In all 10 municipalities",
+      "detalle": "Which day and where each tianguis sets up, plus the markets that open every day."
+    }
+  },
+  "cierre": {
+    "titulo": "Take Colima wherever you go",
+    "texto": "Free for iPhone and Android: the ten municipalities, beaches, rivers and town festivals in your pocket.",
+    "sugerir": "Tell us what you think"
+  }
+}

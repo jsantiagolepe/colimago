@@ -1,0 +1,38 @@
+{
+  "letrero": "Tianguis y mercados",
+  "entrada": "Qué día y dónde se pone cada tianguis, y los mercados que abren todos los días.",
+  "sugerir": "Sugerir",
+  "tipoEtiqueta": "Tipo de lugar",
+  "tabTianguis": "Tianguis",
+  "tabMercados": "Mercados",
+  "diaEtiqueta": "Día de la semana",
+  "diaTodos": "Todos",
+  "diaTodosAria": "Todos los días: {n}",
+  "diaAria": "{dia}: {n}",
+  "hoy": "Hoy",
+  "municipioEtiqueta": "Municipio",
+  "municipioTodos": "Todos",
+  "resumenTianguis": {
+    "uno": "1 tianguis",
+    "otros": "{n} tianguis"
+  },
+  "resumenMercados": {
+    "uno": "1 mercado",
+    "otros": "{n} mercados"
+  },
+  "vacioTitulo": "No hay tianguis con esos filtros.",
+  "vacioTexto": "Prueba con otro día u otro municipio.",
+  "vacioMercados": "No hay mercados con esos filtros.",
+  "quitarFiltros": "Quitar filtros",
+  "temporada": "Temporada",
+  "tituloTianguis": "Tianguis y mercados de Colima: qué día y dónde se pone cada uno",
+  "descripcionTianguis": "Qué día y dónde se pone cada uno de los {n} tianguis de Colima, por día y municipio. Y los mercados tradicionales de los diez municipios.",
+  "tituloMercados": "Mercados de Colima: los {n} mercados de los municipios",
+  "descripcionMercados": "Los {n} mercados de Colima, por municipio: dónde están y cuándo abren. También, los tianguis de la semana.",
+  "tituloDia": "Tianguis del {dia} en Colima",
+  "tituloDiaMunicipio": "Tianguis del {dia} en {municipio}",
+  "tituloMunicipio": "Tianguis en {municipio}",
+  "tituloMercadosMunicipio": "Mercados en {municipio}",
+  "descripcionFiltrada": "{titulo}: {resumen}. Días, horarios y ubicación.",
+  "migasInicio": "Inicio"
+}

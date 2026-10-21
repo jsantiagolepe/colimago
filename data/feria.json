@@ -1,0 +1,174 @@
+{
+  "edicion": {
+    "numero": 169,
+    "anio": 2026
+  },
+  "titulo": "Fiestas Charrotaurinas",
+  "subtitulo": "Villa de Álvarez",
+  "municipioId": 2,
+  "pitch": {
+    "es": "La Petatera, cabalgatas, mojigangos y el programa de la feria.",
+    "en": "La Petatera, cabalgatas, mojigangos and the fair's program."
+  },
+  "portada": "/img/feria/portada",
+  "temas": {
+    "bienvenida": {
+      "titulo": "Bienvenida",
+      "texto": "Este año celebraremos la edición número 169 de nuestros máximos Festejos Charrotaurinos 2026 llenándonos de gran orgullo poder ser parte un año más de esta importante tradición villalvarense que nos permite acércanos con nuestra historia, venerar a nuestros ancestros y reencontrarnos con nuestras familias, amigas y amigos en medio de la algarabía, la alegría y la fiesta que caracteriza a nuestra gente.\nLa fortuna de mantener la usanza ancestral desde 1857 de construir año con año \"La Petatera\" la Artesanía Más Grande del Mundo, nos permite albergar en nuestro municipio un tesoro que es Patrimonio Cultural Inmaterial de nuestro país: México; lo que además de ser un orgullo para las y los villalvarenses también nos da una identidad cultural que ha traspasado las fronteras de todo el mundo.\nEsta gran historia de cultura y de tradición nos compromete a realizar este 2026 una edición de festejos que satisfaga las expectativas de nuestros habitantes y visitantes al ofrecer espectáculos de primer nivel, corridas formales de talla internacional y nuevas zonas de diversión para el disfrute de todas y todos.\nEstoy segura que celebraremos y disfrutaremos las fiestas de la villa en un ambiente de paz con la alegría que nos caracteriza, pero sobre todo con responsabilidad social para que juntas y juntos vivamos y seamos parte de un exitoso capítulo más de nuestras tradiciones.",
+      "foto": "/img/feria/bienvenida",
+      "autor": "Tey Gutiérrez Andrade, Presidenta Municipal de Villa de Álvarez"
+    },
+    "reina": {
+      "titulo": "Reina de los festejos",
+      "texto": "Anteponiendo el respeto y admiración, es que me permito otorgar unas palabras hacia nuestra querida Presidenta Municipal, la Maestra Esther Gutiérrez Andrade, y los integrantes del H. Ayuntamiento de Villa de Álvarez, de igual manera al Director del IFCEVA, el Lic. Petronilo Vázquez Vuelvas y al grandioso equipo de trabajo que conforman ese Instituto. Es mi deseo hacerles saber de mi agradecimiento por su acompañamiento y respaldo hacia mi persona desde que fui elegida como Reina de los Festejos Charrotaurinos 2026 en su edición 169.\nSoy Osiris Janice Flores Méndez, una mujer orgullosamente villalvarense, formada en valores, fe y amor por mi gente. Desde pequeña mi familia ha sido el pilar de mi vida, el refugio donde nacen mis sueños y la fuerza que me impulsa a no rendirme, aprendiendo de ellos que el verdadero valor de una persona no está en lo que dice, sino en lo que hace por los demás. Por eso de mi vocación como fisioterapeuta nace el deseo profundo de servir, ayudar y generar un impacto positivo en la vida de las personas. Cada paciente me recuerda la importancia de la empatía, la dedicación y el compromiso. A ti mi Villa de Álvarez, te digo que no solo eres el lugar donde nací, si no que eres parte de lo que soy. Tu gente, tus tradiciones y tu esencia viven en mí.\nEl haberme convertido en máxima soberana de tus festejos no solo es un título, si no un compromiso con la historia, cultura y con cada persona que confia en mí, recordando siempre que cada cabalgata, cada paseo de feria y cada sonrisa otorgada, abrazaran por siempre la memoria de aquella niña que alguna vez soñó con estar aquí, mirándote de frente y aceptando el compromiso de entregarme en cuerpo y alma a tus años de tradición y fiesta.\n\"Soy Osiris Janice, Reina de los Festejos Charrotaurinos Villa de Álvarez 2026 y hoy camino con la convicción de que los sueños sí se cumplen cuando se trabaja con humildad, disciplina y amor. Mi propósito es ser un ejemplo de fe, esperanza y servicio, demostrando que cuando se camina de la mano de Dios y con el corazón firme, no hay límites que no puedan superarse.",
+      "foto": "/img/feria/reina",
+      "autor": "Osiris Janice Flores Méndez, Reina de los Festejos Charrotaurinos 2026"
+    },
+    "petatera": {
+      "titulo": "La Petatera",
+      "texto": "La Petatera es una plaza de toros artesanal construida anualmente con madera, petates y mecates. Es un símbolo emblemático de los Festejos Charrotaurinos de Villa de Álvarez, Colima. Cada año, se erige esta estructura única para albergar eventos taurinos durante las festividades. La Petatera es reconocida por su diseño tradicional y su importancia cultural, siendo un patrimonio intangible que refleja la identidad y la historia de la región.",
+      "foto": "/img/feria/petatera"
+    },
+    "cabalgatas": {
+      "titulo": "Cabalgatas",
+      "texto": "Las cabalgatas son desfiles nocturnos que forman parte de los Festejos Charrotaurinos de Villa de Álvarez. Durante estas festividades, los participantes montan a caballo y recorren las calles del municipio, creando un ambiente festivo y colorido. Las cabalgatas son una tradición arraigada en la cultura local, donde se exhiben trajes típicos, música y alegría, fortaleciendo el sentido de comunidad y celebración entre los habitantes y visitantes.",
+      "foto": "/img/feria/cabalgatas"
+    },
+    "recibimientos": {
+      "titulo": "Recibimientos",
+      "texto": "Los recibimientos son eventos diurnos que se llevan a cabo durante los Festejos Charrotaurinos de Villa de Álvarez. En estos encuentros, las familias y amigos se reúnen para disfrutar de música de banda, comida tradicional y la presencia de mojigangos, que son figuras gigantes y coloridas que animan el ambiente con su baile y alegría. Los recibimientos son momentos de convivencia y celebración que fortalecen los lazos comunitarios, permitiendo a los asistentes compartir la cultura y tradiciones de la región en un ambiente festivo y familiar.",
+      "foto": "/img/feria/recibimientos"
+    },
+    "mojigangos": {
+      "titulo": "Mojigangos",
+      "texto": "Los mojigangos son figuras gigantes y coloridas que forman parte de los Festejos Charrotaurinos de Villa de Álvarez. Estas figuras, hechas de papel maché y madera, representan personajes tradicionales y folclóricos, y se utilizan para animar los eventos durante las festividades. Los mojigangos bailan al ritmo de la música de banda, creando un ambiente festivo y alegre que es característico de los recibimientos diurnos. Son una expresión cultural que refleja la identidad y la tradición de la región, siendo un elemento esencial para la celebración de los Festejos Charrotaurinos.",
+      "foto": "/img/feria/mojigangos"
+    },
+    "despedidaPayaso": {
+      "titulo": "Despedida de Payaso",
+      "texto": "La despedida de payaso es una tradición especial dentro de los Festejos Charrotaurinos de Villa de Álvarez. Este evento marca el cierre de las actividades taurinas, donde los enanitos toreros, figuras emblemáticas del festejo, participan en una ceremonia simbólica. Durante la despedida, los enanitos toreros realizan una última presentación en el ruedo, despidiéndose de la temporada taurina con alegría y respeto. Esta tradición es un momento emotivo que celebra la cultura y la historia de los Festejos Charrotaurinos, dejando un recuerdo duradero para los asistentes y fortaleciendo el sentido de comunidad entre los habitantes y visitantes.",
+      "foto": "/img/feria/despedida-payaso"
+    },
+    "enanitosToreros": {
+      "titulo": "Enanitos Toreros",
+      "texto": "Los enanitos toreros son figuras emblemáticas dentro de los Festejos Charrotaurinos de Villa de Álvarez. Estos pequeños toreros, vestidos con trajes tradicionales, participan en las corridas y eventos taurinos durante las festividades. Los enanitos toreros son conocidos por su valentía y destreza en el ruedo, a pesar de su tamaño, y se han convertido en un símbolo querido de la cultura local. Su participación añade un toque especial a las celebraciones, destacando la diversidad y riqueza de las tradiciones que conforman los Festejos Charrotaurinos.",
+      "foto": "/img/feria/enanitos-toreros"
+    }
+  },
+  "historia": {
+    "es": "Con más de 165 años de historia en honor a San Felipe de Jesús, los Festejos Charrotaurinos de Villa de Álvarez son Patrimonio Cultural Inmaterial de Colima. Su joya es {petatera}, la plaza de toros artesanal más grande del mundo, construida cada año sin clavos con madera y petate. La fiesta inicia con las {cabalgatas} nocturnas, mientras que al mediodía los {recibimientos} reúnen a las familias con música de banda y la presencia de {mojigangos}. En el ruedo se realizan jaripeos y corridas, destacando la tradicional {despedidaPayaso} con la participación de los {enanitosToreros}, que cierran los eventos taurinos.",
+    "en": "With more than 165 years of history in honor of San Felipe de Jesús, the Charrotaurino festivities of Villa de Álvarez are Intangible Cultural Heritage of Colima. Their crown jewel is {petatera}, the largest handmade bullring in the world, built every year without nails from wood and palm mats. The fiesta opens with the nighttime {cabalgatas}, while at midday the {recibimientos} gather families with brass-band music and the presence of {mojigangos}. In the ring there are jaripeos and bullfights, highlighted by the traditional {despedidaPayaso} with the {enanitosToreros}, who close the bullfighting events."
+  },
+  "enlaces": {
+    "es": {
+      "petatera": "La Petatera",
+      "cabalgatas": "cabalgatas",
+      "recibimientos": "recibimientos",
+      "mojigangos": "mojigangos",
+      "despedidaPayaso": "despedida de payaso",
+      "enanitosToreros": "enanitos toreros"
+    },
+    "en": {
+      "petatera": "La Petatera",
+      "cabalgatas": "cabalgatas",
+      "recibimientos": "recibimientos",
+      "mojigangos": "mojigangos",
+      "despedidaPayaso": "clown's farewell",
+      "enanitosToreros": "enanitos toreros"
+    }
+  },
+  "carteles": [
+    {
+      "id": "cartel-0123",
+      "mes": 1,
+      "dia": 23,
+      "nombre": "Elección de Reina",
+      "imagen": "/img/feria/cartel-0123"
+    },
+    {
+      "id": "cartel-0205",
+      "mes": 2,
+      "dia": 5,
+      "nombre": "Peregrinación / Misa",
+      "imagen": "/img/feria/cartel-0205"
+    },
+    {
+      "id": "cartel-0209",
+      "mes": 2,
+      "dia": 9,
+      "nombre": "Varios",
+      "imagen": "/img/feria/cartel-0209"
+    },
+    {
+      "id": "cartel-0210",
+      "mes": 2,
+      "dia": 10,
+      "nombre": "Varios",
+      "imagen": "/img/feria/cartel-0210"
+    },
+    {
+      "id": "cartel-0210-2",
+      "mes": 2,
+      "dia": 10,
+      "nombre": "Plaza de Toros",
+      "imagen": "/img/feria/cartel-0210-2"
+    },
+    {
+      "id": "cartel-0212",
+      "mes": 2,
+      "dia": 12,
+      "nombre": "Matrimonios Colectivos",
+      "imagen": "/img/feria/cartel-0212"
+    },
+    {
+      "id": "cartel-0213",
+      "mes": 2,
+      "dia": 13,
+      "nombre": "Cuisillos",
+      "imagen": "/img/feria/cartel-0213"
+    },
+    {
+      "id": "cartel-0214",
+      "mes": 2,
+      "dia": 14,
+      "nombre": "La Receta",
+      "imagen": "/img/feria/cartel-0214"
+    },
+    {
+      "id": "cartel-0217",
+      "mes": 2,
+      "dia": 17,
+      "nombre": "Plaza de Toros",
+      "imagen": "/img/feria/cartel-0217"
+    },
+    {
+      "id": "cartel-0220",
+      "mes": 2,
+      "dia": 20,
+      "nombre": "Capibaras",
+      "imagen": "/img/feria/cartel-0220"
+    },
+    {
+      "id": "cartel-0228",
+      "mes": 2,
+      "dia": 28,
+      "nombre": "Torneo Nacional de Ganaderías",
+      "imagen": "/img/feria/cartel-0228"
+    },
+    {
+      "id": "cartel-0307",
+      "mes": 3,
+      "dia": 7,
+      "nombre": "Luis Ángel",
+      "imagen": "/img/feria/cartel-0307"
+    }
+  ],
+  "ubicacion": {
+    "nombre": "Recinto Ferial de Villa de Álvarez",
+    "descripcion": "Desde el centro de Colima, toma la calle Francisco I. Madero hacia el poniente. El Recinto Ferial está en el libramiento Gobernadora Griselda Álvarez, a solo 5-10 minutos en auto. Durante las cabalgatas, hay cierres viales, usa rutas alternas.",
+    "lat": 19.26955663194493,
+    "lng": -103.75663029730903
+  },
+  "servicios": ["restaurant", "bathroom", "local_parking", "food_drink", "pet_friendly"],
+  "abiertoTodoElDia": true
+}

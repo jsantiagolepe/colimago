@@ -1,0 +1,22 @@
+{
+  "titulo": "Calendario",
+  "entrada": "Elige un día para ver los eventos de Colima.",
+  "metaTitulo": "Calendario de eventos de Colima",
+  "metaDescripcion": "Consulta qué eventos hay cada día en Colima: fiestas, conciertos, deportes y actividades culturales en los diez municipios.",
+  "sugerir": "Sugerir",
+  "sugerirAria": "Sugerir un evento",
+  "mesAnterior": "Mes anterior",
+  "mesSiguiente": "Mes siguiente",
+  "irAHoy": "Ir a hoy",
+  "hoy": "hoy",
+  "nEventos": {
+    "uno": "{n} evento",
+    "otros": "{n} eventos"
+  },
+  "eventosHoy": "Eventos para hoy",
+  "eventosDia": "Eventos para el {fecha}",
+  "fechaDia": "{d} de {mes}",
+  "vacioTitulo": "No hay eventos este día",
+  "vacioTexto": "Elige otro día: los que tienen eventos llevan un punto de color.",
+  "errorFeed": "No se pudieron cargar los eventos. Revisa tu conexión e inténtalo de nuevo."
+}

@@ -1,0 +1,24 @@
+{
+  "titulo": "About Colima Go",
+  "descripcion": "Colima Go invites you to discover the essence of Colima, Mexico. Built by a local, the app guides you through the state's most beautiful destinations and activities.",
+  "letrero": "About",
+  "externo": "opens in a new tab",
+  "texto": "Colima Go invites you to discover the essence of Colima, Mexico. Built by a local, this app guides you through the most beautiful destinations and the activities that make Colima a special place.",
+  "contacto": {
+    "titulo": "Contact",
+    "correo": "Email",
+    "asunto": "Question about the app",
+    "privacidad": "Privacy policy",
+    "condiciones": "Terms of use",
+    "eula": "EULA"
+  },
+  "siguenos": {
+    "titulo": "Follow us",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "correo": "Email"
+  },
+  "creditoPre": "Developed by",
+  "creditoNombre": "InfraTec"
+}

@@ -1,0 +1,24 @@
+{
+  "titulo": "Favorites",
+  "entrada": "The places and events you saved with the heart.",
+  "metaTitulo": "Favorites",
+  "metaDescripcion": "Your saved places and events in Colima.",
+  "sinSesion": "Without an account, your favorites are saved only in this browser. Sign in to sync them with your account and see them on your other devices.",
+  "conSesion": "Your favorites are synced with your account.",
+  "iniciarSesion": "Sign in",
+  "lista": "Your favorites",
+  "sinJs": "Your favorites are saved in this browser: turn on JavaScript to see them.",
+  "vacioTitulo": "No favorites yet",
+  "vacioTexto": "Tap the heart on any place or event to save it here.",
+  "explorar": "Explore",
+  "lugar": "Place",
+  "evento": "Event",
+  "borrar": "Delete",
+  "borrarAria": "Remove {titulo} from favorites",
+  "sinFoto": "No photo",
+  "cuenta": {
+    "uno": "{n} saved favorite",
+    "otros": "{n} saved favorites"
+  },
+  "fechaDia": "{mes} {d}"
+}

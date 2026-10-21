@@ -1,0 +1,64 @@
+{
+  "titulo": "Settings",
+  "descripcion": "Your account, language and appearance in Colima Go, plus how to write to us, invite a friend or rate the app.",
+  "letrero": "Settings",
+  "externo": "opens in a new tab",
+  "tarjeta": {
+    "etiqueta": "Your account",
+    "invitado": "You are a guest",
+    "invitadoTexto": "Sign in to comment and save your favorites.",
+    "iniciar": "Sign in",
+    "sinNombre": "Your Google account"
+  },
+  "colima": {
+    "titulo": "Colima Go",
+    "idea": "Got an idea?",
+    "ideaSub": "Write to us and help us improve the app together",
+    "ideaMensaje": "Tengo una idea",
+    "invitar": "Invite a friend",
+    "invitarSub": "Share Colima Go on WhatsApp, Messenger or anywhere",
+    "calificar": "Rate the app",
+    "calificarSub": "Leave us 5 stars and let's keep growing together",
+    "appStore": "Rate on the App Store",
+    "googlePlay": "Rate on Google Play",
+    "acerca": "About"
+  },
+  "preferencias": {
+    "titulo": "Preferences",
+    "idioma": "Language",
+    "idiomaActual": "English",
+    "idiomaOtro": "Español",
+    "idiomaSub": "Cambiar a Español",
+    "apariencia": "Appearance",
+    "aparienciaSub": "Choose how the fair looks: by night, by day or like your device.",
+    "grupoApariencia": "Guide appearance",
+    "sistema": "System",
+    "noche": "Night",
+    "dia": "Day",
+    "ahoraNoche": "It is showing at night now.",
+    "ahoraDia": "It is showing by day now.",
+    "cuenta": "Account",
+    "cuentaSub": "Your session and deleting your account"
+  },
+  "sesion": {
+    "titulo": "Session",
+    "cerrar": "Sign out"
+  },
+  "cuenta": {
+    "titulo": "Account",
+    "descripcion": "Your Colima Go session and how to delete your account and your data.",
+    "letrero": "Account",
+    "volver": "Back to Settings",
+    "sesionComo": "Signed in as {nombre}.",
+    "eliminar": "Delete account",
+    "eliminarTexto": "Are you sure you want to delete your account? This can't be undone and you will lose all your data.",
+    "requiereSesion": "Sign in to be able to delete your account.",
+    "iniciar": "Sign in",
+    "confirmarTitulo": "Confirm Deletion",
+    "confirmarTexto": "By pressing \"Delete\", all your information will be erased, including your user, comments and likes. Are you sure?",
+    "confirmarBoton": "Delete",
+    "eliminando": "Deleting…",
+    "exito": "Your account and your data were deleted.",
+    "error": "The account could not be deleted. Please try again."
+  }
+}

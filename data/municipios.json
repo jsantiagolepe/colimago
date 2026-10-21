@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "slug": "colima",
+    "nombre": "Colima",
+    "apodo": {
+      "es": "La capital, fundada en 1523",
+      "en": "The capital, founded in 1523"
+    },
+    "descCorta": {
+      "es": "La capital del estado combina historia y modernidad. Sus plazas, murales y arquitectura colonial se mezclan con un ambiente vibrante que la convierte en el punto de partida perfecto para conocer la esencia colimense.",
+      "en": "The state capital blends history and modernity. Its plazas, murals, and colonial architecture mix with a vibrant atmosphere, making it the perfect starting point to experience the essence of Colima."
+    },
+    "descLarga": {
+      "es": "La capital del estado es una ciudad que mezcla historia, cultura y modernidad. Fundada en 1523, conserva un centro histórico con su catedral, portales coloniales y murales que cuentan la vida de la región. Su gente alegre y sus festividades reflejan la identidad colimense. Rodeada de montañas y volcanes, Colima ofrece tanto experiencias culturales como naturales, siendo el punto de partida perfecto para descubrir todo el estado.",
+      "en": "The state capital blends history, culture, and modernity. Founded in 1523, it preserves a historic center with its cathedral, colonial arcades, and murals that tell the region’s story. Its cheerful people and lively festivals reflect Colima’s identity. Surrounded by mountains and volcanoes, Colima offers both cultural and natural experiences, making it the perfect starting point to explore the state."
+    },
+    "estampa": "/img/estampa-colima.webp",
+    "foto": "/img/m/colima.webp",
+    "mapa": {
+      "x": 0.78,
+      "y": 0.5,
+      "lado": "derecha"
+    }
+  },
+  {
+    "id": 2,
+    "slug": "villa-de-alvarez",
+    "nombre": "Villa de Álvarez",
+    "apodo": {
+      "es": "Feria de la Villa y cabalgatas",
+      "en": "Feria de la Villa and horse parades"
+    },
+    "descCorta": {
+      "es": "Junto a la capital, este municipio es famoso por sus tradiciones, como la Feria de la Villa, sus cabalgatas y su fuerte identidad cultural. Un espacio donde lo urbano y lo festivo se encuentran.",
+      "en": "Next to the capital, this municipality is famous for its traditions, such as the Feria de la Villa, horse parades, and strong cultural identity. A place where urban life and festivities come together."
+    },
+    "descLarga": {
+      "es": "Villa de Álvarez, junto a la capital, forma parte de la zona metropolitana más importante del estado. Es un municipio moderno pero profundamente ligado a sus tradiciones, como la famosa Feria de la Villa y las cabalgatas, que atraen a miles de visitantes. Su vida urbana, combinada con un fuerte sentido cultural y festivo, hacen de este lugar un espacio donde se siente la identidad y alegría de Colima en cada rincón.",
+      "en": "Villa de Álvarez, adjacent to the capital, forms part of the state’s most important metropolitan area. It is a modern municipality deeply connected to its traditions, such as the famous Feria de la Villa and horse parades, which attract thousands of visitors. Its urban life combined with a strong cultural and festive spirit makes it a place where Colima’s identity and joy are felt in every corner."
+    },
+    "estampa": "/img/estampa-villadealvarez.webp",
+    "foto": "/img/m/villa-de-alvarez.webp",
+    "mapa": {
+      "x": 0.6,
+      "y": 0.42,
+      "lado": "izquierda"
+    }
+  },
+  {
+    "id": 3,
+    "slug": "manzanillo",
+    "nombre": "Manzanillo",
+    "apodo": {
+      "es": "Capital Mundial del Pez Vela",
+      "en": "Sailfish Capital of the World"
+    },
+    "descCorta": {
+      "es": "El puerto más importante del Pacífico mexicano y un paraíso turístico con hermosas playas, bahías cristalinas y una vibrante vida nocturna. Un destino que combina comercio, aventura y descanso junto al mar.",
+      "en": "The most important port on the Mexican Pacific and a tourist paradise with beautiful beaches, crystal-clear bays, and a vibrant nightlife. A destination that combines commerce, adventure, and relaxation by the sea."
+    },
+    "descLarga": {
+      "es": "Conocido como la “Capital Mundial del Pez Vela”, Manzanillo es el puerto más importante del Pacífico y uno de los destinos turísticos más visitados de México. Sus playas y bahías son ideales para nadar, bucear, practicar surf o simplemente relajarse frente al mar. Al mismo tiempo, es una ciudad moderna y dinámica, con vida nocturna, gastronomía y comercio. Manzanillo ofrece una mezcla única entre puerto internacional y paraíso de vacaciones.",
+      "en": "Known as the “Sailfish Capital of the World,” Manzanillo is the most important port on the Pacific coast and one of Mexico’s top tourist destinations. Its beaches and bays are perfect for swimming, diving, surfing, or simply relaxing by the sea. At the same time, it’s a modern and dynamic city with nightlife, gastronomy, and commerce. Manzanillo offers a unique blend of international port and vacation paradise."
+    },
+    "estampa": "/img/estampa-manzanillo.webp",
+    "foto": "/img/m/manzanillo.webp",
+    "mapa": {
+      "x": 0.1,
+      "y": 0.66,
+      "lado": "abajo"
+    }
+  },
+  {
+    "id": 4,
+    "slug": "comala",
+    "nombre": "Comala",
+    "apodo": {
+      "es": "Pueblo Mágico, el Pueblo Blanco de América",
+      "en": "Pueblo Mágico, the White Town of America"
+    },
+    "descCorta": {
+      "es": "El famoso Pueblo Blanco de América, con calles empedradas, casas blancas y tejas rojas, es un lugar pintoresco lleno de historia, tradiciones y un ambiente tranquilo al pie del imponente Volcán de Fuego.",
+      "en": "The famous White Town of America, with cobblestone streets, white houses, and red-tiled roofs, is a picturesque place full of history, traditions, and a peaceful atmosphere at the foot of the impressive Fire Volcano."
+    },
+    "descLarga": {
+      "es": "Conocido como El Pueblo Blanco de América, Comala cautiva con sus casas blancas, techos de teja y calles empedradas. Es un pueblo mágico cargado de historia y tradición, inmortalizado en la novela Pedro Páramo. Rodeado por paisajes espectaculares al pie del Volcán de Fuego, aquí se respira tranquilidad, cultura y gastronomía típica. Sus portales, cafés y plazas lo convierten en uno de los destinos más pintorescos y entrañables de Colima.",
+      "en": "Known as the White Town of America, Comala captivates with its white houses, red-tiled roofs, and cobblestone streets. This magical town is rich in history and tradition, immortalized in the novel Pedro Páramo. Surrounded by spectacular landscapes at the foot of the Fire Volcano, it exudes tranquility, culture, and local gastronomy. Its arcades, cafes, and plazas make it one of Colima’s most picturesque and charming destinations."
+    },
+    "estampa": "/img/estampa-comala.webp",
+    "foto": "/img/m/comala.webp",
+    "mapa": {
+      "x": 0.66,
+      "y": 0.27,
+      "lado": "izquierda"
+    }
+  },
+  {
+    "id": 5,
+    "slug": "minatitlan",
+    "nombre": "Minatitlán",
+    "apodo": {
+      "es": "Entre montañas y ríos",
+      "en": "Between mountains and rivers"
+    },
+    "descCorta": {
+      "es": "Rodeado de montañas y ríos, Minatitlán es un municipio con gran riqueza natural. Su tranquilidad y entorno verde lo convierten en un destino perfecto para el ecoturismo y la aventura.",
+      "en": "Surrounded by mountains and rivers, Minatitlán is a municipality rich in natural beauty. Its tranquility and green environment make it a perfect destination for ecotourism and adventure."
+    },
+    "descLarga": {
+      "es": "Enclavado entre montañas y ríos, Minatitlán es un municipio de gran riqueza natural, ideal para quienes buscan contacto directo con la naturaleza. Sus paisajes verdes y su tranquilidad lo hacen perfecto para el ecoturismo y actividades al aire libre. Aunque pequeño en población, conserva tradiciones y un estilo de vida auténtico, que refleja la sencillez y belleza de la vida en comunidad.",
+      "en": "Nestled among mountains and rivers, Minatitlán is a municipality rich in natural beauty, perfect for those seeking direct contact with nature. Its green landscapes and peaceful environment make it ideal for eco-tourism and outdoor activities. Despite its small population, it maintains traditions and an authentic way of life, reflecting the simplicity and beauty of community living."
+    },
+    "estampa": "/img/estampa-minatitlan.webp",
+    "foto": "/img/m/minatitlan.webp",
+    "mapa": {
+      "x": 0.3,
+      "y": 0.22,
+      "lado": "abajo"
+    }
+  },
+  {
+    "id": 6,
+    "slug": "tecoman",
+    "nombre": "Tecomán",
+    "apodo": {
+      "es": "Capital Mundial del Limón",
+      "en": "World Capital of Lime"
+    },
+    "descCorta": {
+      "es": "Conocido como la “Capital Mundial del Limón”, Tecomán combina agricultura, playas cercanas y un ambiente cálido y hospitalario. Es un municipio lleno de vida y sabores únicos.",
+      "en": "Known as the “World Capital of Lime,” Tecomán combines agriculture, nearby beaches, and a warm, welcoming atmosphere. It is a municipality full of life and unique flavors."
+    },
+    "descLarga": {
+      "es": "Llamado la “Capital Mundial del Limón”, Tecomán es un municipio vibrante, lleno de vida y tradición agrícola. Sus extensos cultivos de limón le dan identidad, pero también cuenta con playas cercanas como Boca de Pascuales, famosas entre surfistas de todo el mundo. Tecomán combina hospitalidad, riqueza cultural y sabor, invitando a conocer una de las regiones más dinámicas y representativas de Colima.",
+      "en": "Known as the “World Capital of Lime,” Tecomán is a vibrant municipality full of life and agricultural tradition. Its vast lime orchards give it identity, but it also boasts nearby beaches like Boca de Pascuales, famous among surfers worldwide. Tecomán combines hospitality, cultural richness, and unique flavors, inviting visitors to discover one of Colima’s most dynamic and representative regions."
+    },
+    "estampa": "/img/estampa-tecoman.webp",
+    "foto": "/img/m/tecoman.webp",
+    "mapa": {
+      "x": 0.62,
+      "y": 0.88,
+      "lado": "derecha"
+    }
+  },
+  {
+    "id": 7,
+    "slug": "armeria",
+    "nombre": "Armería",
+    "apodo": {
+      "es": "El estero de Palo Verde",
+      "en": "The Palo Verde estuary"
+    },
+    "descCorta": {
+      "es": "Entre palmeras y playas tranquilas, Armería es un destino ideal para descansar frente al mar. Conocido por el estero de Palo Verde y su cálida hospitalidad, este rincón costero te invita a relajarte y disfrutar de la naturaleza.",
+      "en": "Among palm trees and calm beaches, Armería is an ideal destination to relax by the sea. Known for the Palo Verde estuary and its warm hospitality, this coastal spot invites you to unwind and enjoy nature."
+    },
+    "descLarga": {
+      "es": "Armería es un destino costero que combina playas tranquilas, esteros y palmares infinitos. Sus costas, como El Paraíso y Cuyutlán, son perfectas para quienes buscan relajarse junto al mar o practicar deportes acuáticos. Además, su famoso estero Palo Verde es hogar de aves y paisajes únicos que invitan al ecoturismo. Un lugar que refleja la esencia cálida y hospitalaria de la costa colimense.",
+      "en": "Armería is a coastal destination that combines calm beaches, estuaries, and endless palm groves. Its shores, like El Paraíso and Cuyutlán, are perfect for those looking to relax by the sea or enjoy water sports. The famous Palo Verde estuary is home to unique birds and landscapes, inviting eco-tourism. A place that reflects the warm and welcoming essence of Colima’s coast."
+    },
+    "estampa": "/img/estampa-armeria.webp",
+    "foto": "/img/m/armeria.webp",
+    "mapa": {
+      "x": 0.4,
+      "y": 0.8,
+      "lado": "abajo"
+    }
+  },
+  {
+    "id": 8,
+    "slug": "coquimatlan",
+    "nombre": "Coquimatlán",
+    "apodo": {
+      "es": "Tradición agrícola",
+      "en": "Agricultural tradition"
+    },
+    "descCorta": {
+      "es": "Un pueblo con encanto rural, rodeado de campos fértiles y tradiciones agrícolas. Su ambiente sereno y hospitalidad lo convierten en un sitio ideal para conocer la vida sencilla y auténtica de Colima.",
+      "en": "A rural town with charm, surrounded by fertile fields and agricultural traditions. Its serene environment and hospitality make it an ideal place to discover the simple and authentic life of Colima."
+    },
+    "descLarga": {
+      "es": "Este municipio destaca por su fuerte tradición agrícola y su historia ligada al ferrocarril. Sus paisajes rurales, cultivos de maíz, caña y ganado muestran la vida sencilla y auténtica de Colima. Coquimatlán es también un espacio de convivencia, donde las tradiciones y la hospitalidad de su gente invitan al visitante a descubrir un lado más íntimo y tranquilo del estado.",
+      "en": "This municipality stands out for its strong agricultural tradition and its history tied to the railroad. Its rural landscapes, with corn, sugarcane, and livestock farms, show the simple and authentic life of Colima. Coquimatlán is also a place for community and tradition, where the hospitality of its people invites visitors to experience a more intimate and peaceful side of the state."
+    },
+    "estampa": "/img/estampa-coquimatlan.webp",
+    "foto": "/img/m/coquimatlan.webp",
+    "mapa": {
+      "x": 0.47,
+      "y": 0.57,
+      "lado": "abajo"
+    }
+  },
+  {
+    "id": 9,
+    "slug": "cuauhtemoc",
+    "nombre": "Cuauhtémoc",
+    "apodo": {
+      "es": "El valle central",
+      "en": "The central valley"
+    },
+    "descCorta": {
+      "es": "Ubicado en el valle central, este municipio ofrece paisajes naturales, clima fresco y una fuerte tradición agrícola. Es un lugar perfecto para quienes buscan tranquilidad y contacto con la tierra.",
+      "en": "Located in the central valley, this municipality offers natural landscapes, cool weather, and a strong agricultural tradition. It is a perfect place for those seeking tranquility and a connection with the land."
+    },
+    "descLarga": {
+      "es": "Ubicado en el corazón del valle central, Cuauhtémoc combina un agradable clima con paisajes de montañas y campos fértiles. Sus tradiciones agrícolas, junto con su cercanía a la capital, lo convierten en un punto ideal para el turismo rural y de descanso. Es un municipio en el que la modernidad convive con la naturaleza, ofreciendo tanto actividades al aire libre como experiencias culturales propias de la región.",
+      "en": "Located in the heart of the central valley, Cuauhtémoc offers pleasant weather with views of mountains and fertile fields. Its agricultural traditions, along with its proximity to the capital, make it ideal for rural tourism and relaxation. Here, modernity coexists with nature, offering outdoor activities as well as cultural experiences unique to the region."
+    },
+    "estampa": "/img/estampa-cuahutemoc.webp",
+    "foto": "/img/m/cuauhtemoc.webp",
+    "mapa": {
+      "x": 0.9,
+      "y": 0.3,
+      "lado": "abajo"
+    }
+  },
+  {
+    "id": 10,
+    "slug": "ixtlahuacan",
+    "nombre": "Ixtlahuacán",
+    "apodo": {
+      "es": "Refugio entre montañas",
+      "en": "A refuge among the mountains"
+    },
+    "descCorta": {
+      "es": "Pequeño y acogedor, Ixtlahuacán es un refugio de tranquilidad en medio de montañas y paisajes naturales. Ideal para quienes disfrutan del turismo rural y de la calma de la provincia.",
+      "en": "Small and cozy, Ixtlahuacán is a peaceful refuge amid mountains and natural landscapes. Ideal for those who enjoy rural tourism and the calm of the countryside."
+    },
+    "descLarga": {
+      "es": "Pequeño pero encantador, Ixtlahuacán es un refugio de paz entre montañas, valles y paisajes naturales. Su ambiente rural lo hace especial para quienes buscan desconectarse del ritmo urbano y disfrutar de la provincia en su estado más auténtico. Con tradiciones arraigadas y gente hospitalaria, este municipio ofrece una experiencia genuina de la vida sencilla en Colima, rodeada de naturaleza y tranquilidad.",
+      "en": "Small but charming, Ixtlahuacán is a peaceful refuge among mountains, valleys, and natural landscapes. Its rural setting makes it ideal for those seeking to disconnect from urban life and enjoy the countryside in its most authentic state. With rooted traditions and welcoming people, this municipality provides a genuine experience of simple living in Colima, surrounded by nature and calm."
+    },
+    "estampa": "/img/estampa-ixtlahuacan.webp",
+    "foto": "/img/m/ixtlahuacan.webp",
+    "mapa": {
+      "x": 0.84,
+      "y": 0.74,
+      "lado": "abajo"
+    }
+  }
+]

@@ -1,0 +1,41 @@
+{
+  "letrero": "Municipios",
+  "entrada": "Los diez municipios de Colima, del mar al volcán.",
+  "listaTitulo": "Los diez municipios de Colima: del mar al volcán",
+  "listaDescripcion": "Colima, Villa de Álvarez, Manzanillo, Comala, Minatitlán, Tecomán, Armería, Coquimatlán, Cuauhtémoc e Ixtlahuacán: conoce sus lugares, tianguis y eventos, del mar al volcán.",
+  "listaEtiqueta": "Los diez municipios de Colima",
+  "verMunicipio": "Ver municipio",
+  "lugares": {
+    "uno": "1 lugar para visitar",
+    "otros": "{n} lugares para visitar"
+  },
+  "inicio": "Inicio",
+  "migas": "Ruta de navegación",
+  "verTodos": "Ver todos los municipios",
+  "postalAlt": "Foto de {nombre}",
+  "salto": "En esta página",
+  "regla": "Los diez municipios",
+  "reglaEtiqueta": "Municipios de Colima",
+  "secciones": {
+    "eventos": "Eventos",
+    "atracciones": "Atracciones",
+    "tianguis": "Tianguis y mercados",
+    "hoteles": "Hoteles",
+    "restaurantes": "Restaurantes"
+  },
+  "hotelesVacio": "¿Conoces uno?",
+  "hotelesVacioEnlace": "Déjanos saber",
+  "restaurantesVacio": "Aún no hay restaurantes registrados aquí.",
+  "atraccionesVacio": "Aún no hay atracciones registradas aquí.",
+  "sinDescripcion": "Sin descripción por ahora.",
+  "otrosMunicipios": "Otros municipios",
+  "anterior": "Anterior",
+  "siguiente": "Siguiente",
+  "tituloDetalle": "{nombre}, Colima: qué hacer, {cosas} | Colima Go",
+  "tituloDetalleSimple": "{nombre}, Colima: qué hacer, lugares y eventos | Colima Go",
+  "descripcionDetalle": "{nombre}, Colima: {apodo}. {texto}",
+  "ogAlt": "{lugar}, {nombre}",
+  "mexico": "México",
+  "yEventos": "y eventos",
+  "temporada": "Temporada"
+}

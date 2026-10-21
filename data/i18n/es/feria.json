@@ -1,0 +1,28 @@
+{
+  "meta": {
+    "titulo": "Fiestas Charrotaurinas de Villa de Álvarez {anio}",
+    "descripcion": "La Petatera, las cabalgatas, los mojigangos y el programa de la edición {numero} de las Fiestas Charrotaurinas de Villa de Álvarez, Colima: carteles y ubicación."
+  },
+  "edicion": "Edición {numero} · {anio}",
+  "portadaAlt": "Programa general de las Fiestas de la Villa {anio}, edición {numero}: del 6 al 23 de febrero",
+  "ampliarPrograma": "Ampliar el programa",
+  "leerTema": "Leer: {titulo}",
+  "autorEdicion": "Mensaje de la edición",
+  "masSobre": "Más sobre la feria",
+  "masSobreTexto": "Los mensajes de la edición y cada tradición, completos.",
+  "carteles": {
+    "anterior": "Carteles anteriores",
+    "siguiente": "Más carteles",
+    "ampliar": "Ampliar el cartel de {nombre}, {fecha}"
+  },
+  "visor": {
+    "cerrar": "Cerrar",
+    "anterior": "Cartel anterior",
+    "siguiente": "Cartel siguiente",
+    "contador": "{n} de {total}",
+    "zoom": "Toca la imagen para verla a su tamaño",
+    "zoomQuitar": "Toca la imagen para ajustarla a la pantalla"
+  },
+  "soloEspanol": "",
+  "cartelAlt": "Cartel: {nombre}, {fecha}"
+}

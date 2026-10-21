@@ -1,0 +1,75 @@
+{
+  "favoritoAgregado": "Added to favorites",
+  "favoritoQuitado": "Removed from favorites",
+  "favoritoError": "Couldn't save the favorite. Please try again.",
+  "pitchMeGusta": "Sign in to like.",
+  "pitchComentar": "Sign in to comment.",
+  "pitchGeneral": "Sign in to save your favorites, comment and like places in Colima.",
+  "pitchAcciones": "Sign in to use this feature.",
+  "errorGenerico": "Something went wrong, please try again.",
+  "demasiadas": "Too many requests, please try again in a moment.",
+  "sinConexion": "No connection. Check your internet and try again.",
+  "cerrar": "Close",
+  "cancelar": "Cancel",
+  "login": {
+    "titulo": "Sign in",
+    "aceptoPre": "By continuing you accept the",
+    "politicas": "privacy policy",
+    "condiciones": "terms of use",
+    "y": "and the",
+    "cargando": "Verifying…",
+    "error": "Couldn't sign in. Please try again.",
+    "bloqueado": "Google sign-in couldn't load. Check your connection or turn off ad blockers for this site.",
+    "bienvenido": "Welcome: {nombre}",
+    "cerrada": "Signed out",
+    "expirada": "Your session expired, please sign in again."
+  },
+  "compartir": {
+    "titulo": "Share",
+    "copiar": "Copy link",
+    "copiado": "Link copied",
+    "whatsapp": "WhatsApp",
+    "facebook": "Facebook",
+    "x": "X",
+    "correo": "Email"
+  },
+  "comentarios": {
+    "titulo": "Comments",
+    "vacioTitulo": "No comments yet",
+    "vacioTexto": "Be the first to share how it went.",
+    "placeholder": "Write a comment...",
+    "enviar": "Send",
+    "eliminar": "Delete",
+    "borrado": "Comment deleted",
+    "errorCargar": "Couldn't load the comments.",
+    "errorEnviar": "Couldn't send the comment.",
+    "errorBorrar": "Couldn't delete the comment.",
+    "limite": "A comment can't exceed 500 characters.",
+    "publicado": "Comment posted",
+    "iniciarSesion": "Sign in to comment"
+  },
+  "menu": {
+    "reportar": "Report",
+    "ocultar": "Hide post"
+  },
+  "reportar": {
+    "titulo": "Report",
+    "motivo": "Select a reason",
+    "motivos": ["Spam", "Bullying or harassment", "False information", "Violence or threats", "Hate speech", "Self-harm or suicide", "Gender-based violence", "Inappropriate content", "Sexual content"],
+    "otro": "Other kind of report",
+    "enviar": "Send report",
+    "enviado": "Thank you, we'll review the report.",
+    "limite": "A report can't exceed 1000 characters.",
+    "vacio": "Pick a reason or tell us what happened.",
+    "error": "Couldn't send the report."
+  },
+  "ocultar": {
+    "listo": "Done, you won't see this post again.",
+    "error": "Couldn't hide the post."
+  },
+  "favoritos": {
+    "quitarTitulo": "Remove from favorites?",
+    "quitarTexto": "Are you sure you want to remove this favorite?",
+    "quitar": "Remove"
+  }
+}

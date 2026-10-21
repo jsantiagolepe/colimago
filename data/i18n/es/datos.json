@@ -1,0 +1,235 @@
+{
+  "categorias": {
+    "rios": {
+      "nombre": "Ríos"
+    },
+    "playas": {
+      "nombre": "Playas"
+    },
+    "lagunas": {
+      "nombre": "Lagunas"
+    },
+    "montanas": {
+      "nombre": "Montañas"
+    },
+    "arqueologia": {
+      "nombre": "Arqueología"
+    },
+    "parques": {
+      "nombre": "Parques"
+    },
+    "patrimonio": {
+      "nombre": "Patrimonio"
+    },
+    "balnearios": {
+      "nombre": "Balnearios"
+    },
+    "rutas": {
+      "nombre": "Rutas"
+    },
+    "tianguis": {
+      "nombre": "Tianguis"
+    },
+    "mercados": {
+      "nombre": "Mercados"
+    },
+    "hoteles": {
+      "nombre": "Hoteles"
+    },
+    "restaurantes": {
+      "nombre": "Restaurantes"
+    }
+  },
+  "serviciosNombre": {
+    "bathroom": "Baños",
+    "camping": "Camping",
+    "directions_boat": "Barco",
+    "directions_car": "Auto",
+    "equipment_rental": "Renta de equipo",
+    "food_drink": "Comida y bebidas",
+    "hotel": "Hotel",
+    "local_parking": "Estacionamiento",
+    "picnic_area": "Área de picnic",
+    "pool": "Piscina",
+    "restaurant": "Restaurante",
+    "sports_tennis": "Tenis",
+    "tour_guide": "Guía turístico",
+    "wifi": "Wi-Fi",
+    "umbrella": "Enramadas",
+    "fishing": "Pesca",
+    "bbq": "Asadores",
+    "cabain_rental": "Cabañas",
+    "kayak_rental": "Lanchas",
+    "pet_friendly": "Mascotas",
+    "hiking": "Senderismo",
+    "nature_people": "Observación",
+    "mountain_biking": "Ciclismo",
+    "park": "Parque",
+    "landscape": "Paisaje",
+    "cleaning_services": "Limpieza",
+    "wi-fi": "Wi-Fi",
+    "fireplace": "Fogata",
+    "cabin_rental": "Cabañas",
+    "local_dining": "Comida"
+  },
+  "diasLargos": ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+  "diasCortos": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+  "mesesLargos": [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre"
+  ],
+  "mesesCortos": ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"],
+  "lugar": {
+    "services": "Servicios",
+    "description": "Descripción",
+    "video": "Video",
+    "location": "Ubicación",
+    "schedules": "Horarios",
+    "openallday": "Abierto todo el día",
+    "today": "Hoy",
+    "watchVideo": "Ver video en TikTok",
+    "socialMedia": "Redes sociales",
+    "photoBy": "Foto: {autor} · {licencia} · Wikimedia Commons",
+    "sendPhotoTitle": "¿Tienes una foto de este lugar?",
+    "sendPhotoText": "Aún no tenemos una foto real de este lugar. Si tienes una, envíanosla y la publicamos con tu crédito.",
+    "sendPhotoButton": "Enviar una foto",
+    "noDescription": "Sin descripción por ahora.",
+    "noContentAvailable": "No hay contenido disponible por el momento.",
+    "attractions": "Atracciones",
+    "hotels": "Hoteles",
+    "restaurants": "Restaurantes",
+    "activities": "Actividades",
+    "noRestaurantsAvailable": "Aún no hay restaurantes registrados aquí.",
+    "noAttractionsAvailable": "Aún no hay atracciones registradas aquí.",
+    "noActivities": "Aún no hay actividades registradas.",
+    "knowOne": "¿Conoces uno?",
+    "letUsKnow": "Déjanos saber",
+    "recommendPlaceMessage": "Hola 👋 Quiero recomendar un lugar para Colima Go.",
+    "cerrado": "Cerrado",
+    "horarioPorConfirmar": "Horario por confirmar",
+    "verEnMaps": "Ver en Maps"
+  },
+  "tianguis": {
+    "markets": "Tianguis y mercados",
+    "tianguis": "Tianguis",
+    "marketsOnly": "Mercados",
+    "marketsSubtitle": "En los 10 municipios",
+    "marketsPitch": "Qué día y dónde se pone cada tianguis, y los mercados que abren todos los días.",
+    "filterAll": "Todos",
+    "everyDay": "Todos los días",
+    "marketsEmpty": "No hay tianguis con esos filtros.",
+    "marketsEmptyHint": "Prueba con otro día u otro municipio.",
+    "marketsFilterDay": "Día de la semana",
+    "marketsFilterMunicipality": "Municipio",
+    "marketsNoteTitle": "¿Cambió algo?",
+    "marketsNoteText": "Los tianguis a veces cambian de día, de lugar o de horario. Si notas algo distinto, avísanos para corregirlo.",
+    "marketsReportButton": "Avisar de un cambio",
+    "temporada": "Temporada"
+  },
+  "fiestas": {
+    "townFestivals": "Fiestas del Pueblo",
+    "townFestivalsIntro": "Fiestas patronales, ferias y cabalgatas de los diez municipios, mes por mes.",
+    "festivalDatesApprox": "Las fechas pueden variar unos días de un año a otro.",
+    "festivalSource": "Fuente: {fuente}",
+    "festivalSourceHint": "Abre la fuente en el navegador",
+    "noFestivals": "Aún no hay fiestas en el calendario",
+    "fechasTexto": {
+      "senor-expiracion-lo-de-villa": "El martes siguiente al 6 de enero",
+      "carnaval-manzanillo": "Febrero, antes de Cuaresma (la fecha cambia cada año)"
+    }
+  },
+  "feria": {
+    "feriaPitch": "La Petatera, cabalgatas, mojigangos y el programa de la feria.",
+    "feriaHistory": "La feria",
+    "featuredEvents": "Eventos destacados"
+  },
+  "municipios": {
+    "municipalities": "Municipios",
+    "municipalitiesIntro": "Los diez municipios de Colima, del mar al volcán.",
+    "seeMunicipality": "Ver municipio",
+    "mapTitle": "Del mar al volcán",
+    "mapHint": "Toca un foco para conocer cada municipio de Colima.",
+    "volcanoName": "Volcán de Fuego",
+    "pacificOcean": "Océano Pacífico",
+    "placesCount": "{count} lugares para visitar",
+    "placesCountOne": "1 lugar para visitar",
+    "lugares": {
+      "uno": "1 lugar para visitar",
+      "otros": "{n} lugares para visitar"
+    }
+  },
+  "rincones": {
+    "natureSpots": "Rincones Naturales",
+    "exploreColima": "Explora Colima"
+  },
+  "compartir": {
+    "share": "Compartir",
+    "inviteFriend": "Invitar a un amigo",
+    "inviteFriendHint": "Comparte Colima Go por WhatsApp, Messenger o donde quieras",
+    "shareInviteMessage": "Descubre Colima con Colima Go: eventos, fiestas del pueblo, ríos y playas en un solo lugar. Descárgala aquí: {enlace}",
+    "shareItemMessage": "{detalle}\nLo vi en Colima Go, descárgala aquí: {enlace}"
+  },
+  "sugerir": {
+    "suggestShort": "Sugerir",
+    "suggestButton": "Sugerir una fiesta",
+    "suggestNewTitle": "Sugerir una fiesta",
+    "suggestNewIntro": "¿Falta una fiesta de tu pueblo? Cuéntanos y la revisamos para agregarla al calendario.",
+    "suggestName": "Nombre de la fiesta",
+    "suggestNameExample": "Fiestas de San Antonio",
+    "suggestMunicipality": "Municipio",
+    "suggestLocality": "Pueblo o localidad",
+    "suggestLocalityExample": "Zacualpan",
+    "suggestDates": "Fechas",
+    "suggestDatesExample": "Del 15 al 25 de enero, cada año",
+    "suggestMore": "Más datos (opcional)",
+    "suggestFixButton": "¿Algo está mal? Corregir",
+    "suggestFixTitle": "Corregir esta fiesta",
+    "suggestFixIntro": "Dinos qué cambió o si todo está bien. Lo revisamos antes de actualizar el calendario.",
+    "suggestType_correcta": "Los datos son correctos",
+    "suggestType_fechas": "Las fechas son otras",
+    "suggestType_lugar": "El lugar está mal",
+    "suggestType_cancelada": "Ya no se celebra",
+    "suggestType_otro": "Otra corrección",
+    "suggestNoteOptional": "Comentario (opcional)",
+    "suggestNoteDates": "¿Qué fechas son?",
+    "suggestNotePlace": "¿Dónde se celebra?",
+    "suggestNoteOther": "¿Qué hay que corregir?",
+    "suggestSend": "Enviar por Messenger",
+    "suggestMessengerNote": "Se abre Messenger de Colima Go con tu mensaje ya escrito. Solo falta enviarlo.",
+    "suggestOpenError": "No se pudo abrir Messenger. Intenta de nuevo.",
+    "suggestPlaceButton": "Sugerir un lugar",
+    "suggestPlaceTitle": "Sugerir un lugar",
+    "suggestPlaceIntro": "¿Conoces un río, playa, laguna, montaña, parque, balneario, sitio histórico, tianguis o mercado que no está aquí? Cuéntanos y lo revisamos para agregarlo.",
+    "suggestPlaceName": "Nombre del lugar",
+    "suggestPlaceNameExample": "Balneario Agua Fría",
+    "suggestCategory": "Tipo de lugar",
+    "suggestReference": "Dónde queda o cómo llegar (opcional)",
+    "suggestReferenceExample": "A 10 minutos de Comala, por el camino a Suchitlán"
+  },
+  "contacto": {
+    "contact": "Contacto",
+    "email": "Correo",
+    "privacyPolicy": "Política de privacidad",
+    "followUs": "Síguenos",
+    "developedBy": "Desarrollado por",
+    "aboutTitle": "Acerca de"
+  },
+  "generales": {
+    "close": "Cerrar",
+    "goBack": "Volver",
+    "tryAgain": "Reintentar",
+    "somethingWentWrong": "Algo salió mal",
+    "couldNotLoadContent": "No se pudo cargar el contenido. Revisa tu conexión e inténtalo de nuevo.",
+    "postNotAvailable": "Esta publicación ya no está disponible."
+  }
+}

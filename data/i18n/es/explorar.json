@@ -1,0 +1,38 @@
+{
+  "titulo": "Explorar",
+  "entrada": "Lo que está pasando en Colima: eventos, fiestas y lugares para visitar.",
+  "metaTitulo": "Explorar: eventos, fiestas y lugares de Colima",
+  "metaDescripcion": "Lo que está pasando en Colima: eventos próximos, fiestas del pueblo y lugares para visitar en los diez municipios, en un solo feed.",
+  "sugerir": "Sugerir",
+  "sugerirAria": "Sugerir un evento",
+  "feedAria": "Eventos y lugares",
+  "filtros": "Filtros",
+  "mostrar": "Mostrar",
+  "proximos": "Próximos",
+  "todos": "Todos",
+  "municipio": "Municipio",
+  "todosMunicipios": "Todos los municipios",
+  "mostrando": "Mostrando",
+  "quitarFiltros": "Quitar filtros",
+  "eventosProximos": {
+    "uno": "{n} evento próximo",
+    "otros": "{n} eventos próximos"
+  },
+  "eventosPasados": {
+    "uno": "{n} ya pasó",
+    "otros": "{n} ya pasaron"
+  },
+  "hoy": "Hoy",
+  "yaPaso": "Ya pasó",
+  "lugar": "Lugar",
+  "sugerirTitulo": "¿Sabes de un evento?",
+  "sugerirTexto": "Cuéntanos de un concierto, feria o evento que no está aquí y lo revisamos para publicarlo.",
+  "sugerirBoton": "Sugerir un evento",
+  "paginas": "Páginas del feed",
+  "anteriores": "Anteriores",
+  "paginaDe": "Página {n} de {total}",
+  "sinEventos": "No hay eventos próximos por ahora. Mientras tanto, estos lugares te esperan.",
+  "sinEventosMunicipio": "No hay eventos próximos en {municipio} por ahora. Mientras tanto, estos lugares te esperan.",
+  "errorFeed": "No se pudo cargar el contenido. Revisa tu conexión e inténtalo de nuevo.",
+  "vacio": "No hay contenido disponible por el momento."
+}

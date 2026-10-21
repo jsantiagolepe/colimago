@@ -1,0 +1,24 @@
+{
+  "titulo": "Favoritos",
+  "entrada": "Los lugares y eventos que guardaste con el corazón.",
+  "metaTitulo": "Favoritos",
+  "metaDescripcion": "Tus lugares y eventos guardados de Colima.",
+  "sinSesion": "Sin sesión, tus favoritos se guardan solo en este navegador. Inicia sesión para sincronizarlos con tu cuenta y verlos en tus otros dispositivos.",
+  "conSesion": "Tus favoritos se sincronizan con tu cuenta.",
+  "iniciarSesion": "Iniciar sesión",
+  "lista": "Tus favoritos",
+  "sinJs": "Tus favoritos se guardan en este navegador: activa JavaScript para verlos.",
+  "vacioTitulo": "No hay favoritos disponibles",
+  "vacioTexto": "Toca el corazón en cualquier lugar o evento para guardarlo aquí.",
+  "explorar": "Explorar",
+  "lugar": "Lugar",
+  "evento": "Evento",
+  "borrar": "Borrar",
+  "borrarAria": "Borrar {titulo} de favoritos",
+  "sinFoto": "Sin foto",
+  "cuenta": {
+    "uno": "{n} favorito guardado",
+    "otros": "{n} favoritos guardados"
+  },
+  "fechaDia": "{d} de {mes}"
+}

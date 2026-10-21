@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "titulo": "Fiestas del Pueblo de Colima, mes por mes",
+    "descripcion": "Calendario de las fiestas patronales, ferias, cabalgatas y festivales de los diez municipios de Colima: fechas, lugar y fuente de cada una.",
+    "detalleTitulo": "{nombre}, {lugar}",
+    "detalleDescripcion": "{nombre} ({lugar}): {fecha}. {resumen}"
+  },
+  "notaGeneral": "Las fechas se repiten cada año y pueden moverse unos días. Toca una fiesta para ver su fuente.",
+  "navMeses": "Ir a un mes",
+  "hoy": "Hoy",
+  "esteMes": "Este mes",
+  "fiestasMes": {
+    "uno": "1 fiesta",
+    "otros": "{n} fiestas"
+  },
+  "sinFiestasMes": "Sin fiestas registradas en este mes.",
+  "cabalgataTitulo": "Fiestas del Pueblo",
+  "volver": "Todas las fiestas del pueblo",
+  "municipioDe": "Municipio de {nombre}",
+  "masFiestas": "Más fiestas",
+  "fuenteAbre": "se abre en otra pestaña",
+  "soloEspanol": "",
+  "listaEtiqueta": "Fiestas de {mes}",
+  "fechaVariable": "Fecha variable"
+}

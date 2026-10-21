@@ -1,0 +1,14 @@
+{
+  "titulo": "Beaches",
+  "entrada": "Dark volcanic sand, surf-ready waves and fresh seafood by the sea. From the Tecuanillo estuary to the waves of Boca de Pascuales.",
+  "contador": { "uno": "{n} place to visit", "otros": "{n} places to visit" },
+  "tablero": "Beaches in Colima",
+  "tituloPagina": "Beaches in Colima: {n} places on the Pacific",
+  "meta": "Colima's beaches: Boca de Pascuales, Tecuanillo, La Boquita, El Paraíso and more. Dark volcanic sand, surf-ready waves and fresh seafood by the sea.",
+  "verFicha": "See details",
+  "fotoDe": "{lugar}, {municipio}",
+  "credito": "Photo: {autor} · {licencia} · Wikimedia Commons",
+  "sinFotoAria": "No photo",
+  "inicio": "Home",
+  "vacioTitulo": "No content available right now."
+}

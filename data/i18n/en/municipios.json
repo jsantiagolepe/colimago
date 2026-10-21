@@ -1,0 +1,41 @@
+{
+  "letrero": "Municipalities",
+  "entrada": "Colima's ten municipalities, from sea to volcano.",
+  "listaTitulo": "The ten municipalities of Colima: from sea to volcano",
+  "listaDescripcion": "Colima, Villa de Álvarez, Manzanillo, Comala, Minatitlán, Tecomán, Armería, Coquimatlán, Cuauhtémoc and Ixtlahuacán: explore each one's places, tianguis and events, from sea to volcano.",
+  "listaEtiqueta": "The ten municipalities of Colima",
+  "verMunicipio": "See municipality",
+  "lugares": {
+    "uno": "1 place to visit",
+    "otros": "{n} places to visit"
+  },
+  "inicio": "Home",
+  "migas": "Breadcrumb",
+  "verTodos": "See all municipalities",
+  "postalAlt": "Photo of {nombre}",
+  "salto": "On this page",
+  "regla": "The ten municipalities",
+  "reglaEtiqueta": "Municipalities of Colima",
+  "secciones": {
+    "eventos": "Events",
+    "atracciones": "Attractions",
+    "tianguis": "Tianguis & markets",
+    "hoteles": "Hotels",
+    "restaurantes": "Restaurants"
+  },
+  "hotelesVacio": "Know one?",
+  "hotelesVacioEnlace": "Let us know",
+  "restaurantesVacio": "No restaurants listed here yet.",
+  "atraccionesVacio": "No attractions listed here yet.",
+  "sinDescripcion": "No description for now.",
+  "otrosMunicipios": "Other municipalities",
+  "anterior": "Previous",
+  "siguiente": "Next",
+  "tituloDetalle": "{nombre}, Colima: things to do, {cosas} | Colima Go",
+  "tituloDetalleSimple": "{nombre}, Colima: things to do, places and events | Colima Go",
+  "descripcionDetalle": "{nombre}, Colima: {apodo}. {texto}",
+  "ogAlt": "{lugar}, {nombre}",
+  "mexico": "Mexico",
+  "yEventos": "and events",
+  "temporada": "Seasonal"
+}
