@@ -1,0 +1,42 @@
+/* Listas agrupadas (GrupoLista / FilaLista de la app): Ajustes y Acerca de.
+   Grupo sobre --suelo-2 con radio 14; fila con casilla de icono, título,
+   valor o subtítulo, flecha y divisor. Usa solo tokens de guia.css. */
+
+.grupo { margin: 0 0 28px; }
+.grupo-titulo {
+  margin: 0 0 8px 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px;
+  letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-tenue);
+}
+.grupo-filas { background: var(--suelo-2); border: 1px solid var(--linea); border-radius: 14px; overflow: hidden; }
+.fila-item + .fila-item { border-top: 1px solid var(--linea); }
+.fila {
+  display: flex; align-items: center; gap: 14px; width: 100%; min-height: 56px; padding: 10px 14px 10px 12px;
+  background: none; border: 0; color: var(--tinta); text-align: left; text-decoration: none; font: inherit;
+  transition: background-color .2s, transform .15s;
+}
+a.fila, button.fila { cursor: pointer; }
+a.fila:hover, button.fila:hover { background: var(--suelo-3); }
+a.fila:active, button.fila:active { transform: scale(.985); }
+.fila:focus-visible { outline: 3px solid var(--foco); outline-offset: -3px; border-radius: 0; }
+.fila-icono {
+  display: grid; place-items: center; flex: none; width: 34px; height: 34px; border-radius: 8px;
+  background: var(--suelo-3); color: var(--tinta-suave); transition: background-color .2s, color .2s;
+}
+a.fila:hover .fila-icono, button.fila:hover .fila-icono { background: var(--suelo-2); color: var(--tinta); }
+.fila-texto { display: grid; flex: 1; min-width: 0; gap: 1px; }
+.fila-titulo { font-weight: 600; font-size: 17px; line-height: 1.25; overflow-wrap: anywhere; }
+.fila-sub { color: var(--tinta-tenue); font-size: 14.5px; line-height: 1.35; overflow-wrap: anywhere; }
+.fila-fin { display: flex; align-items: center; flex: none; gap: 10px; color: var(--tinta-tenue); }
+.fila-valor { font-size: 15.5px; }
+.fila-flecha { width: 20px; height: 20px; transition: transform .2s var(--curva-rebote); }
+a.fila:hover .fila-flecha { transform: translateX(2px); }
+.fila-peligro .fila-titulo, .fila-peligro .fila-icono { color: var(--peligro-texto); }
+.fila-peligro .fila-icono { background: color-mix(in srgb, var(--bandera) 16%, transparent); }
+.fila-con-control { flex-wrap: wrap; row-gap: 12px; align-items: flex-start; padding-block: 14px; }
+.fila-con-control .fila-icono { margin-top: 1px; }
+.fila-control { flex: 0 0 100%; padding-left: 48px; }
+
+@media (max-width: 520px) {
+  .fila { gap: 12px; padding-inline: 10px 12px; }
+  .fila-control { padding-left: 0; }
+}

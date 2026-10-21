@@ -1,0 +1,290 @@
+/* Inicio (/inicio): la calle de la feria.
+   Mapa de feria (focos colgados de cables), ficha del municipio, Top 10 y el
+   tendedero de accesos. Usa los tokens de guia.css; lo propio del mapa se
+   define aquí como propiedades --m-* en los tres bloques (noche, día, sistema). */
+
+/* ============ Colores propios del mapa ============ */
+:root {
+  --m-luz-suave: color-mix(in srgb, var(--foco) 78%, var(--suelo)); /* foco no elegido: 3/4 de luz */
+  --m-borde-suave: color-mix(in srgb, #ffe29a 65%, var(--cable));
+  --m-borde-elegido: #ffe29a;
+  --m-halo: 0 0 .5em .06em rgba(255,195,71,.9), 0 0 1.9em .5em rgba(255,170,40,.28);
+  --m-halo-suave: 0 0 .4em .04em rgba(255,195,71,.5), 0 0 1.4em .3em rgba(255,170,40,.14);
+  --m-anillo: var(--foco);
+  --m-costa: color-mix(in srgb, var(--lona) 90%, transparent);
+  --m-cable: color-mix(in srgb, var(--cable) 70%, var(--tinta-tenue));
+}
+:root[data-tema="claro"] {
+  --m-luz-suave: var(--vidrio);
+  --m-borde-suave: var(--cable);
+  --m-borde-elegido: var(--foco-hondo);
+  --m-halo: none;
+  --m-halo-suave: none;
+  --m-anillo: var(--foco-hondo);
+  --m-costa: color-mix(in srgb, var(--lona) 55%, transparent);
+  --m-cable: var(--cable);
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-tema="oscuro"]) {
+    --m-luz-suave: var(--vidrio);
+    --m-borde-suave: var(--cable);
+    --m-borde-elegido: var(--foco-hondo);
+    --m-halo: none;
+    --m-halo-suave: none;
+    --m-anillo: var(--foco-hondo);
+    --m-costa: color-mix(in srgb, var(--lona) 55%, transparent);
+    --m-cable: var(--cable);
+  }
+}
+
+/* La escala del foco se anima como número, para que bombilla y etiqueta la sigan */
+@property --k { syntax: '<number>'; inherits: true; initial-value: 1; }
+
+.inicio { padding-bottom: 0; }
+
+/* ============ Mapa de feria + ficha ============ */
+.mapa-seccion { padding: 0 0 16px; }
+.escena { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: 32px 48px; align-items: center; }
+
+.mapa { --bw: 16px; container-type: inline-size; position: relative; min-width: 0; }
+@supports (width: 1cqw) { .mapa { --bw: clamp(13px, 2.8cqw, 24px); } }
+.mapa-lienzo { position: relative; width: 100%; aspect-ratio: 1 / .8; }
+.mapa-cables, .volcan { position: absolute; }
+.mapa-cables { inset: 0; width: 100%; height: 100%; z-index: 1; }
+.mapa-cables .cable { fill: none; stroke: var(--m-cable); stroke-width: 1.5px; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.mapa-cables .costa { fill: none; stroke: var(--m-costa); stroke-width: 2px; stroke-dasharray: 5 6; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+
+/* Volcán de Fuego: triángulo con cráter bajo su foco */
+.volcan { left: 86%; top: 7%; width: 20%; height: auto; z-index: 0; translate: -50% calc(var(--bw) * .28); overflow: visible; }
+.volcan path, .volcan ellipse { vector-effect: non-scaling-stroke; stroke: var(--m-cable); stroke-width: 1.5px; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+.volcan .volcan-cuerpo { fill: var(--suelo-3); }
+.volcan .volcan-crater { fill: var(--suelo); }
+.volcan .volcan-ladera { opacity: .55; stroke-dasharray: 2 5; }
+
+.oceano {
+  position: absolute; left: 5%; top: 90%; z-index: 1; pointer-events: none;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .24em; text-transform: uppercase; color: var(--tinta-tenue);
+}
+
+/* Foco de un municipio (enlace sin JS, botón con JS), área táctil de 48 px */
+.nodo, .nodo-volcan {
+  --k: 1; position: absolute; left: calc(var(--x) * 100%); top: calc(var(--y) * 100%);
+  width: 48px; height: 48px; margin: -24px 0 0 -24px; display: grid; place-items: center;
+  padding: 0; border: 0; background: none; color: inherit; font: inherit; text-decoration: none; z-index: 3;
+  transition: --k .4s var(--curva-rebote);
+  -webkit-tap-highlight-color: transparent;
+}
+.nodo { cursor: pointer; }
+.nodo-volcan { pointer-events: none; }
+.nodo.activo { --k: 1.48; z-index: 4; }
+@media (hover: hover) {
+  .nodo:not(.activo):hover { --k: 1.3; }
+}
+.nodo:focus-visible { outline: 3px solid var(--foco); outline-offset: -3px; border-radius: 50%; }
+.nodo:active { --k: 1.2; }
+.nodo.activo:active { --k: 1.4; }
+
+/* La bombilla: pera con casquillo, como los focos de las guirnaldas */
+.bombilla {
+  position: relative; display: block; flex: none; font-size: var(--bw); width: 1em; height: 1.364em;
+  border-radius: 45% 45% 50% 50% / 38% 38% 62% 62%;
+  background: var(--m-luz-suave); border: 1.5px solid var(--m-borde-suave); box-shadow: var(--m-halo-suave);
+  scale: var(--k, 1);
+  transition: background-color .5s ease, border-color .5s ease, box-shadow .8s ease;
+}
+.bombilla::before { /* casquillo */
+  content: ''; position: absolute; left: .227em; top: -.37em; width: .455em; height: .37em; border-radius: 1px; background: var(--cable);
+}
+.nodo.activo .bombilla { background: var(--foco); border-color: var(--m-borde-elegido); box-shadow: var(--m-halo); }
+.nodo.activo .bombilla::after { /* anillo del municipio elegido */
+  content: ''; position: absolute; left: 50%; top: 50%; width: 2.3em; height: 2.3em; margin: -1.15em 0 0 -1.15em;
+  border: 2px solid var(--m-anillo); border-radius: 50%; pointer-events: none;
+}
+.foco-cable { --k: .6; position: absolute; left: calc(var(--x) * 100%); top: calc(var(--y) * 100%); z-index: 2; width: 0; height: 0; pointer-events: none; }
+.foco-cable .bombilla { position: absolute; left: -.5em; top: -.68em; }
+.nodo-volcan .bombilla { background: var(--m-luz-suave); }
+
+/* Con JS los focos arrancan apagados y se encienden de la costa al volcán */
+.js .mapa:not(.encendido) .bombilla { background: var(--vidrio); border-color: var(--cable); box-shadow: none; }
+.js .mapa:not(.encendido) .bombilla::after { opacity: 0; }
+.mapa.encendido:not(.listo) .bombilla { transition-delay: calc(var(--i, 0) * 70ms); }
+.mapa.encendido:not(.listo) .bombilla::after { transition: opacity .4s ease calc(var(--i, 0) * 70ms); }
+
+/* Etiquetas: el lado sale de los datos */
+.etiqueta {
+  position: absolute; white-space: nowrap; padding: 3px 6px 3px; border-radius: 4px;
+  background: color-mix(in srgb, var(--suelo) 82%, transparent);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; line-height: 1; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--tinta-suave); transition: color .25s;
+  --sep: calc(var(--bw) * .5 * var(--k) + 7px);
+}
+.nodo.activo .etiqueta { color: var(--tinta); }
+@media (hover: hover) { .nodo:hover .etiqueta { color: var(--tinta); } }
+[data-lado="derecha"] > .etiqueta { left: calc(50% + var(--sep)); top: 50%; translate: 0 -50%; }
+[data-lado="izquierda"] > .etiqueta { right: calc(50% + var(--sep)); top: 50%; translate: 0 -50%; }
+[data-lado="abajo"] > .etiqueta { top: calc(50% + var(--bw) * .68 * var(--k) + 5px); left: 50%; translate: -50% 0; }
+.etiqueta-fija { color: var(--tinta-suave); }
+
+/* Ficha del municipio elegido: las diez comparten la misma celda */
+.fichas { display: grid; background: var(--suelo-2); border: 1px solid var(--linea); border-radius: 14px; padding: 30px 30px 32px; min-width: 0; }
+.ficha {
+  grid-area: 1 / 1; display: flex; flex-direction: column; align-items: flex-start; min-width: 0;
+  visibility: hidden; opacity: 0; transition: opacity .25s ease, visibility 0s linear .25s;
+}
+.ficha.activa { visibility: visible; opacity: 1; transition: opacity .25s ease; }
+.ficha.entra { animation: ficha-entra .5s var(--curva-salida) both; }
+@keyframes ficha-entra { from { opacity: 0; transform: translateY(8px); } }
+.ficha-medallon { width: 128px; margin-bottom: 24px; box-shadow: var(--sombra-flotante); }
+.ficha-medallon img { width: 100%; height: 100%; object-fit: cover; }
+.ficha-nombre { font-size: clamp(34px, 3.6vw, 52px); line-height: 1; overflow-wrap: anywhere; }
+.ficha-apodo { margin: 12px 0 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .05em; text-transform: uppercase; color: var(--acento-texto); }
+.ficha-desc { color: var(--tinta-suave); font-size: 17px; max-width: 34em; }
+.ficha-ver { margin-top: auto; align-self: flex-start; }
+.ficha-texto { margin-bottom: 26px; }
+.ficha-ver .ic { transition: transform .25s var(--curva-rebote); }
+.ficha-ver:hover .ic { transform: translateX(3px); }
+
+/* La lista de los diez municipios: la misma información en enlaces simples */
+.lista-municipios { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 40px; }
+
+/* ============ Top 10: carrusel ============ */
+.top10 { padding-top: 56px; }
+.carrusel { --diap-ancho: min(520px, 82%); --diap-gap: 24px; position: relative; }
+.carrusel-pista {
+  position: relative; display: flex; gap: var(--diap-gap); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+  margin-right: calc(50% - 50vw); padding-bottom: 6px;
+}
+.carrusel-pista::-webkit-scrollbar { display: none; }
+.carrusel-pista::after { content: ''; flex: 0 0 calc(100% - var(--diap-ancho) - var(--diap-gap)); } /* deja alinear la última a la izquierda */
+.diapositiva { flex: 0 0 var(--diap-ancho); min-width: 0; scroll-snap-align: start; }
+.diap-enlace { display: block; text-decoration: none; border-radius: 10px; }
+.diap-foto { display: block; aspect-ratio: 5 / 4; }
+.diap-foto img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.diap-enlace:hover .diap-foto img, .diap-enlace:focus-visible .diap-foto img { transform: scale(1.04); }
+.diap-titulo {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-top: 14px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.08; letter-spacing: .01em;
+}
+.diap-fecha { display: block; margin-top: 4px; color: var(--tinta-suave); font-size: 15.5px; }
+.carrusel-mando { display: flex; align-items: center; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; margin-top: 14px; }
+.carrusel-botones { display: flex; gap: 8px; }
+.carrusel-botones .btn-icono { width: 44px; height: 44px; }
+.carrusel-focos { display: flex; flex-wrap: wrap; justify-content: flex-end; }
+.carrusel-foco { display: grid; place-items: center; width: 24px; height: 44px; padding: 0; border: 0; background: none; }
+.carrusel-foco .foco-solo { margin-top: 0; transition: background-color .4s, box-shadow .6s, transform .3s var(--curva-rebote); }
+.carrusel-foco:hover .foco-solo { transform: scale(1.18); }
+.carrusel-foco[aria-current="true"] .foco-solo { background: var(--foco); border-color: #ffe29a; box-shadow: 0 0 6px 1px rgba(255,195,71,.9), 0 0 18px 4px rgba(255,170,40,.25); }
+:root[data-tema="claro"] .carrusel-foco[aria-current="true"] .foco-solo { box-shadow: none; border-color: var(--foco-hondo); }
+@media (prefers-color-scheme: light) { :root:not([data-tema="oscuro"]) .carrusel-foco[aria-current="true"] .foco-solo { box-shadow: none; border-color: var(--foco-hondo); } }
+
+.inicio-anuncio { margin-top: 36px; margin-bottom: 16px; }
+
+/* ============ Explora Colima: el tendedero ============ */
+.explora { padding: 40px 0 24px; }
+.tendedero { display: grid; gap: 28px; }
+.piso { display: grid; gap: 28px 44px; align-items: start; }
+.piso-a { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); }
+.piso-b { grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr); }
+
+/* Cada tramo es un cable con focos del que cuelgan sus piezas */
+.tramo { position: relative; padding-top: 54px; min-width: 0; }
+.tramo > .guirnalda { position: absolute; left: 0; right: 0; top: 0; --alto: 40px; }
+.tramo-tablas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.tramo-tablas > .cuelga + .cuelga { margin-top: 38px; }
+.piso-b .tramo-cartel { margin-top: 16px; }
+
+/* Lo que cuelga: dos cuerdas en el 18 % y el 82 %; su largo lo calcula el script */
+.cuelga { position: relative; display: block; text-decoration: none; color: var(--tinta); rotate: var(--giro, 0deg); transform-origin: 50% calc(var(--cuerda, 40) * -1px); }
+.cuelga::before, .cuelga::after { content: ''; position: absolute; bottom: 100%; width: 1.5px; background: var(--m-cable); }
+.cuelga::before { left: 18%; height: calc(var(--cuerda-a, 40) * 1px); }
+.cuelga::after { right: 18%; height: calc(var(--cuerda-b, 40) * 1px); }
+.cuelga:hover, .cuelga:focus-visible { animation: columpio 1.6s cubic-bezier(.3,.7,.4,1) both; }
+.cuelga:focus-visible { outline: none; }
+@keyframes columpio {
+  0% { rotate: var(--giro, 0deg); }
+  18% { rotate: calc(var(--giro, 0deg) + 3.2deg); }
+  40% { rotate: calc(var(--giro, 0deg) - 2.2deg); }
+  62% { rotate: calc(var(--giro, 0deg) + 1deg); }
+  82% { rotate: calc(var(--giro, 0deg) - .4deg); }
+  100% { rotate: var(--giro, 0deg); }
+}
+
+/* Tabla: foto 4:5 sobre una franja pintada con el nombre */
+.tabla-cara { display: block; border-radius: 6px; overflow: hidden; box-shadow: var(--sombra); background: var(--lona-hondo); }
+.tabla img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.tabla-nombre {
+  display: block; padding: 11px 8px 12px; text-align: center; background: var(--tinta-letrero, var(--lona)); color: var(--letra-tabla);
+  font-family: 'Shrikhand', serif; font-size: clamp(15px, 1.45vw, 21px); line-height: 1.05; text-wrap: balance;
+}
+.tabla:hover img, .tabla:focus-visible img { transform: scale(1.06); }
+.tabla:focus-visible .tabla-cara { outline: 3px solid var(--foco); outline-offset: 4px; }
+
+/* Cartel: el programa pegado en la pared, portada vertical + texto */
+.cartel {
+  display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 26px; align-items: center; padding: 18px 64px 18px 18px;
+  border-radius: 6px; background: var(--tinta-letrero, var(--lona)); color: var(--letra-tabla); box-shadow: var(--sombra);
+}
+.cartel-portada { display: block; aspect-ratio: 913 / 1400; border-radius: 4px; overflow: hidden; background: rgba(0,0,0,.25); }
+.cartel-portada img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.cartel:hover .cartel-portada img, .cartel:focus-visible .cartel-portada img { transform: scale(1.05); }
+.cartel-texto { display: block; min-width: 0; }
+.cartel-titulo { display: block; font-size: clamp(30px, 3.2vw, 46px); text-wrap: balance; }
+.cartel-sub { display: block; margin-top: 12px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .08em; text-transform: uppercase; }
+.cartel-detalle { display: block; margin-top: 8px; font-size: 17px; line-height: 1.45; max-width: 30em; }
+.cartel-ir {
+  position: absolute; right: 18px; bottom: 18px; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--letra-tabla) 55%, transparent); transition: background-color .2s, color .2s, transform .25s var(--curva-rebote);
+}
+.cartel:hover .cartel-ir, .cartel:focus-visible .cartel-ir { background: var(--letra-tabla); color: var(--tinta-letrero, var(--lona)); transform: translateX(3px); }
+.cartel:focus-visible { outline: none; }
+.cartel:focus-visible { box-shadow: var(--sombra), 0 0 0 3px var(--suelo), 0 0 0 6px var(--foco); }
+
+/* ============ Cierre ============ */
+.cierre { padding: 24px 0 96px; text-align: center; }
+.cierre .guirnalda { --alto: 80px; margin-bottom: 48px; }
+.cierre .perro { display: block; width: 72px; height: 72px; margin: 0 auto 26px; background: var(--acento-texto); }
+.cierre h2 { font-size: clamp(42px, 6.4vw, 96px); max-width: 12ch; margin: 0 auto; }
+.cierre-texto { color: var(--tinta-suave); font-size: 19px; max-width: 30em; margin: 22px auto 34px; }
+.cierre .tiendas { justify-content: center; }
+.cierre-enlace { margin-top: 24px; }
+.cierre-enlace a { display: inline-block; padding: 10px 8px; font-size: 17px; font-weight: 500; color: var(--acento-texto); }
+
+/* ============ Escritorio medio y móvil ============ */
+@media (max-width: 1080px) {
+  .escena { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 28px 32px; }
+  .fichas { padding: 26px 24px 28px; }
+  .cartel { grid-template-columns: 150px minmax(0, 1fr); gap: 20px; padding-right: 58px; }
+}
+@media (max-width: 860px) {
+  .escena { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .mapa-lienzo { aspect-ratio: 1 / .98; }
+  .etiqueta { font-size: 12.5px; padding: 2px 4px; letter-spacing: .05em; }
+  .oceano { font-size: 12.5px; letter-spacing: .2em; }
+  .fichas { padding: 26px 22px 28px; }
+  .ficha-medallon { width: 108px; margin-bottom: 20px; }
+  .lista-municipios { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding: 0 16px 6px; margin-top: 28px; scroll-snap-type: x proximity; scroll-padding-inline: 16px; }
+  .lista-municipios > * { flex: none; scroll-snap-align: start; }
+  .top10 { padding-top: 40px; }
+  .carrusel-mando { margin-top: 10px; }
+  .explora { padding-top: 28px; }
+  .piso { display: contents; }
+  .tendedero { gap: 12px; }
+  .tramo-tablas { gap: 14px; }
+  .tramo-tablas > .cuelga + .cuelga { margin-top: 26px; }
+  .piso-b .tramo-cartel { margin-top: 0; }
+  .cartel { grid-template-columns: 92px minmax(0, 1fr); gap: 14px; padding: 12px 52px 12px 12px; }
+  .cartel-titulo { font-size: clamp(24px, 7vw, 32px); }
+  .cartel-sub { font-size: 14px; margin-top: 8px; }
+  .cartel-detalle { font-size: 15px; }
+  .cartel-ir { right: 12px; bottom: 12px; width: 34px; height: 34px; }
+  .cierre { padding-bottom: 72px; }
+}
+@media (max-width: 520px) {
+  .ficha-nombre { font-size: 38px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ficha.entra { animation: none; }
+  .cuelga:hover, .cuelga:focus-visible { animation: none; }
+  .carrusel-pista { scroll-behavior: auto; }
+}

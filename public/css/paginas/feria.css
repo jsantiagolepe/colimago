@@ -1,0 +1,179 @@
+/* Fiestas Charrotaurinas: la ficha de la feria.
+   El programa general cuelga de un cable como un cartel pegado en la calle;
+   debajo de él, las dos tablas (Bienvenida y Reina), la historia con sus
+   enlaces subrayados, la tira de carteles y lo práctico de la visita. */
+
+/* ============ Lo que cuelga: un cable recto y los hilos de cada pieza ============ */
+.colgado { position: relative; }
+.colgado::before { /* el cable */
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--cable);
+}
+.colgado-programa, .tabla-col {
+  padding-top: 34px;
+  background:
+    linear-gradient(var(--cable), var(--cable)) 18% 0 / 1px 34px no-repeat,
+    linear-gradient(var(--cable), var(--cable)) 82% 0 / 1px 34px no-repeat;
+}
+
+/* ============ Composición: el programa a la izquierda, la feria a la derecha ============ */
+.feria { display: grid; grid-template-columns: minmax(0, 440px) minmax(0, 1fr); gap: 0 72px; align-items: start; padding-bottom: 72px; }
+.feria-programa { position: sticky; top: calc(var(--barra-alto) + 20px); }
+.feria-info { min-width: 0; max-width: 760px; }
+.feria-info > * + * { margin-top: 48px; }
+
+.programa { position: relative; display: block; border-radius: 6px; overflow: hidden; box-shadow: var(--sombra); background: var(--lona-hondo); rotate: .6deg; }
+.programa img { width: 100%; height: auto; }
+.programa-ampliar {
+  position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 14px 8px 12px;
+  border-radius: 999px; background: rgba(10,12,18,.72); color: #f6f5f1;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14.5px; letter-spacing: .06em; text-transform: uppercase;
+  transition: background-color .2s;
+}
+.programa:hover .programa-ampliar, .programa:focus-visible .programa-ampliar { background: rgba(10,12,18,.9); }
+.programa:focus-visible { outline-offset: 4px; }
+
+.feria-sub { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 22px; margin-top: 12px; }
+.feria-info > .feria-sub { margin-top: 12px; }
+.feria-municipio {
+  display: inline-flex; align-items: center; gap: 4px; text-decoration: none; color: var(--acento-texto);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: .03em; text-transform: uppercase; line-height: 1.1;
+}
+.feria-municipio:hover { text-decoration: underline; text-underline-offset: 5px; }
+.feria-municipio .ic { transition: transform .2s var(--curva-salida); }
+.feria-municipio:hover .ic { transform: translateX(3px); }
+
+/* ---- Las dos tablas colgantes ---- */
+.tablas { display: flex; flex-wrap: wrap; gap: 0 24px; margin-top: 28px; }
+.tabla-col { position: relative; width: min(220px, calc(50% - 12px)); }
+.tablas::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--cable); }
+.tabla-colgante { display: block; color: var(--tinta); text-decoration: none; transform-origin: 50% -34px; rotate: -1deg; }
+.tabla-col:nth-child(2) .tabla-colgante { rotate: .9deg; }
+.tabla-cara { display: block; border-radius: 6px; overflow: hidden; box-shadow: var(--sombra); background: var(--lona-hondo); }
+.tabla-cara img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+.tabla-nombre {
+  display: block; padding: 11px 8px 12px; text-align: center; background: var(--lona); color: var(--letra-tabla);
+  font-size: clamp(15px, 1.45vw, 21px); line-height: 1.05;
+}
+.tabla-bandera .tabla-nombre { background: var(--bandera); }
+.tabla-colgante:hover .tabla-cara img, .tabla-colgante:focus-visible .tabla-cara img { transform: scale(1.06); }
+.tabla-colgante:hover, .tabla-colgante:focus-visible { animation: columpio 1.6s cubic-bezier(.3,.7,.4,1) both; }
+.tabla-colgante:focus-visible { outline: none; }
+.tabla-colgante:focus-visible .tabla-cara { outline: 3px solid var(--foco); outline-offset: 4px; }
+@keyframes columpio {
+  0% { transform: rotate(0); } 18% { transform: rotate(4deg); } 40% { transform: rotate(-2.6deg); }
+  62% { transform: rotate(1.3deg); } 82% { transform: rotate(-.5deg); } 100% { transform: rotate(0); }
+}
+.tabla-autor { display: block; margin-top: 12px; max-width: 220px; font-size: 13.5px; line-height: 1.4; color: var(--tinta-tenue); }
+
+/* ---- La feria: el párrafo con sus enlaces ---- */
+.feria-historia .lectura { font-size: 18.5px; }
+.feria-enlace {
+  color: var(--acento-texto); font-weight: 500; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px;
+  transition: text-decoration-color .2s, color .2s;
+}
+.feria-enlace:hover { text-decoration-color: transparent; }
+.feria-historia .nota { margin-top: 14px; }
+
+/* ---- Más sobre la feria: cada contenido largo, desplegable ---- */
+.feria-mas .seccion-titulo { margin-bottom: 6px; }
+.temas { margin-top: 18px; border-top: 1px solid var(--linea); }
+.tema { border-bottom: 1px solid var(--linea); }
+.tema summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 58px; padding: 6px 4px; list-style: none;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 23px; letter-spacing: .01em; transition: color .2s;
+}
+.tema summary::-webkit-details-marker { display: none; }
+.tema summary:hover { color: var(--acento-texto); }
+.tema summary:focus-visible { outline-offset: -3px; }
+.tema summary .ic { color: var(--tinta-tenue); transition: rotate .25s var(--curva-salida); }
+.tema[open] summary .ic { rotate: 180deg; }
+.tema-cuerpo { display: grid; gap: 20px; padding: 6px 4px 30px; scroll-margin-top: 90px; }
+.tema-foto { margin: 0; }
+.tema-foto img { width: 100%; max-width: 560px; height: auto; border-radius: 10px; background: var(--suelo-3); }
+.tema-cuerpo .lectura { font-size: 17px; }
+.tema-firma { color: var(--tinta-tenue); font-style: italic; font-size: 15px; }
+.hoja-cuerpo .tema-cuerpo { padding: 4px 0 8px; }
+.hoja-cuerpo .tema-foto img { max-width: 100%; }
+
+/* ============ Eventos destacados: la tira de carteles ============ */
+.carteles { padding: 8px 0 64px; }
+.carteles-cabeza { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 14px; }
+.carteles-cabeza .seccion-titulo { margin-bottom: 0; }
+.carteles-flechas { display: flex; gap: 8px; }
+.carteles-tira {
+  display: grid; grid-auto-flow: column; grid-auto-columns: clamp(190px, 17vw, 250px); gap: 22px; overflow-x: auto; padding: 10px 0 20px;
+  scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+}
+@media (min-width: 861px) { .carteles-tira { margin-right: calc(50% - 50vw); padding-right: calc(50vw - 50%); scroll-padding-right: calc(50vw - 50%); } }
+.cartel { scroll-snap-align: start; min-width: 0; }
+.cartel a { display: block; color: var(--tinta); text-decoration: none; }
+.cartel a:focus-visible { outline-offset: 5px; }
+.cartel .marco img { object-fit: cover; }
+.cartel a:hover .marco > img, .cartel a:focus-visible .marco > img { transform: scale(1.05); }
+.cartel-fecha { display: block; margin-top: 12px; font-size: 15px; letter-spacing: .08em; color: var(--acento-texto); }
+.cartel-nombre { display: block; margin-top: 2px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.1; text-wrap: balance; }
+
+/* ============ La visita: ubicación, servicios y horario ============ */
+.visita { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 44px 80px; padding: 52px 0 56px; border-top: 1px solid var(--linea); }
+.visita-nombre { margin-bottom: 12px; font-size: 28px; }
+.visita-mapa { margin-top: 26px; }
+.visita-bloque + .visita-bloque { margin-top: 34px; }
+.servicios { display: flex; flex-wrap: wrap; gap: 10px; }
+.servicio {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 6px 18px 6px 14px;
+  border: 1px solid var(--linea); border-radius: 999px; color: var(--tinta-suave); font-size: 16px;
+}
+.servicio .ic { color: var(--acento-texto); }
+
+/* ============ Visor de carteles (dialog nativo; sus colores no cambian con el tema) ============ */
+dialog.visor {
+  position: fixed; inset: 0; width: 100%; max-width: none; height: 100%; max-height: none; margin: 0; padding: 0; border: 0;
+  background: transparent; color: #f6f5f1; overflow: hidden;
+}
+dialog.visor::backdrop { background: rgba(6,8,12,.92); }
+dialog.visor[open] { animation: aparece .2s ease both; }
+.visor-marco { position: absolute; inset: 0; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+.visor-barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px 6px; }
+.visor-contador { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #bfc3cd; }
+.visor-btn {
+  width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%;
+  background: rgba(242,241,238,.14); color: #f6f5f1; transition: background-color .2s, transform .15s;
+}
+.visor-btn:hover { background: rgba(242,241,238,.26); }
+.visor-btn:active { transform: scale(.92); }
+.visor-btn[disabled] { opacity: .35; pointer-events: none; }
+.visor-escena { position: relative; display: flex; overflow: auto; padding: 0 64px; }
+.visor-img { display: block; margin: auto; max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; cursor: zoom-in; border-radius: 4px; }
+dialog.visor.ampliada .visor-img { max-width: none; max-height: none; cursor: zoom-out; }
+.visor-flecha { position: absolute; top: 50%; translate: 0 -50%; z-index: 2; }
+.visor-ant { left: 10px; } .visor-sig { right: 10px; }
+.visor-pie { padding: 10px 20px 18px; text-align: center; }
+.visor-titulo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.15; }
+.visor-fecha { margin-right: 10px; color: var(--foco); }
+.visor-ayuda { margin-top: 2px; font-size: 13.5px; color: #8f96a6; }
+
+/* ============ Responsive ============ */
+@media (max-width: 1080px) {
+  .feria { grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 0 44px; }
+  .visita { gap: 40px 48px; }
+}
+@media (max-width: 860px) {
+  .feria { grid-template-columns: minmax(0, 1fr); padding-bottom: 48px; }
+  .feria-programa { position: relative; top: 0; max-width: 420px; }
+  .feria-info > * + * { margin-top: 40px; }
+  .feria-info > .feria-sub { margin-top: 24px; }
+  .carteles-tira { grid-auto-columns: 62%; margin-inline: -20px; padding-inline: 20px; scroll-padding-left: 20px; }
+  .visita { grid-template-columns: minmax(0, 1fr); padding: 40px 0 44px; }
+  .feria-historia .lectura { font-size: 17.5px; }
+  .visor-escena { padding: 0 8px; }
+  .visor-flecha { top: auto; bottom: 8px; translate: 0 0; }
+  .visor-pie { padding-inline: 64px; }
+}
+@media (max-width: 520px) {
+  .carteles-tira { margin-inline: -16px; padding-inline: 16px; scroll-padding-left: 16px; }
+  .tabla-col { width: calc(50% - 8px); }
+  .tablas { gap: 0 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tabla-colgante:hover, .tabla-colgante:focus-visible { animation: none; }
+}

@@ -1,0 +1,60 @@
+/* Ajustes (/ajustes) y Cuenta (/ajustes/cuenta). Las filas agrupadas están en filas.css. */
+
+/* ============ Ajustes: tarjeta de cuenta a un lado, grupos al otro ============ */
+.ajustes { display: grid; grid-template-columns: minmax(280px, 340px) minmax(0, 1fr); gap: 0 56px; align-items: start; padding-bottom: 80px; }
+.ajustes-grupos { min-width: 0; }
+
+.cuenta-tarjeta {
+  position: sticky; top: calc(var(--barra-alto) + 24px); padding: 30px 24px 28px;
+  background: var(--suelo-2); border: 1px solid var(--linea); border-radius: 14px; text-align: center;
+}
+.cuenta-estado { display: flex; flex-direction: column; align-items: center; }
+.cuenta-medallon {
+  display: grid; place-items: center; width: 96px; height: 96px; margin-bottom: 20px; overflow: hidden; border-radius: 50%;
+  background: var(--suelo-3); border: 1px solid var(--linea);
+}
+.cuenta-medallon .perro { width: 58px; height: 58px; background: var(--tinta-suave); }
+.cuenta-medallon.con-foto { border-color: transparent; outline: 2px solid var(--foco); outline-offset: 3px; background: var(--suelo-3); }
+.cuenta-medallon img { width: 100%; height: 100%; object-fit: cover; }
+.cuenta-titulo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.1; letter-spacing: .01em; overflow-wrap: anywhere; max-width: 100%; }
+.cuenta-texto { margin: 8px 0 22px; max-width: 22em; color: var(--tinta-suave); font-size: 16.5px; }
+.cuenta-correo { margin: 6px 0 0; font-size: 15.5px; overflow-wrap: anywhere; color: var(--tinta-tenue); }
+.cuenta-estado .btn-pintado { margin-top: 2px; }
+
+.fila-estado { margin: 10px 0 0; color: var(--tinta-tenue); font-size: 14px; }
+.fila-estado:empty { display: none; }
+.fila-calificar .btn-icono { width: 44px; height: 44px; }
+
+/* Apariencia: tres opciones de una lista de radios nativa */
+.seg { gap: 6px; }
+.seg .opcion span { min-height: 44px; padding-inline: 18px; }
+
+/* ============ Cuenta: zona de peligro ============ */
+.cuenta-volver { padding-inline: 4px; }
+.cuenta-pagina { max-width: 760px; padding-bottom: 88px; }
+.cuenta-sesion-como { margin-bottom: 16px; color: var(--tinta-suave); font-size: 16px; overflow-wrap: anywhere; }
+.zona-peligro {
+  display: flex; align-items: flex-start; gap: 22px; padding: 28px;
+  background: var(--suelo-2); border: 1px solid color-mix(in srgb, var(--bandera) 50%, transparent); border-radius: 14px;
+}
+.zp-icono {
+  display: grid; place-items: center; flex: none; width: 64px; height: 64px; border-radius: 50%;
+  background: color-mix(in srgb, var(--bandera) 16%, transparent); color: var(--peligro-texto);
+}
+.zp-icono .ic { width: 28px; height: 28px; }
+.zp-cuerpo { min-width: 0; }
+.zp-titulo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 28px; line-height: 1.1; letter-spacing: .01em; }
+.zp-texto { margin-top: 8px; max-width: 34em; color: var(--tinta-suave); }
+.zp-aviso { display: flex; align-items: flex-start; gap: 10px; margin-top: 18px; max-width: 34em; color: var(--tinta); font-size: 15.5px; }
+.zp-aviso .ic { margin-top: 2px; color: var(--acento-texto); }
+.zp-aviso[hidden] { display: none; }
+.zp-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 22px; }
+
+@media (max-width: 960px) {
+  .ajustes { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .cuenta-tarjeta { position: static; margin-bottom: 28px; }
+}
+@media (max-width: 520px) {
+  .zona-peligro { flex-direction: column; gap: 16px; padding: 22px 20px; }
+  .zp-acciones .btn-pintado, .zp-acciones .btn-contorno { width: 100%; }
+}

@@ -1,4 +1,12 @@
-# colimago — panel de administración de Colima Go
+# colimago — sitio web de Colima Go
+
+[colimago.mx](https://colimago.mx) tiene tres partes: la **portada** (`/`, una
+página estática que invita a instalar la app), la **guía web** (la contraparte
+web de la app móvil: inicio, explorar, calendario, favoritos, lugares,
+municipios, fiestas y eventos; ver [Guía web](#guía-web)) y el **panel de
+administración** (hoy apagado).
+
+## Panel de administración
 
 Panel interno de [colimago.mx](https://colimago.mx) para revisar eventos
 detectados por el flujo de n8n, administrar posts (eventos y locales), lugares
@@ -71,6 +79,48 @@ haz Redeploy.
   ventana de "Bienvenido de vuelta", está prendido.
 - En los logs (Vercel o la terminal), al arrancar con el panel apagado se
   imprime: `Panel de administración desactivado (PANEL_ACTIVO no es 1)…`.
+
+## Guía web
+
+La guía replica en la web lo que hace la app móvil (`ColimagoMovil`): las cinco
+pestañas (Inicio, Explorar, Calendario, Favoritos, Ajustes) y las fichas de
+lugares, municipios, fiestas del pueblo, la Feria Charrotaurina y eventos, en
+español y en inglés (`/en/…`). Es HTML renderizado en el servidor (sin
+framework ni build), con CSS y JS vanilla. Documentación a fondo:
+[docs/guia-web.md](docs/guia-web.md) (rutas y módulos) y
+[docs/guia-datos.md](docs/guia-datos.md) (datos e imágenes).
+
+- **Eventos, Top 10, comentarios y contadores** vienen del backend real, leídos
+  desde este servidor (el navegador nunca habla con Heroku) y cacheados un
+  minuto. Los eventos pasados se separan de los próximos.
+- **Lugares, municipios, fiestas del pueblo y la Feria** vienen de `data/`,
+  exportado de la app con `node scripts/importar-app-movil.js` (solo lee el repo
+  de la app; `--origen <ruta>` para otra ubicación). Si la app cambia su
+  catálogo, se vuelve a correr y se sube el resultado.
+- **Cuentas:** login con Google (`platform: "web"`). Me gusta, comentarios,
+  favoritos de cuenta y reportar exigen sesión; favoritos también funcionan sin
+  cuenta (en el navegador). La sesión es una cookie cifrada, httpOnly.
+- **Anuncios:** la app usa AdMob; la web usa Google AdSense cuando están
+  `ADSENSE_CLIENT` (`ca-pub-…`), `ADSENSE_SLOT_BANNER` y `ADSENSE_SLOT_FEED`;
+  sin ellas cada espacio muestra una promo propia de Colima Go. Para AdSense
+  también hace falta publicar `ads.txt` y que la cuenta apruebe el dominio.
+- **SEO:** `/sitemap.xml` es dinámico (lugares, municipios, fiestas, eventos
+  vigentes, es/en con hreflang). Favoritos, ajustes y sugerencias llevan
+  `noindex`.
+
+Probarla en local, sin tocar producción: en una terminal
+`node scripts/backend-falso.js 4010` (backend falso con el feed real; `TOP10=1`
+llena el Top 10, `FALLA=1` simula un error), y en otra
+`COLIMA_BACKEND_URL=http://127.0.0.1:4010/api npm start`; abre
+http://localhost:3001/inicio. Verificaciones sin red: `npm run verificar:datos`
+y `npm run verificar:guia`.
+
+Variables de entorno nuevas (todas opcionales): `ADSENSE_CLIENT`,
+`ADSENSE_SLOT_BANNER`, `ADSENSE_SLOT_FEED`, `GOOGLE_CLIENT_ID_WEB` (por defecto,
+el de la portada). En Vercel debe estar definida `SESSION_SECRET`: con ella se
+cifra la cookie de sesión de los usuarios. Para que el login de Google funcione
+en producción, `https://colimago.mx` y `https://www.colimago.mx` deben estar
+como orígenes autorizados del cliente OAuth web.
 
 ## Cómo correrlo en local
 
@@ -225,3 +275,62 @@ los 403 (la cuenta no es administradora) y 429 (rate limit, p. ej.
 
 Para ver en consola cada llamada al backend y si lleva la cabecera, corre
 el panel con `COLIMA_DEBUG_BACKEND=1 npm start`.
+
+## Guía web: servidor
+
+La guía web (la contraparte web de la app móvil, ver `docs/guia-web.md`) tiene
+una capa de servidor propia. El navegador nunca habla con `backColimaApp`: todo
+pasa por aquí, con `lib/colima-backend.js`.
+
+- `lib/guia/eventos.js` — lee el feed público (`GET /post/`, sin token),
+  normaliza cada evento (fecha y hora sin convertir zona, `finFecha` solo con
+  `moreDays`, imagen `string|null`, municipio como número) y lo guarda en
+  memoria: 60 s fresco, hasta 1 h como respaldo si el backend falla, una sola
+  petición para llamadas simultáneas y 2 reintentos solo ante red o 5xx. También
+  `obtenerEvento(id)`, `obtenerTop10()` y las consultas (`proximos`, `pasados`,
+  `eventosDeMunicipio`, `diasDelEvento`, `urlImagen`). Nunca lanza.
+- `lib/guia/sesion.js` — sesión de usuario (cualquier cuenta de Google), aparte
+  de la del panel: cookie `colimago.u` (httpOnly, sameSite lax, 30 días, `secure`
+  en producción) con el JWT del backend **cifrado** con AES-256-GCM, más la
+  defensa CSRF (`X-Requested-With: colimago` + mismo origen) y el límite de tasa
+  en memoria.
+- `lib/guia/api.js` — endpoints JSON bajo `/g`, todos con `Cache-Control:
+  no-store`, errores en español y cuerpo máximo de 8 kB:
+
+  | Endpoint | Qué hace |
+  | --- | --- |
+  | `GET /g/sesion` | `{ usuario:{nombre,img,email}\|null }` |
+  | `POST /g/login/google` `{credential}` | login (8/min por IP); guarda la sesión |
+  | `POST /g/logout` | cierra sesión |
+  | `POST /g/me-gusta` `{idPost}` | alterna el me gusta → `{ ok, activo }` |
+  | `GET /g/comentarios/:id` | comentarios sin datos de usuario, con `propio` |
+  | `POST /g/comentarios/:id` `{contenido}` | comenta (1–500, 15/min por usuario) |
+  | `DELETE /g/comentarios/:id/:idComentario` | borra el propio |
+  | `POST /g/vista/:id` | cuenta una vista → 204 (60/min por IP) |
+  | `POST /g/metricas` `{ids}` | likes, vistas, comentarios y marcas del usuario |
+  | `GET/POST /g/favoritos`, `DELETE /g/favoritos/:id` | favoritos de cuenta |
+  | `POST /g/favoritos/fusionar` `{ids}` | sube los favoritos locales que falten |
+  | `POST /g/reportar` `{idReport,tipo,texto}` | reporta (5/min por usuario) |
+  | `POST /g/ocultar` `{idPost}` | oculta un evento para el usuario |
+  | `DELETE /g/cuenta` | borra la cuenta en el backend y cierra sesión |
+
+  Toda petición que escribe (POST/PUT/PATCH/DELETE) debe llevar la cabecera
+  `X-Requested-With: colimago`. El router se monta con
+  `app.use("/g", require("./lib/guia/api"))` (lo hace `lib/guia/index.js`).
+
+**Variables:** `COLIMA_BACKEND_URL` (sin ella los endpoints responden 503 y los
+eventos quedan vacíos), `SESSION_SECRET` (llave de la cookie `colimago.u`; sin
+ella se usa un valor de desarrollo y se avisa por consola: en producción debe
+estar definida) y `NODE_ENV=production` (pone `Secure` en la cookie).
+
+**Límites que conviene saber:** todos los visitantes salen a `backColimaApp` por
+la misma IP de Vercel, así que el backend cuenta sus límites (login 10/min,
+comentario 15/min, reporte 5/min, ocultar 30/min, 120/min en el resto) entre
+todos. Por eso hay límites propios antes de llamar y cachés cortas para lo
+anónimo (comentarios 20 s, métricas 30 s). Límites y cachés viven en la memoria
+de cada instancia de Vercel: frenan abusos, no son una cuota exacta.
+
+**Probarlo:** `npm run verificar:guia` levanta un backend falso (con datos reales
+de producción en `scripts/fixtures/guia/`), importa `server.js` y comprueba
+normalización, caché, sesión cifrada, CSRF, límites y cada endpoint. No toca el
+backend real.

@@ -468,6 +468,8 @@
   .cierre h2 { font-size: clamp(42px, 6.4vw, 96px); max-width: 12ch; margin: 0 auto; }
   .cierre p { color: var(--tinta-suave); font-size: 19px; max-width: 30em; margin: 22px auto 34px; }
   .cierre .tiendas { justify-content: center; }
+  .cierre .guia-enlace { margin-top: 28px; font-size: 16.5px; color: var(--tinta-suave); }
+  .cierre .guia-enlace a { color: var(--acento-texto); font-weight: 500; }
 
   footer { border-top: 1px solid var(--linea); padding: 28px 0 36px; }
   footer .envoltura { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
@@ -1222,6 +1224,7 @@
       <li><a href="#fiestas">Fiestas</a></li>
       <li><a href="#sabores">Sabores</a></li>
       <li><a href="#municipios">Municipios</a></li>
+      <li><a href="/inicio">La guía</a></li>
     </ul>
     <button class="interruptor" id="interruptor" type="button" aria-label="Cambiar a tema claro">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1529,6 +1532,7 @@
           <span><small>Disponible en</small>Google Play</span>
         </a>
       </div>
+      <p class="guia-enlace" data-revela="3">¿Prefieres verla aquí? <a href="/inicio">Explora la guía de Colima en la web</a>.</p>
     </div>
   </section>
 
@@ -1540,7 +1544,7 @@
       <span class="perro" aria-hidden="true"></span>
       <span class="marca-nombre">Colima <span>Go</span></span>
     </a>
-    <p>© Colima 360 — Todos los derechos reservados</p>
+    <p><a href="/inicio">La guía web</a> · © Colima 360 — Todos los derechos reservados</p>
   </div>
 </footer>
 

@@ -1,0 +1,17 @@
+{
+ "message": "Comments retrieved successfully",
+ "response": true,
+ "comments": [
+  {
+   "name": "<redacted>",
+   "img": "https://lh3.googleusercontent....",
+   "user": "<redacted>",
+   "status": true,
+   "content": "Muy bueno ",
+   "_id": "6ad05dad4ed3c0e1cee375e9",
+   "createdAt": "2026-10-15T04:59:25.130Z",
+   "updatedAt": "2026-10-15T04:59:25.130Z",
+   "deleteComment": false
+  }
+ ]
+}

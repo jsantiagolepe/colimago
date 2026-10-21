@@ -1,0 +1,218 @@
+/* Municipios: la lista (/municipios) y la ficha (/municipios/:slug).
+   Mundo "noche de feria": un cable vertical con los diez medallones, y la
+   ficha con su franja de feria, la postal y las secciones en filas.
+   Solo usa los tokens de guia.css; el único valor propio es el marco de la
+   postal (#fbfbfa), el mismo en noche y día. */
+
+:root { --postal-marco: #fbfbfa; }
+
+/* ================= Lista: los diez, colgados de un cable ================= */
+.muni-pagina { padding-bottom: 48px; }
+.muni-hilo { --eje: 172px; --med: 132px; margin: 4px 0 0; padding: 0; list-style: none; }
+
+.muni-item {
+  position: relative; display: grid; grid-template-columns: minmax(0, 1fr) var(--eje) minmax(0, 1fr);
+  align-items: center; min-height: 236px; padding-block: 14px;
+  margin-top: -58px; /* cada municipio se entrelaza con el anterior: el medallón sigue un paso fijo de 178px y el texto cae al lado contrario */
+}
+.muni-item.es-primero { margin-top: 0; }
+/* El cable: un tramo por fila; el primero y el último de cada tramo nacen y mueren en su medallón */
+.muni-item::before {
+  content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1.5px; margin-left: -.75px; background: var(--cable);
+}
+.muni-item.es-primero::before { top: 50%; }
+.muni-item.es-ultimo::before { bottom: 50%; }
+
+.muni-sello { grid-column: 2; grid-row: 1; justify-self: center; position: relative; z-index: 1; display: block; width: var(--med); border-radius: 50%; }
+.muni-sello .medallon {
+  width: 100%; max-width: none;
+  box-shadow: 0 0 0 7px var(--suelo), 0 0 0 9px var(--cable);
+  transition: box-shadow .25s ease, transform .35s var(--curva-rebote);
+}
+.muni-sello:focus-visible { outline: none; }
+
+.muni-texto { position: relative; grid-row: 1; min-width: 0; max-width: 450px; }
+.muni-item[data-lado="der"] .muni-texto { grid-column: 3; justify-self: start; padding-left: 10px; }
+.muni-item[data-lado="izq"] .muni-texto { grid-column: 1; justify-self: end; padding-right: 10px; text-align: right; }
+
+.muni-nombre { font-family: 'Shrikhand', 'Barlow', serif; font-size: clamp(30px, 3vw, 40px); line-height: 1.04; letter-spacing: -.005em; }
+.muni-nombre a { text-decoration: none; }
+.muni-nombre a::after { content: ''; position: absolute; inset: -14px -10px; border-radius: 12px; } /* todo el texto es el enlace */
+.muni-nombre a:focus-visible { outline: none; }
+.muni-nombre a:focus-visible::after { outline: 3px solid var(--foco); outline-offset: 2px; }
+.muni-apodo {
+  margin: 10px 0 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--acento-texto);
+}
+.muni-desc { color: var(--tinta-suave); font-size: 16.5px; line-height: 1.55; }
+.muni-cta {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 14px;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 16px; letter-spacing: .05em; text-transform: uppercase; color: var(--tinta);
+}
+.muni-cta .ic { width: 1.2em; height: 1.2em; color: var(--acento-texto); transition: transform .3s var(--curva-rebote); }
+
+/* Al apuntar al municipio, su medallón se enciende (el anillo pasa a azafrán) */
+.muni-item:has(a:hover) .muni-sello .medallon,
+.muni-item:has(a:focus-visible) .muni-sello .medallon { box-shadow: 0 0 0 7px var(--suelo), 0 0 0 10px var(--foco); transform: translateY(-4px); }
+.muni-item:has(a:hover) .muni-cta .ic,
+.muni-item:has(a:focus-visible) .muni-cta .ic { transform: translateX(5px); }
+
+.muni-anuncio { position: relative; z-index: 2; padding-block: 6px; list-style: none; }
+
+@media (max-width: 900px) {
+  .muni-hilo { --eje: 96px; --med: 76px; }
+  .muni-item { grid-template-columns: var(--eje) minmax(0, 1fr); align-items: start; min-height: 0; margin-top: 0; padding-block: 20px; }
+  .muni-item::before { left: calc(var(--eje) / 2); }
+  .muni-item.es-primero::before { top: calc(20px + var(--med) / 2); }
+  .muni-item.es-ultimo::before { bottom: auto; height: calc(20px + var(--med) / 2); }
+  .muni-sello { grid-column: 1; }
+  .muni-sello .medallon { box-shadow: 0 0 0 5px var(--suelo), 0 0 0 7px var(--cable); }
+  .muni-item:has(a:hover) .muni-sello .medallon,
+  .muni-item:has(a:focus-visible) .muni-sello .medallon { box-shadow: 0 0 0 5px var(--suelo), 0 0 0 8px var(--foco); }
+  .muni-item[data-lado] .muni-texto { grid-column: 2; justify-self: stretch; max-width: none; padding: 0; text-align: left; }
+  .muni-nombre { font-size: clamp(26px, 7vw, 32px); }
+  .muni-apodo { font-size: 15px; margin: 6px 0 8px; }
+  .muni-desc { font-size: 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .muni-cta { margin-top: 10px; font-size: 15px; }
+}
+
+/* ================= Ficha: la franja de feria ================= */
+.mf { position: relative; background: var(--franja-fiestas); color: var(--tinta-fiestas); border-radius: 0 0 24px 24px; padding-bottom: 44px; }
+.mf-migas { padding-top: 14px; }
+.mf-todos {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 8px 18px 8px 14px; border-radius: 999px; text-decoration: none;
+  border: 1px solid color-mix(in srgb, var(--tinta-fiestas) 30%, transparent); color: var(--tinta-fiestas);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15.5px; letter-spacing: .05em; text-transform: uppercase;
+  transition: background-color .2s, border-color .2s;
+}
+.mf-todos:hover { background: color-mix(in srgb, var(--tinta-fiestas) 12%, transparent); border-color: color-mix(in srgb, var(--tinta-fiestas) 55%, transparent); }
+.mf-cabecera { padding-top: 6px; }
+/* Sobre la franja el cable y las cuerdas se ven en claro, no en el gris del suelo */
+.mf .guirnalda path { stroke: color-mix(in srgb, var(--tinta-fiestas) 42%, transparent); }
+.mf .letrero-colgante::before, .mf .letrero-colgante::after, .mf-sello::before { background: color-mix(in srgb, var(--tinta-fiestas) 42%, transparent); }
+
+.mf-fila { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 10px 36px; align-items: start; padding-top: 46px; position: relative; }
+.mf-sello { --cuerda: 40; position: relative; display: block; width: 136px; border-radius: 50%; }
+.mf-sello::before { content: ''; position: absolute; left: 50%; bottom: calc(100% - 4px); width: 1px; height: calc(var(--cuerda) * 1px); }
+.mf-sello .medallon { width: 100%; max-width: none; box-shadow: var(--sombra), 0 0 0 4px color-mix(in srgb, var(--tinta-fiestas) 30%, transparent); }
+.mf-nombre { min-width: 0; padding-top: 4px; }
+.mf-nombre .letrero-colgante { font-size: clamp(34px, 4.4vw, 64px); }
+.mf-apodo {
+  margin-top: 22px; max-width: 30em; font-size: 17px; letter-spacing: .06em; line-height: 1.3;
+  color: color-mix(in srgb, var(--tinta-fiestas) 86%, transparent);
+}
+
+/* La postal: foto del municipio, marco blanco de 5px, girada y con sombra. Nunca se agranda (la foto es de 300px) */
+.mf-postal {
+  position: relative; z-index: 3; margin: 0; justify-self: end; width: 260px; padding: 5px; border-radius: 3px;
+  background: var(--postal-marco); rotate: 3deg; translate: 0 62px; box-shadow: var(--sombra); /* cuelga de la franja hacia la hoja */
+}
+.mf-postal img { width: 100%; height: auto; border-radius: 1px; }
+
+@media (max-width: 760px) {
+  .mf { padding-bottom: 20px; }
+  .mf-fila { grid-template-columns: auto minmax(0, 1fr); gap: 4px 18px; padding-top: 40px; }
+  .mf-sello { width: 74px; }
+  .mf-sello .medallon { box-shadow: var(--sombra), 0 0 0 3px color-mix(in srgb, var(--tinta-fiestas) 30%, transparent); }
+  .mf-nombre { display: contents; }
+  .mf-nombre .letrero-colgante { grid-column: 2; grid-row: 1; align-self: start; font-size: clamp(28px, 8.4vw, 40px); }
+  /* el apodo a la izquierda y la postal a la derecha, en la misma fila */
+  .mf-apodo { grid-column: 1 / -1; grid-row: 2; align-self: center; max-width: 52%; margin-top: 8px; font-size: 15px; }
+  .mf-postal { grid-column: 1 / -1; grid-row: 2; width: 168px; margin: 8px 8px 0 0; translate: 0 38px; }
+}
+
+/* ================= Ficha: la hoja con el contenido ================= */
+.mh { padding: 64px 0 96px; }
+.mh-cuerpo { display: grid; grid-template-columns: minmax(0, 1fr) 272px; gap: 56px; align-items: start; }
+.mh-principal { min-width: 0; max-width: 840px; }
+.mh-lectura { font-size: 18.5px; line-height: 1.66; max-width: 66ch; }
+.mh-salto { margin-top: 28px; }
+.mh-chip-n { margin-left: 8px; color: var(--tinta-tenue); font-variant-numeric: tabular-nums; }
+.chip:hover .mh-chip-n { color: var(--tinta-suave); }
+
+.mh-seccion { margin-top: 60px; scroll-margin-top: calc(var(--barra-alto) + 16px); }
+.mh-seccion .seccion-titulo { margin-bottom: 14px; }
+.mh-cuenta { margin-left: 2px; }
+.mh-vacio { color: var(--tinta-suave); padding: 4px 0 0; }
+.mh-vacio a { color: var(--acento-texto); font-weight: 600; text-underline-offset: 4px; }
+
+.mh-lista > .anuncio { margin-block: 10px; }
+.mh-fila {
+  position: relative; display: grid; grid-template-columns: 96px minmax(0, 1fr) 22px; gap: 4px 18px; align-items: start;
+  padding: 16px 0; border-top: 1px solid var(--linea);
+}
+.mh-lista > .mh-fila:first-child, .mh-lista > .anuncio + .mh-fila { border-top: 0; }
+.mh-foto { width: 96px; border-radius: 8px; }
+.mh-texto { min-width: 0; }
+.mh-titulo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.1; margin-top: 1px; }
+.mh-titulo a { text-decoration: none; }
+.mh-titulo a::after { content: ''; position: absolute; inset: 0; z-index: 1; border-radius: 8px; } /* toda la fila es el enlace */
+.mh-titulo a:focus-visible { outline: none; }
+.mh-titulo a:focus-visible::after { outline: 3px solid var(--foco); outline-offset: 2px; }
+.mh-fila:hover .mh-titulo a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.mh-fila:hover .marco > img { transform: scale(1.06); }
+.mh-desc { color: var(--tinta-suave); font-size: 15.5px; margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.mh-cuando { color: var(--tinta-suave); font-size: 15.5px; margin-top: 4px; }
+.mh-texto .tablilla-muni { display: block; margin-bottom: 1px; font-size: 13.5px; }
+.mh-chevron { align-self: center; color: var(--tinta-tenue); transition: transform .3s var(--curva-rebote), color .2s; }
+.mh-fila:hover .mh-chevron { transform: translateX(4px); color: var(--acento-texto); }
+/* Hoteles y restaurantes: solo texto, sin enlace */
+.mh-fila-texto { grid-template-columns: minmax(0, 1fr); }
+.mh-fila-texto .mh-desc { -webkit-line-clamp: 3; }
+.mh-fila-texto .mh-titulo { font-size: 22px; }
+
+.mh-cierre { margin-top: 56px; }
+
+/* Anterior / siguiente */
+.mh-vecinos {
+  margin-top: 72px; padding-top: 32px; border-top: 1px solid var(--linea);
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 14px; align-items: center;
+}
+.mh-vecino { display: flex; align-items: center; gap: 12px; min-height: 76px; padding: 8px 12px; border-radius: 16px; text-decoration: none; transition: background-color .2s; }
+.mh-vecino:hover { background: var(--suelo-2); }
+.mh-vecino.es-siguiente { justify-content: flex-end; text-align: right; }
+.mh-vecino .medallon { width: 54px; max-width: none; box-shadow: 0 0 0 3px var(--suelo), 0 0 0 5px var(--cable); transition: box-shadow .2s; }
+.mh-vecino:hover .medallon { box-shadow: 0 0 0 3px var(--suelo-2), 0 0 0 5px var(--foco); }
+.mh-vecino-texto { display: grid; gap: 2px; min-width: 0; }
+.mh-vecino-nombre { font-family: 'Shrikhand', 'Barlow', serif; font-size: 21px; line-height: 1.1; white-space: nowrap; }
+.mh-vecino-flecha { color: var(--acento-texto); width: 1.4em; height: 1.4em; transition: transform .3s var(--curva-rebote); }
+.mh-vecino.es-anterior:hover .mh-vecino-flecha { transform: translateX(-4px); }
+.mh-vecino.es-siguiente:hover .mh-vecino-flecha { transform: translateX(4px); }
+
+/* La regla de diez, de pie: navegación entre municipios en pantallas anchas */
+.mh-regla { position: sticky; top: calc(var(--barra-alto) + 28px); }
+.mh-regla-titulo { margin-bottom: 14px; padding-left: 6px; }
+.mh-regla ol { display: grid; gap: 2px; }
+.mh-regla a {
+  display: flex; align-items: center; gap: 14px; min-height: 46px; padding: 5px 14px 5px 7px; border-radius: 999px; text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .01em; color: var(--tinta-suave);
+  transition: background-color .2s, color .2s;
+}
+.mh-regla a:hover { background: var(--suelo-3); color: var(--tinta); }
+.mh-regla .medallon { width: 34px; max-width: none; flex: none; box-shadow: 0 0 0 2px var(--suelo), 0 0 0 3.5px var(--cable); transition: box-shadow .2s; }
+.mh-regla a:hover .medallon { box-shadow: 0 0 0 2px var(--suelo-3), 0 0 0 3.5px var(--tinta-tenue); }
+.mh-regla a[aria-current] { color: var(--tinta); background: var(--suelo-2); }
+.mh-regla a[aria-current] .medallon { box-shadow: 0 0 0 2px var(--suelo-2), 0 0 0 4px var(--foco); }
+
+@media (max-width: 1100px) {
+  .mh-cuerpo { grid-template-columns: minmax(0, 1fr); }
+  .mh-regla { display: none; }
+}
+@media (max-width: 760px) {
+  .mh { padding: 78px 0 72px; }
+  .mh-lectura { font-size: 17.5px; }
+  .mh-seccion { margin-top: 48px; }
+  .mh-fila { grid-template-columns: 84px minmax(0, 1fr) 18px; gap: 4px 14px; }
+  .mh-foto { width: 84px; }
+  .mh-titulo { font-size: 21px; }
+  .mh-vecinos { grid-template-columns: 1fr 1fr; margin-top: 56px; }
+  .mh-vecinos .mh-todos-abajo { grid-column: 1 / -1; grid-row: 2; justify-self: center; }
+  .mh-vecino { padding: 8px 6px; gap: 10px; }
+  .mh-vecino .medallon { width: 46px; }
+  .mh-vecino-nombre { font-size: 18px; white-space: normal; overflow-wrap: anywhere; }
+  .mh-vecino-flecha { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .muni-item:has(a:hover) .muni-sello .medallon, .muni-item:has(a:focus-visible) .muni-sello .medallon { transform: none; }
+}

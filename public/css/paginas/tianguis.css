@@ -1,0 +1,96 @@
+/* Tianguis y mercados: "el pizarrón de la semana".
+   Un tablero de lona con los siete días como columnas (cada una cuenta los
+   tianguis de ese día y es el enlace que filtra), los municipios con su
+   estampa y la lista agrupada por municipio. Solo tokens de guia.css. */
+
+.tg-pagina { padding-bottom: 96px; }
+.tg-sugerir { margin-top: 14px; }
+
+.tg-filtros { display: grid; gap: 26px; scroll-margin-top: calc(var(--barra-alto) + 8px); padding-top: 4px; }
+
+/* ----- Pestañas: Tianguis / Mercados, con su miniatura ----- */
+.tg-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+.tg-tabs .chip { min-height: 56px; padding: 6px 26px 6px 7px; gap: 12px; font-size: 20px; letter-spacing: .05em; }
+.tg-tabs .chip img { width: 42px; height: 42px; }
+
+/* ----- El pizarrón ----- */
+.tg-pizarron {
+  background: var(--lona-hondo); color: var(--letra-tabla); border-radius: 6px; box-shadow: var(--sombra);
+  padding: 10px 12px 0;
+}
+.tg-pizarron ul { display: grid; grid-template-columns: 1.35fr repeat(7, minmax(0, 1fr)); gap: 4px; align-items: stretch; }
+.tg-col a {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 164px;
+  padding: 8px 2px 12px; border-radius: 4px; text-decoration: none; color: inherit; transition: background-color .2s;
+}
+.tg-col a:hover { background: color-mix(in srgb, var(--letra-tabla) 10%, transparent); }
+.tg-col a[aria-current] { background: color-mix(in srgb, var(--letra-tabla) 16%, transparent); }
+.tg-col a:focus-visible { outline-offset: -3px; }
+.tg-n { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; line-height: 1; margin-bottom: 7px; font-variant-numeric: tabular-nums; }
+/* La barra crece desde la línea de tiza: más alta, más tianguis ese día */
+.tg-barra {
+  width: min(44%, 34px); height: calc(var(--p, 0) * 74px); min-height: 0; background: var(--letra-tabla); opacity: .8;
+  border-radius: 3px 3px 0 0; transition: background-color .2s;
+}
+.tg-dia {
+  width: 100%; margin-top: 0; padding-top: 9px; text-align: center; border-top: 2px solid color-mix(in srgb, var(--letra-tabla) 38%, transparent);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; line-height: 1; letter-spacing: .05em; text-transform: uppercase;
+}
+.tg-col-todos .tg-dia { margin-top: 0; }
+.tg-col-todos { border-right: 1px solid color-mix(in srgb, var(--letra-tabla) 20%, transparent); padding-right: 4px; }
+.tg-col-todos .tg-n { font-size: 34px; margin-bottom: 14px; }
+.tg-col a[aria-current] .tg-barra { background: var(--foco); opacity: 1; }
+.tg-col a[aria-current] .tg-dia { border-top-color: var(--foco); color: var(--foco); }
+.tg-hoy {
+  position: absolute; top: 8px; left: 50%; translate: -50% 0; padding: 2px 8px; border-radius: 999px; background: var(--foco); color: var(--sobre-foco);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 12.5px; letter-spacing: .06em; text-transform: uppercase; line-height: 1.3;
+}
+
+/* ----- Municipios ----- */
+.tg-munis { display: flex; flex-wrap: wrap; gap: 6px; }
+.tg-munis .chip { min-height: 44px; padding: 6px 15px 6px 6px; gap: 7px; font-size: 15.5px; letter-spacing: .03em; }
+.tg-munis .chip:first-child { padding-left: 17px; }
+.tg-chip-n { margin-left: 8px; opacity: .66; font-variant-numeric: tabular-nums; }
+.tg-munis .chip[data-vacio] { opacity: .5; }
+.tg-munis .chip[data-vacio]:hover { opacity: .85; }
+
+/* ----- Resultados ----- */
+.tg-resultados { margin-top: 44px; }
+.tg-resumen { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.05; letter-spacing: .01em; margin-bottom: 30px; }
+.tg-lista { gap: 40px 28px; }
+.tg-lista .tl-extra { display: grid; gap: 2px; margin-top: 6px; }
+.tg-cuando { color: var(--tinta); font-weight: 500; }
+.tg-donde { color: var(--tinta-suave); font-size: 14.5px; }
+.tg-cuando:empty, .tg-donde:empty { display: none; }
+
+/* Encabezado de cada municipio dentro de la lista */
+.tg-grupo { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; padding-top: 30px; margin-top: 8px; border-top: 1px solid var(--linea); }
+.tg-lista > .tg-grupo:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.tg-lista > .anuncio + .tg-grupo { margin-top: 4px; }
+.tg-grupo .medallon { width: 48px; max-width: none; box-shadow: 0 0 0 2px var(--suelo), 0 0 0 3.5px var(--cable); }
+.tg-grupo-nombre { font-family: 'Shrikhand', 'Barlow', serif; font-size: clamp(26px, 2.8vw, 34px); line-height: 1.05; }
+.tg-grupo-n { margin-left: auto; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .08em; color: var(--tinta-tenue); font-variant-numeric: tabular-nums; }
+
+@media (max-width: 700px) {
+  .tg-filtros { gap: 20px; }
+  .tg-tabs .chip { min-height: 52px; font-size: 18px; padding-right: 20px; }
+  .tg-tabs .chip img { width: 38px; height: 38px; }
+  .tg-pizarron { padding: 8px 6px 0; }
+  .tg-pizarron ul { grid-template-columns: 1.25fr repeat(7, minmax(0, 1fr)); gap: 2px; }
+  .tg-col a { height: 142px; padding-bottom: 10px; }
+  .tg-n { font-size: 20px; margin-bottom: 5px; }
+  .tg-col-todos .tg-n { font-size: 26px; margin-bottom: 10px; }
+  .tg-barra { width: min(50%, 22px); height: calc(var(--p, 0) * 60px); }
+  .tg-dia { font-size: 15px; letter-spacing: .02em; padding-top: 8px; }
+  .tg-hoy { top: 6px; font-size: 11px; padding: 1px 6px; }
+  /* Los municipios se deslizan de lado (tira intencional) */
+  .tg-munis { flex-wrap: nowrap; overflow-x: auto; margin-inline: -16px; padding: 2px 16px 8px; scroll-snap-type: x proximity; }
+  .tg-munis > * { flex: none; scroll-snap-align: start; }
+  .tg-resultados { margin-top: 32px; }
+  .tg-lista { gap: 34px 20px; }
+  .tg-grupo { padding-top: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tg-barra { transition: none; }
+}

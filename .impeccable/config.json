@@ -83,6 +83,15 @@
         ],
         "createdAt": "2026-10-11T00:15:18.479Z",
         "reason": "Claude triage: all 9 uppercase rules predate this session and style short labels only (nav, buttons, tabs, municipality names, ficha apodo); DESIGN.md documents Barlow Condensed as uppercase, tracked board text"
+      },
+      {
+        "rule": "bounce-easing",
+        "value": "cubic-bezier(.2, .9, .3, 1.3)",
+        "files": [
+          "public/css/guia.css"
+        ],
+        "createdAt": "2026-10-20T20:08:13.276Z",
+        "reason": "agent: DESIGN.md documents this overshoot curve as the painted-button hover (180ms lift and tilt) of the Noche de feria world, shared with the landing; used only on .btn-pintado"
       }
     ]
   }

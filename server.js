@@ -280,6 +280,12 @@ for (const [ruta, pagina] of Object.entries(PAGINAS_DESCARGA)) {
   });
 }
 
+// La guía web: la contraparte web de la app (Inicio, Explorar, Calendario,
+// Favoritos, Ajustes, lugares, municipios, fiestas y eventos), en español y en
+// inglés (/en/…), más la API JSON del navegador (/g/*). Ver docs/guia-web.md.
+// Va antes de express.static y del 404 final.
+require("./lib/guia")(app);
+
 // En Vercel estos archivos los sirve la CDN antes de llegar aquí; este
 // express.static es el que vale en local (npm start). El cacheo largo solo
 // se aplica a /img y /fonts, cuyos nombres no cambian pero cuyo contenido

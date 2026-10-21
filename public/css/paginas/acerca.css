@@ -1,0 +1,25 @@
+/* Acerca de (/acerca-de). Las filas agrupadas están en filas.css. */
+
+.acerca { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px 80px; align-items: start; padding: 8px 0 96px; }
+
+/* El sello: el Perro de Colima y el nombre pintado, grandes */
+.sello { display: flex; align-items: center; gap: 22px; }
+.sello-perro { width: clamp(76px, 9vw, 124px); height: clamp(76px, 9vw, 124px); background: var(--tinta); }
+.sello-nombre { font-size: clamp(54px, 7.4vw, 108px); line-height: .95; }
+.sello-nombre span { color: var(--acento-texto); }
+.acerca-texto { margin-top: 32px; max-width: 30em; color: var(--tinta-suave); font-size: clamp(17px, 1.5vw, 20px); line-height: 1.6; }
+.acerca-credito { margin-top: 28px; color: var(--tinta-tenue); font-size: 15.5px; }
+.acerca-credito a { display: inline-block; padding: 6px 2px; color: var(--tinta); font-weight: 600; }
+.acerca-lado { min-width: 0; padding-top: 8px; }
+
+.redes { display: flex; flex-wrap: wrap; gap: 10px; }
+.redes .btn-contorno { gap: 10px; padding-inline: 18px; }
+.redes .ic { width: 20px; height: 20px; }
+
+@media (max-width: 960px) {
+  .acerca { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-bottom: 72px; }
+  .acerca-lado { padding-top: 0; }
+}
+@media (max-width: 520px) {
+  .sello { gap: 16px; }
+}

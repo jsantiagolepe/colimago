@@ -1,0 +1,82 @@
+/* Detalle de evento — el cartel completo (sin recortar) y, al lado, lo que
+   hay que saber: título pintado, cuándo, dónde, acciones, descripción,
+   redes y comentarios. En escritorio el cartel se queda fijo mientras se lee. */
+
+.detalle-envoltura { width: min(1100px, 100% - 40px); margin-inline: auto; padding-bottom: 80px; }
+@media (max-width: 520px) { .detalle-envoltura { width: calc(100% - 32px); } }
+.detalle > .detalle-envoltura > .guirnalda { margin-top: 10px; }
+
+.detalle-rejilla { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; padding-top: 24px; }
+
+/* ---------- Cartel con sus botones ---------- */
+.detalle-cartel { position: relative; }
+@media (min-width: 900px) {
+  .con-cartel .detalle-rejilla { grid-template-columns: minmax(0, 480px) minmax(0, 1fr); gap: 64px; align-items: start; }
+  .detalle-cartel { position: sticky; top: calc(var(--barra-alto) + 20px); }
+}
+.detalle-marco { aspect-ratio: 4 / 5; max-height: 82dvh; width: 100%; }
+/* El cartel se ve entero: es información, no adorno */
+.detalle-marco > img { object-fit: contain; }
+/* Velo solo arriba, donde se superponen los botones */
+.detalle-cartel::before {
+  content: ''; position: absolute; z-index: 1; inset: 0 0 auto 0; height: 92px; border-radius: 10px 10px 0 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(10,12,18,.5), rgba(10,12,18,0));
+}
+.detalle-botones { position: absolute; z-index: 2; inset: 12px 12px auto 12px; display: flex; justify-content: space-between; gap: 8px; }
+.detalle-botones-der { display: flex; gap: 8px; }
+.detalle .btn-foto { width: 44px; height: 44px; text-decoration: none; }
+.detalle-menu { position: absolute; z-index: 2; right: 12px; bottom: 12px; }
+
+/* Sin foto: los mismos botones, en una barra */
+.sin-cartel .detalle-info { width: min(760px, 100%); margin-inline: auto; }
+.detalle-barra .detalle-botones { position: static; margin-bottom: 18px; }
+
+/* ---------- Información ---------- */
+.detalle-info { min-width: 0; }
+.detalle-titulo { font-size: clamp(32px, 3.9vw, 50px); line-height: 1.04; overflow-wrap: anywhere; }
+.detalle-subtitulo { margin-top: 12px; color: var(--tinta-suave); font-size: 19px; line-height: 1.35; overflow-wrap: anywhere; }
+.detalle-municipio { margin-top: 12px; }
+.detalle-municipio .tablilla-muni { font-size: 16px; }
+
+.detalle-aviso {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; margin-top: 20px; padding: 12px 16px;
+  border: 1px solid var(--linea); border-radius: 10px; background: var(--suelo-2); font-weight: 500;
+}
+.detalle-aviso .ic { color: var(--tinta-tenue); }
+.detalle-aviso a { color: var(--acento-texto); font-weight: 400; text-underline-offset: 4px; }
+
+.detalle-datos { margin: 26px 0 0; display: grid; gap: 20px; }
+.detalle-dato dt { display: flex; align-items: center; gap: 8px; }
+.detalle-dato dt .ic { color: var(--acento-texto); }
+.detalle-dato dd { margin: 4px 0 0; display: grid; gap: 4px; justify-items: start; font-size: 19px; line-height: 1.35; overflow-wrap: anywhere; }
+.detalle-dato dd .nota { font-size: 15px; }
+.detalle-mapa { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; font-size: 16px; color: var(--acento-texto); text-underline-offset: 4px; }
+.detalle-mapa .ic { width: 16px; height: 16px; }
+
+.detalle-info > .acciones-pastilla { margin-top: 26px; }
+.detalle .acciones a.acc { text-decoration: none; }
+.detalle-texto { margin-top: 30px; white-space: pre-line; overflow-wrap: anywhere; }
+
+/* ---------- Secciones ---------- */
+.detalle-seccion { margin-top: 48px; }
+.programa { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 26px 18px; }
+.programa-item { display: block; text-decoration: none; }
+.programa-item:hover .marco > img { transform: scale(1.05); }
+.programa-item h3 { margin-top: 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.1; }
+.programa-item p { margin-top: 3px; }
+
+.redes { display: flex; flex-wrap: wrap; gap: 12px; }
+.red {
+  width: 52px; height: 52px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--linea); color: var(--tinta);
+  text-decoration: none; transition: background-color .2s, border-color .2s, transform .15s;
+}
+.red .ic { width: 24px; height: 24px; }
+.red:hover { background: var(--suelo-3); border-color: var(--tinta-tenue); }
+.red:active { transform: scale(.94); }
+
+.detalle-comentarios .seccion-titulo .contador { color: var(--tinta-tenue); font-size: .7em; }
+.detalle-comentarios [data-comentarios-inline] { min-height: 180px; }
+
+/* ---------- Pie: seguir explorando y anuncio fijo ---------- */
+.detalle-pie { margin-top: 56px; display: grid; justify-items: center; gap: 32px; }
+.detalle-pie .anuncio { width: 100%; }

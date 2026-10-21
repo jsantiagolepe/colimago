@@ -1,0 +1,82 @@
+/* Calendario — la tabla del mes (un cartel de bandera con el mes pintado) y,
+   al lado, la lista del día. Móvil: tabla arriba y lista debajo. */
+
+/* Color de los puntos: por la noche más claros para que se lean sobre la tabla */
+:root { --punto-bandera: #e2503c; --punto-lona: #7da3ee; }
+:root[data-tema="claro"] { --punto-bandera: #b8321f; --punto-lona: #1e3a6e; }
+@media (prefers-color-scheme: light) { :root:not([data-tema="oscuro"]) { --punto-bandera: #b8321f; --punto-lona: #1e3a6e; } }
+
+.calendario-envoltura { width: min(1100px, 100% - 40px); margin-inline: auto; padding-bottom: 80px; }
+@media (max-width: 520px) { .calendario-envoltura { width: calc(100% - 32px); } }
+
+.calendario .cabecera-entrada-caja { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.calendario .cabecera-entrada { padding-bottom: 0; }
+
+.calendario-rejilla { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+@media (min-width: 960px) {
+  .calendario-rejilla { grid-template-columns: minmax(0, 430px) minmax(0, 1fr); gap: 72px; align-items: start; }
+  .mes { position: sticky; top: calc(var(--barra-alto) + 20px); }
+}
+
+/* ---------- El mes ---------- */
+.mes { background: var(--suelo-2); border: 1px solid var(--linea); border-radius: 14px; overflow: hidden; box-shadow: var(--sombra); }
+.mes-cabeza { display: grid; grid-template-columns: 44px minmax(0, 1fr) 44px; align-items: center; gap: 8px; padding: 14px; background: var(--bandera); color: var(--letra-tabla); }
+.mes-titulo { font-size: 30px; line-height: 1.05; text-align: center; }
+.mes-cabeza .btn-icono { color: var(--letra-tabla); border-color: rgba(246,245,241,.4); }
+.mes-cabeza .btn-icono:hover { background: rgba(10,12,18,.22); border-color: rgba(246,245,241,.75); }
+
+.mes-tabla { width: 100%; border-collapse: collapse; table-layout: fixed; margin: 10px 0 4px; }
+.mes-tabla th { padding: 6px 0 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-tenue); }
+.mes-tabla abbr { text-decoration: none; }
+.mes-tabla td { padding: 2px; text-align: center; }
+
+.dia {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 54px; border-radius: 12px;
+  text-decoration: none; color: var(--tinta); transition: background-color .2s, transform .15s;
+}
+.dia:hover { background: var(--suelo-3); }
+.dia:active { transform: scale(.94); }
+.dia-num { font-size: 17px; font-weight: 500; line-height: 1; font-variant-numeric: tabular-nums; }
+.dia-puntos { display: flex; align-items: center; justify-content: center; gap: 3px; height: 9px; }
+
+/* Hoy en color de acento; el día elegido, relleno de azafrán */
+.es-hoy .dia-num { color: var(--acento-texto); font-weight: 700; }
+.es-elegido, .es-elegido:hover { background: var(--foco); }
+.es-elegido .dia-num { color: var(--sobre-foco); font-weight: 700; }
+
+/* Un punto por evento; las portadas llevan un foco encendido */
+.pt { display: block; flex: none; width: 7px; height: 7px; border-radius: 50%; }
+.pt-bandera { background: var(--punto-bandera); }
+.pt-lona { background: var(--punto-lona); }
+.pt-foco { background: var(--foco); border: 1.2px solid var(--cable); }
+.pt-bombilla { width: 6px; height: 9px; border-radius: 45% 45% 50% 50% / 38% 38% 62% 62%; background: var(--foco); border: 1.2px solid var(--cable); }
+.pt-grande { width: 14px; height: 14px; }
+.es-elegido .pt { outline: 1.5px solid var(--sobre-foco); outline-offset: 0; }
+.es-elegido .pt-foco, .es-elegido .pt-bombilla { border-color: var(--sobre-foco); }
+
+.mes-pie { display: flex; justify-content: center; padding: 2px 0 10px; }
+
+/* ---------- La lista del día ---------- */
+.agenda { min-width: 0; }
+.agenda-titulo { margin-bottom: 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(28px, 3vw, 38px); line-height: 1.05; letter-spacing: .01em; }
+.agenda-lista > li { border-top: 1px solid var(--linea); }
+.agenda-lista > li:last-child { border-bottom: 1px solid var(--linea); }
+.agenda-lista > .agenda-anuncio { border-top: 0; padding: 10px 0; }
+.agenda-lista > .agenda-anuncio:last-child { border-bottom: 0; }
+.agenda-lista > .agenda-anuncio + li { border-top: 0; }
+.agenda-anuncio .anuncio { margin-block: 0; }
+
+.evento-fila {
+  display: grid; grid-template-columns: 28px minmax(0, 1fr) 28px; align-items: center; gap: 14px; min-height: 76px; padding: 16px 6px;
+  text-decoration: none; border-radius: 10px; transition: background-color .2s;
+}
+.evento-fila:hover { background: var(--suelo-2); }
+.evento-marca { display: grid; place-items: center; }
+.evento-marca .foco-solo { margin-top: 0; }
+.evento-texto { display: grid; gap: 3px; min-width: 0; justify-items: start; }
+.evento-titulo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.1; letter-spacing: .01em; overflow-wrap: anywhere; }
+.evento-fecha { color: var(--tinta-suave); font-size: 15.5px; }
+.evento-chevron { color: var(--tinta-tenue); display: grid; place-items: center; }
+.evento-fila:hover .evento-chevron { color: var(--tinta); }
+
+.agenda .estado-vista { padding-block: 40px; border: 1px dashed var(--linea); border-radius: 14px; }

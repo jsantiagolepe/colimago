@@ -1,0 +1,82 @@
+/* Sugerir: los formularios. Una hoja de papel a la izquierda (los campos) y, a
+   la derecha, el mensaje tal como llegará, con sus tres salidas. Sin anuncios. */
+
+/* Con JavaScript el mensaje se arma con los campos; sin él, solo la plantilla. */
+.js .sin-js { display: none; }
+html:not(.js) .con-js { display: none; }
+
+.sg { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 0 72px; align-items: start; padding-bottom: 96px; }
+.sg-col { min-width: 0; max-width: 640px; }
+html:not(.js) .sg { grid-template-columns: minmax(0, 1fr); }
+
+.sg-nav { margin-bottom: 28px; }
+.sg-nav-titulo { margin-bottom: 10px; }
+.sg-contexto {
+  display: flex; flex-wrap: wrap; align-items: flex-start; gap: 6px 12px; margin-bottom: 22px; padding: 12px 14px;
+  border: 1px solid var(--linea); border-radius: 8px; background: var(--suelo-2); color: var(--tinta-suave); font-size: 15.5px; line-height: 1.45;
+}
+.sg-contexto .ic { margin-top: 2px; color: var(--tinta-tenue); }
+.sg-contexto > span { flex: 1 1 220px; }
+.sg-contexto .btn-texto { min-height: 32px; padding: 0 4px; font-size: 15px; }
+.sg-ayuda { margin-bottom: 22px; max-width: 56ch; }
+.sg-leyenda { margin-bottom: 18px; }
+
+/* ---- Campos ---- */
+fieldset.campo { min-width: 0; padding: 0; border: 0; margin-inline: 0; }
+.sg-req { color: var(--acento-texto); }
+.campo-error { display: block; margin-top: 6px; color: var(--peligro-texto); font-size: 14.5px; }
+.campo input[aria-invalid="true"], .campo textarea[aria-invalid="true"] { border-color: var(--peligro-texto); }
+.campo.con-error > legend { color: var(--peligro-texto); }
+.sg-cuenta { text-align: right; font-variant-numeric: tabular-nums; }
+.campo .opciones { margin-top: 2px; }
+
+/* Radios en filas: el aro se enciende como un foco */
+.sg-filas { display: grid; gap: 2px; margin-bottom: 22px; }
+.sg-fila { position: relative; display: flex; align-items: center; gap: 14px; min-height: 48px; padding: 6px 12px; border-radius: 8px; cursor: pointer; transition: background-color .2s; }
+.sg-fila:hover { background: var(--suelo-2); }
+.sg-fila:has(input:checked) { background: var(--suelo-2); }
+.sg-fila input { position: absolute; opacity: 0; inset: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.sg-marca { position: relative; flex: none; width: 22px; height: 22px; border: 2px solid var(--tinta-tenue); border-radius: 50%; transition: border-color .2s; }
+.sg-marca::after { content: ''; position: absolute; inset: 3px; border-radius: 50%; background: var(--foco); transform: scale(0); transition: transform .2s var(--curva-rebote); }
+.sg-fila input:checked + .sg-marca { border-color: var(--foco-hondo); }
+.sg-fila input:checked + .sg-marca::after { transform: scale(1); }
+.sg-fila input:focus-visible + .sg-marca { outline: 3px solid var(--foco); outline-offset: 3px; }
+.sg-fila span:last-child { font-size: 17px; line-height: 1.3; }
+
+/* Calificación con focos */
+.sg-focos { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; margin-left: -4px; }
+.sg-foco { width: 44px; height: 48px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 10px; background: transparent; }
+.sg-foco:hover { background: var(--suelo-2); }
+.sg-foco .foco-solo { margin-top: 6px; transform: scale(1.7); transform-origin: 50% 40%; }
+.sg-foco:active .foco-solo { transform: scale(1.5); }
+.sg-calif-texto { margin-left: 10px; color: var(--tinta-suave); font-size: 15.5px; }
+
+/* ---- Sin JavaScript: la plantilla editable ---- */
+.sg-sin-js .nota { margin-bottom: 14px; max-width: 60ch; }
+.sg-plantilla { display: block; width: 100%; min-height: 220px; margin-bottom: 18px; }
+
+/* ---- El mensaje y sus salidas ---- */
+.sg-salida {
+  position: sticky; top: calc(var(--barra-alto) + 24px); padding: 24px 24px 22px; border: 1px solid var(--linea); border-radius: 14px; background: var(--suelo-2);
+}
+.sg-salida .seccion-titulo { margin-bottom: 14px; font-size: 24px; }
+.sg-mensaje {
+  display: block; max-height: 340px; overflow: auto; margin-bottom: 14px; padding: 14px 16px; border: 1px solid var(--linea); border-radius: 8px; background: var(--suelo);
+  white-space: pre-wrap; overflow-wrap: anywhere; font-size: 15.5px; line-height: 1.55; color: var(--tinta);
+}
+.sg-salida .nota { margin-top: 12px; line-height: 1.5; }
+.sg-resumen { margin-bottom: 14px; }
+.sg-botones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.sg-salida .sg-botones { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 4px; }
+.sg-salida .sg-botones .btn-pintado { grid-column: 1 / -1; justify-content: center; }
+.sg-salida .sg-botones .btn-contorno { justify-content: center; padding-inline: 14px; }
+
+@media (max-width: 980px) {
+  .sg { grid-template-columns: minmax(0, 1fr); gap: 36px 0; padding-bottom: 72px; }
+  .sg-col { max-width: none; }
+  .sg-salida { position: static; }
+}
+@media (max-width: 520px) {
+  .sg-salida { padding: 20px 16px 18px; }
+  .sg-salida .sg-botones { grid-template-columns: 1fr; }
+}

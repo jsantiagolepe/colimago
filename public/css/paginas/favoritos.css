@@ -1,0 +1,33 @@
+/* Favoritos — lo guardado, en tarjetas 16:10 (la foto manda; el texto va
+   debajo). Se pinta en el navegador desde localStorage y, con sesión, desde
+   la cuenta. */
+
+.favoritos-envoltura { width: min(1100px, 100% - 40px); margin-inline: auto; padding-bottom: 88px; }
+@media (max-width: 520px) { .favoritos-envoltura { width: calc(100% - 32px); } }
+
+/* Dónde se guardan: una franja entre filetes, no una tarjeta */
+.favoritos-sesion {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
+  padding: 16px 0; margin-bottom: 32px; border-block: 1px solid var(--linea);
+}
+.favoritos-sesion p { max-width: 54em; color: var(--tinta-suave); font-size: 16px; }
+.favoritos-sesion button { flex: none; }
+
+.favoritos-cuenta { margin-bottom: 16px; }
+#favoritos-lista:focus { outline: none; }
+.favoritos-rejilla { gap: 40px 26px; }
+
+/* Tarjeta: el enlace cubre toda la tarjeta (tarjeta-lugar); "Borrar" queda por encima */
+.tarjeta-fav .tl-titulo { font-size: 24px; margin-top: 14px; overflow-wrap: anywhere; }
+.tarjeta-fav .tl-muni { margin-top: 3px; }
+.fav-borrar {
+  display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 8px 15px 8px 12px; border: 0; border-radius: 999px;
+  background: var(--boton-foto); color: #f6f5f1; cursor: pointer; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .06em; text-transform: uppercase;
+  transition: background-color .2s, transform .15s;
+}
+.fav-borrar .ic { width: 18px; height: 18px; }
+.fav-borrar:hover { background: rgba(10,12,18,.8); }
+.fav-borrar:active { transform: scale(.95); }
+
+.favoritos-cuerpo .estado-vista { padding-block: 64px; }

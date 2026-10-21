@@ -1,0 +1,174 @@
+/* Fiestas del Pueblo: el calendario de la calle de la feria.
+   Doce meses, cada uno con su rótulo y sus fiestas; la fecha de cada fiesta va
+   pintada como un rótulo (cifra grande en Shrikhand sobre una pincelada de
+   lona o de bandera, alternando por mes). Los focos solo se encienden para
+   decir dónde estás (el mes en pantalla) y qué se celebra hoy. */
+
+/* La tinta de cada mes: lona los meses nones, bandera los pares. */
+.tono-lona { --pintura: var(--lona); }
+.tono-bandera { --pintura: var(--bandera); }
+
+/* ============ Composición: cable de meses a la izquierda, lista a la derecha ============ */
+.fp { display: grid; grid-template-columns: 184px minmax(0, 1fr); gap: 0 64px; align-items: start; padding-bottom: 96px; }
+.fp-contenido { min-width: 0; max-width: 880px; }
+.fp-nota { display: flex; gap: 10px; align-items: flex-start; max-width: 62ch; margin-top: 4px; }
+.fp-nota .ic { margin-top: 3px; color: var(--tinta-tenue); }
+.fp-aviso-es { margin-top: 32px; }
+
+/* ---- Navegación de meses (escritorio): un cable vertical con un foco por mes ---- */
+.fp-meses { position: sticky; top: calc(var(--barra-alto) + 28px); align-self: start; }
+.fp-meses ul { position: relative; display: grid; }
+.fp-meses ul::before { /* el cable */
+  content: ''; position: absolute; left: 5px; top: 10px; bottom: 10px; width: 1px; background: var(--cable);
+}
+.fp-meses a {
+  position: relative; display: flex; align-items: center; gap: 16px; min-height: 38px; text-decoration: none;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--tinta-suave); transition: color .2s;
+}
+.fp-meses a:hover { color: var(--tinta); }
+.fp-meses a[aria-current="true"] { color: var(--tinta); }
+.fp-meses a:focus-visible { outline-offset: 2px; }
+.fp-meses .foco-solo { margin-top: 0; }
+.fp-meses a:hover .foco-solo:not(.encendido) { border-color: var(--tinta-tenue); }
+.mes-corto { display: none; }
+
+/* ============ Un mes ============ */
+.mes { margin-top: 52px; scroll-margin-top: 12px; } /* guia.css ya deja bajo la barra: scroll-padding-top en html */
+.fp-nota + .mes { margin-top: 28px; }
+.mes-cabeza { display: flex; align-items: center; gap: 14px; margin-bottom: 6px; }
+.mes-nombre { position: relative; font-size: clamp(32px, 3.4vw, 42px); line-height: 1; }
+.mes-nombre::after { /* pincelada en la tinta del mes, bajo el rótulo */
+  content: ''; position: absolute; left: -3px; right: -3px; bottom: -9px; height: 6px; background: var(--pintura);
+  -webkit-mask: var(--brochazo) center / 100% 100% no-repeat; mask: var(--brochazo) center / 100% 100% no-repeat;
+}
+.mes-filete { flex: 1 1 auto; height: 1px; min-width: 16px; background: var(--linea); }
+.mes-cuenta { white-space: nowrap; }
+.mes-actual { flex: none; }
+.mes-vacio { padding: 20px 0 8px; }
+.mes-lista { display: grid; margin-top: 8px; }
+
+/* ============ Fila de fiesta ============ */
+.fiesta { border-bottom: 1px solid var(--linea); }
+.fiesta:last-child { border-bottom: 0; }
+.fiesta-enlace {
+  position: relative; display: grid; grid-template-columns: 112px minmax(0, 1fr) 28px; gap: 0 28px; align-items: center;
+  padding: 22px 12px 22px 4px; color: var(--tinta); text-decoration: none; border-radius: 10px; transition: background-color .2s;
+}
+.fiesta-enlace:hover { background: color-mix(in srgb, var(--suelo-2) 75%, transparent); }
+.fiesta-enlace:focus-visible { outline-offset: -3px; }
+
+/* La fecha, pintada: cifra grande sobre una pincelada */
+.fiesta-fecha {
+  position: relative; isolation: isolate; display: grid; justify-items: center; align-content: center; min-height: 84px;
+  padding: 10px 10px 9px; color: var(--letra-tabla); text-align: center;
+}
+.fiesta-pintura {
+  position: absolute; inset: 0; z-index: -1; background: var(--pintura); rotate: var(--r, -1.6deg);
+  -webkit-mask: var(--brochazo) center / 100% 100% no-repeat; mask: var(--brochazo) center / 100% 100% no-repeat;
+}
+.fiesta:nth-child(3n + 2) .fiesta-pintura { --r: 1.2deg; }
+.fiesta:nth-child(3n) .fiesta-pintura { --r: -0.6deg; }
+.fiesta-cifra { font-size: 38px; line-height: 1.02; }
+.fiesta-cifra.cifra-larga { font-size: 27px; padding-block: 5px 3px; }
+.fiesta-mes { font-size: 14px; letter-spacing: .16em; line-height: 1.1; }
+
+.fiesta-cuerpo { display: grid; gap: 6px; min-width: 0; }
+.fiesta-nombre { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.1; letter-spacing: .01em; text-wrap: balance; }
+.fiesta-lugar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 14px; letter-spacing: .06em; color: var(--tinta-suave); }
+.fiesta-rango { font-size: 15px; color: var(--tinta-tenue); }
+.fiesta-desc {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  margin-top: 4px; font-size: 15.5px; line-height: 1.5; color: var(--tinta-suave);
+}
+.fiesta-ir { justify-self: end; color: var(--tinta-tenue); transition: transform .2s var(--curva-salida), color .2s; }
+.fiesta-enlace:hover .fiesta-ir { transform: translateX(4px); color: var(--acento-texto); }
+
+/* Lo que se celebra hoy: borde de azafrán, un foco encendido sobre la cifra y la descripción a la vista */
+.fiesta.es-hoy { border-bottom-color: transparent; }
+.fiesta.es-hoy .fiesta-enlace { margin-block: 14px; padding: 24px 14px 24px 12px; border: 1.5px solid var(--foco); border-radius: 12px; }
+.fiesta.es-hoy .fiesta-foco { position: absolute; top: -19px; left: 50%; margin: 0 0 0 -5.5px; }
+.fiesta.es-hoy .fiesta-nombre { color: var(--tinta); }
+
+/* ---- Anuncios entre filas ---- */
+.fp-anuncio { padding: 4px 0; border-bottom: 0; }
+.fp-anuncio .anuncio { margin-block: 14px; }
+
+/* ============ Ficha de una fiesta ============ */
+.ff-volver-caja { padding-top: 22px; }
+.ff-volver { padding-inline: 0 10px; }
+.ff { display: grid; grid-template-columns: minmax(240px, 300px) minmax(0, 1fr); gap: 36px 72px; align-items: start; padding-bottom: 64px; }
+.ff-fecha { display: grid; gap: 24px; }
+.fiesta-fecha-grande { width: min(100%, 250px); min-height: 150px; padding: 20px 16px 15px; justify-items: center; }
+.fiesta-fecha-grande .fiesta-pintura { rotate: -2deg; }
+.fiesta-fecha-grande .fiesta-cifra { font-size: 78px; }
+.fiesta-fecha-grande .fiesta-cifra.cifra-larga { font-size: 52px; padding-block: 8px 4px; }
+.fiesta-fecha-grande .fiesta-mes { font-size: 18px; }
+.ff-datos { display: grid; gap: 12px; }
+.ff-rango, .ff-lugar { display: flex; align-items: flex-start; gap: 10px; }
+.ff-rango { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 27px; line-height: 1.12; letter-spacing: .02em; }
+.ff-rango .ic, .ff-lugar .ic { margin-top: .12em; color: var(--acento-texto); }
+.ff-lugar { font-size: 16px; letter-spacing: .06em; color: var(--tinta-suave); line-height: 1.3; }
+.ff-municipio { display: inline-flex; align-items: center; gap: 6px; justify-self: start; padding-left: 34px; font-size: 14.5px; }
+.ff-municipio .ic { width: 1.1em; height: 1.1em; }
+.ff-aviso {
+  display: flex; align-items: flex-start; gap: 10px; margin-top: 6px; padding: 11px 14px; border: 1px solid var(--linea); border-radius: 8px;
+  background: var(--suelo-2); color: var(--tinta-suave); font-size: 14.5px; line-height: 1.45;
+}
+.ff-aviso .ic { margin-top: 1px; color: var(--tinta-tenue); }
+.ff-texto .lectura { font-size: 18px; }
+.ff-texto .nota { margin-top: 14px; }
+.ff-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; margin-top: 32px; }
+.ff-mas { padding-bottom: 8px; }
+.ff-mas .mes-lista { max-width: 880px; }
+.ff-mas .seccion-titulo { margin-bottom: 4px; }
+
+/* ============ Responsive ============ */
+@media (max-width: 1080px) {
+  .fp { grid-template-columns: 150px minmax(0, 1fr); gap: 0 36px; }
+}
+
+@media (max-width: 860px) {
+  .fp { grid-template-columns: minmax(0, 1fr); padding-bottom: 72px; }
+  .fp-contenido { max-width: none; }
+
+  /* Navegación: chips que se deslizan, pegados bajo la barra */
+  .fp-meses {
+    position: sticky; top: var(--barra-alto); z-index: 40; margin: 0 -20px; padding: 10px 20px; overflow-x: auto; scrollbar-width: none;
+    background: color-mix(in srgb, var(--suelo) 92%, transparent); border-bottom: 1px solid var(--linea);
+    backdrop-filter: saturate(1.2) blur(10px); -webkit-backdrop-filter: saturate(1.2) blur(10px);
+  }
+  .fp-meses::-webkit-scrollbar { display: none; }
+  .fp-meses ul { display: flex; gap: 8px; width: max-content; }
+  .fp-meses ul::before, .fp-meses .foco-solo { display: none; }
+  .fp-meses a {
+    min-height: 40px; padding: 0 16px; border: 1px solid var(--linea); border-radius: 999px; font-size: 16px; letter-spacing: .04em;
+    transition: background-color .2s, color .2s, border-color .2s;
+  }
+  .fp-meses a[aria-current="true"] { background: var(--tinta); color: var(--suelo); border-color: var(--tinta); }
+  .fp-meses .mes-largo { display: none; }
+  .mes-corto { display: inline; }
+
+  .mes { scroll-margin-top: 62px; margin-top: 40px; } /* + la fila de chips pegada bajo la barra */
+  .fp-nota { margin-top: 16px; }
+
+  .fiesta-enlace { grid-template-columns: 84px minmax(0, 1fr) 20px; gap: 0 16px; padding: 18px 2px; }
+  .fiesta-fecha { min-height: 72px; padding: 8px 6px 7px; }
+  .fiesta-cifra { font-size: 31px; }
+  .fiesta-cifra.cifra-larga { font-size: 22px; padding-block: 4px 3px; }
+  .fiesta-mes { font-size: 13px; }
+  .fiesta-nombre { font-size: 21px; }
+  .fiesta.es-hoy .fiesta-enlace { padding: 22px 10px 22px 8px; margin-inline: -2px; }
+
+  .ff { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-bottom: 48px; }
+  .fiesta-fecha-grande { width: 190px; min-height: 124px; }
+  .fiesta-fecha-grande .fiesta-cifra { font-size: 62px; }
+  .fiesta-fecha-grande .fiesta-cifra.cifra-larga { font-size: 42px; }
+  .ff-rango { font-size: 24px; }
+  .ff-texto .lectura { font-size: 17px; }
+  .ff-acciones .btn-pintado { flex: 1 1 100%; justify-content: center; }
+}
+
+@media (max-width: 520px) {
+  .fp-meses { margin-inline: -16px; padding-inline: 16px; }
+}

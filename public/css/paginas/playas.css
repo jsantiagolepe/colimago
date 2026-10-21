@@ -1,0 +1,54 @@
+/* Playas (/playas): foto grande pegajosa que cambia + tablero de filas con
+   filetes, hermano de la sección Playas de la portada. Desde 861px el tablero
+   es solo texto y manda la foto grande; en móvil cada fila lleva su miniatura. */
+
+.playas { padding-bottom: 40px; }
+.playas-contador { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; color: var(--acento-texto); font-variant-numeric: tabular-nums; margin-top: 12px; }
+
+.playas-rejilla { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 48px; align-items: start; padding-bottom: 40px; }
+.playas-foto { position: sticky; top: calc(var(--barra-alto) + 24px); margin: 0; }
+.playas-foto .marco { aspect-ratio: 4 / 3; max-height: calc(100vh - var(--barra-alto) - 120px); max-height: calc(100dvh - var(--barra-alto) - 120px); width: 100%; }
+.playas-foto .marco img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.04);
+  transition: opacity .7s ease, transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+.playas-foto .marco img.activa { opacity: 1; transform: scale(1); }
+.playas-pie { margin-top: 12px; font-size: 14px; line-height: 1.45; color: var(--tinta-tenue); min-height: 2.9em; }
+.playas-credito { display: block; font-size: 13px; }
+.playas-credito a { color: var(--tinta-suave); }
+.playas-credito a:hover { color: var(--tinta); }
+
+/* Tablero: bloques de tres filas; entre bloques, el anuncio */
+.playas-tablero { min-width: 0; }
+.playas-bloque { border-top: 1px solid var(--linea); }
+.playas-bloque > li { border-bottom: 1px solid var(--linea); }
+.playas-tablero > .anuncio { margin-block: 28px; }
+.playa-fila > a {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 20px 4px 20px 0; text-decoration: none; color: inherit;
+}
+.playa-miniatura { display: none; }
+.playa-nombre { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.05; letter-spacing: .01em; transition: color .2s; overflow-wrap: anywhere; }
+.playa-muni { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-tenue); align-self: center; text-align: right; }
+.playa-dato { grid-column: 1 / -1; color: var(--tinta-suave); font-size: 16px; max-width: 34em; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.playa-fila > a:hover .playa-nombre { color: var(--acento-texto); }
+@media (min-width: 861px) {
+  .playa-fila.activa .playa-nombre { color: var(--acento-texto); }
+  .playa-fila.activa .playa-nombre::before {
+    content: ''; display: inline-block; width: 10px; height: 10px; margin-right: 12px; vertical-align: .2em; border-radius: 50%; background: var(--foco);
+  }
+}
+.playa-fila > a:focus-visible { outline-offset: -3px; border-radius: 6px; }
+
+@media (max-width: 860px) {
+  .playas-rejilla { grid-template-columns: 1fr; gap: 0; }
+  .playas-foto { display: none; }
+  .playa-fila > a { grid-template-columns: 112px minmax(0, 1fr); grid-template-areas: "foto nombre" "foto muni" "foto dato"; gap: 2px 16px; padding: 16px 0; align-items: start; }
+  .playa-miniatura { display: block; grid-area: foto; aspect-ratio: 4 / 3; align-self: start; }
+  .playa-nombre { grid-area: nombre; font-size: 26px; }
+  .playa-muni { grid-area: muni; text-align: left; align-self: start; }
+  .playa-dato { grid-area: dato; grid-column: auto; font-size: 15.5px; -webkit-line-clamp: 2; margin-top: 4px; }
+}
+@media (max-width: 520px) {
+  .playa-fila > a { grid-template-columns: 96px minmax(0, 1fr); gap: 2px 14px; }
+  .playa-nombre { font-size: 24px; }
+}

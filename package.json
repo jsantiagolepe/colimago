@@ -11,7 +11,9 @@
   "scripts": {
     "start": "node server.js",
     "verificar": "node scripts/verificar-backend.js",
-    "verificar:visitas": "node scripts/verificar-visitas.js"
+    "verificar:visitas": "node scripts/verificar-visitas.js",
+    "verificar:guia": "node scripts/verificar-guia.js",
+    "verificar:datos": "node scripts/verificar-datos.js"
   },
   "dependencies": {
     "cookie-session": "^2.1.1",

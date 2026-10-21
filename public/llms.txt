@@ -3,7 +3,8 @@
 > Colima Go es una app móvil gratuita (iOS y Android) para descubrir los
 > lugares, rincones naturales y fiestas de los diez municipios del estado de
 > Colima, México. colimago.mx es su página pública; el contenido de abajo es
-> el mismo que muestra la app.
+> el mismo que muestra la app. Además de la portada, la web tiene una guía
+> con las mismas secciones que la app (ver "La guía web" más abajo).
 
 Idioma: español (es-MX). Cobertura: exclusivamente el estado de Colima.
 Descargas: App Store (id1665801713) y Google Play (mx.shago.colimaapp), gratis.
@@ -57,8 +58,27 @@ Deportivo, Religioso, Ganadero, Social.
 - **Cuauhtémoc** — el valle central: paisajes naturales, clima fresco y tradición agrícola.
 - **Ixtlahuacán** — refugio de tranquilidad entre montañas; turismo rural.
 
+## La guía web (colimago.mx/inicio)
+
+La guía replica en la web las secciones de la app. Cada página existe en
+español y en inglés (el inglés bajo /en/).
+
+- /inicio — mapa de los diez municipios, accesos a las secciones y, cuando existe, el Top 10.
+- /explorar — eventos próximos y lugares para visitar, con me gusta y comentarios (requieren iniciar sesión con Google).
+- /calendario — los eventos de cada día del mes.
+- /rincones-naturales/<categoría> — ríos, playas, lagunas, montañas, arqueología, parques, patrimonio, balnearios y rutas.
+- /playas — las playas del estado.
+- /municipios y /municipios/<municipio> — los diez municipios, sus atracciones, tianguis, hoteles, restaurantes y eventos.
+- /tianguis-y-mercados — qué día y dónde se pone cada tianguis, y los mercados.
+- /fiestas-del-pueblo — fiestas patronales, ferias y cabalgatas, mes por mes; muchas fechas son aproximadas y cada ficha trae su fuente.
+- /fiestas-charrotaurinas — la ficha de la edición 2026 de los festejos charrotaurinos de Villa de Álvarez.
+- /lugar/<lugar> — la ficha de cada lugar: descripción, servicios, horarios, ubicación y crédito de la foto.
+- /evento/<id> — la ficha de cada evento con fecha, lugar y comentarios.
+- /sitemap.xml — todas las URLs.
+
 ## Notas
 
-- No publicamos número de descargas, calificaciones, reseñas ni fechas de
-  eventos en esta página: cambian o no son verificables aquí.
+- No publicamos número de descargas, calificaciones ni reseñas. En la portada
+  tampoco fechas de eventos; las fechas de eventos viven en la guía (/explorar,
+  /calendario, /evento/…), que las toma de la app y las separa en próximos y pasados.
 - La sección de administración (/login, /dashboard.html) es privada.
