@@ -102,8 +102,9 @@ framework ni build), con CSS y JS vanilla. Documentación a fondo:
   cuenta (en el navegador). La sesión es una cookie cifrada, httpOnly.
 - **Anuncios:** la app usa AdMob; la web usa Google AdSense. El ID de editor
   (`ca-pub-5479273904422379`) ya está en el código: la guía carga el script de
-  AdSense, publica `/ads.txt` y la portada lleva solo la etiqueta
-  `google-adsense-account` (sin cargar nada). Los bloques de anuncio se piden
+  AdSense y publica `/ads.txt`; la portada lleva la etiqueta
+  `google-adsense-account` y el fragmento async de AdSense (Google lo busca ahí
+  para verificar el sitio; la portada no tiene espacios de anuncio). Los bloques de anuncio se piden
   cuando están `ADSENSE_SLOT_BANNER` y `ADSENSE_SLOT_FEED` (los números de las
   unidades que se crean en AdSense → Anuncios → Por unidad de anuncio); sin
   ellos cada espacio muestra una promo propia de Colima Go, a lo más una por ~9
