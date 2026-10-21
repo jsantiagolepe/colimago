@@ -1,0 +1,149 @@
+{
+  "titulo": "Privacy policy",
+  "descripcion": "What data Colima Go collects on its website and app, what it is used for, how Google AdSense advertising works, and how to exercise your ARCO rights.",
+  "actualizadoEtiqueta": "Last updated",
+  "actualizado": "October 21, 2026",
+  "actualizadoIso": "2026-10-21",
+  "indice": "On this page",
+  "externo": "opens in a new tab",
+  "intro": [
+    "This policy explains what information colimago.mx (the home page and the Colima Go web guide) and the Colima Go mobile app collect, what we use it for, and what you can do about it. It is our privacy notice under Mexico's Federal Law on the Protection of Personal Data Held by Private Parties.",
+    "Colima Go is a guide to Colima, Mexico: places, beaches, town festivals and events. We collect the minimum needed for it to work, and you can read the whole guide without creating an account."
+  ],
+  "secciones": [
+    {
+      "id": "responsable",
+      "titulo": "1. Who is responsible, and how to reach us",
+      "parrafos": [
+        "The party responsible for processing your personal data is Colima Go (Colima 360), in Colima, Colima, Mexico.",
+        "For any privacy matter, including requests to exercise your ARCO rights, write to [colimago.app@gmail.com](mailto:colimago.app@gmail.com) or use the [contact page](/contacto)."
+      ]
+    },
+    {
+      "id": "datos",
+      "titulo": "2. What data we collect",
+      "parrafos": [
+        "It depends on what you do on the site or in the app:"
+      ],
+      "lista": [
+        "**Home page visit.** When you open the home page of colimago.mx we record a visit with a random identifier stored in your browser (it is not your name or your email), the browser and operating system you use (for example, “Chrome 126” and “Android”), the site version, and the date and time. We do not include your IP address in that record or use it to identify you.",
+        "**Sign-in with Google.** If you sign in to like, comment or save favorites to your account, Google shares your name, email address, profile photo and account identifier with us. We never receive your password. We keep you signed in with an encrypted cookie that lasts 30 days and goes away when you sign out.",
+        "**Comments, likes, favorites and reports.** What you write in a comment (up to 500 characters) is published together with your Google name and profile photo, and anyone can see it. Likes, favorites and reports are stored linked to your account; reports (up to 1,000 characters) are seen only by the Colima Go team. Without an account, your favorites are stored only in your browser; if you sign in later, they can be merged with your account's favorites.",
+        "**Views.** We count how many times the page of a place or event is opened so we can show its counters. That count does not identify you.",
+        "**Suggestion and contact forms.** The website does not store what you type into them: they build a message that you send through Messenger or email, or copy. We receive it with whatever data you include (for example, your name or email) and whatever the platform you use to send it has.",
+        "**Preferences in your browser.** Your light or dark theme and, if you do not use an account, your favorites are kept in your browser's storage.",
+        "**Technical server data.** Like any website, our hosting provider receives your IP address and the details of the request (page requested, browser, date and time) to deliver the site and protect it from abuse. We use per-IP limits to curb spam and attacks.",
+        "**Mobile app.** When it opens, the Colima Go app records a usage event with a random identifier, the device model, and the version of the operating system and of the app, and offers the same Google sign-in, comments, likes and favorites as the website. If the app needs a device permission, it asks for it at that moment and you can withdraw it in your phone's settings."
+      ]
+    },
+    {
+      "id": "usos",
+      "titulo": "3. What we use your data for",
+      "lista": [
+        "To provide the service: keep you signed in, publish your comments, save your favorites and count views.",
+        "To improve the guide and the app: see which sections are used and spot errors, without identifying you.",
+        "Moderation and security: handle reports and prevent spam, abuse and improper access.",
+        "To reply to the messages you send us.",
+        "To show advertising, as explained in the next section.",
+        "To comply with legal obligations."
+      ],
+      "cierre": [
+        "We do not sell your personal data."
+      ]
+    },
+    {
+      "id": "publicidad",
+      "titulo": "4. Advertising (Google AdSense and AdMob)",
+      "parrafos": [
+        "This site may show ads from Google AdSense, and the mobile app uses Google AdMob. Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this and other websites.",
+        "Google uses advertising cookies to serve ads. Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to this site and/or other sites on the Internet.",
+        "You can opt out of personalized advertising by visiting [Google Ads Settings](https://adssettings.google.com). You can also opt out of a third-party vendor's use of cookies for personalized advertising by visiting [www.aboutads.info](https://www.aboutads.info).",
+        "To learn more about how Google uses data from sites and apps that use its services, see [How Google uses information from sites or apps that use our services](https://policies.google.com/technologies/ads).",
+        "Ads are marked with the label “Advertising”. They do not appear on the home page or in forms. Turning off personalized advertising does not remove ads: it only makes them less relevant to you. Colima Go does not control the cookies of Google or of its advertising partners."
+      ]
+    },
+    {
+      "id": "cookies",
+      "titulo": "5. Cookies and similar technologies",
+      "lista": [
+        "**Our own session cookie.** It exists only if you sign in: it holds your encrypted session, the page's code cannot read it, and it lasts 30 days or until you sign out. It is needed for your account to work.",
+        "**Browser storage.** We store your theme (light or dark), the random identifier of the home page visit and, if you do not use an account, your favorites. We also note in the browser session which pages you have already counted so the same view is not added twice.",
+        "**Google cookies.** They are used by AdSense ads and, only when you tap “Sign in”, by Google sign-in.",
+        "**Map and video on demand.** The OpenStreetMap map and TikTok videos load only when you press the corresponding button; those providers may set their own cookies, under their own policies.",
+        "**Analytics.** We do not use Google Analytics or social-media tracking pixels on the site."
+      ],
+      "cierre": [
+        "You can block or delete cookies in your browser settings. The guide will keep working, except for sign-in and ads."
+      ]
+    },
+    {
+      "id": "terceros",
+      "titulo": "6. Who we share your data with",
+      "parrafos": [
+        "We share data only when it is needed to provide the service:"
+      ],
+      "lista": [
+        "**Google**, for sign-in and for advertising.",
+        "**Cloud hosting and database providers**, which process data on our behalf so the site and the app work. Some are in the United States or other countries.",
+        "**Meta (Messenger)**, only if you choose to message us there.",
+        "**Authorities**, when a law or a legitimate order requires it."
+      ],
+      "cierre": [
+        "By using the site or the app you accept these transfers, which are necessary to provide the service."
+      ]
+    },
+    {
+      "id": "conservacion",
+      "titulo": "7. How long we keep your data",
+      "parrafos": [
+        "We keep your data for as long as needed for the purposes of this policy. If you delete your account in Settings, we delete your account and the data associated with it and sign you out. Visit records do not identify you and are kept for as long as they are useful for statistics."
+      ]
+    },
+    {
+      "id": "arco",
+      "titulo": "8. Your rights (ARCO)",
+      "parrafos": [
+        "You have the right to **access** your personal data and know how we use it, to **rectify** it if it is inaccurate, to **cancel** it, and to **object** to its use. You can also withdraw your consent and ask us to limit the use or disclosure of your data.",
+        "To exercise them, send an email to [colimago.app@gmail.com](mailto:colimago.app@gmail.com) with the subject “ARCO rights” and include: your full name and a way to reply to you; a clear description of the data and of the right you want to exercise; and a copy of a valid official ID (or, if you act on behalf of someone else, the document proving your representation).",
+        "We will reply within 20 days of receiving your complete request and, if it is granted, carry it out within the following 15 days.",
+        "Some things you can do yourself: sign out, delete your comments and delete your account from Settings. For personalized advertising, see section 4. If you believe your rights have been violated, you can go to the competent personal data protection authority in Mexico."
+      ]
+    },
+    {
+      "id": "menores",
+      "titulo": "9. Children",
+      "parrafos": [
+        "Colima Go is a guide for a general audience and is not directed at children under 13. We do not knowingly collect personal data from children under 13. If you are under 18, use the account features (comments, likes and favorites) with the permission of your parent or guardian.",
+        "If you believe a child gave us data without authorization, write to us and we will delete it."
+      ]
+    },
+    {
+      "id": "seguridad",
+      "titulo": "10. Security",
+      "parrafos": [
+        "The site uses an encrypted connection (HTTPS), your session travels in an encrypted cookie that the page's code cannot read, we verify the origin of requests that write data, and we limit abuse. No system is perfectly secure, but we take the protection of your data seriously."
+      ]
+    },
+    {
+      "id": "enlaces",
+      "titulo": "11. Links to other sites",
+      "parrafos": [
+        "The guide links to third-party sites (maps, social networks, pages of places and events). We do not control their privacy practices: check their own policies."
+      ]
+    },
+    {
+      "id": "cambios",
+      "titulo": "12. Changes to this policy",
+      "parrafos": [
+        "When this policy changes, we will publish the new version on this page with its update date. If the change is significant, we will also tell you on the site or in the app."
+      ]
+    },
+    {
+      "id": "contacto",
+      "titulo": "13. Contact",
+      "parrafos": [
+        "Questions about this policy? Write to [colimago.app@gmail.com](mailto:colimago.app@gmail.com) or use the [contact page](/contacto). The [terms of use](/terminos) govern the use of the site."
+      ]
+    }
+  ]
+}

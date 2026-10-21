@@ -1,0 +1,39 @@
+{
+  "titulos": {
+    "sobre": "About this festival",
+    "esperar": "What to expect",
+    "consejos": "Tips for going",
+    "cerca": "What to do nearby",
+    "municipio": "About {municipio}"
+  },
+  "cuando": {
+    "unDia": "{nombre} is celebrated on {fecha} {donde}.",
+    "rango": "{nombre} is celebrated from {inicio} to {fin} {donde}.",
+    "texto": "{nombre} is celebrated {donde}. Dates: {fecha}.",
+    "aproximada": "The date we show is approximate."
+  },
+  "repite": "Town festivals repeat every year, but the dates can move by a few days. Before you go, confirm with the town hall, the parish or the organizers.",
+  "esperar": "Colima's town festivals usually combine Mass and processions, music and dancing, food stalls and street snacks, fairground rides and, depending on each town's tradition, horseback parades or rodeos. They are a good chance to learn about local customs and try local food.",
+  "consejos": [
+    "Bring cash in small bills and coins: almost nobody at the stalls takes cards.",
+    "Arrive early and look for parking: on the main days of the festival, downtown streets are closed or packed.",
+    "Wear comfortable clothes and shoes and protect yourself from the sun; it can cool down at night.",
+    "Respect the religious celebrations and look after your belongings in the crowd."
+  ],
+  "cerca": {
+    "intro": "If you will be in {municipio}, these places in the guide are close at hand:",
+    "enlaces": "To plan your outing, also see the [calendar](/calendario) and the [other town festivals](/fiestas-del-pueblo)."
+  },
+  "municipio": {
+    "conteo": {
+      "uno": "The guide has 1 place in {municipio}.",
+      "otros": "The guide has {n} places in {municipio}."
+    },
+    "ver": "Explore the municipality of {municipio}"
+  },
+  "donde": {
+    "conLocalidad": "in {localidad}, in the municipality of {municipio}, Colima",
+    "soloMunicipio": "in the municipality of {municipio}, Colima",
+    "sinMunicipio": "in {localidad}, Colima"
+  }
+}

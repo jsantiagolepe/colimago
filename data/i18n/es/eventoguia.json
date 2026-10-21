@@ -1,0 +1,37 @@
+{
+  "titulos": {
+    "sobre": "Sobre este evento",
+    "llegar": "Cómo llegar",
+    "cerca": "Qué hacer cerca",
+    "municipio": "Sobre {municipio}"
+  },
+  "cuando": {
+    "el": "el ",
+    "conLugar": "{titulo} se realiza {fecha} en {lugar}, en el municipio de {municipio}, Colima.",
+    "conLugarSinMunicipio": "{titulo} se realiza {fecha} en {lugar}, en el estado de Colima.",
+    "sinLugar": "{titulo} se realiza {fecha} en el municipio de {municipio}, Colima.",
+    "sinMunicipio": "{titulo} se realiza {fecha}, en el estado de Colima.",
+    "desde": ""
+  },
+  "fuente": "La información de los eventos la publican sus organizadores y puede cambiar. Antes de asistir, confirma la fecha, la hora y el lugar con ellos o en sus redes oficiales.",
+  "pasado": "Este evento ya terminó. Conservamos la página como referencia; para planear tu próxima salida, mira los eventos que vienen en [Explorar](/explorar) y en el [calendario](/calendario).",
+  "llegar": {
+    "conMapa": "{lugar} queda a unos {km} km en línea recta del Jardín Libertad, en el centro de la ciudad de Colima. Usa el enlace «Ver en el mapa» de esta ficha para trazar la ruta desde donde estés; si esperas mucha gente, sal con tiempo y busca dónde estacionar.",
+    "conMapaCentro": "{lugar} queda en la ciudad de Colima, a unos {km} km del Jardín Libertad. Usa el enlace «Ver en el mapa» de esta ficha para trazar la ruta desde donde estés; si esperas mucha gente, sal con tiempo y busca dónde estacionar.",
+    "sinMapa": "Todavía no tenemos la ubicación de este evento en el mapa de la guía. Confirma el lugar con los organizadores o en sus redes antes de salir."
+  },
+  "cerca": {
+    "intro": "Si vas a estar en la zona, estos lugares de la guía quedan cerca del evento:",
+    "introMunicipio": "Para aprovechar el viaje, estos lugares de la guía están en {municipio}:",
+    "km": "{km} km",
+    "enlaces": "Para armar tu plan, mira también el [calendario](/calendario) y [todos los eventos](/explorar).",
+    "pocosMetros": "a menos de 1 km"
+  },
+  "municipio": {
+    "conteo": {
+      "uno": "En la guía hay 1 lugar en {municipio}.",
+      "otros": "En la guía hay {n} lugares en {municipio}."
+    },
+    "ver": "Conoce el municipio de {municipio}"
+  }
+}

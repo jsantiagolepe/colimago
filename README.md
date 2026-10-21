@@ -111,16 +111,27 @@ framework ni build), con CSS y JS vanilla. Documentación a fondo:
   elementos. Con los bloques activos, la cadencia es la de la app (cada 3).
   Mantén apagados los "anuncios automáticos" del sitio en AdSense: el diseño
   reserva el espacio de cada anuncio y no admite anuncios sobre el contenido.
-- **SEO:** `/sitemap.xml` es dinámico (lugares, municipios, fiestas, eventos
-  vigentes, es/en con hreflang). Favoritos, ajustes y sugerencias llevan
-  `noindex`.
+- **Páginas de información:** `/privacidad`, `/terminos` y `/contacto` (en inglés
+  `/en/privacy`, `/en/terms`, `/en/contact`) viven en este dominio, y el pie de la
+  guía, la portada y Acerca de enlazan a ellas. La política de privacidad explica
+  cómo funciona la publicidad de Google (cookies, `adssettings.google.com`,
+  `aboutads.info`) y los derechos ARCO; su texto está en
+  `data/i18n/*/privacidad.json` y conviene que lo revise quien responde por el sitio.
+  El EULA de la app sigue en su página de Google Sites.
+- **SEO:** `/sitemap.xml` es dinámico (lugares, municipios, fiestas, eventos que no
+  han terminado, páginas de información, es/en con hreflang). Favoritos, ajustes y
+  sugerencias llevan `noindex`, y también los eventos pasados, todo `/en/evento/*`
+  y las fichas en inglés cuyo texto no está traducido (ver `lib/guia/indexacion.js`).
+- **Dominio sin www:** `colimago.mx` redirige a `www.colimago.mx` desde la
+  configuración de dominios de Vercel (Settings → Domains), no desde el código.
+  `/ads.txt` lo sirve este servidor en `www.colimago.mx/ads.txt`.
 
 Probarla en local, sin tocar producción: en una terminal
 `node scripts/backend-falso.js 4010` (backend falso con el feed real; `TOP10=1`
 llena el Top 10, `FALLA=1` simula un error), y en otra
 `COLIMA_BACKEND_URL=http://127.0.0.1:4010/api npm start`; abre
-http://localhost:3001/inicio. Verificaciones sin red: `npm run verificar:datos`
-y `npm run verificar:guia`.
+http://localhost:3001/inicio. Verificaciones sin red: `npm run verificar:datos`,
+`npm run verificar:guia` y `npm run verificar:sitio`.
 
 Variables de entorno nuevas (todas opcionales): `ADSENSE_CLIENT` (vacía apaga AdSense),
 `ADSENSE_SLOT_BANNER`, `ADSENSE_SLOT_FEED`, `GOOGLE_CLIENT_ID_WEB` (por defecto,

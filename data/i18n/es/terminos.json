@@ -1,0 +1,122 @@
+{
+  "titulo": "Condiciones de uso",
+  "descripcion": "Las reglas para usar la guía web de Colima Go: qué es, qué esperar de su información, cómo publicar comentarios, propiedad intelectual y límites de responsabilidad.",
+  "actualizadoEtiqueta": "Última actualización",
+  "actualizado": "21 de octubre de 2026",
+  "actualizadoIso": "2026-10-21",
+  "indice": "En esta página",
+  "externo": "se abre en una pestaña nueva",
+  "intro": [
+    "Estas condiciones regulan el uso de colimago.mx, la portada y la guía web de Colima Go, en español y en inglés. La app móvil se rige además por su propio EULA. Al usar el sitio aceptas lo que sigue; si no estás de acuerdo, te pedimos que no lo uses."
+  ],
+  "secciones": [
+    {
+      "id": "servicio",
+      "titulo": "1. Qué es Colima Go",
+      "parrafos": [
+        "Colima Go es una guía gratuita de lugares, playas, rincones naturales, tianguis, fiestas del pueblo y eventos de los diez municipios de Colima, México. Es un servicio informativo: no vendemos boletos, no hacemos reservaciones y no somos una oficina de gobierno ni representamos a los organizadores de los eventos."
+      ]
+    },
+    {
+      "id": "informacion",
+      "titulo": "2. La información puede cambiar",
+      "parrafos": [
+        "Hacemos lo posible por que la información sea correcta, pero los horarios, fechas, accesos, precios y servicios cambian, y los eventos los anuncian terceros. No garantizamos que todo esté completo ni al día. Antes de salir, confirma los datos importantes con el lugar o con el organizador.",
+        "Si encuentras un error, avísanos desde la [página de contacto](/contacto) o desde «Sugerir»: lo revisamos para corregirlo."
+      ]
+    },
+    {
+      "id": "riesgos",
+      "titulo": "3. Actividades al aire libre",
+      "parrafos": [
+        "Muchos lugares de la guía son ríos, playas, lagunas, montañas y caminos de terracería. El mar, las corrientes, la lluvia, el calor y el terreno implican riesgos, y algunas zonas, como las cercanas al Volcán de Colima, pueden tener restricciones de acceso.",
+        "Sigue siempre las indicaciones de Protección Civil y de las autoridades locales. Visitar estos lugares y hacer actividades en ellos es bajo tu propio riesgo y responsabilidad."
+      ]
+    },
+    {
+      "id": "cuenta",
+      "titulo": "4. Tu cuenta",
+      "parrafos": [
+        "Para dar Me gusta, comentar o guardar favoritos en tu cuenta inicias sesión con Google. Eres responsable de lo que ocurra con tu cuenta. Podemos suspender o eliminar cuentas que incumplan estas condiciones, y tú puedes borrar la tuya cuando quieras desde Ajustes."
+      ]
+    },
+    {
+      "id": "contenido",
+      "titulo": "5. Lo que publicas",
+      "parrafos": [
+        "Eres responsable de tus comentarios. No publiques contenido ilegal, ofensivo, discriminatorio, engañoso o que acose a otras personas; tampoco spam, publicidad ni datos personales de terceros.",
+        "Al publicar un comentario nos das permiso, gratuito y no exclusivo, para mostrarlo en el sitio y en la app mientras esté publicado. Podemos ocultar o eliminar los comentarios que incumplan estas reglas o que nos reporten, y tú puedes borrar los tuyos. Si ves algo indebido, usa la opción «Reportar»."
+      ]
+    },
+    {
+      "id": "uso",
+      "titulo": "6. Uso permitido",
+      "parrafos": [
+        "Al usar el sitio te comprometes a no:"
+      ],
+      "lista": [
+        "usarlo para fines ilícitos o para dañar a otras personas;",
+        "intentar entrar a zonas privadas, vulnerar su seguridad o sobrecargarlo con peticiones automatizadas;",
+        "copiar de forma masiva sus textos, fotos o datos para publicarlos como propios;",
+        "hacerte pasar por otra persona."
+      ]
+    },
+    {
+      "id": "propiedad",
+      "titulo": "7. Propiedad intelectual",
+      "parrafos": [
+        "La marca y el logotipo de Colima Go, el diseño del sitio, sus textos propios y su código pertenecen a sus titulares. Puedes compartir los enlaces y citar fragmentos breves con la fuente, pero no reproducir el sitio ni sus contenidos sin permiso.",
+        "Las fotos de Wikimedia Commons conservan su licencia y llevan su crédito. Los textos, carteles y fotos de los eventos pertenecen a sus organizadores o a las fuentes que se indican. Si crees que algo infringe tus derechos, escríbenos desde la [página de contacto](/contacto) y lo revisamos."
+      ]
+    },
+    {
+      "id": "terceros",
+      "titulo": "8. Publicidad y enlaces de terceros",
+      "parrafos": [
+        "El sitio puede mostrar anuncios de Google AdSense, señalados como «Publicidad»; en la [política de privacidad](/privacidad) explicamos cómo funcionan. Los anuncios y los enlaces a otros sitios son de terceros: no los controlamos ni respondemos por su contenido, productos o servicios."
+      ]
+    },
+    {
+      "id": "disponibilidad",
+      "titulo": "9. Disponibilidad y cambios del servicio",
+      "parrafos": [
+        "Ofrecemos el sitio «tal cual», sin garantía de que esté siempre disponible o libre de errores. Podemos modificarlo, suspender alguna función o dejar de ofrecerlo en cualquier momento."
+      ]
+    },
+    {
+      "id": "responsabilidad",
+      "titulo": "10. Límite de responsabilidad",
+      "parrafos": [
+        "En la medida que la ley lo permita, Colima Go no responde por daños derivados del uso del sitio, de la imposibilidad de usarlo, de decisiones que tomes con base en su información o del contenido de terceros. Nada de esto limita los derechos que la ley te reconoce y que no se pueden renunciar."
+      ]
+    },
+    {
+      "id": "privacidad",
+      "titulo": "11. Privacidad",
+      "parrafos": [
+        "Cómo tratamos tus datos personales se explica en la [política de privacidad](/privacidad)."
+      ]
+    },
+    {
+      "id": "cambios",
+      "titulo": "12. Cambios a estas condiciones",
+      "parrafos": [
+        "Podemos actualizar estas condiciones. La versión vigente es la que está en esta página, con su fecha. Si sigues usando el sitio después de un cambio, entendemos que lo aceptas."
+      ]
+    },
+    {
+      "id": "ley",
+      "titulo": "13. Ley aplicable",
+      "parrafos": [
+        "Estas condiciones se rigen por las leyes de los Estados Unidos Mexicanos. Para cualquier controversia, las partes se someten a los tribunales competentes del Estado de Colima."
+      ]
+    },
+    {
+      "id": "contacto",
+      "titulo": "14. Contacto",
+      "parrafos": [
+        "¿Dudas sobre estas condiciones? Escríbenos a [colimago.app@gmail.com](mailto:colimago.app@gmail.com) o desde la [página de contacto](/contacto)."
+      ]
+    }
+  ]
+}

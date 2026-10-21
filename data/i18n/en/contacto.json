@@ -1,0 +1,43 @@
+{
+  "titulo": "Contact",
+  "descripcion": "Write to us: email, social media and a form for questions, corrections, advertising and privacy requests for Colima Go.",
+  "entrada": "A question, a correction or an idea? Write to us: we read every message.",
+  "datos": {
+    "titulo": "Where to find us",
+    "correo": "Email",
+    "messenger": "Messenger",
+    "mensajeria": "Message us on Messenger",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "externo": "opens in a new tab"
+  },
+  "temas": {
+    "titulo": "What you can write to us about",
+    "lista": [
+      "**Correcting a detail.** An hour, a date, a route or a phone number that changed. For an event, a street market or a festival you can also use [Suggest](/sugerir/general).",
+      "**Proposing a place, a festival or an event** that is not in the guide.",
+      "**Sending a photo** of a place to publish it with your credit.",
+      "**Advertising and partnerships** with Colima Go.",
+      "**Privacy and personal data.** To exercise your ARCO rights, see the [privacy policy](/privacidad)."
+    ],
+    "respuesta": "We reply by email as soon as we can."
+  },
+  "formulario": {
+    "titulo": "Write to us from here",
+    "intro": "Fill in the form and your email app will open with the message ready to send. We do not store what you type on this page.",
+    "tipo": "What are you writing about?",
+    "tipos": {
+      "pregunta": "A question",
+      "correccion": "Correct information",
+      "publicidad": "Advertising or partnership",
+      "privacidad": "Privacy and personal data",
+      "otro": "Something else"
+    },
+    "nombre": "Your name (optional)",
+    "nombreEjemplo": "Ana",
+    "mensaje": "Your message",
+    "mensajeEjemplo": "Tell us in as much detail as you can",
+    "enviar": "Send by email"
+  }
+}

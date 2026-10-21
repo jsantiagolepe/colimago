@@ -338,6 +338,26 @@
   .js [data-revela="2"] { transition-delay: .12s; }
   .js [data-revela="3"] { transition-delay: .24s; }
 
+  /* --- Hero: la guía primero, la descarga como enlace --- */
+  .portada-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
+  .enlace-app { color: var(--tinta-suave); font-size: 16px; text-underline-offset: 4px; padding: 8px 0; }
+  .enlace-app:hover { color: var(--tinta); }
+
+  /* --- Qué hacer en Colima: texto de entrada y rejilla de secciones de la guía --- */
+  #que-hacer { --tinta-letrero: var(--lona); --giro: -0.7deg; padding-bottom: 96px; }
+  .que-hacer-texto { display: grid; gap: 1.1em; max-width: 46em; margin-bottom: 52px; }
+  .que-hacer-texto p { color: var(--tinta-suave); font-size: 18px; line-height: 1.65; }
+  .que-hacer-texto a { color: var(--acento-texto); }
+  .guia-rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); gap: 16px; list-style: none; margin: 0; padding: 0; }
+  .guia-tarjeta {
+    display: grid; gap: 6px; height: 100%; padding: 20px 20px 22px; text-decoration: none; color: inherit;
+    background: var(--suelo-2); border: 1px solid var(--linea); border-radius: 12px;
+    transition: border-color .2s, transform .25s cubic-bezier(.2,.9,.3,1.2), background-color .2s;
+  }
+  .guia-tarjeta:hover { border-color: var(--tinta-tenue); background: var(--suelo-3); transform: translateY(-3px); }
+  .guia-nombre { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.1; letter-spacing: .01em; color: var(--acento-texto); }
+  .guia-dato { color: var(--tinta-suave); font-size: 16px; line-height: 1.45; }
+
   /* --- Playas: foto grande + tablero de playas --- */
   .playas-rejilla { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 48px; align-items: start; }
   .playas-foto { position: sticky; top: 90px; margin: 0; }
@@ -484,6 +504,10 @@
   footer .perro { width: 26px; height: 26px; }
   footer .marca-nombre { font-size: 17px; }
   footer p { color: var(--tinta-tenue); font-size: 14px; }
+  .pie-enlaces { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+  .pie-enlaces a { color: var(--tinta-suave); font-size: 15px; text-decoration: none; padding: 4px 0; }
+  .pie-enlaces a:hover { color: var(--tinta); text-decoration: underline; }
+  footer .envoltura > p { width: 100%; }
 
   /* ============ Responsive ============ */
   @media (max-width: 1080px) {
@@ -1252,17 +1276,11 @@
         <div>
           <h1 class="rotulo">Colima <span class="en-la-palma">en la palma de tu mano</span></h1>
           <p class="entrada">Playas de arena volcánica, ríos de agua cristalina, pueblos blancos y fiestas que llenan la calle. Los diez municipios de Colima, reunidos en una sola app.</p>
-          <div class="tiendas">
-            <a class="btn-pintado" href="https://apps.apple.com/mx/app/colima-go/id1665801713" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.12 7.31c1.35.07 2.29.74 3.08.8.99-.19 2.05-.85 3.16-.75 1.52.12 2.66.72 3.4 1.8-3.12 1.87-2.61 5.98.28 7.06-.61 1.6-1.4 3.15-2.99 4.06zM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.13-1.98 4.15-3.74 4.25z"/></svg>
-              <span><small>Descárgala en</small>App Store</span>
-            </a>
-            <a class="btn-pintado" href="https://play.google.com/store/apps/details?id=mx.shago.colimaapp" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.6 2.2c-.3.3-.4.7-.4 1.2v17.2c0 .5.1.9.4 1.2l.1.1 9.6-9.6v-.2L3.7 2.1l-.1.1zM16.5 15.5l-3.2-3.2v-.2l3.2-3.2.1.1 3.8 2.2c1.1.6 1.1 1.6 0 2.2l-3.8 2.2-.1-.1zM16.6 15.4 13.3 12l-9.7 9.7c.4.4 1 .4 1.7.1l11.3-6.4M16.6 8.6 5.3 2.2c-.7-.4-1.3-.3-1.7.1L13.3 12l3.3-3.4z"/></svg>
-              <span><small>Disponible en</small>Google Play</span>
-            </a>
+          <div class="portada-acciones">
+            <a class="btn-pintado" href="/inicio"><span>Explora la guía de Colima</span></a>
+            <a class="enlace-app" href="#descargar">También en tu celular: descarga la app</a>
           </div>
-          <p class="gratis">Gratis para iPhone y Android.</p>
+          <p class="gratis">La guía web es gratis, sin crear cuenta. La app es gratis para iPhone y Android.</p>
         </div>
 
         <nav class="tendedero" aria-label="Distritos de la feria">
@@ -1286,6 +1304,32 @@
       </div>
     </div>
   </header>
+
+  <!-- ============ Qué hacer en Colima: introducción y enlaces a la guía web ============ -->
+  <section class="distrito" id="que-hacer" aria-labelledby="t-que-hacer">
+    <div class="envoltura">
+      <div class="guirnalda" data-focos="30" data-comba="0.45" aria-hidden="true"></div>
+      <div class="letrero">
+        <h2 class="rotulo colgante" id="t-que-hacer" data-revela>Qué hacer en Colima</h2>
+        <p data-revela="2">Una guía de los diez municipios del estado, para planear una escapada o descubrir tu propia tierra.</p>
+      </div>
+      <div class="que-hacer-texto" data-revela>
+        <p>Colima es uno de los estados más pequeños de México, y por eso cabe casi todo en un fin de semana: playas del Pacífico de arena oscura de origen volcánico, ríos y manantiales que bajan de la sierra, lagunas al pie del Volcán de Colima, pueblos blancos y fiestas que llenan la calle casi cada mes del año. La capital, la ciudad de Colima, se fundó en 1523 y es un buen punto de partida: desde ahí se llega a casi cualquier rincón del estado en el día.</p>
+        <p>Colima Go reúne en un solo lugar 104 rincones naturales y sitios de patrimonio, 70 tianguis y mercados, 44 fiestas del pueblo y los diez municipios, con su ubicación, sus servicios y sus horarios cuando se conocen. El calendario junta los eventos que se anuncian en todo el estado: conciertos, ferias, jaripeos, festivales y celebraciones tradicionales.</p>
+        <p>Empieza por donde quieras: elige una sección, o abre el calendario para ver qué pasa este fin de semana. Si falta un lugar, una fiesta o un dato que cambió, cuéntanoslo desde <a href="/sugerir/general">Sugerir</a> o escríbenos desde la página de <a href="/contacto">contacto</a>.</p>
+      </div>
+      <ul class="guia-rejilla" aria-label="Secciones de la guía web" data-revela="2">
+        <li><a class="guia-tarjeta" href="/municipios"><span class="guia-nombre">Municipios</span><span class="guia-dato">Los diez municipios, uno por uno, con su historia y sus lugares.</span></a></li>
+        <li><a class="guia-tarjeta" href="/fiestas-del-pueblo"><span class="guia-nombre">Fiestas del pueblo</span><span class="guia-dato">44 fiestas patronales y tradicionales, mes por mes.</span></a></li>
+        <li><a class="guia-tarjeta" href="/playas"><span class="guia-nombre">Playas</span><span class="guia-dato">15 playas del litoral de Colima, de la arena oscura al oleaje para surfear.</span></a></li>
+        <li><a class="guia-tarjeta" href="/rincones-naturales"><span class="guia-nombre">Rincones Naturales</span><span class="guia-dato">Ríos, lagunas, montañas, balnearios, parques y sitios de patrimonio.</span></a></li>
+        <li><a class="guia-tarjeta" href="/explorar"><span class="guia-nombre">Explorar</span><span class="guia-dato">Los eventos y las novedades de todo el estado.</span></a></li>
+        <li><a class="guia-tarjeta" href="/calendario"><span class="guia-nombre">Calendario</span><span class="guia-dato">Qué pasa cada día: eventos, fiestas del pueblo y tianguis.</span></a></li>
+        <li><a class="guia-tarjeta" href="/tianguis-y-mercados"><span class="guia-nombre">Tianguis y mercados</span><span class="guia-dato">70 tianguis y mercados, con sus días y horarios.</span></a></li>
+        <li><a class="guia-tarjeta" href="/fiestas-charrotaurinas"><span class="guia-nombre">La Feria</span><span class="guia-dato">Las Fiestas Charrotaurinas de Villa de Álvarez: programa y mapa.</span></a></li>
+      </ul>
+    </div>
+  </section>
 
   <!-- ============ Playas ============ -->
   <section class="distrito" id="playas" aria-labelledby="t-playas">
@@ -1551,7 +1595,14 @@
       <span class="perro" aria-hidden="true"></span>
       <span class="marca-nombre">Colima <span>Go</span></span>
     </a>
-    <p><a href="/inicio">La guía web</a> · © Colima 360 — Todos los derechos reservados</p>
+    <nav class="pie-enlaces" aria-label="Información">
+      <a href="/inicio">La guía web</a>
+      <a href="/acerca-de">Acerca de</a>
+      <a href="/privacidad">Política de privacidad</a>
+      <a href="/terminos">Condiciones de uso</a>
+      <a href="/contacto">Contacto</a>
+    </nav>
+    <p>© Colima 360 — Todos los derechos reservados</p>
   </div>
 </footer>
 

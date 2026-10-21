@@ -1,0 +1,43 @@
+{
+  "titulo": "Contacto",
+  "descripcion": "Escríbenos: correo, redes sociales y un formulario para preguntas, correcciones de información, publicidad y solicitudes de privacidad de Colima Go.",
+  "entrada": "¿Una pregunta, una corrección o una idea? Escríbenos: leemos todos los mensajes.",
+  "datos": {
+    "titulo": "Dónde encontrarnos",
+    "correo": "Correo",
+    "messenger": "Messenger",
+    "mensajeria": "Escríbenos por Messenger",
+    "facebook": "Facebook",
+    "instagram": "Instagram",
+    "tiktok": "TikTok",
+    "externo": "se abre en una pestaña nueva"
+  },
+  "temas": {
+    "titulo": "Sobre qué puedes escribirnos",
+    "lista": [
+      "**Corregir un dato.** Un horario, una fecha, un acceso o un teléfono que cambió. Si es un evento, un tianguis o una fiesta, también puedes usar [Sugerir](/sugerir/general).",
+      "**Proponer un lugar, una fiesta o un evento** que no está en la guía.",
+      "**Enviar una foto** de un lugar para publicarla con tu crédito.",
+      "**Publicidad y colaboraciones** con Colima Go.",
+      "**Privacidad y datos personales.** Para ejercer tus derechos ARCO, consulta la [política de privacidad](/privacidad)."
+    ],
+    "respuesta": "Respondemos por correo en cuanto podemos."
+  },
+  "formulario": {
+    "titulo": "Escríbenos desde aquí",
+    "intro": "Llena el formulario y se abrirá tu aplicación de correo con el mensaje listo para enviar. No guardamos lo que escribes en esta página.",
+    "tipo": "¿Sobre qué nos escribes?",
+    "tipos": {
+      "pregunta": "Una pregunta",
+      "correccion": "Corregir información",
+      "publicidad": "Publicidad o colaboración",
+      "privacidad": "Privacidad y datos personales",
+      "otro": "Otra cosa"
+    },
+    "nombre": "Tu nombre (opcional)",
+    "nombreEjemplo": "Ana",
+    "mensaje": "Tu mensaje",
+    "mensajeEjemplo": "Cuéntanos con el mayor detalle posible",
+    "enviar": "Enviar por correo"
+  }
+}

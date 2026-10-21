@@ -1,0 +1,39 @@
+{
+  "titulos": {
+    "sobre": "Sobre esta fiesta",
+    "esperar": "Qué esperar",
+    "consejos": "Consejos para ir",
+    "cerca": "Qué hacer cerca",
+    "municipio": "Sobre {municipio}"
+  },
+  "cuando": {
+    "unDia": "{nombre} se celebra el {fecha} {donde}.",
+    "rango": "{nombre} se celebra del {inicio} al {fin} {donde}.",
+    "texto": "{nombre} se celebra {donde}. Fechas: {fecha}.",
+    "aproximada": "La fecha que mostramos es aproximada."
+  },
+  "repite": "Las fiestas del pueblo se repiten cada año, pero las fechas pueden moverse unos días. Antes de ir, confirma con el ayuntamiento, la parroquia o los organizadores.",
+  "esperar": "Las fiestas de pueblo de Colima suelen combinar misas y procesiones, música y bailes, puestos de comida y antojitos, juegos mecánicos y, según la tradición de cada localidad, cabalgatas o jaripeos. Son una buena ocasión para conocer las costumbres de la gente y probar la comida local.",
+  "consejos": [
+    "Lleva efectivo en billetes y monedas pequeñas: en los puestos casi nadie acepta tarjeta.",
+    "Llega con tiempo y busca dónde estacionar: en los días fuertes de la fiesta las calles del centro se cierran o se llenan.",
+    "Usa ropa y calzado cómodos y protégete del sol; por la noche puede refrescar.",
+    "Respeta las celebraciones religiosas y cuida tus pertenencias entre la multitud."
+  ],
+  "cerca": {
+    "intro": "Si vas a estar en {municipio}, estos lugares de la guía te quedan a mano:",
+    "enlaces": "Para armar tu plan, mira también el [calendario](/calendario) y las [demás fiestas del pueblo](/fiestas-del-pueblo)."
+  },
+  "municipio": {
+    "conteo": {
+      "uno": "En la guía hay 1 lugar en {municipio}.",
+      "otros": "En la guía hay {n} lugares en {municipio}."
+    },
+    "ver": "Conoce el municipio de {municipio}"
+  },
+  "donde": {
+    "conLocalidad": "en {localidad}, en el municipio de {municipio}, Colima",
+    "soloMunicipio": "en el municipio de {municipio}, Colima",
+    "sinMunicipio": "en {localidad}, Colima"
+  }
+}

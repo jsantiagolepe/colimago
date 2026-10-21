@@ -7,6 +7,7 @@
   "contacto": {
     "titulo": "Contact",
     "correo": "Email",
+    "pagina": "Contact page",
     "asunto": "Question about the app",
     "privacidad": "Privacy policy",
     "condiciones": "Terms of use",

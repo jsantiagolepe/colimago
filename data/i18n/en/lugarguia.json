@@ -1,0 +1,152 @@
+{
+  "titulos": {
+    "perfil": "About {lugar}",
+    "epoca": "Best time to visit",
+    "llegar": "Getting there",
+    "consejos": "Tips for your visit",
+    "cerca": "What is nearby",
+    "municipio": "More in {municipio}"
+  },
+  "servicios": "According to our catalog, here you will find: {servicios}.",
+  "clima": "Colima is warm almost all year. The rainy season runs, roughly, from June to October, and the hottest months are usually April, May and June. Heavy rain and tropical storms are more likely at the end of summer and in autumn.",
+  "llegar": {
+    "centro": "{lugar} is in the city of Colima, about {kmColima} km as the crow flies from Jardín Libertad, the historic center, so it is a short trip from anywhere in the city.",
+    "colima": "{lugar} is in the municipality of {municipio}, about {kmColima} km as the crow flies from Jardín Libertad, in the center of the city of Colima.",
+    "ambos": "{lugar} is in the municipality of {municipio}, about {kmColima} km as the crow flies from Jardín Libertad, in the center of the city of Colima, and about {kmManzanillo} km from Jardín Álvaro Obregón, in Manzanillo.",
+    "sinCoordenadas": "{lugar} is in the municipality of {municipio}. We do not yet have its exact coordinates in the guide: the reference in the Location section tells you where it is.",
+    "consejo": "By road the trip is longer than the straight line, and the last stretch can be a dirt road, especially near rivers and the mountains. Leave with time to spare, with a full tank and the route downloaded, because mobile signal is weak in some areas. In the Location section you can open the place in Maps and plan the route from wherever you are."
+  },
+  "cerca": {
+    "intro": "These places in the guide are close to {lugar}, with their approximate straight-line distance, so you can plan a fuller outing:",
+    "km": "{km} km",
+    "pocosMetros": "less than 1 km away"
+  },
+  "municipio": {
+    "intro": "{descripcion}",
+    "conteo": {
+      "uno": "The guide has 1 place in {municipio}.",
+      "otros": "The guide has {n} places in {municipio}."
+    },
+    "verMunicipio": "Explore the municipality of {municipio}",
+    "otrosDe": "More from this category in other municipalities:",
+    "verCategoria": "See all: {categoria}"
+  },
+  "categorias": {
+    "rios": {
+      "perfil": "{lugar} is one of the rivers and freshwater spots in the guide, in the municipality of {municipio}, Colima.",
+      "esperar": "Colima's rivers run down from the mountains and the slopes of the volcano to the Pacific. Along the way they form pools, small waterfalls and shaded banks where families cool off, especially on weekends and holidays.",
+      "epoca": "From November to May the water is usually clearer and getting there is easier. In the rainy season the flow rises, the water can turn muddy and currents become dangerous: do not enter the river if it rained in the mountains, even if it is not raining where you are, because floods arrive without warning.",
+      "consejos": [
+        "Wear closed, non-slip shoes: wet rocks are slippery.",
+        "Before getting in the water, look at its depth and current; with children, never take your eyes off them.",
+        "Bring cash, since not every place accepts cards, and do not leave valuables in sight."
+      ]
+    },
+    "playas": {
+      "perfil": "{lugar} is one of the beaches along Colima's coast, in the municipality of {municipio}, on the Pacific.",
+      "esperar": "Colima's coast has light-sand beaches and dark beaches of volcanic origin, with surf that changes by area and season, and palapas where you can eat fresh fish and seafood. Some are for calm swimming and others, because of their waves, for surfing.",
+      "epoca": "From November to May there are usually more clear, dry days. In summer and autumn the rains arrive and the Pacific surf tends to be stronger, which attracts surfers but calls for caution when swimming. Holy Week, summer and December are the busiest seasons.",
+      "consejos": [
+        "Check the sea conditions before swimming and respect flags and warnings: several beaches have rip currents.",
+        "Near estuaries and mangroves, insect repellent is welcome at sunset.",
+        "Bring an umbrella or find a shaded enramada: at midday the sun and the sand burn."
+      ]
+    },
+    "lagunas": {
+      "perfil": "{lugar} is a lagoon or estuary in the state of Colima, in the municipality of {municipio}.",
+      "esperar": "Colima's lagoons and estuaries are sheets of water surrounded by vegetation and, on the coast, by mangroves. They are good places for a slow walk, birdwatching and photography, away from the noise of the busier beaches.",
+      "epoca": "Mornings and the last hours of the afternoon are best for seeing birds and enjoying the scenery, and they avoid the midday heat. In the dry season skies are clearer; in the rainy season the surroundings are greener and water levels change.",
+      "consejos": [
+        "If you like birdwatching, bring binoculars and keep your distance so you do not scare them.",
+        "Use insect repellent, especially near the mangroves.",
+        "Look after the vegetation on the shores and take your trash with you."
+      ]
+    },
+    "montanas": {
+      "perfil": "{lugar} is a mountain spot in the municipality of {municipio}, Colima.",
+      "esperar": "The mountains and the slopes of the Colima Volcano offer viewpoints, ravines and paths through vegetation a short distance from the city, with wide views of the valley when the sky is clear.",
+      "epoca": "The dry season, from November to May, gives clearer skies to see the volcano and the valleys. All year round it is best to start early: clouds build up in the afternoon and, in the rainy season, so do thunderstorms.",
+      "consejos": [
+        "Start early, tell someone your route and be back before dark.",
+        "Wear closed shoes with good grip and bring more water than you think you need.",
+        "Mobile signal is weak in some areas: download the map before you leave.",
+        "If you go near the Colima Volcano, find out about possible access restrictions and follow Civil Protection instructions."
+      ]
+    },
+    "arqueologia": {
+      "perfil": "{lugar} is part of Colima's archaeological heritage, in the municipality of {municipio}.",
+      "esperar": "Colima was home to cultures of Western Mexico that left shaft tombs, ceramics and settlements. Museums and archaeological sites help you understand that history and see pieces and structures from centuries ago up close.",
+      "epoca": "It is best to go in the morning, when it is cooler, and to check the hours first: museums and archaeological sites usually close one or two days a week and may change their hours during holiday seasons.",
+      "consejos": [
+        "Confirm opening hours and admission before you go; some places have different rates for local and foreign visitors.",
+        "Respect the marked areas and do not climb the structures or touch the pieces.",
+        "Bring a cap, water and comfortable shoes if the visit is outdoors."
+      ]
+    },
+    "parques": {
+      "perfil": "{lugar} is a park, garden or open space in the municipality of {municipio}, Colima.",
+      "esperar": "Colima's parks and gardens are the places to walk, rest in the shade and watch town life: benches, fountains and, depending on the site, bandstands, green areas, animals or playgrounds.",
+      "epoca": "Mornings and sunset are the most pleasant hours for a stroll; in April, May and June the midday heat is strong. Weekends and public holidays tend to be busier.",
+      "consejos": [
+        "If you go with children, go in the morning or at sunset, when the sun is not as strong.",
+        "If there are animals in sight, do not feed or bother them.",
+        "Look after your belongings and take your trash with you."
+      ]
+    },
+    "patrimonio": {
+      "perfil": "{lugar} is part of the historical and cultural heritage of the municipality of {municipio}, Colima.",
+      "esperar": "Colima's heritage brings together churches, museums, haciendas and historic centers that tell the story of the region, from pre-Hispanic and colonial times to today.",
+      "epoca": "Churches and museums keep their own hours: some close at midday or one day a week. Patron-saint festivals and Holy Week fill the churches and historic centers, which makes them livelier but also busier.",
+      "consejos": [
+        "If it is a church, dress respectfully and lower your voice; during Mass or a celebration, avoid walking around inside.",
+        "Ask whether photography, with flash or a tripod, is allowed before you take pictures.",
+        "Historic centers are best explored on foot and in the morning."
+      ]
+    },
+    "balnearios": {
+      "perfil": "{lugar} is a swimming resort (balneario) in the municipality of {municipio}, Colima, for spending the day in the water.",
+      "esperar": "A balneario is a place to spend the day: pools or natural pools, shaded areas and, in many cases, a restaurant and showers. It is a very common family outing in Colima, especially on hot days.",
+      "epoca": "In the hot season, from March to June, balnearios are at their best and also at their fullest. Weekends and holidays tend to be crowded; on weekdays you can enjoy them more calmly.",
+      "consejos": [
+        "Bring swimwear, a towel, sunscreen and a change of clothes.",
+        "Ask whether you can bring your own food and drinks or must buy on site.",
+        "Respect the pool areas and hours, especially if there are children."
+      ]
+    },
+    "rutas": {
+      "perfil": "{lugar} is a themed route or tour in the municipality of {municipio}, Colima.",
+      "esperar": "Colima's routes combine landscape and craft: guided tours through sugarcane fields, distilleries, salt flats and other places where you can see how the region's typical products are made.",
+      "epoca": "Many tours run by appointment and at fixed times, and some operate only on certain days: confirm before you go. Mornings are the coolest for the outdoor stretches.",
+      "consejos": [
+        "Book in advance: many tours are guided and have limited places.",
+        "Ask what the price includes, how long the tour lasts and whether you need to bring anything.",
+        "Wear comfortable clothes and shoes and protect yourself from the sun."
+      ]
+    },
+    "tianguis": {
+      "perfil": "{lugar} is a tianguis, a street market set up on fixed days and hours, in the municipality of {municipio}, Colima.",
+      "esperar": "The tianguis is a Mexican tradition: stalls of fruit, vegetables, prepared food, clothing and crafts that are set up early and taken down at the end of the day. It is a good way to get to know everyday life and the flavors of the area.",
+      "epoca": "Each tianguis has its own day and hours; check the “When it is set up” section above before you go. The early morning hours are usually the coolest and the ones with the widest choice of products.",
+      "consejos": [
+        "Bring cash in small bills and coins, and a bag or basket for your purchases.",
+        "Arrive early for more variety and to avoid the heat.",
+        "Tianguis sometimes change day, place or hours: if you notice something different, let us know."
+      ]
+    },
+    "mercados": {
+      "perfil": "{lugar} is a market in the municipality of {municipio}, Colima.",
+      "esperar": "Municipal markets are the heart of everyday life in each town: fruit, vegetables, meat, bread, prepared food and crafts, with stalls that serve local families. They are a good place to try local food.",
+      "epoca": "Mornings are the best hours: more stalls are open and there is more variety. Hours vary from stall to stall and some close at midday or on Sundays, so do not leave the visit until late afternoon.",
+      "consejos": [
+        "Bring cash in small bills and coins, because not every stall accepts cards.",
+        "Ask the price before you order, and do not be afraid to try what they offer.",
+        "Look after your belongings in crowded aisles."
+      ]
+    }
+  },
+  "comunes": [
+    "Bring water, a cap and sunscreen: in Colima the sun is strong almost all year.",
+    "Hours and prices can change without notice. If the place has a phone number or social media, confirm before you go.",
+    "Respect the surroundings, do not litter and leave the place better than you found it."
+  ]
+}

@@ -324,6 +324,17 @@ a.tablilla-muni:hover { text-decoration: underline; }
 .lectura p + p { margin-top: 1em; }
 .texto-peligro { color: var(--peligro-texto); }
 
+/* Lista de lugares cercanos (guía de visita de un lugar, de un evento y de una fiesta) */
+.cerca-lista { margin: 14px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--linea); max-width: 62ch; }
+.cerca-lista li { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 16px; padding: 12px 0; border-bottom: 1px solid var(--linea); font-size: 16.5px; min-width: 0; }
+.cerca-lista a { color: var(--acento-texto); font-weight: 500; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.cerca-lista .nota { font-size: 14.5px; }
+/* Párrafos y listas de las secciones de contexto: enlaces con el acento y viñetas visibles */
+.lectura-contexto a { color: var(--acento-texto); text-underline-offset: 3px; }
+.lectura-contexto .lectura ul { margin: 0; padding-left: 1.2em; list-style: disc; }
+.lectura-contexto .lectura li + li { margin-top: .55em; }
+.cerca-lista + .lectura { margin-top: 18px; }
+
 /* ============ Chips y pestañas (filtros) ============ */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chips-deslizables { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x proximity; margin-inline: -20px; padding-inline: 20px; scroll-padding-inline: 20px; }

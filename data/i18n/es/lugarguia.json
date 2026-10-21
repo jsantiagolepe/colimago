@@ -1,0 +1,152 @@
+{
+  "titulos": {
+    "perfil": "Sobre {lugar}",
+    "epoca": "Mejor época para visitarlo",
+    "llegar": "Cómo llegar",
+    "consejos": "Consejos para tu visita",
+    "cerca": "Qué hay cerca",
+    "municipio": "Más en {municipio}"
+  },
+  "servicios": "Según nuestro catálogo, aquí encontrarás: {servicios}.",
+  "clima": "Colima tiene clima cálido casi todo el año. La temporada de lluvias va, más o menos, de junio a octubre, y los meses más calurosos suelen ser abril, mayo y junio. Las lluvias fuertes y las tormentas tropicales son más probables al final del verano y en otoño.",
+  "llegar": {
+    "centro": "{lugar} está en la ciudad de Colima, a unos {kmColima} km en línea recta del Jardín Libertad, el centro histórico, así que llegas con un trayecto corto desde cualquier punto de la ciudad.",
+    "colima": "{lugar} está en el municipio de {municipio}, a unos {kmColima} km en línea recta del Jardín Libertad, en el centro de la ciudad de Colima.",
+    "ambos": "{lugar} está en el municipio de {municipio}, a unos {kmColima} km en línea recta del Jardín Libertad, en el centro de la ciudad de Colima, y a unos {kmManzanillo} km del Jardín Álvaro Obregón, en Manzanillo.",
+    "sinCoordenadas": "{lugar} está en el municipio de {municipio}. Todavía no tenemos sus coordenadas exactas en la guía: la referencia de la sección Ubicación te dice dónde queda.",
+    "consejo": "Por carretera el trayecto es más largo que la línea recta, y el tramo final puede ser de terracería, sobre todo cerca de ríos y de la sierra. Sal con tiempo, con el tanque lleno y con la ruta descargada, porque en algunas zonas la señal del celular es débil. En la sección Ubicación puedes abrir el lugar en Maps y trazar la ruta desde donde estés."
+  },
+  "cerca": {
+    "intro": "Estos lugares de la guía quedan cerca de {lugar}, con su distancia aproximada en línea recta, para que armes un recorrido más completo:",
+    "km": "{km} km",
+    "pocosMetros": "a menos de 1 km"
+  },
+  "municipio": {
+    "intro": "{descripcion}",
+    "conteo": {
+      "uno": "En la guía hay 1 lugar en {municipio}.",
+      "otros": "En la guía hay {n} lugares en {municipio}."
+    },
+    "verMunicipio": "Conoce el municipio de {municipio}",
+    "otrosDe": "Más de esta categoría en otros municipios:",
+    "verCategoria": "Ver todos: {categoria}"
+  },
+  "categorias": {
+    "rios": {
+      "perfil": "{lugar} es uno de los ríos y parajes de agua dulce de la guía, en el municipio de {municipio}, Colima.",
+      "esperar": "Los ríos de Colima bajan de la sierra y de las faldas del volcán hacia el Pacífico. En su camino forman pozas, pequeñas caídas de agua y orillas con sombra donde las familias se refrescan, sobre todo los fines de semana y en vacaciones.",
+      "epoca": "Entre noviembre y mayo el agua suele estar más clara y llegar es más fácil. En temporada de lluvias el caudal sube, el agua puede ponerse turbia y las corrientes se vuelven peligrosas: no entres al río si llovió en la sierra, aunque donde estás no esté lloviendo, porque las crecientes llegan sin aviso.",
+      "consejos": [
+        "Usa calzado cerrado y antiderrapante: las piedras mojadas resbalan.",
+        "Antes de meterte al agua, mira su profundidad y su corriente; con niños, no los pierdas de vista ni un momento.",
+        "Lleva efectivo, porque no todos los lugares aceptan tarjeta, y no dejes objetos de valor a la vista."
+      ]
+    },
+    "playas": {
+      "perfil": "{lugar} es una de las playas del litoral de Colima, en el municipio de {municipio}, sobre el Pacífico.",
+      "esperar": "El litoral colimense tiene playas de arena clara y de arena oscura de origen volcánico, con oleaje que cambia según la zona y la temporada, y palapas donde se come pescado y marisco fresco. Algunas son para nadar con calma y otras, por su oleaje, para surfear.",
+      "epoca": "De noviembre a mayo suele haber más días despejados y secos. En verano y otoño llegan las lluvias y el oleaje del Pacífico suele ser más fuerte, lo que atrae a surfistas pero exige precaución para nadar. Semana Santa, el verano y diciembre son las temporadas con más gente.",
+      "consejos": [
+        "Revisa el estado del mar antes de nadar y respeta las banderas y los avisos: en varias playas hay corrientes de resaca.",
+        "Cerca de esteros y manglares, el repelente de insectos se agradece al atardecer.",
+        "Lleva sombrilla o busca una enramada: a mediodía el sol y la arena queman."
+      ]
+    },
+    "lagunas": {
+      "perfil": "{lugar} es una laguna o un estero del estado de Colima, en el municipio de {municipio}.",
+      "esperar": "Las lagunas y los esteros de Colima son espejos de agua rodeados de vegetación y, en la costa, de manglar. Son buenos lugares para pasear con calma, observar aves y tomar fotografías, lejos del ruido de las playas más concurridas.",
+      "epoca": "Las mañanas y las últimas horas de la tarde son las mejores para ver aves y disfrutar el paisaje, y evitan el calor del mediodía. En temporada seca los cielos están más despejados; en lluvias el entorno se ve más verde y los niveles del agua cambian.",
+      "consejos": [
+        "Si te gusta observar aves, lleva binoculares y mantén la distancia para no espantarlas.",
+        "Usa repelente de insectos, sobre todo cerca del manglar.",
+        "Cuida la vegetación de las orillas y llévate tu basura."
+      ]
+    },
+    "montanas": {
+      "perfil": "{lugar} es un paraje de montaña y sierra en el municipio de {municipio}, Colima.",
+      "esperar": "La sierra y las faldas del Volcán de Colima ofrecen miradores, barrancas y caminos entre vegetación a poca distancia de la ciudad, con vistas amplias del valle cuando el cielo está despejado.",
+      "epoca": "La temporada seca, de noviembre a mayo, da cielos más despejados para ver el volcán y los valles. Todo el año conviene salir temprano: por la tarde se forman nubes y, en temporada de lluvias, tormentas eléctricas.",
+      "consejos": [
+        "Sal temprano, avisa a alguien tu ruta y regresa antes del anochecer.",
+        "Usa calzado cerrado con buen agarre y lleva más agua de la que crees necesitar.",
+        "En algunas zonas la señal del celular es débil: descarga el mapa antes de salir.",
+        "Si vas cerca del Volcán de Colima, infórmate sobre posibles restricciones de acceso y sigue las indicaciones de Protección Civil."
+      ]
+    },
+    "arqueologia": {
+      "perfil": "{lugar} forma parte del patrimonio arqueológico de Colima, en el municipio de {municipio}.",
+      "esperar": "Colima fue hogar de culturas del Occidente de México que dejaron tumbas de tiro, cerámica y asentamientos. Los museos y las zonas arqueológicas ayudan a entender esa historia y a ver de cerca piezas y construcciones de hace siglos.",
+      "epoca": "Conviene ir por la mañana, cuando hace menos calor, y revisar antes el horario: los museos y las zonas arqueológicas suelen cerrar uno o dos días a la semana y pueden cambiar su horario en temporadas de vacaciones.",
+      "consejos": [
+        "Confirma horario y costo de entrada antes de ir; en algunos lugares hay tarifas distintas para visitantes locales y extranjeros.",
+        "Respeta las áreas delimitadas y no te subas a las estructuras ni toques las piezas.",
+        "Lleva gorra, agua y calzado cómodo si el recorrido es al aire libre."
+      ]
+    },
+    "parques": {
+      "perfil": "{lugar} es un parque, jardín o espacio abierto del municipio de {municipio}, Colima.",
+      "esperar": "Los parques y jardines de Colima son el lugar para caminar, descansar a la sombra y ver la vida del pueblo: bancas, fuentes y, según el sitio, kioscos, áreas verdes, animales o juegos infantiles.",
+      "epoca": "Las mañanas y el atardecer son las horas más agradables para pasear; en abril, mayo y junio el calor del mediodía es fuerte. Los fines de semana y los días festivos suele haber más gente.",
+      "consejos": [
+        "Si vas con niños, ve por la mañana o al atardecer, cuando el sol no pega tanto.",
+        "Si hay animales a la vista, no les des de comer ni los molestes.",
+        "Cuida tus pertenencias y llévate tu basura."
+      ]
+    },
+    "patrimonio": {
+      "perfil": "{lugar} es parte del patrimonio histórico y cultural del municipio de {municipio}, Colima.",
+      "esperar": "El patrimonio de Colima reúne templos, museos, haciendas y centros históricos que cuentan la historia de la región, desde la época prehispánica y la colonial hasta la actualidad.",
+      "epoca": "Los templos y los museos tienen horarios propios: algunos cierran a mediodía o un día a la semana. Las fiestas patronales y la Semana Santa llenan los templos y los centros históricos, lo que los hace más animados pero también más concurridos.",
+      "consejos": [
+        "Si es un templo, vístete con respeto y baja la voz; durante una misa o una celebración, evita pasear por el interior.",
+        "Pregunta si se permiten fotografías, con flash o con tripié, antes de tomarlas.",
+        "Los centros históricos se recorren mejor a pie y por la mañana."
+      ]
+    },
+    "balnearios": {
+      "perfil": "{lugar} es un balneario del municipio de {municipio}, Colima, para pasar el día en el agua.",
+      "esperar": "Un balneario es un lugar para pasar el día: albercas o pozas de agua, áreas con sombra y, en muchos casos, restaurante y regaderas. Es un plan familiar muy común en Colima, sobre todo en los días de calor.",
+      "epoca": "En temporada de calor, de marzo a junio, los balnearios están en su mejor momento y también más llenos. Los fines de semana y las vacaciones suele haber mucha gente; entre semana se disfruta con más calma.",
+      "consejos": [
+        "Lleva traje de baño, toalla, protector solar y una muda de ropa.",
+        "Pregunta si se permite entrar con alimentos y bebidas o si hay que consumir en el lugar.",
+        "Respeta las áreas y los horarios de las albercas, sobre todo si hay niños."
+      ]
+    },
+    "rutas": {
+      "perfil": "{lugar} es una ruta o un recorrido temático del municipio de {municipio}, Colima.",
+      "esperar": "Las rutas de Colima combinan paisaje y oficio: recorridos guiados por campos de caña, destilerías, salinas y otros lugares donde puedes ver cómo se hacen los productos típicos de la región.",
+      "epoca": "Muchos recorridos funcionan con cita y en horarios fijos, y algunos solo operan ciertos días: confirma antes de ir. Las mañanas son las más frescas para los tramos al aire libre.",
+      "consejos": [
+        "Reserva con anticipación: muchos recorridos son guiados y de cupo limitado.",
+        "Pregunta qué incluye el precio, cuánto dura el recorrido y si hay que llevar algo.",
+        "Usa ropa y calzado cómodos y protégete del sol."
+      ]
+    },
+    "tianguis": {
+      "perfil": "{lugar} es un tianguis, un mercado que se instala en días y horarios fijos, en el municipio de {municipio}, Colima.",
+      "esperar": "El tianguis es una tradición mexicana: puestos de fruta, verdura, comida preparada, ropa y artesanías que se instalan temprano y se desmontan al terminar el día. Es una buena forma de conocer la vida cotidiana y los sabores de la zona.",
+      "epoca": "Cada tianguis tiene su propio día y horario; consulta arriba la sección «Cuándo se pone» antes de ir. Las primeras horas de la mañana suelen ser las más frescas y las de mayor variedad de productos.",
+      "consejos": [
+        "Lleva efectivo en billetes y monedas pequeñas, y una bolsa o una canasta para tus compras.",
+        "Llega temprano para encontrar más variedad y evitar el calor.",
+        "Los tianguis a veces cambian de día, de lugar o de horario: si notas algo distinto, avísanos."
+      ]
+    },
+    "mercados": {
+      "perfil": "{lugar} es un mercado del municipio de {municipio}, Colima.",
+      "esperar": "Los mercados municipales son el corazón de la vida cotidiana de cada pueblo: fruta, verdura, carne, pan, comida preparada y artesanías, con locales que atienden a las familias de la zona. Son un buen lugar para probar la comida local.",
+      "epoca": "Las mañanas son las mejores horas: hay más puestos abiertos y más variedad. Los horarios cambian de un local a otro y algunos cierran a mediodía o los domingos, así que no dejes la visita para el final de la tarde.",
+      "consejos": [
+        "Lleva efectivo en billetes y monedas pequeñas, porque no todos los locales aceptan tarjeta.",
+        "Pregunta el precio antes de pedir y no tengas miedo de probar lo que ofrecen.",
+        "Cuida tus pertenencias en los pasillos concurridos."
+      ]
+    }
+  },
+  "comunes": [
+    "Lleva agua, gorra y protector solar: en Colima el sol pega fuerte casi todo el año.",
+    "Los horarios y los precios pueden cambiar sin aviso. Si el lugar tiene teléfono o redes sociales, confirma antes de ir.",
+    "Respeta el entorno, no tires basura y deja el lugar mejor de como lo encontraste."
+  ]
+}

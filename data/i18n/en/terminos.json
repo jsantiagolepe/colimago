@@ -1,0 +1,122 @@
+{
+  "titulo": "Terms of use",
+  "descripcion": "The rules for using the Colima Go web guide: what it is, what to expect from its information, how to post comments, intellectual property and limits of liability.",
+  "actualizadoEtiqueta": "Last updated",
+  "actualizado": "October 21, 2026",
+  "actualizadoIso": "2026-10-21",
+  "indice": "On this page",
+  "externo": "opens in a new tab",
+  "intro": [
+    "These terms govern the use of colimago.mx, the home page and the Colima Go web guide, in Spanish and English. The mobile app is also governed by its own EULA. By using the site you accept what follows; if you do not agree, please do not use it."
+  ],
+  "secciones": [
+    {
+      "id": "servicio",
+      "titulo": "1. What Colima Go is",
+      "parrafos": [
+        "Colima Go is a free guide to places, beaches, natural spots, street markets, town festivals and events across the ten municipalities of Colima, Mexico. It is an informational service: we do not sell tickets, we do not take reservations, and we are not a government office or a representative of event organizers."
+      ]
+    },
+    {
+      "id": "informacion",
+      "titulo": "2. Information can change",
+      "parrafos": [
+        "We do our best to keep the information correct, but hours, dates, access, prices and services change, and events are announced by third parties. We do not guarantee that everything is complete or up to date. Before you go, confirm the important details with the place or the organizer.",
+        "If you find a mistake, tell us through the [contact page](/contacto) or “Suggest”: we will review it and fix it."
+      ]
+    },
+    {
+      "id": "riesgos",
+      "titulo": "3. Outdoor activities",
+      "parrafos": [
+        "Many places in the guide are rivers, beaches, lagoons, mountains and dirt roads. The sea, currents, rain, heat and terrain carry risks, and some areas, such as those near the Colima Volcano, may have access restrictions.",
+        "Always follow the instructions of Civil Protection and the local authorities. Visiting these places and doing activities in them is at your own risk and responsibility."
+      ]
+    },
+    {
+      "id": "cuenta",
+      "titulo": "4. Your account",
+      "parrafos": [
+        "To like, comment or save favorites to your account you sign in with Google. You are responsible for what happens with your account. We may suspend or delete accounts that break these terms, and you can delete yours at any time from Settings."
+      ]
+    },
+    {
+      "id": "contenido",
+      "titulo": "5. What you post",
+      "parrafos": [
+        "You are responsible for your comments. Do not post content that is illegal, offensive, discriminatory, misleading or that harasses other people; no spam, advertising or third parties' personal data either.",
+        "By posting a comment you give us a free, non-exclusive permission to display it on the site and in the app while it is published. We may hide or delete comments that break these rules or that are reported to us, and you can delete your own. If you see something improper, use the “Report” option."
+      ]
+    },
+    {
+      "id": "uso",
+      "titulo": "6. Permitted use",
+      "parrafos": [
+        "By using the site you agree not to:"
+      ],
+      "lista": [
+        "use it for unlawful purposes or to harm other people;",
+        "try to enter private areas, breach its security or overload it with automated requests;",
+        "copy its texts, photos or data in bulk to publish them as your own;",
+        "impersonate another person."
+      ]
+    },
+    {
+      "id": "propiedad",
+      "titulo": "7. Intellectual property",
+      "parrafos": [
+        "The Colima Go name and logo, the site's design, its own texts and its code belong to their owners. You may share links and quote short excerpts with attribution, but you may not reproduce the site or its content without permission.",
+        "Photos from Wikimedia Commons keep their license and carry their credit. The texts, posters and photos of events belong to their organizers or to the sources indicated. If you believe something infringes your rights, write to us through the [contact page](/contacto) and we will review it."
+      ]
+    },
+    {
+      "id": "terceros",
+      "titulo": "8. Advertising and third-party links",
+      "parrafos": [
+        "The site may show Google AdSense ads, marked “Advertising”; the [privacy policy](/privacidad) explains how they work. Ads and links to other sites belong to third parties: we do not control them and are not responsible for their content, products or services."
+      ]
+    },
+    {
+      "id": "disponibilidad",
+      "titulo": "9. Availability and changes to the service",
+      "parrafos": [
+        "We provide the site “as is”, with no guarantee that it will always be available or error-free. We may change it, suspend a feature or stop offering it at any time."
+      ]
+    },
+    {
+      "id": "responsabilidad",
+      "titulo": "10. Limit of liability",
+      "parrafos": [
+        "To the extent the law allows, Colima Go is not liable for damages arising from the use of the site, from being unable to use it, from decisions you make based on its information, or from third-party content. None of this limits the rights the law gives you that cannot be waived."
+      ]
+    },
+    {
+      "id": "privacidad",
+      "titulo": "11. Privacy",
+      "parrafos": [
+        "How we handle your personal data is explained in the [privacy policy](/privacidad)."
+      ]
+    },
+    {
+      "id": "cambios",
+      "titulo": "12. Changes to these terms",
+      "parrafos": [
+        "We may update these terms. The current version is the one on this page, with its date. If you keep using the site after a change, we understand that you accept it."
+      ]
+    },
+    {
+      "id": "ley",
+      "titulo": "13. Governing law",
+      "parrafos": [
+        "These terms are governed by the laws of the United Mexican States. For any dispute, the parties submit to the competent courts of the State of Colima."
+      ]
+    },
+    {
+      "id": "contacto",
+      "titulo": "14. Contact",
+      "parrafos": [
+        "Questions about these terms? Write to [colimago.app@gmail.com](mailto:colimago.app@gmail.com) or use the [contact page](/contacto)."
+      ]
+    }
+  ]
+}

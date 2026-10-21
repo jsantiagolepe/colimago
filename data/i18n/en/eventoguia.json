@@ -1,0 +1,37 @@
+{
+  "titulos": {
+    "sobre": "About this event",
+    "llegar": "Getting there",
+    "cerca": "What to do nearby",
+    "municipio": "About {municipio}"
+  },
+  "cuando": {
+    "el": "on ",
+    "conLugar": "{titulo} takes place {fecha} at {lugar}, in the municipality of {municipio}, Colima.",
+    "conLugarSinMunicipio": "{titulo} takes place {fecha} at {lugar}, in the state of Colima.",
+    "sinLugar": "{titulo} takes place {fecha} in the municipality of {municipio}, Colima.",
+    "sinMunicipio": "{titulo} takes place {fecha}, in the state of Colima.",
+    "desde": "from "
+  },
+  "fuente": "Event information is published by the organizers and may change. Before attending, confirm the date, time and place with them or on their official social media.",
+  "pasado": "This event has already ended. We keep the page for reference; to plan your next outing, see the upcoming events in [Explore](/explorar) and in the [calendar](/calendario).",
+  "llegar": {
+    "conMapa": "{lugar} is about {km} km as the crow flies from Jardín Libertad, in the center of the city of Colima. Use the “View on map” link on this page to plan the route from wherever you are; if you expect a crowd, leave early and look for parking.",
+    "conMapaCentro": "{lugar} is in the city of Colima, about {km} km from Jardín Libertad. Use the “View on map” link on this page to plan the route from wherever you are; if you expect a crowd, leave early and look for parking.",
+    "sinMapa": "We do not yet have this event's location on the guide's map. Confirm the place with the organizers or on their social media before you leave."
+  },
+  "cerca": {
+    "intro": "If you will be in the area, these places in the guide are close to the event:",
+    "introMunicipio": "To make the most of the trip, these places in the guide are in {municipio}:",
+    "km": "{km} km",
+    "enlaces": "To plan your day, also see the [calendar](/calendario) and [all events](/explorar).",
+    "pocosMetros": "less than 1 km away"
+  },
+  "municipio": {
+    "conteo": {
+      "uno": "The guide has 1 place in {municipio}.",
+      "otros": "The guide has {n} places in {municipio}."
+    },
+    "ver": "Explore the municipality of {municipio}"
+  }
+}

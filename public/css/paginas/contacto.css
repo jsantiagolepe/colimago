@@ -1,0 +1,19 @@
+/* Contacto (/contacto). Las filas agrupadas están en filas.css y el formulario
+   (campos, mensaje y botones) en sugerir.css. */
+
+.contacto { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 32px 72px; align-items: start; padding: 8px 0 96px; }
+.contacto-lado { min-width: 0; }
+.contacto-temas .grupo-titulo { margin-bottom: 12px; }
+.contacto-temas ul { margin: 0 0 14px; padding-left: 1.2em; list-style: disc; font-size: 16px; line-height: 1.55; }
+.contacto-temas li + li { margin-top: .6em; }
+.contacto-temas a { color: var(--acento-texto); text-underline-offset: 3px; }
+.contacto-temas strong { font-weight: 600; }
+
+/* El formulario ocupa su propia columna: los campos y, debajo, el mensaje. */
+.contacto-formulario.sg { grid-template-columns: minmax(0, 1fr); gap: 28px; padding-bottom: 0; }
+.contacto-formulario .sg-salida { position: static; }
+html:not(.js) .contacto-formulario .sg-salida { display: none; }
+
+@media (max-width: 960px) {
+  .contacto { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-bottom: 72px; }
+}

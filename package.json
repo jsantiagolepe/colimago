@@ -13,7 +13,8 @@
     "verificar": "node scripts/verificar-backend.js",
     "verificar:visitas": "node scripts/verificar-visitas.js",
     "verificar:guia": "node scripts/verificar-guia.js",
-    "verificar:datos": "node scripts/verificar-datos.js"
+    "verificar:datos": "node scripts/verificar-datos.js",
+    "verificar:sitio": "node scripts/verificar-sitio.js"
   },
   "dependencies": {
     "cookie-session": "^2.1.1",

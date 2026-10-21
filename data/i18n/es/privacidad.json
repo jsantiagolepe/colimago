@@ -1,0 +1,149 @@
+{
+  "titulo": "Política de privacidad",
+  "descripcion": "Qué datos recoge Colima Go en su sitio web y en su app, para qué se usan, cómo funciona la publicidad de Google AdSense y cómo ejercer tus derechos ARCO.",
+  "actualizadoEtiqueta": "Última actualización",
+  "actualizado": "21 de octubre de 2026",
+  "actualizadoIso": "2026-10-21",
+  "indice": "En esta página",
+  "externo": "se abre en una pestaña nueva",
+  "intro": [
+    "Esta política explica qué información recogen colimago.mx (la portada y la guía web de Colima Go) y la app móvil Colima Go, para qué la usamos y qué puedes hacer al respecto. Es nuestro aviso de privacidad en los términos de la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, de México.",
+    "Colima Go es una guía de Colima, México: lugares, playas, fiestas del pueblo y eventos. Recogemos lo mínimo para que funcione, y puedes leer toda la guía sin crear una cuenta."
+  ],
+  "secciones": [
+    {
+      "id": "responsable",
+      "titulo": "1. Responsable y contacto",
+      "parrafos": [
+        "El responsable del tratamiento de tus datos personales es Colima Go (Colima 360), en Colima, Colima, México.",
+        "Para cualquier asunto de privacidad, incluidas las solicitudes para ejercer tus derechos ARCO, escríbenos a [colimago.app@gmail.com](mailto:colimago.app@gmail.com) o usa la [página de contacto](/contacto)."
+      ]
+    },
+    {
+      "id": "datos",
+      "titulo": "2. Qué datos recogemos",
+      "parrafos": [
+        "Depende de lo que hagas en el sitio o en la app:"
+      ],
+      "lista": [
+        "**Visita a la portada.** Al abrir la portada de colimago.mx registramos una visita con un identificador aleatorio guardado en tu navegador (no es tu nombre ni tu correo), el navegador y el sistema operativo que usas (por ejemplo, «Chrome 126» y «Android»), la versión del sitio y la fecha y hora. No incluimos tu dirección IP en ese registro ni lo usamos para identificarte.",
+        "**Inicio de sesión con Google.** Si inicias sesión para dar Me gusta, comentar o guardar favoritos en tu cuenta, Google nos comparte tu nombre, tu correo electrónico, tu foto de perfil y el identificador de tu cuenta. No recibimos tu contraseña. Mantenemos tu sesión con una cookie cifrada de 30 días que desaparece al cerrar sesión.",
+        "**Comentarios, Me gusta, favoritos y reportes.** Lo que escribes en un comentario (hasta 500 caracteres) se publica junto con tu nombre y tu foto de perfil de Google, y cualquiera puede verlo. Los Me gusta, los favoritos y los reportes se guardan asociados a tu cuenta; los reportes (hasta 1,000 caracteres) solo los ve el equipo de Colima Go. Sin cuenta, tus favoritos se guardan únicamente en tu navegador; si luego inicias sesión, pueden fusionarse con los de tu cuenta.",
+        "**Vistas.** Contamos cuántas veces se abre la ficha de un lugar o de un evento para mostrar sus contadores. Ese conteo no te identifica.",
+        "**Formularios de sugerencias y de contacto.** La web no guarda lo que escribes en ellos: arman un mensaje que tú envías por Messenger o por correo, o que copias. Lo recibimos con los datos que tú incluyas (por ejemplo, tu nombre o tu correo) y con los que tenga la plataforma por la que lo mandes.",
+        "**Preferencias en tu navegador.** El tema claro u oscuro y, si no usas cuenta, tus favoritos se guardan en el almacenamiento de tu navegador.",
+        "**Datos técnicos del servidor.** Como cualquier sitio, nuestro proveedor de alojamiento recibe tu dirección IP y los datos de la petición (página pedida, navegador, fecha y hora) para entregarte el sitio y protegerlo de abusos. Usamos límites por IP para frenar el spam y los ataques.",
+        "**App móvil.** Al abrirse, la app Colima Go registra un evento de uso con un identificador aleatorio, el modelo del dispositivo y la versión del sistema operativo y de la app, y ofrece el mismo inicio de sesión con Google, comentarios, Me gusta y favoritos que la web. Si la app necesita un permiso del dispositivo, te lo pide en ese momento y puedes retirarlo en los ajustes de tu teléfono."
+      ]
+    },
+    {
+      "id": "usos",
+      "titulo": "3. Para qué usamos tus datos",
+      "lista": [
+        "Prestarte el servicio: mantener tu sesión, publicar tus comentarios, guardar tus favoritos y contar vistas.",
+        "Mejorar la guía y la app: saber qué secciones se usan y detectar errores, sin identificarte.",
+        "Moderación y seguridad: atender reportes, evitar spam, abusos y accesos indebidos.",
+        "Responder los mensajes que nos envías.",
+        "Mostrar publicidad, como se explica en la sección siguiente.",
+        "Cumplir obligaciones legales."
+      ],
+      "cierre": [
+        "No vendemos tus datos personales."
+      ]
+    },
+    {
+      "id": "publicidad",
+      "titulo": "4. Publicidad (Google AdSense y AdMob)",
+      "parrafos": [
+        "Este sitio puede mostrar anuncios de Google AdSense, y la app móvil usa Google AdMob. Los proveedores externos, como Google, usan cookies para mostrar anuncios según tus visitas anteriores a este y a otros sitios web.",
+        "Google usa cookies de publicidad para mostrar anuncios. El uso de cookies de publicidad permite a Google y a sus socios mostrarte anuncios basándose en tu visita a este sitio y a otros sitios de Internet.",
+        "Puedes desactivar la publicidad personalizada en la [Configuración de anuncios de Google](https://adssettings.google.com). También puedes desactivar el uso de cookies de otros proveedores para publicidad personalizada en [www.aboutads.info](https://www.aboutads.info).",
+        "Para saber más sobre cómo usa Google los datos de los sitios y las apps que utilizan sus servicios, consulta [Cómo usa Google la información de sitios o apps que usan sus servicios](https://policies.google.com/technologies/ads).",
+        "Los anuncios se señalan con la etiqueta «Publicidad». No aparecen en la portada ni en los formularios. Desactivar la publicidad personalizada no quita los anuncios: solo hace que sean menos relevantes para ti. Colima Go no controla las cookies de Google ni las de sus socios publicitarios."
+      ]
+    },
+    {
+      "id": "cookies",
+      "titulo": "5. Cookies y tecnologías similares",
+      "lista": [
+        "**Cookie propia de sesión.** Solo existe si inicias sesión: guarda tu sesión cifrada, no la puede leer el código de la página y dura 30 días o hasta que cierres sesión. Es necesaria para que la cuenta funcione.",
+        "**Almacenamiento del navegador.** Guardamos tu tema (claro u oscuro), el identificador aleatorio de la visita a la portada y, si no usas cuenta, tus favoritos. También anotamos en la sesión del navegador qué fichas ya contaste para no sumar dos veces la misma vista.",
+        "**Cookies de Google.** Las usan los anuncios de AdSense y, solo cuando tocas «Iniciar sesión», el acceso con Google.",
+        "**Mapa y video bajo demanda.** El mapa de OpenStreetMap y los videos de TikTok solo se cargan cuando pulsas el botón correspondiente; esos proveedores pueden poner sus propias cookies, según sus políticas.",
+        "**Analítica.** No usamos Google Analytics ni píxeles de seguimiento de redes sociales en el sitio."
+      ],
+      "cierre": [
+        "Puedes bloquear o borrar las cookies desde la configuración de tu navegador. La guía seguirá funcionando, salvo el inicio de sesión y los anuncios."
+      ]
+    },
+    {
+      "id": "terceros",
+      "titulo": "6. Con quién compartimos tus datos",
+      "parrafos": [
+        "Compartimos datos solo cuando hace falta para prestar el servicio:"
+      ],
+      "lista": [
+        "**Google**, para el inicio de sesión y para la publicidad.",
+        "**Proveedores de alojamiento y bases de datos en la nube**, que tratan los datos por cuenta nuestra para que el sitio y la app funcionen. Algunos están en Estados Unidos u otros países.",
+        "**Meta (Messenger)**, solo si eliges enviarnos un mensaje por ese medio.",
+        "**Autoridades**, cuando una ley o una orden legítima nos lo exija."
+      ],
+      "cierre": [
+        "Si usas el sitio o la app, aceptas estas transferencias, que son necesarias para ofrecerte el servicio."
+      ]
+    },
+    {
+      "id": "conservacion",
+      "titulo": "7. Cuánto tiempo guardamos tus datos",
+      "parrafos": [
+        "Conservamos tus datos el tiempo necesario para los fines de esta política. Si borras tu cuenta desde Ajustes, eliminamos tu cuenta y los datos asociados a ella y cerramos tu sesión. Los registros de visitas no te identifican y se conservan mientras sirvan para estadísticas."
+      ]
+    },
+    {
+      "id": "arco",
+      "titulo": "8. Tus derechos (ARCO)",
+      "parrafos": [
+        "Tienes derecho a **acceder** a tus datos personales y saber cómo los usamos, a **rectificarlos** si son inexactos, a **cancelarlos** y a **oponerte** a su uso. También puedes revocar tu consentimiento y pedir que limitemos el uso o la divulgación de tus datos.",
+        "Para ejercerlos, envía un correo a [colimago.app@gmail.com](mailto:colimago.app@gmail.com) con el asunto «Derechos ARCO» e incluye: tu nombre completo y un medio para responderte; una descripción clara de los datos y del derecho que quieres ejercer; y una copia de una identificación oficial vigente (o, si actúas en nombre de otra persona, el documento que acredite tu representación).",
+        "Te responderemos en un máximo de 20 días contados desde que recibamos tu solicitud completa y, si procede, la haremos efectiva en los 15 días siguientes.",
+        "Algunas cosas puedes hacerlas tú mismo: cerrar sesión, borrar tus comentarios y borrar tu cuenta desde Ajustes. Para la publicidad personalizada, consulta la sección 4. Si consideras que se vulneraron tus derechos, puedes acudir a la autoridad de protección de datos personales competente en México."
+      ]
+    },
+    {
+      "id": "menores",
+      "titulo": "9. Menores de edad",
+      "parrafos": [
+        "Colima Go es una guía para público general y no está dirigida a menores de 13 años. No recogemos a sabiendas datos personales de menores de 13 años. Si eres menor de 18, usa las funciones con cuenta (comentarios, Me gusta y favoritos) con permiso de tu madre, padre o tutor.",
+        "Si crees que un menor nos dio datos sin autorización, escríbenos y los eliminaremos."
+      ]
+    },
+    {
+      "id": "seguridad",
+      "titulo": "10. Seguridad",
+      "parrafos": [
+        "El sitio usa conexión cifrada (HTTPS), tu sesión viaja en una cookie cifrada que el código de la página no puede leer, verificamos el origen de las peticiones que escriben datos y limitamos el abuso. Ningún sistema es perfectamente seguro, pero nos tomamos en serio la protección de tus datos."
+      ]
+    },
+    {
+      "id": "enlaces",
+      "titulo": "11. Enlaces a otros sitios",
+      "parrafos": [
+        "La guía enlaza a sitios de terceros (mapas, redes sociales, páginas de lugares y de eventos). No controlamos sus prácticas de privacidad: revisa sus propias políticas."
+      ]
+    },
+    {
+      "id": "cambios",
+      "titulo": "12. Cambios a esta política",
+      "parrafos": [
+        "Cuando cambie esta política, publicaremos la nueva versión en esta página con su fecha de actualización. Si el cambio es importante, te lo avisaremos también en el sitio o en la app."
+      ]
+    },
+    {
+      "id": "contacto",
+      "titulo": "13. Contacto",
+      "parrafos": [
+        "¿Dudas sobre esta política? Escríbenos a [colimago.app@gmail.com](mailto:colimago.app@gmail.com) o desde la [página de contacto](/contacto). Las [condiciones de uso](/terminos) regulan el uso del sitio."
+      ]
+    }
+  ]
+}

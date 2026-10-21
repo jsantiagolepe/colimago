@@ -142,3 +142,6 @@ dialog.visor::backdrop { background: var(--visor-fondo); }
   .lugar-horarios th, .lugar-horarios td { font-size: 16px; }
   .lugar-ampliar { left: 10px; bottom: 10px; }
 }
+
+/* Guía de visita: columna de lectura (viñetas, enlaces y la lista de cercanos están en guia.css) */
+.lugar-guia .lectura { max-width: 62ch; }

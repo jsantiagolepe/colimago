@@ -120,6 +120,9 @@
 .ff-texto .nota { margin-top: 14px; }
 .ff-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 14px; margin-top: 32px; }
 .ff-mas { padding-bottom: 8px; }
+.ff-contexto { display: grid; gap: 36px; padding-bottom: 56px; }
+.ff-contexto .seccion-titulo { margin-bottom: 12px; }
+.ff-contexto .lectura { max-width: 62ch; font-size: 17px; }
 .ff-mas .mes-lista { max-width: 880px; }
 .ff-mas .seccion-titulo { margin-bottom: 4px; }
 
