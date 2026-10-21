@@ -200,7 +200,7 @@
     border-bottom: 1px solid transparent; transition: border-color .3s, background-color .4s;
   }
   .barra.con-sombra { border-bottom-color: var(--linea); }
-  .barra .envoltura { display: flex; align-items: center; gap: 20px; height: 64px; }
+  .barra .envoltura { display: flex; align-items: center; gap: 16px; height: 64px; }
   .marca { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-right: auto; }
   .perro {
     width: 34px; height: 34px; flex-shrink: 0; background: var(--tinta);
@@ -210,15 +210,11 @@
   .marca-nombre span { color: var(--acento-texto); }
   .distritos { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
   .distritos a {
-    display: block; padding: 8px 12px; border-radius: 999px; text-decoration: none;
+    display: block; white-space: nowrap; padding: 8px 12px; border-radius: 999px; text-decoration: none;
     font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .03em; text-transform: uppercase;
     color: var(--tinta-suave); transition: color .2s, background-color .2s;
   }
   .distritos a:hover { color: var(--tinta); background: var(--suelo-3); }
-  .distritos a[aria-current="true"] { color: var(--tinta); }
-  .distritos a[aria-current="true"]::after {
-    content: ''; display: block; height: 2px; margin-top: 2px; border-radius: 2px; background: var(--foco);
-  }
   .interruptor {
     width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%;
     background: transparent; border: 1px solid var(--linea); color: var(--tinta); cursor: pointer;
@@ -231,6 +227,25 @@
   :root[data-tema="claro"] .interruptor .vidrio { fill: transparent; }
   @media (prefers-color-scheme: light) { :root:not([data-tema="oscuro"]) .interruptor .vidrio { fill: transparent; } }
   .btn-descargar-nav { padding: 9px 16px; font-size: 15px; }
+  /* Idioma, favoritos y cuenta: iguales a los de la barra de la guía (css/guia.css) */
+  .barra-acciones { display: flex; align-items: center; gap: 8px; }
+  .btn-idioma {
+    height: 40px; padding: 0 12px; border-radius: 999px; display: inline-flex; align-items: center; text-decoration: none;
+    border: 1px solid var(--linea); color: var(--tinta-suave); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .06em;
+    transition: background-color .2s, color .2s, border-color .2s;
+  }
+  .btn-idioma:hover { background: var(--suelo-3); color: var(--tinta); border-color: var(--tinta-tenue); }
+  .btn-icono {
+    width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; padding: 0; text-decoration: none;
+    background: transparent; border: 1px solid var(--linea); color: var(--tinta); cursor: pointer;
+    transition: background-color .2s, border-color .2s, transform .2s;
+  }
+  .btn-icono:hover { background: var(--suelo-3); border-color: var(--tinta-tenue); }
+  .btn-icono:active { transform: scale(.94); }
+  .btn-icono svg { width: 20px; height: 20px; }
+  .btn-usuario { position: relative; overflow: hidden; }
+  .btn-usuario img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .btn-usuario.con-sesion { border-color: var(--foco); }
 
   /* ============ Botones pintados ============ */
   /* La pintura es una capa con máscara de brochazo (bordes secos en los extremos);
@@ -357,6 +372,29 @@
   .guia-tarjeta:hover { border-color: var(--tinta-tenue); background: var(--suelo-3); transform: translateY(-3px); }
   .guia-nombre { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.1; letter-spacing: .01em; color: var(--acento-texto); }
   .guia-dato { color: var(--tinta-suave); font-size: 16px; line-height: 1.45; }
+
+  /* --- Enlaces al detalle (playas, rincones y municipios) --- */
+  .colgante a { color: inherit; text-decoration: none; }
+  .colgante a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .12em; }
+  .ver-detalle {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; text-decoration: none; color: var(--acento-texto);
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15.5px; letter-spacing: .06em; text-transform: uppercase;
+  }
+  .ver-detalle::after { content: '→'; transition: transform .2s; }
+  .ver-detalle:hover { text-decoration: underline; text-underline-offset: 4px; }
+  .ver-detalle:hover::after { transform: translateX(3px); }
+  .ver-todo { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; margin-top: 40px; }
+  .foto-enlace { position: absolute; inset: 0; z-index: 2; border-radius: 10px; }
+  .tablero .ver-detalle { margin: -6px 0 18px; }
+  /* La tarjeta entera lleva al detalle: el enlace "Ver detalle" se estira sobre ella */
+  .rincon { position: relative; }
+  .rincon .tarjeta-enlace::before { content: ''; position: absolute; inset: 0; z-index: 2; }
+  .rincon:focus-within { outline: 3px solid var(--foco); outline-offset: 6px; border-radius: 10px; }
+  .rincon .tarjeta-enlace:focus-visible { outline: none; }
+  .ficha-enlace { display: block; border-radius: 50%; }
+  .ficha h3 a { color: inherit; text-decoration: none; }
+  .ficha h3 a:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .1em; }
+  .ver-municipio { margin-top: 20px; padding: 11px 22px 10px; font-size: 16px; }
 
   /* --- Playas: foto grande + tablero de playas --- */
   .playas-rejilla { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 48px; align-items: start; }
@@ -510,13 +548,22 @@
   footer .envoltura > p { width: 100%; }
 
   /* ============ Responsive ============ */
-  @media (max-width: 1080px) {
+  /* El mismo menú de 7 opciones que la guía (css/guia.css): mismos anchos para compactarlo y ocultarlo. */
+  @media (max-width: 1320px) {
+    .distritos { gap: 0; }
+    .distritos a { padding: 8px 9px; font-size: 15px; letter-spacing: .02em; }
+  }
+  @media (max-width: 1120px) {
     .distritos { display: none; }
+  }
+  @media (max-width: 1080px) {
     .tendedero { height: 560px; }
     .regla { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 22px 14px; }
   }
   @media (max-width: 860px) {
     body { font-size: 16.5px; }
+    /* Como en la guía: en pantalla chica la barra lleva menos botones (la guía ya trae Favoritos abajo). */
+    .barra .btn-descargar-nav, .barra .btn-favoritos { display: none; }
     .portada { padding-bottom: 56px; }
     .portada-rejilla { grid-template-columns: 1fr; gap: 12px; }
     .portada h1 { padding-top: 10px; }
@@ -559,7 +606,6 @@
     .envoltura { width: calc(100% - 32px); }
     .tendedero { margin: 0 -16px; padding-inline: 16px; }
     .tira { margin: 0 -16px; padding-inline: 16px; scroll-padding-left: 16px; }
-    .barra .btn-descargar-nav { display: none; }
     .tiendas .btn-pintado { flex: 1 1 100%; justify-content: center; }
     .regla { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 18px 8px; }
     .regla .nombre { font-size: 13.5px; }
@@ -1245,24 +1291,36 @@
 
 <nav class="barra" aria-label="Principal">
   <div class="envoltura">
-    <a class="marca" href="#inicio" aria-label="Colima Go, inicio">
+    <a class="marca" href="/" aria-label="Colima Go, inicio">
       <span class="perro" aria-hidden="true"></span>
       <span class="marca-nombre">Colima <span>Go</span></span>
     </a>
+    <!-- El mismo menú que la guía (lib/guia/layout.js, MENU): scripts/verificar-sitio.js comprueba que coincidan. -->
     <ul class="distritos">
-      <li><a href="#playas">Playas</a></li>
-      <li><a href="#rincones">Rincones</a></li>
-      <li><a href="#fiestas">Fiestas</a></li>
-      <li><a href="#sabores">Sabores</a></li>
-      <li><a href="#municipios">Municipios</a></li>
       <li><a href="/inicio">La guía</a></li>
+      <li><a href="/explorar">Explorar</a></li>
+      <li><a href="/calendario">Calendario</a></li>
+      <li><a href="/playas">Playas</a></li>
+      <li><a href="/rincones-naturales">Rincones</a></li>
+      <li><a href="/fiestas-del-pueblo">Fiestas</a></li>
+      <li><a href="/municipios">Municipios</a></li>
     </ul>
-    <button class="interruptor" id="interruptor" type="button" aria-label="Cambiar a tema claro">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path class="vidrio" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2V16h5v-.2c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3z"/>
-      </svg>
-    </button>
-    <a class="btn-pintado btn-descargar-nav" href="#descargar">Descargar</a>
+    <!-- Los mismos botones que la barra de la guía y en el mismo orden (lib/guia/layout.js, barra()). -->
+    <div class="barra-acciones">
+      <a class="btn-idioma" href="/en/inicio" hreflang="en" lang="en" aria-label="Cambiar a inglés">EN</a>
+      <button class="interruptor" id="interruptor" type="button" aria-label="Cambiar a tema claro">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path class="vidrio" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1.1 2V16h5v-.2c.1-.8.5-1.5 1.1-2A6 6 0 0 0 12 3z"/>
+        </svg>
+      </button>
+      <a class="btn-icono btn-favoritos" href="/favoritos" aria-label="Favoritos">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20.5s-8-4.7-8-10.6A4.6 4.6 0 0 1 12 7a4.6 4.6 0 0 1 8 2.9c0 5.9-8 10.6-8 10.6z"/></svg>
+      </a>
+      <a class="btn-icono btn-usuario" id="btn-usuario" href="/ajustes" aria-label="Mi cuenta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+      </a>
+      <a class="btn-pintado btn-descargar-nav" href="#descargar">Descargar</a>
+    </div>
   </div>
 </nav>
 
@@ -1336,7 +1394,7 @@
     <div class="envoltura">
       <div class="guirnalda" data-focos="30" data-comba="0.45" aria-hidden="true"></div>
       <div class="letrero">
-        <h2 class="rotulo colgante" id="t-playas" data-revela>Playas del Pacífico</h2>
+        <h2 class="rotulo colgante" id="t-playas" data-revela><a href="/playas">Playas del Pacífico</a></h2>
         <p data-revela="2">Arena oscura de origen volcánico, oleaje para surfear y mariscos frente al mar. Del estero de Tecuanillo a las olas de Boca de Pascuales.</p>
       </div>
       <div class="playas-rejilla">
@@ -1347,17 +1405,19 @@
             <img data-playa="tecuanillo" src="/img/playa-tecuanillo.webp" srcset="/img/playa-tecuanillo-760.webp 760w, /img/playa-tecuanillo.webp 1400w" sizes="(max-width: 860px) 100vw, 58vw" alt="Playa Tecuanillo, Tecomán" width="1400" height="1050" loading="lazy" />
             <img data-playa="la-boquita" src="/img/playa-la-boquita.webp" srcset="/img/playa-la-boquita-760.webp 760w, /img/playa-la-boquita.webp 960w" sizes="(max-width: 860px) 100vw, 58vw" alt="Playa La Boquita, Manzanillo" width="960" height="720" loading="lazy" />
             <img data-playa="el-real" src="/img/playa-el-real.webp" srcset="/img/playa-el-real-760.webp 760w, /img/playa-el-real.webp 960w" sizes="(max-width: 860px) 100vw, 58vw" alt="Playa El Real, Tecomán" width="960" height="720" loading="lazy" />
+            <a class="foto-enlace" id="foto-playa-enlace" href="/lugar/el-paraiso" aria-label="Ver detalle de Playa El Paraíso, Armería"></a>
           </div>
           <figcaption id="pie-playa" aria-live="polite">Playa El Paraíso, Armería</figcaption>
         </figure>
         <ul class="tablero" aria-label="Playas en la app">
-          <li><button type="button" data-playa="el-paraiso" aria-pressed="true"><span class="nombre">El Paraíso</span><span class="muni">Armería</span><span class="dato">Arena oscura volcánica y oleaje fuerte, ideal para surf; paseos en lancha por el estero.</span></button></li>
-          <li><button type="button" data-playa="boca-de-pascuales" aria-pressed="false"><span class="nombre">Boca de Pascuales</span><span class="muni">Tecomán</span><span class="dato">Famosa por sus fuertes olas, ideales para el surf, y sus espectaculares atardeceres.</span></button></li>
-          <li><button type="button" data-playa="tecuanillo" aria-pressed="false"><span class="nombre">Tecuanillo</span><span class="muni">Tecomán</span><span class="dato">Tranquila, con esteros y manglares para el ecoturismo y la observación de aves.</span></button></li>
-          <li><button type="button" data-playa="la-boquita" aria-pressed="false"><span class="nombre">La Boquita</span><span class="muni">Manzanillo</span><span class="dato">Aguas cálidas, palapas y mariscos frescos, lejos del bullicio de playas más turísticas.</span></button></li>
-          <li><button type="button" data-playa="el-real" aria-pressed="false"><span class="nombre">El Real</span><span class="muni">Tecomán</span><span class="dato">Para nadar y surfear, con palapas y un ambiente familiar.</span></button></li>
+          <li><button type="button" data-playa="el-paraiso" aria-pressed="true"><span class="nombre">El Paraíso</span><span class="muni">Armería</span><span class="dato">Arena oscura volcánica y oleaje fuerte, ideal para surf; paseos en lancha por el estero.</span></button><a class="ver-detalle" href="/lugar/el-paraiso">Ver detalle<span class="sr-only"> de El Paraíso</span></a></li>
+          <li><button type="button" data-playa="boca-de-pascuales" aria-pressed="false"><span class="nombre">Boca de Pascuales</span><span class="muni">Tecomán</span><span class="dato">Famosa por sus fuertes olas, ideales para el surf, y sus espectaculares atardeceres.</span></button><a class="ver-detalle" href="/lugar/boca-de-pascuales">Ver detalle<span class="sr-only"> de Boca de Pascuales</span></a></li>
+          <li><button type="button" data-playa="tecuanillo" aria-pressed="false"><span class="nombre">Tecuanillo</span><span class="muni">Tecomán</span><span class="dato">Tranquila, con esteros y manglares para el ecoturismo y la observación de aves.</span></button><a class="ver-detalle" href="/lugar/tecuanillo">Ver detalle<span class="sr-only"> de Tecuanillo</span></a></li>
+          <li><button type="button" data-playa="la-boquita" aria-pressed="false"><span class="nombre">La Boquita</span><span class="muni">Manzanillo</span><span class="dato">Aguas cálidas, palapas y mariscos frescos, lejos del bullicio de playas más turísticas.</span></button><a class="ver-detalle" href="/lugar/la-boquita">Ver detalle<span class="sr-only"> de La Boquita</span></a></li>
+          <li><button type="button" data-playa="el-real" aria-pressed="false"><span class="nombre">El Real</span><span class="muni">Tecomán</span><span class="dato">Para nadar y surfear, con palapas y un ambiente familiar.</span></button><a class="ver-detalle" href="/lugar/el-real">Ver detalle<span class="sr-only"> de El Real</span></a></li>
         </ul>
       </div>
+      <p class="ver-todo"><a class="btn-pintado" href="/playas"><span>Ver todas las playas</span></a></p>
     </div>
   </section>
 
@@ -1375,43 +1435,44 @@
     <div class="envoltura">
       <div class="guirnalda" data-focos="26" data-comba="0.7" aria-hidden="true"></div>
       <div class="letrero">
-        <h2 class="rotulo colgante" id="t-rincones" data-revela>Rincones Naturales</h2>
+        <h2 class="rotulo colgante" id="t-rincones" data-revela><a href="/rincones-naturales">Rincones Naturales</a></h2>
         <p data-revela="2">Balnearios de manantial, lagunas al pie del volcán y bosques de pino en la sierra. Los lugares que la app reúne, con su ubicación, servicios y horarios.</p>
       </div>
       <div class="pestanas" role="tablist" aria-label="Categorías de Rincones Naturales">
-        <button type="button" role="tab" id="tab-rios" aria-controls="panel-rios" aria-selected="true">Ríos</button>
-        <button type="button" role="tab" id="tab-lagunas" aria-controls="panel-lagunas" aria-selected="false" tabindex="-1">Lagunas</button>
-        <button type="button" role="tab" id="tab-montanas" aria-controls="panel-montanas" aria-selected="false" tabindex="-1">Montañas</button>
+        <button type="button" role="tab" id="tab-rios" aria-controls="panel-rios" aria-selected="true" data-lista="/rincones-naturales/rios" data-lista-texto="Ver todos los ríos">Ríos</button>
+        <button type="button" role="tab" id="tab-lagunas" aria-controls="panel-lagunas" aria-selected="false" tabindex="-1" data-lista="/rincones-naturales/lagunas" data-lista-texto="Ver todas las lagunas">Lagunas</button>
+        <button type="button" role="tab" id="tab-montanas" aria-controls="panel-montanas" aria-selected="false" tabindex="-1" data-lista="/rincones-naturales/montanas" data-lista-texto="Ver todas las montañas">Montañas</button>
       </div>
 
       <div class="tira" id="panel-rios" role="tabpanel" aria-labelledby="tab-rios" tabindex="0">
         <figure class="rincon"><div class="marco"><img src="/img/rio-los-amiales-760.webp" alt="Balneario Los Amiales, Coquimatlán" width="760" height="428" loading="lazy" /></div>
-          <figcaption><h3>Los Amiales</h3><p class="muni">Coquimatlán</p><p>Pozas de agua cristalina que brotan de manantiales, con corriente suave y sombra natural.</p></figcaption></figure>
+          <figcaption><h3>Los Amiales</h3><p class="muni">Coquimatlán</p><p>Pozas de agua cristalina que brotan de manantiales, con corriente suave y sombra natural.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/los-amiales">Ver detalle<span class="sr-only"> de Los Amiales</span></a></figcaption></figure>
         <figure class="rincon"><div class="marco"><img src="/img/rio-el-sauce-760.webp" alt="Balneario El Sauce, Coquimatlán" width="760" height="570" loading="lazy" /></div>
-          <figcaption><h3>El Sauce</h3><p class="muni">Coquimatlán</p><p>Balneario y restaurante con aguas cristalinas para nadar y comida típica de la región.</p></figcaption></figure>
+          <figcaption><h3>El Sauce</h3><p class="muni">Coquimatlán</p><p>Balneario y restaurante con aguas cristalinas para nadar y comida típica de la región.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/el-sauce">Ver detalle<span class="sr-only"> de El Sauce</span></a></figcaption></figure>
         <figure class="rincon"><div class="marco"><img src="/img/rio-parajes-760.webp" alt="Balneario Parajes, Coquimatlán" width="760" height="570" loading="lazy" /></div>
-          <figcaption><h3>Parajes</h3><p class="muni">Coquimatlán</p><p>Aguas cristalinas, áreas verdes y zonas de descanso para disfrutar en familia.</p></figcaption></figure>
+          <figcaption><h3>Parajes</h3><p class="muni">Coquimatlán</p><p>Aguas cristalinas, áreas verdes y zonas de descanso para disfrutar en familia.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/parajes">Ver detalle<span class="sr-only"> de Parajes</span></a></figcaption></figure>
         <figure class="rincon"><div class="marco"><img src="/img/rio-agua-fria-760.webp" alt="Balneario Agua Fría, Villa de Álvarez" width="760" height="427" loading="lazy" /></div>
-          <figcaption><h3>Agua Fría</h3><p class="muni">Villa de Álvarez</p><p>Pozas de agua fresca y cristalina en un entorno tranquilo.</p></figcaption></figure>
+          <figcaption><h3>Agua Fría</h3><p class="muni">Villa de Álvarez</p><p>Pozas de agua fresca y cristalina en un entorno tranquilo.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/agua-fria">Ver detalle<span class="sr-only"> de Agua Fría</span></a></figcaption></figure>
         <figure class="rincon"><div class="marco"><img src="/img/rio-zacualpan-760.webp" alt="Manantiales de Zacualpan, Comala" width="760" height="427" loading="lazy" /></div>
-          <figcaption><h3>Manantiales de Zacualpan</h3><p class="muni">Comala</p><p>Aguas frescas rodeadas de vegetación, perfectas para nadar y relajarse.</p></figcaption></figure>
+          <figcaption><h3>Manantiales de Zacualpan</h3><p class="muni">Comala</p><p>Aguas frescas rodeadas de vegetación, perfectas para nadar y relajarse.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/manantiales-de-zacualpan">Ver detalle<span class="sr-only"> de Manantiales de Zacualpan</span></a></figcaption></figure>
       </div>
 
       <div class="tira" id="panel-lagunas" role="tabpanel" aria-labelledby="tab-lagunas" tabindex="0" hidden>
         <figure class="rincon"><div class="marco"><img src="/img/laguna-la-maria-760.webp" alt="Laguna La María, Comala" width="760" height="505" loading="lazy" /></div>
-          <figcaption><h3>Laguna La María</h3><p class="muni">Comala</p><p>Observación de aves, paseos en bote y caminatas alrededor de la laguna.</p></figcaption></figure>
+          <figcaption><h3>Laguna La María</h3><p class="muni">Comala</p><p>Observación de aves, paseos en bote y caminatas alrededor de la laguna.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/laguna-la-maria">Ver detalle<span class="sr-only"> de Laguna La María</span></a></figcaption></figure>
         <figure class="rincon"><div class="marco"><img src="/img/laguna-carrizalillo-760.webp" alt="Laguna Carrizalillo con el volcán al fondo, Comala" width="760" height="570" loading="lazy" /></div>
-          <figcaption><h3>Carrizalillo</h3><p class="muni">Comala</p><p>Para acampar, pasear en kayak y disfrutar de la naturaleza.</p></figcaption></figure>
+          <figcaption><h3>Carrizalillo</h3><p class="muni">Comala</p><p>Para acampar, pasear en kayak y disfrutar de la naturaleza.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/carrizalillo">Ver detalle<span class="sr-only"> de Carrizalillo</span></a></figcaption></figure>
         <figure class="rincon"><div class="marco"><img src="/img/laguna-el-naranjal-760.webp" alt="Laguna El Naranjal, Comala" width="760" height="570" loading="lazy" /></div>
-          <figcaption><h3>El Naranjal</h3><p class="muni">Comala</p><p>Un tranquilo espejo de agua, sereno y fresco, para descansar y ver aves.</p></figcaption></figure>
+          <figcaption><h3>El Naranjal</h3><p class="muni">Comala</p><p>Un tranquilo espejo de agua, sereno y fresco, para descansar y ver aves.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/el-naranjal">Ver detalle<span class="sr-only"> de El Naranjal</span></a></figcaption></figure>
       </div>
 
       <div class="tira" id="panel-montanas" role="tabpanel" aria-labelledby="tab-montanas" tabindex="0" hidden>
         <figure class="rincon"><div class="marco"><img src="/img/montana-el-terrero-760.webp" alt="Bosque de El Terrero, Minatitlán" width="760" height="951" loading="lazy" /></div>
-          <figcaption><h3>El Terrero</h3><p class="muni">Minatitlán</p><p>Bosques de pino y encino, clima fresco, senderismo y campismo en la sierra.</p></figcaption></figure>
+          <figcaption><h3>El Terrero</h3><p class="muni">Minatitlán</p><p>Bosques de pino y encino, clima fresco, senderismo y campismo en la sierra.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/el-terrero">Ver detalle<span class="sr-only"> de El Terrero</span></a></figcaption></figure>
         <figure class="rincon"><div class="marco"><img src="/img/montana-la-gloria-escondida-760.webp" alt="Formaciones rocosas de La Gloria Escondida, Minatitlán" width="760" height="570" loading="lazy" /></div>
-          <figcaption><h3>La Gloria Escondida</h3><p class="muni">Minatitlán</p><p>Santuario natural de formaciones rocosas, senderos y agua que corre entre las piedras.</p></figcaption></figure>
+          <figcaption><h3>La Gloria Escondida</h3><p class="muni">Minatitlán</p><p>Santuario natural de formaciones rocosas, senderos y agua que corre entre las piedras.</p><a class="ver-detalle tarjeta-enlace" href="/lugar/la-gloria-escondida">Ver detalle<span class="sr-only"> de La Gloria Escondida</span></a></figcaption></figure>
       </div>
+      <p class="ver-todo"><a class="btn-pintado" id="ver-rincones" href="/rincones-naturales/rios"><span>Ver todos los ríos</span></a><a class="enlace-app" href="/rincones-naturales">Ver todos los rincones naturales</a></p>
     </div>
   </section>
 
@@ -1491,78 +1552,89 @@
     <div class="envoltura">
       <div class="guirnalda" data-focos="34" data-comba="0.6" aria-hidden="true"></div>
       <div class="letrero">
-        <h2 class="rotulo colgante" id="t-municipios" data-revela>Los diez municipios</h2>
+        <h2 class="rotulo colgante" id="t-municipios" data-revela><a href="/municipios">Los diez municipios</a></h2>
         <p data-revela="2">De la capital a la costa, cada municipio con su estampa. Elige uno.</p>
       </div>
       <ul class="regla" aria-label="Municipios de Colima" data-revela>
-        <li><button type="button" data-muni="colima" aria-pressed="true" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-colima.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Colima</span></button></li>
-        <li><button type="button" data-muni="villadealvarez" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-villadealvarez.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Villa de Álvarez</span></button></li>
-        <li><button type="button" data-muni="comala" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-comala.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Comala</span></button></li>
-        <li><button type="button" data-muni="manzanillo" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-manzanillo.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Manzanillo</span></button></li>
-        <li><button type="button" data-muni="tecoman" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-tecoman.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Tecomán</span></button></li>
-        <li><button type="button" data-muni="armeria" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-armeria.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Armería</span></button></li>
-        <li><button type="button" data-muni="minatitlan" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-minatitlan.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Minatitlán</span></button></li>
-        <li><button type="button" data-muni="coquimatlan" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-coquimatlan.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Coquimatlán</span></button></li>
-        <li><button type="button" data-muni="cuahutemoc" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-cuahutemoc.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Cuauhtémoc</span></button></li>
-        <li><button type="button" data-muni="ixtlahuacan" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-ixtlahuacan.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Ixtlahuacán</span></button></li>
+        <li><button type="button" data-muni="colima" data-slug="colima" aria-pressed="true" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-colima.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Colima</span></button></li>
+        <li><button type="button" data-muni="villadealvarez" data-slug="villa-de-alvarez" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-villadealvarez.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Villa de Álvarez</span></button></li>
+        <li><button type="button" data-muni="comala" data-slug="comala" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-comala.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Comala</span></button></li>
+        <li><button type="button" data-muni="manzanillo" data-slug="manzanillo" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-manzanillo.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Manzanillo</span></button></li>
+        <li><button type="button" data-muni="tecoman" data-slug="tecoman" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-tecoman.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Tecomán</span></button></li>
+        <li><button type="button" data-muni="armeria" data-slug="armeria" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-armeria.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Armería</span></button></li>
+        <li><button type="button" data-muni="minatitlan" data-slug="minatitlan" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-minatitlan.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Minatitlán</span></button></li>
+        <li><button type="button" data-muni="coquimatlan" data-slug="coquimatlan" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-coquimatlan.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Coquimatlán</span></button></li>
+        <li><button type="button" data-muni="cuahutemoc" data-slug="cuauhtemoc" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-cuahutemoc.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Cuauhtémoc</span></button></li>
+        <li><button type="button" data-muni="ixtlahuacan" data-slug="ixtlahuacan" aria-pressed="false" aria-controls="ficha"><span class="medallon"><img src="/img/estampa-ixtlahuacan.webp" alt="" width="200" height="200" loading="lazy" /></span><span class="nombre">Ixtlahuacán</span></button></li>
       </ul>
       <!-- Las diez fichas van en el HTML (no en el script) para que los
            buscadores lean todas, no solo la de Colima: la estampa elegida
            solo cambia cuál está visible. Textos tomados de la app (es.json:
            smallDescription*); los apodos salen de sus descripciones. -->
       <div class="ficha" id="ficha" aria-live="polite">
-        <span class="medallon" aria-hidden="true"><img id="ficha-img" src="/img/estampa-colima.webp" alt="" width="200" height="200" loading="lazy" /></span>
+        <a class="ficha-enlace" id="ficha-enlace" href="/municipios/colima" tabindex="-1" aria-hidden="true"><span class="medallon"><img id="ficha-img" src="/img/estampa-colima.webp" alt="" width="200" height="200" loading="lazy" /></span></a>
         <div class="ficha-texto" data-muni="colima">
-          <h3>Colima</h3>
+          <h3><a href="/municipios/colima">Colima</a></h3>
           <p class="apodo">La capital, fundada en 1523</p>
           <p>La capital del estado combina historia y modernidad. Sus plazas, murales y arquitectura colonial se mezclan con un ambiente vibrante que la convierte en el punto de partida perfecto para conocer la esencia colimense.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/colima"><span>Ver el municipio de Colima</span></a>
         </div>
         <div class="ficha-texto" data-muni="villadealvarez" hidden>
-          <h3>Villa de Álvarez</h3>
+          <h3><a href="/municipios/villa-de-alvarez">Villa de Álvarez</a></h3>
           <p class="apodo">Feria de la Villa y cabalgatas</p>
           <p>Junto a la capital, este municipio es famoso por sus tradiciones, como la Feria de la Villa, sus cabalgatas y su fuerte identidad cultural. Un espacio donde lo urbano y lo festivo se encuentran.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/villa-de-alvarez"><span>Ver el municipio de Villa de Álvarez</span></a>
         </div>
         <div class="ficha-texto" data-muni="comala" hidden>
-          <h3>Comala</h3>
+          <h3><a href="/municipios/comala">Comala</a></h3>
           <p class="apodo">Pueblo Mágico, el Pueblo Blanco de América</p>
           <p>El famoso Pueblo Blanco de América, con calles empedradas, casas blancas y tejas rojas, es un lugar pintoresco lleno de historia, tradiciones y un ambiente tranquilo al pie del imponente Volcán de Fuego.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/comala"><span>Ver el municipio de Comala</span></a>
         </div>
         <div class="ficha-texto" data-muni="manzanillo" hidden>
-          <h3>Manzanillo</h3>
+          <h3><a href="/municipios/manzanillo">Manzanillo</a></h3>
           <p class="apodo">Capital Mundial del Pez Vela</p>
           <p>El puerto más importante del Pacífico mexicano y un paraíso turístico con hermosas playas, bahías cristalinas y una vibrante vida nocturna. Un destino que combina comercio, aventura y descanso junto al mar.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/manzanillo"><span>Ver el municipio de Manzanillo</span></a>
         </div>
         <div class="ficha-texto" data-muni="tecoman" hidden>
-          <h3>Tecomán</h3>
+          <h3><a href="/municipios/tecoman">Tecomán</a></h3>
           <p class="apodo">Capital Mundial del Limón</p>
           <p>Conocido como la “Capital Mundial del Limón”, Tecomán combina agricultura, playas cercanas y un ambiente cálido y hospitalario. Es un municipio lleno de vida y sabores únicos.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/tecoman"><span>Ver el municipio de Tecomán</span></a>
         </div>
         <div class="ficha-texto" data-muni="armeria" hidden>
-          <h3>Armería</h3>
+          <h3><a href="/municipios/armeria">Armería</a></h3>
           <p class="apodo">El estero de Palo Verde</p>
           <p>Entre palmeras y playas tranquilas, Armería es un destino ideal para descansar frente al mar. Conocido por el estero de Palo Verde y su cálida hospitalidad, este rincón costero te invita a relajarte y disfrutar de la naturaleza.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/armeria"><span>Ver el municipio de Armería</span></a>
         </div>
         <div class="ficha-texto" data-muni="minatitlan" hidden>
-          <h3>Minatitlán</h3>
+          <h3><a href="/municipios/minatitlan">Minatitlán</a></h3>
           <p class="apodo">Entre montañas y ríos</p>
           <p>Rodeado de montañas y ríos, Minatitlán es un municipio con gran riqueza natural. Su tranquilidad y entorno verde lo convierten en un destino perfecto para el ecoturismo y la aventura.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/minatitlan"><span>Ver el municipio de Minatitlán</span></a>
         </div>
         <div class="ficha-texto" data-muni="coquimatlan" hidden>
-          <h3>Coquimatlán</h3>
+          <h3><a href="/municipios/coquimatlan">Coquimatlán</a></h3>
           <p class="apodo">Tradición agrícola</p>
           <p>Un pueblo con encanto rural, rodeado de campos fértiles y tradiciones agrícolas. Su ambiente sereno y hospitalidad lo convierten en un sitio ideal para conocer la vida sencilla y auténtica de Colima.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/coquimatlan"><span>Ver el municipio de Coquimatlán</span></a>
         </div>
         <div class="ficha-texto" data-muni="cuahutemoc" hidden>
-          <h3>Cuauhtémoc</h3>
+          <h3><a href="/municipios/cuauhtemoc">Cuauhtémoc</a></h3>
           <p class="apodo">El valle central</p>
           <p>Ubicado en el valle central, este municipio ofrece paisajes naturales, clima fresco y una fuerte tradición agrícola. Es un lugar perfecto para quienes buscan tranquilidad y contacto con la tierra.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/cuauhtemoc"><span>Ver el municipio de Cuauhtémoc</span></a>
         </div>
         <div class="ficha-texto" data-muni="ixtlahuacan" hidden>
-          <h3>Ixtlahuacán</h3>
+          <h3><a href="/municipios/ixtlahuacan">Ixtlahuacán</a></h3>
           <p class="apodo">Refugio entre montañas</p>
           <p>Pequeño y acogedor, Ixtlahuacán es un refugio de tranquilidad en medio de montañas y paisajes naturales. Ideal para quienes disfrutan del turismo rural y de la calma de la provincia.</p>
+          <a class="btn-pintado ver-municipio" href="/municipios/ixtlahuacan"><span>Ver el municipio de Ixtlahuacán</span></a>
         </div>
       </div>
+      <p class="ver-todo"><a class="enlace-app" href="/municipios">Ver los diez municipios</a></p>
     </div>
   </section>
 
@@ -1591,7 +1663,7 @@
 
 <footer>
   <div class="envoltura">
-    <a class="marca" href="#inicio" aria-label="Colima Go, volver arriba">
+    <a class="marca" href="/" aria-label="Colima Go, volver arriba">
       <span class="perro" aria-hidden="true"></span>
       <span class="marca-nombre">Colima <span>Go</span></span>
     </a>
@@ -1717,31 +1789,52 @@
   }, { rootMargin: '0px 0px -6% 0px', threshold: 0 });
   document.querySelectorAll('.guirnalda, [data-revela], .tira').forEach((el) => observador.observe(el));
 
-  // ---------- Barra: sombra al hacer scroll y distrito activo ----------
+  // ---------- Logo: vuelve arriba y la dirección queda en "/" (sin "#inicio") ----------
+  // Sin JavaScript es un enlace normal a "/". Con él, estando ya en la portada solo sube.
+  document.querySelectorAll('a.marca').forEach((enlace) => {
+    enlace.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reducirMovimiento.matches ? 'auto' : 'smooth' });
+      if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    });
+  });
+  // Un enlace guardado con "#inicio" (el de antes) también se limpia: ya está arriba.
+  if (location.hash === '#inicio') history.replaceState(null, '', location.pathname + location.search);
+
+  // ---------- Cuenta: si la persona ya entró en la guía, se ve su foto (core.js la guarda en el navegador) ----------
+  try {
+    const sesion = JSON.parse(localStorage.getItem('colimago-usuario') || 'null');
+    if (sesion && typeof sesion.img === 'string' && /^https:\/\//.test(sesion.img)) {
+      const botonCuenta = document.getElementById('btn-usuario');
+      const foto = document.createElement('img');
+      foto.src = sesion.img; foto.alt = ''; foto.width = foto.height = 40; foto.referrerPolicy = 'no-referrer';
+      botonCuenta.replaceChildren(foto);
+      botonCuenta.classList.add('con-sesion');
+      if (sesion.nombre) botonCuenta.setAttribute('aria-label', String(sesion.nombre));
+    }
+  } catch (e) { /* sin almacenamiento o sin sesión: queda el icono */ }
+
+  // ---------- Barra: sombra al hacer scroll ----------
   const barra = document.querySelector('.barra');
   const alHacerScroll = () => barra.classList.toggle('con-sombra', window.scrollY > 8);
   window.addEventListener('scroll', alHacerScroll, { passive: true });
   alHacerScroll();
-  const enlacesDistrito = [...document.querySelectorAll('.distritos a')];
-  const espia = new IntersectionObserver((entradas) => {
-    entradas.forEach((e) => {
-      if (!e.isIntersecting) return;
-      enlacesDistrito.forEach((a) => a.toggleAttribute('aria-current', a.getAttribute('href') === `#${e.target.id}`));
-      enlacesDistrito.forEach((a) => { if (a.hasAttribute('aria-current')) a.setAttribute('aria-current', 'true'); });
-    });
-  }, { rootMargin: '-45% 0px -50% 0px' });
-  ['playas', 'rincones', 'fiestas', 'sabores', 'municipios'].forEach((id) => espia.observe(document.getElementById(id)));
 
-  // ---------- Playas: el tablero cambia la foto ----------
+  // ---------- Playas: el tablero cambia la foto (y la foto lleva al detalle de esa playa) ----------
   const fotosPlaya = document.querySelectorAll('.playas-foto img');
   const piePlaya = document.getElementById('pie-playa');
+  const enlaceFotoPlaya = document.getElementById('foto-playa-enlace');
   document.querySelectorAll('.tablero button').forEach((btn) => {
     const elegir = () => {
       document.querySelectorAll('.tablero button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
       fotosPlaya.forEach((img) => {
         const activa = img.dataset.playa === btn.dataset.playa;
         img.classList.toggle('activa', activa);
-        if (activa) { img.loading = 'eager'; piePlaya.textContent = img.alt; }
+        if (activa) {
+          img.loading = 'eager'; piePlaya.textContent = img.alt;
+          enlaceFotoPlaya.href = `/lugar/${img.dataset.playa}`;
+          enlaceFotoPlaya.setAttribute('aria-label', `Ver detalle de ${img.alt}`);
+        }
       });
     };
     btn.addEventListener('click', elegir);
@@ -1750,6 +1843,7 @@
 
   // ---------- Rincones: pestañas accesibles (flechas, Inicio, Fin) ----------
   const pestanas = [...document.querySelectorAll('.pestanas [role="tab"]')];
+  const verRincones = document.getElementById('ver-rincones');
   function activarPestana(tab, enfocar) {
     pestanas.forEach((t) => {
       const activa = t === tab;
@@ -1759,6 +1853,9 @@
       panel.hidden = !activa;
       if (activa) { panel.scrollLeft = 0; requestAnimationFrame(() => panel.classList.add('visto')); }
     });
+    // El botón de abajo lleva a la lista de la categoría que se está viendo.
+    verRincones.href = tab.dataset.lista;
+    verRincones.firstElementChild.textContent = tab.dataset.listaTexto;
     if (enfocar) tab.focus();
   }
   pestanas.forEach((tab, i) => {
@@ -1780,6 +1877,7 @@
       document.querySelectorAll('.regla button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
       textosFicha.forEach((t) => { t.hidden = t.dataset.muni !== btn.dataset.muni; });
       document.getElementById('ficha-img').src = `/img/estampa-${btn.dataset.muni}.webp`;
+      document.getElementById('ficha-enlace').href = `/municipios/${btn.dataset.slug}`;
       if (!reducirMovimiento.matches) { ficha.classList.remove('cambia'); void ficha.offsetWidth; ficha.classList.add('cambia'); }
     });
   });

@@ -182,7 +182,7 @@ input, textarea { caret-color: var(--foco); }
 .marca-nombre span { color: var(--acento-texto); }
 .distritos { display: flex; gap: 4px; }
 .distritos a {
-  display: block; padding: 8px 12px; border-radius: 999px; text-decoration: none;
+  display: block; white-space: nowrap; padding: 8px 12px; border-radius: 999px; text-decoration: none;
   font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .03em; text-transform: uppercase;
   color: var(--tinta-suave); transition: color .2s, background-color .2s;
 }
@@ -524,7 +524,13 @@ button.acc:active { transform: scale(.93); }
 .pie p { color: var(--tinta-tenue); font-size: 14px; width: 100%; }
 
 /* ============ Responsive ============ */
-@media (max-width: 1080px) {
+/* El menú de arriba tiene 7 opciones: en pantallas medianas se compacta y, donde ya no cabe, se oculta
+   (la portada hace lo mismo con los mismos anchos, para que sea siempre el mismo menú). */
+@media (max-width: 1320px) {
+  .distritos { gap: 0; }
+  .distritos a { padding: 8px 9px; font-size: 15px; letter-spacing: .02em; }
+}
+@media (max-width: 1120px) {
   .distritos { display: none; }
 }
 @media (max-width: 860px) {
@@ -532,7 +538,7 @@ button.acc:active { transform: scale(.93); }
   .pestanas-app { display: block; }
   body { padding-bottom: calc(var(--pestanas-alto) + env(safe-area-inset-bottom, 0px)); }
   .toasts { bottom: calc(var(--pestanas-alto) + 18px + env(safe-area-inset-bottom, 0px)); }
-  .barra .btn-descargar-nav { display: none; }
+  .barra .btn-descargar-nav, .barra .btn-favoritos { display: none; }
   .cabecera { padding-top: 6px; }
   .cabecera-fila { padding-top: 30px; margin-bottom: 20px; gap: 12px; }
   .seccion { padding-bottom: 56px; }

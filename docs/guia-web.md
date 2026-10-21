@@ -42,6 +42,29 @@ Categorías de Rincones (`:categoria`): `rios` (10), `playas` (11), `lagunas`
 (12), `montanas` (13), `arqueologia` (14), `parques` (15), `patrimonio` (16),
 `balnearios` (17), `rutas` (18).
 
+## Una sola barra arriba, en la portada y en la guía
+
+`/` (la portada, un HTML estático) y `/inicio` (el inicio de la guía) son páginas
+distintas, pero la barra de arriba es la misma en las dos y en toda la guía (es y en):
+
+- **Menú:** La guía · Explorar · Calendario · Playas · Rincones · Fiestas · Municipios.
+  Vive en `MENU` de `lib/guia/layout.js`; cada opción se resalta sola según la ruta
+  (`prefijos`).
+- **Botones de la derecha, en este orden:** idioma (EN/ES), tema claro/oscuro, favoritos
+  (corazón), cuenta y Descargar. En la portada, EN lleva a `/en/inicio` (no tiene versión
+  en inglés propia) y la cuenta muestra la foto si la persona ya entró en la guía (la lee de
+  `localStorage`, sin pedirle nada al servidor).
+
+La portada repite la barra a mano en `public/index.html`; `npm run verificar:sitio`
+comprueba que el menú y los botones coincidan. Si se agrega una opción o un botón, hay que
+tocar `layout.js`, la portada, `data/i18n/*/comun.json` y los anchos de `css/guia.css` y de la
+portada (el menú se compacta bajo 1320 px y se oculta bajo 1120 px, igual en las dos).
+
+En pantalla chica (≤ 860 px) se ocultan Descargar y el corazón, en las dos, y la guía usa la
+barra de pestañas de abajo (Favoritos, Explorar, Inicio, Calendario, Ajustes). El logo lleva a `/`
+(en inglés, que no tiene portada, a `/en/inicio`) y deja la dirección sin `#`; un enlace viejo con
+`/#inicio` se limpia solo.
+
 ## Qué se indexa
 
 `lib/guia/indexacion.js` decide qué páginas se ofrecen a los buscadores; las

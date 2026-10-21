@@ -174,6 +174,30 @@ async function main() {
   comprobar(["/en/privacy", "/en/terms", "/en/contact"].every((h) => enlaces(acercaEn).some((e) => e.href === h && !/target=/.test(e.etiqueta))), "/en/acerca-de: lo mismo en inglés");
   comprobar(!/sites\.google\.com\/view\/(politica|condiciones)/.test(acerca + acercaEn), "/acerca-de: sin enlaces a Google Sites (solo queda el EULA de la app)");
 
+  // El menú de arriba es el mismo en la portada y en la guía (es y en), en el mismo orden.
+  const menu = (html) => enlaces((html.match(/<ul class="distritos">[\s\S]*?<\/ul>/) || [""])[0]).map((e) => e.href);
+  const menuPortada = menu((await pedir("/")).html);
+  const etiquetasMenu = (html) => [...((html.match(/<ul class="distritos">[\s\S]*?<\/ul>/) || [""])[0]).matchAll(/<a [^>]*>([^<]*)<\/a>/g)].map((m) => m[1]);
+  comprobar(menuPortada.length === 7, `portada: el menú tiene 7 opciones (${menuPortada.join(" ")})`);
+  for (const ruta of ["/inicio", "/explorar", "/calendario", "/favoritos", "/ajustes", "/playas", "/municipios", "/fiestas-del-pueblo", "/lugar/el-paraiso", "/acerca-de", "/privacidad", "/contacto"]) {
+    const html = (await pedir(ruta)).html;
+    comprobar(JSON.stringify(menu(html)) === JSON.stringify(menuPortada) && JSON.stringify(etiquetasMenu(html)) === JSON.stringify(etiquetasMenu((await pedir("/")).html)), `${ruta}: el menú de arriba es idéntico al de la portada (mismas opciones, mismo orden)`, `${menu(html).join(" ")} · ${etiquetasMenu(html).join("/")}`);
+  }
+  // Los botones de la derecha (idioma, tema, favoritos, cuenta, descargar): los mismos y en el mismo orden.
+  const botones = (html) => [...((html.match(/<div class="barra-acciones">[\s\S]*?<\/div>\s*<\/div>\s*<\/nav>/) || [""])[0]).matchAll(/<(?:a|button) class="([^"]*)"[^>]*>/g)].map((m) => m[1]);
+  const botonesPortada = botones((await pedir("/")).html);
+  comprobar(botonesPortada.join("|") === "btn-idioma|interruptor|btn-icono btn-favoritos|btn-icono btn-usuario|btn-pintado btn-descargar-nav", `portada: la barra trae idioma, tema, favoritos, cuenta y descargar (${botonesPortada.length} botones)`, botonesPortada.join("|"));
+  for (const ruta of ["/inicio", "/explorar", "/lugar/el-paraiso", "/privacidad", "/en/inicio"]) {
+    comprobar(botones((await pedir(ruta)).html).join("|") === botonesPortada.join("|"), `${ruta}: los botones de la barra son los mismos que los de la portada, en el mismo orden`, botones((await pedir(ruta)).html).join("|"));
+  }
+  const portadaHtml = (await pedir("/")).html;
+  comprobar(/class="btn-idioma" href="\/en\/inicio"[^>]*aria-label="Cambiar a inglés">EN</.test(portadaHtml) && /class="btn-icono btn-favoritos" href="\/favoritos"/.test(portadaHtml) && /class="btn-icono btn-usuario" id="btn-usuario" href="\/ajustes"/.test(portadaHtml), "portada: EN lleva a la guía en inglés, el corazón a /favoritos y la cuenta a /ajustes");
+  const menuEn = menu((await pedir("/en/inicio")).html);
+  comprobar(menuEn.length === 7 && menuEn.every((h, i) => h === (menuPortada[i] === "/" ? "/" : `/en${menuPortada[i]}`)), "/en/inicio: el menú tiene las mismas 7 opciones, con su ruta en inglés", menuEn.join(" "));
+  const marcado = async (ruta) => [...((await pedir(ruta)).html.match(/<ul class="distritos">[\s\S]*?<\/ul>/)[0]).matchAll(/<a href="([^"]+)" aria-current="[^"]+">/g)].map((m) => m[1]);
+  comprobar((await marcado("/inicio")).join() === "/inicio" && (await marcado("/playas")).join() === "/playas" && (await marcado("/lugar/el-paraiso")).join() === "/inicio" && (await marcado("/rincones-naturales/rios")).join() === "/rincones-naturales" && (await marcado("/privacidad")).length === 0, "el menú marca la opción de la página en la que estás (y ninguna en privacidad)");
+  comprobar((await pedir("/inicio")).html.includes('class="btn-icono btn-favoritos" href="/favoritos"') && (await pedir("/inicio")).html.includes('id="btn-usuario" href="/ajustes"'), "Favoritos y Ajustes siguen a un clic: iconos de corazón y de cuenta");
+  comprobar(enlaces((await pedir("/")).html.match(/<a class="marca"[^>]*>/g).join("")).every((e) => e.href === "/") && /<a class="marca" href="\/"/.test((await pedir("/inicio")).html) && /<a class="marca" href="\/en\/inicio"/.test((await pedir("/en/inicio")).html), "el logo lleva a «/» en la portada y en la guía en español (en inglés, a /en/inicio)");
   const portada = (await pedir("/")).html;
   const pPie = enlaces(pie(portada)).map((e) => e.href);
   comprobar(["/acerca-de", "/privacidad", "/terminos", "/contacto", "/inicio"].every((h) => pPie.includes(h)), "portada: el pie tiene los mismos enlaces que /inicio (Acerca de, privacidad, condiciones, contacto)", pPie.join(" "));
@@ -188,6 +212,14 @@ async function main() {
   const cuenta = (tipos) => tipos.reduce((a, t) => a + datos.lugaresPorTipo(t).length, 0);
   const cifras = { rincones: cuenta([10, 11, 12, 13, 14, 15, 16, 17, 18]), tianguis: cuenta([30, 31]), fiestas: datos.fiestas.length, playas: cuenta([11]) };
   comprobar(new RegExp(`${cifras.rincones} rincones naturales`).test(portada) && new RegExp(`${cifras.tianguis} tianguis y mercados`).test(portada) && new RegExp(`${cifras.fiestas} fiestas del pueblo`).test(portada) && new RegExp(`${cifras.playas} playas`).test(portada), "portada: las cifras (rincones, tianguis y mercados, fiestas, playas) coinciden con los datos", JSON.stringify(cifras));
+  // Playas, rincones y municipios de la portada llevan a su detalle real.
+  const enSeccion = (id) => (portada.split(`id="${id}"`)[1] || "").split("</section>")[0];
+  const hrefsDe = (id) => enlaces(enSeccion(id)).map((e) => e.href);
+  const lugaresPortada = [...new Set([...hrefsDe("playas"), ...hrefsDe("rincones")].filter((h) => h.startsWith("/lugar/")))];
+  comprobar(lugaresPortada.length === 15 && lugaresPortada.every((h) => datos.lugarPorSlug(h.slice("/lugar/".length))), `portada: las 5 playas y los 10 rincones enlazan a una ficha de lugar que existe (${lugaresPortada.length})`, lugaresPortada.join(" "));
+  const municipiosPortada = [...new Set(hrefsDe("municipios").filter((h) => h.startsWith("/municipios/")))];
+  comprobar(municipiosPortada.length === 10 && municipiosPortada.every((h) => datos.municipioPorSlug(h.slice("/municipios/".length))), "portada: cada uno de los diez municipios enlaza a su página", municipiosPortada.join(" "));
+  comprobar(hrefsDe("playas").includes("/playas") && hrefsDe("rincones").includes("/rincones-naturales") && hrefsDe("rincones").includes("/rincones-naturales/rios") && hrefsDe("municipios").includes("/municipios"), "portada: los títulos y botones de cada sección llevan a su lista (/playas, /rincones-naturales, /municipios)");
   comprobar((await pedir("/ads.txt")).html.trim() === "google.com, pub-5479273904422379, DIRECT, f08c47fec0942fa0", "ads.txt sigue igual");
   comprobar(/Sitemap: https:\/\/www\.colimago\.mx\/sitemap\.xml/.test(require("fs").readFileSync(path.join(RAIZ, "public", "robots.txt"), "utf8")), "robots.txt sigue apuntando al sitemap");
 

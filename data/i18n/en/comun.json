@@ -21,6 +21,11 @@
   "navSecciones": "Guide sections",
   "nav": {
     "inicio": "Home",
+    "guia": "Guide",
+    "playas": "Beaches",
+    "rincones": "Nature",
+    "fiestas": "Festivals",
+    "municipios": "Municipalities",
     "explorar": "Explore",
     "calendario": "Calendar",
     "favoritos": "Favorites",

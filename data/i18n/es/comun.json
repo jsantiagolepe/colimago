@@ -21,6 +21,11 @@
   "navSecciones": "Secciones de la guía",
   "nav": {
     "inicio": "Inicio",
+    "guia": "La guía",
+    "playas": "Playas",
+    "rincones": "Rincones",
+    "fiestas": "Fiestas",
+    "municipios": "Municipios",
     "explorar": "Explorar",
     "calendario": "Calendario",
     "favoritos": "Favoritos",
