@@ -1,6 +1,6 @@
 # colimago — sitio web de Colima Go
 
-[colimago.mx](https://colimago.mx) tiene tres partes: la **portada** (`/`, una
+[colimago.mx](https://www.colimago.mx) tiene tres partes: la **portada** (`/`, una
 página estática que invita a instalar la app), la **guía web** (la contraparte
 web de la app móvil: inicio, explorar, calendario, favoritos, lugares,
 municipios, fiestas y eventos; ver [Guía web](#guía-web)) y el **panel de
@@ -8,7 +8,7 @@ administración** (hoy apagado).
 
 ## Panel de administración
 
-Panel interno de [colimago.mx](https://colimago.mx) para revisar eventos
+Panel interno de [colimago.mx](https://www.colimago.mx) para revisar eventos
 detectados por el flujo de n8n, administrar posts (eventos y locales), lugares
 y el directorio de páginas de Facebook. No toca MongoDB directo: todo pasa por
 el backend real de ColimaApp (`backColimaApp`, NestJS, desplegado en Heroku).
@@ -58,7 +58,7 @@ cualquier otro valor, queda apagado.
    aplican a deploys nuevos.
 3. Confirma que siguen capturadas `COLIMA_BACKEND_URL`, `SESSION_SECRET`
    y `ADMIN_USER_ID` (ver [Despliegue en Vercel](#despliegue-en-vercel-colimagomx)).
-4. Abre https://colimago.mx/login e inicia sesión con la cuenta de Google
+4. Abre https://www.colimago.mx/login e inicia sesión con la cuenta de Google
    administradora.
 5. Si el botón de Google no carga, revisa en Google Cloud Console que el
    cliente OAuth siga teniendo los orígenes autorizados (sección de
@@ -75,7 +75,7 @@ haz Redeploy.
 
 ### Cómo saber en qué estado está
 
-- https://colimago.mx/login: si da la página 404, está apagado; si abre la
+- https://www.colimago.mx/login: si da la página 404, está apagado; si abre la
   ventana de "Bienvenido de vuelta", está prendido.
 - En los logs (Vercel o la terminal), al arrancar con el panel apagado se
   imprime: `Panel de administración desactivado (PANEL_ACTIVO no es 1)…`.
@@ -137,7 +137,7 @@ Variables de entorno nuevas (todas opcionales): `ADSENSE_CLIENT` (vacía apaga A
 `ADSENSE_SLOT_BANNER`, `ADSENSE_SLOT_FEED`, `GOOGLE_CLIENT_ID_WEB` (por defecto,
 el de la portada). En Vercel debe estar definida `SESSION_SECRET`: con ella se
 cifra la cookie de sesión de los usuarios. Para que el login de Google funcione
-en producción, `https://colimago.mx` y `https://www.colimago.mx` deben estar
+en producción, `https://www.colimago.mx` y `https://www.colimago.mx` deben estar
 como orígenes autorizados del cliente OAuth web.
 
 ## Cómo correrlo en local
@@ -181,7 +181,7 @@ captura (para Production y Preview):
 
 Y en Google Cloud Console, en el cliente OAuth web que usa `public/index.html`
 (`GOOGLE_CLIENT_ID_WEB`), agrega como **Orígenes de JavaScript autorizados**:
-`https://colimago.mx`, `https://www.colimago.mx` y la URL `*.vercel.app` del
+`https://www.colimago.mx`, `https://www.colimago.mx` y la URL `*.vercel.app` del
 proyecto. Sin eso el botón de Google no carga en producción.
 
 El backend de Heroku no necesita CORS: el navegador nunca le habla directo,

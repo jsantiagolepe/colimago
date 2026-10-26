@@ -2,7 +2,7 @@
 
 > Colima Go es una app móvil gratuita (iOS y Android) para descubrir los
 > lugares, rincones naturales y fiestas de los diez municipios del estado de
-> Colima, México. colimago.mx es su página pública; el contenido de abajo es
+> Colima, México. www.colimago.mx es su página pública; el contenido de abajo es
 > el mismo que muestra la app. Además de la portada, la web tiene una guía
 > con las mismas secciones que la app (ver "La guía web" más abajo).
 
@@ -58,7 +58,7 @@ Deportivo, Religioso, Ganadero, Social.
 - **Cuauhtémoc** — el valle central: paisajes naturales, clima fresco y tradición agrícola.
 - **Ixtlahuacán** — refugio de tranquilidad entre montañas; turismo rural.
 
-## La guía web (colimago.mx/inicio)
+## La guía web (www.colimago.mx/inicio)
 
 La guía replica en la web las secciones de la app. Cada página existe en
 español y en inglés (el inglés bajo /en/).
