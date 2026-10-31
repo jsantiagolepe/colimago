@@ -1,0 +1,13 @@
+{
+  "titulo": "Colima guides",
+  "descripcion": "Guides for traveling around Colima: itineraries, beaches, towns, festivals and local food, with links to each place.",
+  "entrada": "Itineraries, lists and recommendations for exploring Colima, written with details of each place and links to their pages. The articles are in Spanish.",
+  "pronto": "We are preparing the first guides. In the meantime, explore the places, the municipalities and the festival calendar.",
+  "por": "By",
+  "publicado": "Published {fecha}",
+  "actualizado": "Updated {fecha}",
+  "lugares": "Places in this guide",
+  "masGuias": "More guides",
+  "borrador": "Draft",
+  "borradorAviso": "Draft: this text is not published until confirmed"
+}

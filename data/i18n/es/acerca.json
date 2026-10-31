@@ -21,5 +21,47 @@
     "correo": "Correo"
   },
   "creditoPre": "Desarrollado por",
-  "creditoNombre": "InfraTec"
+  "creditoNombre": "InfraTec",
+  "mas": [
+    {
+      "titulo": "Quién hace Colima Go",
+      "parrafos": [
+        "Colima Go es una guía de los diez municipios de Colima: sus playas, ríos, lagunas, pueblos, fiestas y platillos, reunidos para quien planea una visita y para quien quiere conocer mejor su propio estado. La desarrolla una persona de Colima, con apoyo técnico de InfraTec.",
+        "[COMPLETAR] Quién eres: tu nombre, a qué te dedicas y tu relación con Colima (dónde naciste o vives, desde cuándo y qué te llevó a hacer la guía).",
+        "[COMPLETAR] Desde cuándo existe Colima Go: el año en que nació la app y el año en que se publicó la guía web."
+      ]
+    },
+    {
+      "titulo": "De dónde salen los datos",
+      "parrafos": [
+        "La información sale de cuatro fuentes: lo que publican los ayuntamientos y las dependencias de turismo y cultura de Colima; fuentes públicas como el INAH para museos y patrimonio; nuestras propias visitas a los lugares; y las sugerencias de las personas que usan la guía. Cuando una ficha o una fiesta cita su fuente, la nombra.",
+        "Las descripciones del catálogo son breves y generales. El texto largo de cada lugar, con datos concretos como costos, horarios y precios, se agrega solo cuando se confirma."
+      ]
+    },
+    {
+      "titulo": "Cómo se verifica",
+      "parrafos": [
+        "Los eventos que llegan de los ayuntamientos se revisan antes de aparecer en la guía. Lo que no hemos podido confirmar, como un horario o un precio, no lo escribimos: preferimos dejar un dato vacío a publicar uno dudoso.",
+        "[COMPLETAR] Cómo verificas un dato: contra qué fuente, cada cuánto vuelves a visitar un lugar y quién revisa el texto antes de publicarlo."
+      ]
+    },
+    {
+      "titulo": "Cada cuándo se actualiza",
+      "parrafos": [
+        "Cada ficha y cada guía muestra la fecha de su última revisión («Actualizado el…»). El calendario de eventos se alimenta de lo que publican los ayuntamientos, y las fechas de las fiestas del pueblo indican de dónde salen.",
+        "[COMPLETAR] Cada cuánto revisas el contenido en la práctica (por ejemplo, cada mes) y qué haces antes de las ferias grandes."
+      ]
+    },
+    {
+      "titulo": "Cómo reportar un error",
+      "parrafos": [
+        "Si encuentras un dato equivocado, un horario que cambió o un lugar que cerró, avísanos. Puedes escribir a {correo}, usar la {contacto} o enviar una sugerencia desde el {sugerir}. Revisamos cada mensaje y corregimos lo que se confirma.",
+        "[COMPLETAR] Tiempo de respuesta habitual y a quién le llega el mensaje."
+      ]
+    }
+  ],
+  "enlaces": {
+    "contacto": "página de contacto",
+    "sugerir": "formulario de sugerencias"
+  }
 }

@@ -517,13 +517,13 @@ button.acc:active { transform: scale(.93); }
 .pie p { color: var(--tinta-tenue); font-size: 14px; width: 100%; }
 
 /* ============ Responsive ============ */
-/* El menú de arriba tiene 7 opciones: en pantallas medianas se compacta y, donde ya no cabe, se oculta
+/* El menú de arriba tiene 9 opciones: en pantallas medianas se compacta y, donde ya no cabe, se oculta
    (la portada hace lo mismo con los mismos anchos, para que sea siempre el mismo menú). */
 @media (max-width: 1440px) {
   .distritos { gap: 0; }
   .distritos a { padding: 8px 9px; font-size: 15px; }
 }
-@media (max-width: 1240px) {
+@media (max-width: 1360px) {
   .distritos { display: none; }
 }
 @media (max-width: 860px) {
@@ -610,3 +610,6 @@ body::before { display: none; }
 .letrero-colgante, .menu-flotante, .toast { box-shadow: none; }
 .comentario-burbuja { border-radius: 14px; }
 .marca-nombre { white-space: nowrap; }
+
+/* Texto en borrador (con [VERIFICAR] o [COMPLETAR]): solo se ve fuera de producción, ver lib/guia/contenido.js */
+.borrador { outline: 2px dashed #c77d00; outline-offset: 3px; background: rgba(199, 125, 0, 0.1); }

@@ -1,0 +1,12 @@
+/* Guías: índice y artículo. Las tarjetas reutilizan las de Gastronomía. */
+.guia-firma { margin-top: 8px; }
+.guia-portada { margin: 20px 0 0; }
+.guia-portada figcaption { margin-top: 8px; }
+.guia-cuerpo { margin-top: 24px; max-width: 68ch; }
+.guia-cuerpo h2 { font-size: clamp(25px, 2.4vw, 31px); margin: 36px 0 12px; }
+.guia-cuerpo h3 { font-size: 20px; margin: 24px 0 8px; }
+.guia-cuerpo p, .guia-cuerpo li { line-height: 1.7; }
+.guia-cuerpo ul, .guia-cuerpo ol { padding-left: 22px; }
+.guia-cuerpo li + li { margin-top: 6px; }
+.guia-fichas, .guia-mas { margin-top: 40px; }
+.guia-tarjeta .tl-titulo { font-size: 20px; }

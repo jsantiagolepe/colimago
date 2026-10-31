@@ -3,13 +3,9 @@
   "disponibleEn": "Get it on",
   "guardarFavorito": "Save to favorites",
   "publicidad": "Advertisement",
-  "promoDescargaTitulo": "Colima in your pocket",
-  "promoDescargaTexto": "The free Colima Go app: beaches, rivers, town festivals and all ten municipalities, one tap away.",
   "promoSugerirTitulo": "Is something missing from the fair?",
   "promoSugerirTexto": "Tell us about an event, a festival or a place that isn't here and we'll review it to publish it.",
   "promoSugerirBoton": "Suggest an event",
-  "promoInvitarTitulo": "Share Colima",
-  "promoInvitarTexto": "Send Colima Go to someone planning a weekend here.",
   "invitar": "Invite a friend",
   "invitarMensaje": "Discover Colima with Colima Go: events, town festivals, rivers and beaches in one place. Download it here:",
   "meGusta": "Like",
@@ -24,6 +20,7 @@
     "guia": "Guide",
     "playas": "Beaches",
     "rincones": "Nature",
+    "guias": "Guides",
     "fiestas": "Festivals",
     "municipios": "Municipalities",
     "explorar": "Explore",
@@ -57,5 +54,8 @@
   "volver": "Back",
   "sugerir": "Suggest",
   "ver": "View",
-  "buscar": "Search"
+  "buscar": "Search",
+  "promoGuiasTitulo": "Plan your trip",
+  "promoGuiasTexto": "Itineraries, beaches, towns and local food in Colima, with links to each place.",
+  "promoGuiasBoton": "Read the guides"
 }

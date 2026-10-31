@@ -195,3 +195,18 @@ public/js/paginas/*.js       interacción propia de cada página
   `scripts/importar-extras.js` (Feria de Todos los Santos, gastronomía y los textos traducidos de la app, que
   pasan a `data/i18n/*/<espacio>.json` con `{var}` en vez de `{{var}}`). Las pantallas nuevas leen sus textos de
   esos espacios y de `guiaapp.json` (propio de la web). Pasa `ns: [...]` en la página para mandarlos al navegador.
+
+## Contenido propio, guías y borradores (AdSense)
+
+- **Fichas de lugar:** ya no llevan texto genérico por categoría. Lo propio de cada lugar vive en
+  `data/lugares-contenido.json` (por slug; el importador no lo toca): `descripcion_larga`, `como_llegar`,
+  `mejor_epoca`, `consejos`, `datos` (costo, horarios, precios, accesibilidad, salvavidas, renta), `galeria`
+  (fotos en `public/img/<archivo>-480.webp` y `-800.webp`) y `actualizado`. Una sección sin texto no se pinta;
+  las distancias, "Qué hay cerca", servicios, clima y mapa siguen saliendo siempre.
+- **noindex automático:** una ficha con menos de 150 palabras propias (`MIN_PALABRAS_PROPIAS` en
+  `lib/guia/contenido.js`) lleva `noindex, follow` y sale del sitemap; al crecer, se indexa sola.
+- **Borradores:** un párrafo, consejo, dato, bloque de guía o párrafo de Acerca de que tenga `[VERIFICAR]` o
+  `[COMPLETAR]` NO se publica ni cuenta. Fuera de producción se ve resaltado. `npm run pendientes` los lista.
+- **Guías (`/guias`):** `data/guias/<slug>.md` (formato en `lib/guia/guias.js`); se indexan con 600+ palabras
+  publicables. `data/catalogo-fecha.json` da el "Actualizado el" de las fichas sin fecha propia.
+- `npm run verificar:contenido` revisa todo esto (metadatos únicos, sitemap, marcas, enlaces).

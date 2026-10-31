@@ -1,6 +1,6 @@
 /* Acerca de (/acerca-de). Las filas agrupadas están en filas.css. */
 
-.acerca { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px 80px; align-items: start; padding: 8px 0 96px; }
+.acerca { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 24px 80px; align-items: start; padding: 8px 0 32px; }
 
 /* El sello: el Perro de Colima y el nombre pintado, grandes */
 .sello { display: flex; align-items: center; gap: 22px; }
@@ -23,3 +23,9 @@
 @media (max-width: 520px) {
   .sello { gap: 16px; }
 }
+
+/* Texto largo: quién hace Colima Go, de dónde salen los datos, cómo se verifica y se corrige */
+.acerca-mas { max-width: 68ch; padding-bottom: 96px; }
+.acerca-mas section { margin-top: 32px; }
+.acerca-mas h2 { font-size: clamp(24px, 2.2vw, 29px); margin-bottom: 10px; }
+.acerca-mas p { line-height: 1.7; }

@@ -1,0 +1,13 @@
+{
+  "titulo": "Guías de Colima",
+  "descripcion": "Guías para viajar por Colima: itinerarios, playas, pueblos, fiestas y comida típica, con enlaces a cada lugar.",
+  "entrada": "Itinerarios, listas y recomendaciones para recorrer Colima, escritas con datos de cada lugar y enlaces a sus fichas.",
+  "pronto": "Estamos preparando las primeras guías. Mientras tanto, explora los lugares, los municipios y el calendario de fiestas.",
+  "por": "Por",
+  "publicado": "Publicado el {fecha}",
+  "actualizado": "Actualizado el {fecha}",
+  "lugares": "Lugares de esta guía",
+  "masGuias": "Más guías",
+  "borrador": "Borrador",
+  "borradorAviso": "Borrador: este texto no se publica hasta que se confirme"
+}
