@@ -1,0 +1,33 @@
+{
+  "map": {
+    "title": "Mapa",
+    "back": "Regresar",
+    "categoriesLabel": "Categorías del mapa",
+    "all": "Todo",
+    "cat": {
+      "playas": "Playas",
+      "rios": "Ríos y lagunas",
+      "naturaleza": "Naturaleza",
+      "cultura": "Cultura",
+      "mercados": "Tianguis y mercados",
+      "comer": "Comer",
+      "dormir": "Dormir"
+    },
+    "myLocation": "Mi ubicación",
+    "nearYou": "Cerca de ti",
+    "nearSummary": "{places} · {km} km",
+    "seeNearby": "Ver lugares cerca de ti",
+    "locating": "Buscando tu ubicación…",
+    "deniedText": "Para ver lo que tienes cerca permite la ubicación en tu navegador.",
+    "openSettings": "Abrir ajustes",
+    "errorText": "No pudimos obtener tu ubicación.",
+    "retry": "Reintentar",
+    "noneNearby": "No hay lugares de esta categoría a menos de 15 km.",
+    "noneInCategory": "Todavía no hay lugares de esta categoría en el mapa.",
+    "closeCard": "Cerrar",
+    "openPlace": "Ver {name}",
+    "pin": "{name}, {category}",
+    "button": "Ver mapa",
+    "cardHint": "Todo Colima de un vistazo"
+  }
+}

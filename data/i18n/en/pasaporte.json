@@ -1,0 +1,29 @@
+{
+  "passport": {
+    "title": "Colima Passport",
+    "cardSubtitle": "Stamp the places you visit",
+    "cardPitch": "Beaches, rivers, mountains and more: stamp each place when you arrive and see how much of Colima you've explored.",
+    "intro": "Stamp each natural or tourist spot when you get there. Your stamps are saved in this browser.",
+    "progress": "{done} of {total} places",
+    "categories": {
+      "playas": "Beaches",
+      "rios": "Rivers & lakes",
+      "montanas": "Mountains",
+      "cultura": "Culture & heritage",
+      "parques": "Parks & trails",
+      "balnearios": "Spas"
+    },
+    "stampHere": "Stamp where I am",
+    "stamp": "Stamp my passport",
+    "hint": "When you're here, stamp your passport. We ask for your location only at that moment and we don't store it.",
+    "stamped": "Stamped on {date}",
+    "justStamped": "Done! You stamped {name}.",
+    "tooFar": "You're about {meters} m from this place. Get closer to stamp it.",
+    "nothingNear": "You're not within {meters} m of a place to stamp.",
+    "denied": "Without location permission we can't stamp. Enable it in your browser's site settings.",
+    "locationError": "We couldn't read your location. Please try again.",
+    "open": "See my passport",
+    "mine": "My stamps",
+    "empty": "You have no stamps yet. When you reach a place, tap “Stamp where I am”."
+  }
+}

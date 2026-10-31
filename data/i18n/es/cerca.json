@@ -1,0 +1,26 @@
+{
+  "nearby": {
+    "button": "Cerca de mí",
+    "cardHint": "Lugares por distancia",
+    "title": "Cerca de ti",
+    "placesOne": "1 lugar",
+    "places": "{count} lugares",
+    "radiusLabel": "Radio de búsqueda",
+    "radius": "{km} km",
+    "summary": "{places} · {km} km",
+    "away": "{municipio} · {distance}",
+    "openToday": "Abierto hoy",
+    "loading": "Buscando tu ubicación…",
+    "deniedTitle": "Necesitamos tu ubicación",
+    "deniedText": "Sin tu ubicación no podemos ordenar los lugares por distancia. Permítela en la configuración del sitio de tu navegador o elige un municipio.",
+    "openSettings": "Abrir ajustes",
+    "pickMunicipality": "Elegir un municipio",
+    "errorTitle": "No pudimos obtener tu ubicación",
+    "errorText": "Revisa que la ubicación del teléfono esté activada y que tengas señal.",
+    "retry": "Reintentar",
+    "emptyTitle": "No hay lugares cerca",
+    "emptyText": "No encontramos lugares en este radio.",
+    "widen": "Ver en {km} km",
+    "emptyMaxText": "No encontramos lugares cerca de donde estás."
+  }
+}

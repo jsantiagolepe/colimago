@@ -1,0 +1,23 @@
+.clima-datos { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.clima-bloque { display: grid; gap: 4px; }
+.clima-cifra { font-size: 32px; line-height: 1.1; }
+.resumen-resenas { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; }
+.resumen-resenas .promedio { font-size: 36px; font-weight: 700; line-height: 1; }
+.resena, .pregunta { padding: 14px 0; border-top: 1px solid var(--linea); }
+.resena-cab, .pregunta-cab { display: flex; align-items: center; gap: 10px; }
+.resena-cab img, .pregunta-cab img, .resp img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; background: var(--suelo-3); }
+.resena-nombre { font-weight: 600; } .resena-fecha { color: var(--tinta-tenue); font-size: 13.5px; margin-left: auto; }
+.resena p, .pregunta > p, .resp p { margin-top: 6px; overflow-wrap: anywhere; white-space: pre-wrap; }
+.resp { margin: 10px 0 0 20px; padding-left: 14px; border-left: 2px solid var(--linea); }
+.resp .resena-nombre { font-size: 15px; }
+.insignia { display: inline-block; font-size: 12px; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--foco); color: var(--sobre-foco); margin-left: 6px; }
+.acciones-mini { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; }
+.acciones-mini button { background: none; border: 0; padding: 4px 0; color: var(--tinta-suave); font-size: 14px; font-weight: 600; }
+.acciones-mini button:hover { color: var(--tinta); text-decoration: underline; }
+.estrellas-elegir { display: inline-flex; gap: 4px; }
+.estrellas-elegir button { background: none; border: 0; padding: 4px; color: var(--foco); }
+.estrellas-elegir .ic { width: 30px; height: 30px; }
+.estrellas-elegir .on .ic { fill: currentColor; }
+.vivo-lista { display: flex; flex-wrap: wrap; gap: 8px; }
+.vivo-etiqueta { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--linea); font-size: 14.5px; font-weight: 600; }
+.vivo-etiqueta small { color: var(--tinta-tenue); font-weight: 500; }

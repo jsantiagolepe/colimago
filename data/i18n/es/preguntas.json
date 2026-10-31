@@ -1,0 +1,42 @@
+{
+  "preguntas": {
+    "title": "Pregúntale a un local",
+    "loading": "Cargando preguntas",
+    "loadError": "No pudimos cargar las preguntas.",
+    "empty": "Todavía nadie ha preguntado. Sé la primera persona.",
+    "countOne": "1 pregunta",
+    "count": "{count} preguntas",
+    "last": "la última, {cuando}",
+    "view": "Ver preguntas",
+    "ask": "Hacer una pregunta",
+    "askTitle": "Tu pregunta",
+    "askPlaceholder": "¿Qué quieres saber? (por ejemplo, ¿hay estacionamiento?)",
+    "reply": "Responder",
+    "replyTitle": "Tu respuesta",
+    "replyPlaceholder": "Cuéntale lo que sepas",
+    "publish": "Publicar",
+    "writeSomething": "Escribe algo primero.",
+    "asked": "Pregunta publicada",
+    "answered": "Respuesta publicada",
+    "sendError": "No pudimos publicar. Inténtalo de nuevo.",
+    "deleted": "Borrado",
+    "deleteConfirmTitle": "¿Borrar?",
+    "deleteQuestionText": "Se borra tu pregunta con todas sus respuestas.",
+    "deleteAnswerText": "Se borra tu respuesta.",
+    "team": "Equipo Colima Go",
+    "teamBadge": "Cuenta oficial del equipo de Colima Go",
+    "reportHint": "Revisamos cada reporte. Con varios reportes, se oculta mientras lo revisamos.",
+    "reported": "Gracias. Lo revisaremos.",
+    "reportedHidden": "Gracias. Se ocultó mientras lo revisamos.",
+    "blockText": "Dejarás de ver sus preguntas y respuestas en este teléfono. Puedes desbloquearla en Ajustes > Usuarios bloqueados.",
+    "blocked": "Listo. Ya no verás sus preguntas ni respuestas.",
+    "loginTitle": "Inicia sesión para participar",
+    "loginText": "Entra con tu cuenta en Ajustes para preguntar, responder o reportar.",
+    "ago": {
+      "now": "ahora",
+      "min": "hace {count} min",
+      "h": "hace {count} h",
+      "d": "hace {count} d"
+    }
+  }
+}

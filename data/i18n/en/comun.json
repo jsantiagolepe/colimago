@@ -29,7 +29,9 @@
     "explorar": "Explore",
     "calendario": "Calendar",
     "favoritos": "Favorites",
-    "ajustes": "Settings"
+    "ajustes": "Settings",
+    "comer": "Eat & stay",
+    "yo": "Me"
   },
   "cambiarIdioma": "Cambiar a español",
   "temaOscuro": "Turn on the night (dark theme)",
@@ -54,5 +56,6 @@
   "verMenos": "See less",
   "volver": "Back",
   "sugerir": "Suggest",
-  "ver": "View"
+  "ver": "View",
+  "buscar": "Search"
 }

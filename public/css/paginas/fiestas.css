@@ -23,7 +23,7 @@
 }
 .fp-meses a {
   position: relative; display: flex; align-items: center; gap: 16px; min-height: 38px; text-decoration: none;
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .05em; text-transform: uppercase;
+  font-family: var(--fuente); font-weight: 600; font-size: 17px;
   color: var(--tinta-suave); transition: color .2s;
 }
 .fp-meses a:hover { color: var(--tinta); }
@@ -71,11 +71,11 @@
 .fiesta:nth-child(3n) .fiesta-pintura { --r: -0.6deg; }
 .fiesta-cifra { font-size: 38px; line-height: 1.02; }
 .fiesta-cifra.cifra-larga { font-size: 27px; padding-block: 5px 3px; }
-.fiesta-mes { font-size: 14px; letter-spacing: .16em; line-height: 1.1; }
+.fiesta-mes { font-size: 14px; line-height: 1.1; }
 
 .fiesta-cuerpo { display: grid; gap: 6px; min-width: 0; }
-.fiesta-nombre { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.1; letter-spacing: .01em; text-wrap: balance; }
-.fiesta-lugar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 14px; letter-spacing: .06em; color: var(--tinta-suave); }
+.fiesta-nombre { font-family: var(--fuente); font-weight: 700; font-size: 22px; line-height: 1.1; text-wrap: balance; }
+.fiesta-lugar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; font-size: 14px; color: var(--tinta-suave); }
 .fiesta-rango { font-size: 15px; color: var(--tinta-tenue); }
 .fiesta-desc {
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
@@ -106,9 +106,9 @@
 .fiesta-fecha-grande .fiesta-mes { font-size: 18px; }
 .ff-datos { display: grid; gap: 12px; }
 .ff-rango, .ff-lugar { display: flex; align-items: flex-start; gap: 10px; }
-.ff-rango { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 27px; line-height: 1.12; letter-spacing: .02em; }
+.ff-rango { font-family: var(--fuente); font-weight: 600; font-size: 27px; line-height: 1.12; }
 .ff-rango .ic, .ff-lugar .ic { margin-top: .12em; color: var(--acento-texto); }
-.ff-lugar { font-size: 16px; letter-spacing: .06em; color: var(--tinta-suave); line-height: 1.3; }
+.ff-lugar { font-size: 16px; color: var(--tinta-suave); line-height: 1.3; }
 .ff-municipio { display: inline-flex; align-items: center; gap: 6px; justify-self: start; padding-left: 34px; font-size: 14.5px; }
 .ff-municipio .ic { width: 1.1em; height: 1.1em; }
 .ff-aviso {
@@ -145,7 +145,7 @@
   .fp-meses ul { display: flex; gap: 8px; width: max-content; }
   .fp-meses ul::before, .fp-meses .foco-solo { display: none; }
   .fp-meses a {
-    min-height: 40px; padding: 0 16px; border: 1px solid var(--linea); border-radius: 999px; font-size: 16px; letter-spacing: .04em;
+    min-height: 40px; padding: 0 16px; border: 1px solid var(--linea); border-radius: 999px; font-size: 16px;
     transition: background-color .2s, color .2s, border-color .2s;
   }
   .fp-meses a[aria-current="true"] { background: var(--tinta); color: var(--suelo); border-color: var(--tinta); }

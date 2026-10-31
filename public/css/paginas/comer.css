@@ -1,0 +1,4 @@
+.cd-dato { display: flex; align-items: flex-start; gap: 8px; color: var(--tinta-suave); font-size: 15px; text-decoration: none; margin-top: 4px; }
+.cd-dato .ic { margin-top: 2px; color: var(--tinta-tenue); }
+a.cd-dato:hover { color: var(--tinta); text-decoration: underline; }
+.cd-cta { display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; }

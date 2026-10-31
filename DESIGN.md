@@ -540,6 +540,17 @@ components:
     padding: "10px 12px 0"
 ---
 
+> **Estilo vigente (2026-10-31): "simple".** La app móvil dejó "Noche de feria" por un estilo simple y la web lo sigue
+> (ver `DESIGN.md` de ColimagoMovil). Tarjetas planas con borde fino (`--linea`), radio 14, sin sombras en reposo;
+> Shrikhand solo en títulos de pantalla y en el nombre "Colima Go"; todo lo demás en tipografía del sistema
+> (`--fuente`), sin mayúsculas forzadas ni espaciado de letras; botones en píldora planas (el ámbar, un solo botón
+> principal por pantalla); sin guirnaldas, cuerdas, letreros colgantes ni brochazos; el mapa de municipios usa puntos,
+> no focos. Los tokens de color (`--suelo`, `--foco`, `--lona`, `--bandera`…) no cambian. El resto de este archivo
+> describe el estilo anterior y se conserva como historia: donde difiera de esta nota, gana la nota. Las reglas del
+> estilo viven al final de `public/css/guia.css` y de los CSS de página (bloques "Estilo simple"). Las fuentes
+> Barlow ya no se cargan; sus archivos siguen en `public/fonts/` (borrarlos queda pendiente de confirmar).
+
+
 # Design System: Colima Go
 
 ## Overview

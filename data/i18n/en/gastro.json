@@ -1,0 +1,56 @@
+{
+  "gastronomy": "Food",
+  "gastronomySubtitle": "Flavors of Colima",
+  "gastronomyPitch": "Traditional dishes and drinks, and where to try them.",
+  "gastronomyFeatured": "Featured dish",
+  "gastronomyTry": "To try",
+  "gastronomyCount": "{n} options",
+  "gastronomyPlacesOne": "1 place",
+  "gastronomyPlacesMany": "{n} places",
+  "gastronomyWhere": "Where to try it",
+  "gastronomyWhereEmpty": "We don't have places for this dish yet. We'll add them soon.",
+  "gastronomyEmpty": "There are no dishes in this category.",
+  "gastronomyMissing": "We couldn't find this dish.",
+  "dishFilter": {
+    "platillo": "Dishes",
+    "antojito": "Street food",
+    "bebida": "Drinks",
+    "postre": "Desserts"
+  },
+  "dishType": {
+    "platillo": "Dish",
+    "antojito": "Street food",
+    "bebida": "Drink",
+    "postre": "Dessert"
+  },
+  "dishes": {
+    "sopitos": {
+      "name": "Sopitos",
+      "desc": "Small fried corn sopes topped with ground meat, cabbage, onion, radish and Comala cheese, with hot sauce. The Villa de Álvarez style is linked to Doña Minga, who sold them for decades in the town square. You can find them at evening food stalls all over the state."
+    },
+    "tatemado": {
+      "name": "Tatemado",
+      "desc": "Pork in an adobo of guajillo and pasilla chiles with tuba vinegar and spices. Its name comes from charring the adobo ingredients before blending them. It is one of the most emblematic dishes of Colima."
+    },
+    "ceviche": {
+      "name": "Fish ceviche",
+      "desc": "Fresh fish cured in lime juice, typical of the coast. Served on a tostada or in a cup, it is easy to find by the sea."
+    },
+    "tuba": {
+      "name": "Tuba",
+      "desc": "A drink made from the sap of the coconut palm. It is served fresh, with peanuts and bits of fruit, and also fermented. Its vinegar is the base of the tatemado adobo."
+    },
+    "tejuino": {
+      "name": "Tejuino",
+      "desc": "A cold drink of fermented corn with very little alcohol (no more than 2%). Served ice cold at tianguis and street stands."
+    },
+    "ponche": {
+      "name": "Pomegranate punch",
+      "desc": "Homemade punch: a mild fruit-based drink, here made with pomegranate, with sugarcane or tuxca spirit. Sold at the artisan tianguis in Comala."
+    },
+    "cocada": {
+      "name": "Cocada",
+      "desc": "A traditional coconut sweet found in plazas and arcades across Mexico. Sold from carts and stalls, in bars of several flavors."
+    }
+  }
+}

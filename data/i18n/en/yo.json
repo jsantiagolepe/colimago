@@ -1,0 +1,23 @@
+{
+  "me": {
+    "tab": "Me",
+    "title": "Me",
+    "settings": "Settings",
+    "seeAll": "See all",
+    "passportHint": "Tap to see your stamps and stamp where you are"
+  },
+  "homeCards": {
+    "fiestas": "Patron-saint festivals and fairs, month by month",
+    "rincones": "Rivers, lagoons, mountains and parks",
+    "playas": "Sea and sand on the Colima coast",
+    "municipios": "All ten, from sea to volcano",
+    "tianguis": "Which day and where each one sets up",
+    "pasaporte": "Stamp the places you visit",
+    "gastronomia": "Traditional dishes and drinks"
+  },
+  "municipalitiesMap": {
+    "title": "Municipalities map",
+    "cardHint": "The ten municipalities, from sea to volcano",
+    "intro": "Tap a municipality to see its card."
+  }
+}

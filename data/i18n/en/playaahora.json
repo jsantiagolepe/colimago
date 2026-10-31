@@ -1,0 +1,18 @@
+{
+  "beachNow": {
+    "title": "At the beach now",
+    "weather": "Weather",
+    "waves": "Waves",
+    "waveHeight": "Height",
+    "period": "Period",
+    "updated": "Updated {time}",
+    "sourceWeather": "Weather: {source}",
+    "sourceWaves": "Waves: {source}",
+    "disclaimer": "Wave data comes from a model with cells of about 50 km: nearby beaches share the same value and it may differ in the bay. It does not replace the flags or the lifeguards' instructions.",
+    "noWaves": "Wave data is not available right now.",
+    "loading": "Checking weather and sea…",
+    "errorTitle": "We couldn't get the weather and sea",
+    "errorText": "Try again in a moment.",
+    "retry": "Try again"
+  }
+}

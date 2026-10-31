@@ -1,0 +1,17 @@
+{
+  "toCalendar": {
+    "button": "Add to calendar",
+    "dayButton": "Day to calendar",
+    "done": "In your calendar",
+    "addedOne": "Added to your calendar",
+    "addedMany": "{count} events added to your calendar",
+    "nothing": "There is nothing with a time to add.",
+    "nothingDay": "Set a time on a stop of this day to add it.",
+    "error": "We couldn't add it to your calendar. Try again.",
+    "deniedTitle": "We need access to your calendar",
+    "deniedText": "To add events, allow calendar access for Colima Go in your phone settings.",
+    "openSettings": "Open settings",
+    "signature": "Added from Colima Go",
+    "approxNote": "Date to be confirmed: it may move a few days."
+  }
+}

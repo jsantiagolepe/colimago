@@ -26,7 +26,7 @@
 .programa-ampliar {
   position: absolute; left: 12px; bottom: 12px; display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 8px 14px 8px 12px;
   border-radius: 999px; background: rgba(10,12,18,.72); color: #f6f5f1;
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14.5px; letter-spacing: .06em; text-transform: uppercase;
+  font-family: var(--fuente); font-weight: 600; font-size: 14.5px;
   transition: background-color .2s;
 }
 .programa:hover .programa-ampliar, .programa:focus-visible .programa-ampliar { background: rgba(10,12,18,.9); }
@@ -36,7 +36,7 @@
 .feria-info > .feria-sub { margin-top: 12px; }
 .feria-municipio {
   display: inline-flex; align-items: center; gap: 4px; text-decoration: none; color: var(--acento-texto);
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; letter-spacing: .03em; text-transform: uppercase; line-height: 1.1;
+  font-family: var(--fuente); font-weight: 700; font-size: 24px; line-height: 1.1;
 }
 .feria-municipio:hover { text-decoration: underline; text-underline-offset: 5px; }
 .feria-municipio .ic { transition: transform .2s var(--curva-salida); }
@@ -80,7 +80,7 @@
 .tema { border-bottom: 1px solid var(--linea); }
 .tema summary {
   display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 58px; padding: 6px 4px; list-style: none;
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 23px; letter-spacing: .01em; transition: color .2s;
+  font-family: var(--fuente); font-weight: 700; font-size: 23px; transition: color .2s;
 }
 .tema summary::-webkit-details-marker { display: none; }
 .tema summary:hover { color: var(--acento-texto); }
@@ -110,8 +110,8 @@
 .cartel a:focus-visible { outline-offset: 5px; }
 .cartel .marco img { object-fit: cover; }
 .cartel a:hover .marco > img, .cartel a:focus-visible .marco > img { transform: scale(1.05); }
-.cartel-fecha { display: block; margin-top: 12px; font-size: 15px; letter-spacing: .08em; color: var(--acento-texto); }
-.cartel-nombre { display: block; margin-top: 2px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.1; text-wrap: balance; }
+.cartel-fecha { display: block; margin-top: 12px; font-size: 15px; color: var(--acento-texto); }
+.cartel-nombre { display: block; margin-top: 2px; font-family: var(--fuente); font-weight: 700; font-size: 22px; line-height: 1.1; text-wrap: balance; }
 
 /* ============ La visita: ubicación, servicios y horario ============ */
 .visita { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 44px 80px; padding: 52px 0 56px; border-top: 1px solid var(--linea); }
@@ -134,7 +134,7 @@ dialog.visor::backdrop { background: rgba(6,8,12,.92); }
 dialog.visor[open] { animation: aparece .2s ease both; }
 .visor-marco { position: absolute; inset: 0; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
 .visor-barra { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 16px 6px; }
-.visor-contador { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: #bfc3cd; }
+.visor-contador { font-family: var(--fuente); font-weight: 600; font-size: 15px; color: #bfc3cd; }
 .visor-btn {
   width: 44px; height: 44px; display: grid; place-items: center; padding: 0; border: 0; border-radius: 50%;
   background: rgba(242,241,238,.14); color: #f6f5f1; transition: background-color .2s, transform .15s;
@@ -148,7 +148,7 @@ dialog.visor.ampliada .visor-img { max-width: none; max-height: none; cursor: zo
 .visor-flecha { position: absolute; top: 50%; translate: 0 -50%; z-index: 2; }
 .visor-ant { left: 10px; } .visor-sig { right: 10px; }
 .visor-pie { padding: 10px 20px 18px; text-align: center; }
-.visor-titulo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.15; }
+.visor-titulo { font-family: var(--fuente); font-weight: 700; font-size: 22px; line-height: 1.15; }
 .visor-fecha { margin-right: 10px; color: var(--foco); }
 .visor-ayuda { margin-top: 2px; font-size: 13.5px; color: #8f96a6; }
 

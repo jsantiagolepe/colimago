@@ -1,0 +1,49 @@
+{
+  "feria": {
+    "meta": "Official program of the Feria de Todos los Santos Colima 2026: {n} events, day by day, by stage, plus the headliner concerts at the Main Stage and the Palenque.",
+    "todosDias": "All days",
+    "sinEventos": "No events match those filters.",
+    "hoy": "Today"
+  },
+  "todo": "All",
+  "gastronomia": {
+    "meta": "Typical Colima food: sopitos, tatemado, ceviche, tuba, tejuino, pomegranate punch and more, with where to try them."
+  },
+  "comer": {
+    "meta": "Restaurants and hotels in Colima Go."
+  },
+  "buscar": {
+    "meta": "Search places, events, town festivals, the fair and food in Colima.",
+    "platillo": "Food"
+  },
+  "error": "We couldn't load the data. Please try again in a moment.",
+  "cerca": {
+    "meta": "Places in Colima sorted by distance from where you are."
+  },
+  "mapa": {
+    "meta": "Colima Go map with beaches, rivers, mountains, heritage sites, markets, restaurants and hotels.",
+    "sinJs": "The map needs JavaScript."
+  },
+  "yo": {
+    "meta": "Your Colima Go passport, lists and plans. They are saved in this browser.",
+    "guardadoLocal": "Saved only in this browser.",
+    "volver": "Back",
+    "cancelar": "Cancel",
+    "borrar": "Delete",
+    "copiado": "Copied to the clipboard",
+    "dias": "Days",
+    "desde": "From",
+    "hasta": "To",
+    "fechasInvalidas": "Check the plan dates (14 days at most).",
+    "verTodos": "See all",
+    "sellosVacio": "No places with a location in this category yet.",
+    "limiteListas": "You reached the limit of 20 custom lists.",
+    "planTexto": "My plan in Colima Go"
+  },
+  "com": {
+    "ahora": "Now",
+    "hace": "{n} {u} ago",
+    "error": "We couldn't load this right now. Please try again later."
+  },
+  "verTodos": "See more"
+}

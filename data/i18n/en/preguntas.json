@@ -1,0 +1,42 @@
+{
+  "preguntas": {
+    "title": "Ask a local",
+    "loading": "Loading questions",
+    "loadError": "We couldn't load the questions.",
+    "empty": "Nobody has asked yet. Be the first.",
+    "countOne": "1 question",
+    "count": "{count} questions",
+    "last": "latest {cuando}",
+    "view": "See questions",
+    "ask": "Ask a question",
+    "askTitle": "Your question",
+    "askPlaceholder": "What do you want to know? (for example, is there parking?)",
+    "reply": "Reply",
+    "replyTitle": "Your answer",
+    "replyPlaceholder": "Share what you know",
+    "publish": "Post",
+    "writeSomething": "Write something first.",
+    "asked": "Question posted",
+    "answered": "Answer posted",
+    "sendError": "We couldn't post it. Please try again.",
+    "deleted": "Deleted",
+    "deleteConfirmTitle": "Delete?",
+    "deleteQuestionText": "Your question and all its answers will be deleted.",
+    "deleteAnswerText": "Your answer will be deleted.",
+    "team": "Colima Go Team",
+    "teamBadge": "Official Colima Go team account",
+    "reportHint": "We review every report. With several reports, it is hidden while we review it.",
+    "reported": "Thanks. We'll review it.",
+    "reportedHidden": "Thanks. It was hidden while we review it.",
+    "blockText": "You will stop seeing their questions and answers on this phone. You can unblock them in Settings > Blocked users.",
+    "blocked": "Done. You won't see their questions or answers.",
+    "loginTitle": "Sign in to take part",
+    "loginText": "Sign in with your account in Settings to ask, answer or report.",
+    "ago": {
+      "now": "just now",
+      "min": "{count} min ago",
+      "h": "{count} h ago",
+      "d": "{count} d ago"
+    }
+  }
+}

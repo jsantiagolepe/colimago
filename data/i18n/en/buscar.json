@@ -1,0 +1,46 @@
+{
+  "search": {
+    "open": "Search",
+    "placeholder": "Search places, events, the fair and food",
+    "clear": "Clear search",
+    "filtersLabel": "Filters",
+    "filter": {
+      "esteSemana": "This week",
+      "abiertoHoy": "Open today",
+      "mascotas": "Pet-friendly"
+    },
+    "tab": {
+      "all": "All",
+      "lugar": "Places",
+      "evento": "Events",
+      "feria": "Fair",
+      "fiesta": "Festivals",
+      "platillo": "Food"
+    },
+    "hintTitle": "What are you looking for?",
+    "hint": "Type the name of a place, an event, a fair artist, a festival or a dish, or pick a filter.",
+    "emptyTitle": "We found nothing",
+    "emptyHint": "Try another word or remove a filter.",
+    "openToday": "Open today",
+    "today": "Today",
+    "thisWeek": "This week",
+    "kind": {
+      "10": "River",
+      "11": "Beach",
+      "12": "Lagoon",
+      "13": "Mountain",
+      "14": "Archaeological site",
+      "15": "Park",
+      "16": "Heritage",
+      "17": "Spa",
+      "18": "Route",
+      "20": "Hotel",
+      "21": "Restaurant",
+      "30": "Tianguis",
+      "31": "Market",
+      "event": "Event",
+      "feria": "Fair",
+      "festival": "Town festival"
+    }
+  }
+}

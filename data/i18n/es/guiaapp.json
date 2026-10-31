@@ -1,0 +1,49 @@
+{
+  "feria": {
+    "meta": "Programa oficial de la Feria de Todos los Santos Colima 2026: {n} eventos, día por día, por escenario y los conciertos estelares del Escenario Principal y el Palenque.",
+    "todosDias": "Todos los días",
+    "sinEventos": "No hay eventos con esos filtros.",
+    "hoy": "Hoy"
+  },
+  "todo": "Todo",
+  "gastronomia": {
+    "meta": "Gastronomía típica de Colima: sopitos, tatemado, ceviche, tuba, tejuino, ponche de granada y más, con descripción y dónde probarlos."
+  },
+  "comer": {
+    "meta": "Restaurantes y hoteles de Colima Go."
+  },
+  "buscar": {
+    "meta": "Busca lugares, eventos, fiestas del pueblo, la feria y gastronomía de Colima.",
+    "platillo": "Gastronomía"
+  },
+  "error": "No pudimos cargar los datos. Intenta de nuevo en un momento.",
+  "cerca": {
+    "meta": "Lugares de Colima ordenados por distancia desde donde estás."
+  },
+  "mapa": {
+    "meta": "Mapa de Colima Go con playas, ríos, montañas, patrimonio, tianguis, restaurantes y hoteles.",
+    "sinJs": "El mapa necesita JavaScript."
+  },
+  "yo": {
+    "meta": "Tu pasaporte, tus listas y tus planes de Colima Go. Se guardan en este navegador.",
+    "guardadoLocal": "Se guarda solo en este navegador.",
+    "volver": "Volver",
+    "cancelar": "Cancelar",
+    "borrar": "Borrar",
+    "copiado": "Copiado al portapapeles",
+    "dias": "Días",
+    "desde": "Desde",
+    "hasta": "Hasta",
+    "fechasInvalidas": "Revisa las fechas del plan (máximo 14 días).",
+    "verTodos": "Ver todos",
+    "sellosVacio": "Aún no hay lugares con ubicación en esta categoría.",
+    "limiteListas": "Llegaste al máximo de 20 listas propias.",
+    "planTexto": "Mi plan en Colima Go"
+  },
+  "com": {
+    "ahora": "Ahora",
+    "hace": "Hace {n} {u}",
+    "error": "No pudimos cargar esto ahora. Intenta de nuevo más tarde."
+  },
+  "verTodos": "Ver más"
+}

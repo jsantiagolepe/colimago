@@ -4,7 +4,7 @@
 .legal { display: grid; grid-template-columns: minmax(0, 250px) minmax(0, 1fr); gap: 24px 72px; align-items: start; padding: 8px 0 96px; }
 
 .legal-indice { position: sticky; top: calc(var(--barra-alto) + 24px); }
-.legal-indice .grupo-titulo { margin: 0 0 10px 15px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-tenue); }
+.legal-indice .grupo-titulo { margin: 0 0 10px 15px; font-family: var(--fuente); font-weight: 600; font-size: 14px; color: var(--tinta-tenue); }
 .legal-indice ol { margin: 0; padding: 0; list-style: none; border-left: 1px solid var(--linea); }
 .legal-indice a { display: block; padding: 7px 0 7px 14px; margin-left: -1px; border-left: 2px solid transparent; color: var(--tinta-suave); font-size: 15px; line-height: 1.3; text-decoration: none; transition: color .2s, border-color .2s; }
 .legal-indice a:hover { color: var(--tinta); border-left-color: var(--foco); }

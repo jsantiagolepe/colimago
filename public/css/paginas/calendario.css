@@ -26,7 +26,7 @@
 .mes-cabeza .btn-icono:hover { background: rgba(10,12,18,.22); border-color: rgba(246,245,241,.75); }
 
 .mes-tabla { width: 100%; border-collapse: collapse; table-layout: fixed; margin: 10px 0 4px; }
-.mes-tabla th { padding: 6px 0 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-tenue); }
+.mes-tabla th { padding: 6px 0 4px; font-family: var(--fuente); font-weight: 600; font-size: 14px; color: var(--tinta-tenue); }
 .mes-tabla abbr { text-decoration: none; }
 .mes-tabla td { padding: 2px; text-align: center; }
 
@@ -58,7 +58,7 @@
 
 /* ---------- La lista del día ---------- */
 .agenda { min-width: 0; }
-.agenda-titulo { margin-bottom: 14px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(28px, 3vw, 38px); line-height: 1.05; letter-spacing: .01em; }
+.agenda-titulo { margin-bottom: 14px; font-family: var(--fuente); font-weight: 700; font-size: clamp(28px, 3vw, 38px); line-height: 1.05; }
 .agenda-lista > li { border-top: 1px solid var(--linea); }
 .agenda-lista > li:last-child { border-bottom: 1px solid var(--linea); }
 .agenda-lista > .agenda-anuncio { border-top: 0; padding: 10px 0; }
@@ -74,7 +74,7 @@
 .evento-marca { display: grid; place-items: center; }
 .evento-marca .foco-solo { margin-top: 0; }
 .evento-texto { display: grid; gap: 3px; min-width: 0; justify-items: start; }
-.evento-titulo { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 23px; line-height: 1.1; letter-spacing: .01em; overflow-wrap: anywhere; }
+.evento-titulo { font-family: var(--fuente); font-weight: 700; font-size: 23px; line-height: 1.1; overflow-wrap: anywhere; }
 .evento-fecha { color: var(--tinta-suave); font-size: 15.5px; }
 .evento-chevron { color: var(--tinta-tenue); display: grid; place-items: center; }
 .evento-fila:hover .evento-chevron { color: var(--tinta); }

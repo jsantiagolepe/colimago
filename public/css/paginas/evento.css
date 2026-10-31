@@ -62,7 +62,7 @@
 .programa { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 26px 18px; }
 .programa-item { display: block; text-decoration: none; }
 .programa-item:hover .marco > img { transform: scale(1.05); }
-.programa-item h3 { margin-top: 10px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.1; }
+.programa-item h3 { margin-top: 10px; font-family: var(--fuente); font-weight: 700; font-size: 21px; line-height: 1.1; }
 .programa-item p { margin-top: 3px; }
 
 .redes { display: flex; flex-wrap: wrap; gap: 12px; }

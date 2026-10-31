@@ -1,0 +1,10 @@
+.mapa-lienzo { height: min(68vh, 640px); min-height: 380px; border-radius: 14px; overflow: hidden; border: 1px solid var(--linea); margin-top: 16px; background: var(--suelo-3); }
+.pin { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--c, #888); }
+.pin-playas { --c: #2aa3c9; } .pin-rios { --c: #3a6fd6; } .pin-naturaleza { --c: #3fa055; } .pin-cultura { --c: #b8321f; } .pin-mercados { --c: #e0932a; } .pin-comer { --c: #d1566a; } .pin-dormir { --c: #8b63c9; }
+.chip .pin { margin-right: -2px; }
+.marca-pin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid #fff; background: var(--c, #888); box-shadow: 0 1px 4px rgba(0,0,0,.45); }
+.marca-yo { width: 16px; height: 16px; border-radius: 50%; border: 3px solid #fff; background: var(--foco); box-shadow: 0 0 0 4px rgba(255,195,71,.35); }
+.leaflet-popup-content-wrapper { border-radius: 12px; }
+.leaflet-popup-content { font-family: var(--fuente); margin: 12px 14px; }
+.leaflet-popup-content a { font-weight: 700; color: #1e3a6e; }
+.mapa-pop-muni { color: #5b6272; font-size: 13px; }

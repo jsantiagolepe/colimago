@@ -1,0 +1,46 @@
+{
+  "vivo": {
+    "title": "How it is right now",
+    "empty": "No one has reported yet. Tell us how it is.",
+    "report": "Report how it is",
+    "change": "Change my report",
+    "yours": "Your report",
+    "hiddenOwn": "Your report is hidden by moderation. Only you can see it.",
+    "near": "Near the place",
+    "more": "{count} more",
+    "ago": {
+      "now": "Just now",
+      "min": "{count} min ago",
+      "hour": "{count} h ago"
+    },
+    "tipos": {
+      "mucha_gente": "Crowded",
+      "poca_gente": "Few people",
+      "hay_sombra_agua": "Shade and water",
+      "rio_crecido": "River running high",
+      "oleaje_fuerte": "Strong waves",
+      "cerrado": "Closed"
+    },
+    "writeTitle": "How is it?",
+    "pickType": "Choose what is happening",
+    "pickError": "Choose what is happening.",
+    "duration": "Shown for {hours} h",
+    "notePlaceholder": "A short note (optional)",
+    "shareLocation": "Mark that I am here",
+    "shareLocationHint": "Uses your location once to check that you are nearby. It is not saved.",
+    "locSearching": "Finding your location…",
+    "locReady": "Ready: it will say \"Near the place\" if you are within 1 km.",
+    "locDenied": "We could not use your location; the report will go without the \"Near the place\" mark.",
+    "publish": "Post",
+    "update": "Update",
+    "remove": "Remove my report",
+    "published": "Report posted",
+    "removed": "Report removed",
+    "publishError": "We could not post your report. Try again.",
+    "reported": "Thank you. We will review the report.",
+    "reportedHidden": "Thank you. The report was hidden while we check it.",
+    "reportError": "We could not send the report.",
+    "loginTitle": "Sign in to report",
+    "loginText": "Sign in with your account in Settings to report how a place is or to flag a report."
+  }
+}

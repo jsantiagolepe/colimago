@@ -1,0 +1,33 @@
+{
+  "map": {
+    "title": "Map",
+    "back": "Back",
+    "categoriesLabel": "Map categories",
+    "all": "All",
+    "cat": {
+      "playas": "Beaches",
+      "rios": "Rivers & lagoons",
+      "naturaleza": "Nature",
+      "cultura": "Culture",
+      "mercados": "Tianguis & markets",
+      "comer": "Eat",
+      "dormir": "Stay"
+    },
+    "myLocation": "My location",
+    "nearYou": "Near you",
+    "nearSummary": "{places} · {km} km",
+    "seeNearby": "See places near you",
+    "locating": "Finding your location…",
+    "deniedText": "To see what is near you, allow location in your browser.",
+    "openSettings": "Open settings",
+    "errorText": "We couldn't get your location.",
+    "retry": "Try again",
+    "noneNearby": "There are no places of this category within 15 km.",
+    "noneInCategory": "There are no places of this category on the map yet.",
+    "closeCard": "Close",
+    "openPlace": "Open {name}",
+    "pin": "{name}, {category}",
+    "button": "View map",
+    "cardHint": "All of Colima at a glance"
+  }
+}
