@@ -3,13 +3,9 @@
   "disponibleEn": "Disponible en",
   "guardarFavorito": "Guardar en favoritos",
   "publicidad": "Publicidad",
-  "promoDescargaTitulo": "Colima en tu bolsillo",
-  "promoDescargaTexto": "La app gratis de Colima Go: playas, ríos, fiestas del pueblo y los diez municipios, sin conexión a la vista.",
   "promoSugerirTitulo": "¿Falta algo en la feria?",
   "promoSugerirTexto": "Cuéntanos de un evento, una fiesta o un lugar que no está aquí y lo revisamos para publicarlo.",
   "promoSugerirBoton": "Sugerir un evento",
-  "promoInvitarTitulo": "Comparte Colima",
-  "promoInvitarTexto": "Manda Colima Go a quien planea un fin de semana por aquí.",
   "invitar": "Invitar a un amigo",
   "invitarMensaje": "Descubre Colima con Colima Go: eventos, fiestas del pueblo, ríos y playas en un solo lugar. Descárgala aquí:",
   "meGusta": "Me gusta",
@@ -24,6 +20,7 @@
     "guia": "La guía",
     "playas": "Playas",
     "rincones": "Rincones",
+    "guias": "Guías",
     "fiestas": "Fiestas",
     "municipios": "Municipios",
     "explorar": "Explorar",
@@ -57,5 +54,8 @@
   "volver": "Volver",
   "sugerir": "Sugerir",
   "ver": "Ver",
-  "buscar": "Buscar"
+  "buscar": "Buscar",
+  "promoGuiasTitulo": "Planea tu viaje",
+  "promoGuiasTexto": "Itinerarios, playas, pueblos y comida típica de Colima, con enlaces a cada lugar.",
+  "promoGuiasBoton": "Leer las guías"
 }

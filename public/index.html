@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Qué hacer en Colima: playas, pueblos y fiestas | Colima Go</title>
-<meta name="description" content="Descubre qué hacer en Colima: playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios. App gratis para iPhone y Android." />
+<meta name="description" content="Descubre qué hacer en Colima: playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios, con guías y datos de cada lugar." />
 
 <!-- Canonical: el dominio con www es el que sirve la página (colimago.mx
      redirige ahí). Autorreferente, así /login —que devuelve este mismo
@@ -25,7 +25,7 @@
 <meta property="og:locale" content="es_MX" />
 <meta property="og:url" content="https://www.colimago.mx/" />
 <meta property="og:title" content="Qué hacer en Colima: playas, pueblos y fiestas | Colima Go" />
-<meta property="og:description" content="Playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios de Colima, en una app gratuita." />
+<meta property="og:description" content="Playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios de Colima, con guías y datos de cada lugar." />
 <meta property="og:image" content="https://www.colimago.mx/og-colima-go.jpg" />
 <meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
@@ -33,7 +33,7 @@
 <meta property="og:image:alt" content="El Volcán de Fuego de Colima visto desde la Laguna Carrizalillo, en Comala" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Qué hacer en Colima: playas, pueblos y fiestas | Colima Go" />
-<meta name="twitter:description" content="Playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios de Colima, en una app gratuita." />
+<meta name="twitter:description" content="Playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios de Colima, con guías y datos de cada lugar." />
 <meta name="twitter:image" content="https://www.colimago.mx/og-colima-go.jpg" />
 <meta name="twitter:image:alt" content="El Volcán de Fuego de Colima visto desde la Laguna Carrizalillo, en Comala" />
 
@@ -375,6 +375,9 @@
   .ver-detalle::after { content: '→'; transition: transform .2s; }
   .ver-detalle:hover { text-decoration: underline; text-underline-offset: 4px; }
   .ver-detalle:hover::after { transform: translateX(3px); }
+  .guias-lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; max-width: 46em; }
+  .guias-lista a { display: block; padding: 14px 18px; border: 1px solid var(--linea, rgba(127, 127, 127, 0.3)); border-radius: 12px; font-size: 18px; color: var(--tinta); text-decoration: none; }
+  .guias-lista a:hover { border-color: var(--tinta-suave); }
   .ver-todo { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; margin-top: 40px; }
   .foto-enlace { position: absolute; inset: 0; z-index: 2; border-radius: 10px; }
   .tablero .ver-detalle { margin: -6px 0 18px; }
@@ -539,12 +542,12 @@
   footer .envoltura > p { width: 100%; }
 
   /* ============ Responsive ============ */
-  /* El mismo menú de 7 opciones que la guía (css/guia.css): mismos anchos para compactarlo y ocultarlo. */
+  /* El mismo menú de 9 opciones que la guía (css/guia.css): mismos anchos para compactarlo y ocultarlo. */
   @media (max-width: 1440px) {
     .distritos { gap: 0; }
     .distritos a { padding: 8px 9px; font-size: 15px; }
   }
-  @media (max-width: 1240px) {
+  @media (max-width: 1360px) {
     .distritos { display: none; }
   }
   @media (max-width: 1080px) {
@@ -728,7 +731,7 @@
       "@id": "https://www.colimago.mx/#pagina",
       "url": "https://www.colimago.mx/",
       "name": "Qué hacer en Colima: playas, pueblos y fiestas | Colima Go",
-      "description": "Descubre qué hacer en Colima: playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios. App gratis para iPhone y Android.",
+      "description": "Descubre qué hacer en Colima: playas del Pacífico, ríos y lagunas al pie del volcán, pueblos y fiestas de los diez municipios, con guías y datos de cada lugar.",
       "inLanguage": "es-MX",
       "isPartOf": {
         "@id": "https://www.colimago.mx/#sitio"
@@ -1314,6 +1317,7 @@
       <li><a href="/calendario">Calendario</a></li>
       <li><a href="/playas">Playas</a></li>
       <li><a href="/rincones-naturales">Rincones</a></li>
+      <li><a href="/guias">Guías</a></li>
       <li><a href="/fiestas-del-pueblo">Fiestas</a></li>
       <li><a href="/municipios">Municipios</a></li>
     </ul>
@@ -1348,12 +1352,12 @@
       <div class="portada-rejilla">
         <div>
           <h1 class="rotulo">Colima <span class="en-la-palma">en la palma de tu mano</span></h1>
-          <p class="entrada">Playas de arena volcánica, ríos de agua cristalina, pueblos blancos y fiestas que llenan la calle. Los diez municipios de Colima, reunidos en una sola app.</p>
+          <p class="entrada">Playas de arena volcánica, ríos de agua cristalina, pueblos blancos y fiestas que llenan la calle. Los diez municipios de Colima, con datos de cada lugar, guías para planear el viaje y el calendario de fiestas.</p>
           <div class="portada-acciones">
             <a class="btn-pintado" href="/inicio"><span>Explora la guía de Colima</span></a>
-            <a class="enlace-app" href="#descargar">También en tu celular: descarga la app</a>
+            <a class="enlace-app" href="/guias">Lee las guías de viaje</a>
           </div>
-          <p class="gratis">La guía web es gratis, sin crear cuenta. La app es gratis para iPhone y Android.</p>
+          <p class="gratis">Esta guía es gratis y no necesitas crear una cuenta.</p>
         </div>
 
         <nav class="tendedero" aria-label="Distritos de la feria">
@@ -1424,7 +1428,7 @@
           </div>
           <figcaption id="pie-playa" aria-live="polite">Playa El Paraíso, Armería</figcaption>
         </figure>
-        <ul class="tablero" aria-label="Playas en la app">
+        <ul class="tablero" aria-label="Playas">
           <li><button type="button" data-playa="el-paraiso" aria-pressed="true"><span class="nombre">El Paraíso</span><span class="muni">Armería</span><span class="dato">Arena oscura volcánica y oleaje fuerte, ideal para surf; paseos en lancha por el estero.</span></button><a class="ver-detalle" href="/lugar/el-paraiso">Ver detalle<span class="sr-only"> de El Paraíso</span></a></li>
           <li><button type="button" data-playa="boca-de-pascuales" aria-pressed="false"><span class="nombre">Boca de Pascuales</span><span class="muni">Tecomán</span><span class="dato">Famosa por sus fuertes olas, ideales para el surf, y sus espectaculares atardeceres.</span></button><a class="ver-detalle" href="/lugar/boca-de-pascuales">Ver detalle<span class="sr-only"> de Boca de Pascuales</span></a></li>
           <li><button type="button" data-playa="tecuanillo" aria-pressed="false"><span class="nombre">Tecuanillo</span><span class="muni">Tecomán</span><span class="dato">Tranquila, con esteros y manglares para el ecoturismo y la observación de aves.</span></button><a class="ver-detalle" href="/lugar/tecuanillo">Ver detalle<span class="sr-only"> de Tecuanillo</span></a></li>
@@ -1451,7 +1455,7 @@
       <div class="guirnalda" data-focos="26" data-comba="0.7" aria-hidden="true"></div>
       <div class="letrero">
         <h2 class="rotulo colgante" id="t-rincones" data-revela><a href="/rincones-naturales">Rincones Naturales</a></h2>
-        <p data-revela="2">Balnearios de manantial, lagunas al pie del volcán y bosques de pino en la sierra. Los lugares que la app reúne, con su ubicación, servicios y horarios.</p>
+        <p data-revela="2">Balnearios de manantial, lagunas al pie del volcán y bosques de pino en la sierra. Los lugares que esta guía reúne, con su ubicación, servicios y horarios.</p>
       </div>
       <div class="pestanas" role="tablist" aria-label="Categorías de Rincones Naturales">
         <button type="button" role="tab" id="tab-rios" aria-controls="panel-rios" aria-selected="true" data-lista="/rincones-naturales/rios" data-lista-texto="Ver todos los ríos">Ríos</button>
@@ -1497,12 +1501,12 @@
       <div class="guirnalda" data-focos="34" data-comba="0.6" aria-hidden="true"></div>
       <div class="letrero">
         <h2 class="rotulo colgante" id="t-fiestas" data-revela>Fiestas del Pueblo</h2>
-        <p data-revela="2">Toritos, castillos, cabalgatas y ferias charrotaurinas. Lo que se celebra en cada municipio, en el calendario de la app.</p>
+        <p data-revela="2">Toritos, castillos, cabalgatas y ferias charrotaurinas. Lo que se celebra en cada municipio, en el calendario de esta guía.</p>
       </div>
       <div class="fiestas-rejilla">
         <figure class="f-torito" data-revela>
           <div class="marco"><img src="/img/fiestas-del-pueblo.webp" srcset="/img/fiestas-del-pueblo-760.webp 760w, /img/fiestas-del-pueblo.webp 1000w" sizes="(max-width: 860px) 100vw, 56vw" alt="Ilustración de una fiesta de pueblo: torito de fuegos artificiales frente a la iglesia, con el volcán y la rueda de la fortuna" width="1000" height="562" loading="lazy" /></div>
-          <figcaption>Portada de Fiestas del Pueblo en la app</figcaption>
+          <figcaption>Fiestas del Pueblo</figcaption>
         </figure>
         <figure class="f-cabalgata" data-revela="2">
           <div class="marco"><img src="/img/fiesta-cabalgata-760.webp" alt="Cabalgata frente a la catedral durante la Feria de la Villa" width="760" height="538" loading="lazy" /></div>
@@ -1524,7 +1528,7 @@
         </figure>
         <div class="f-calendario" data-revela="3">
           <h3>El calendario de la feria</h3>
-          <p>Los eventos llegan de lo que publican los ayuntamientos y se revisan antes de aparecer en la app.</p>
+          <p>Los eventos llegan de lo que publican los ayuntamientos y se revisan antes de aparecer en esta guía.</p>
           <ul class="tipos" aria-label="Tipos de evento">
             <li>Cultural</li><li>Musical</li><li>Gastronómico</li><li>Deportivo</li><li>Religioso</li><li>Ganadero</li><li>Social</li>
           </ul>
@@ -1539,7 +1543,7 @@
       <div class="guirnalda" data-focos="22" data-comba="0.3" aria-hidden="true"></div>
       <div class="letrero">
         <h2 class="rotulo colgante" id="t-sabores" data-revela>Sabores</h2>
-        <p data-revela="2">Cada municipio tiene su sabor. En la app, junto a cada lugar, encuentras restaurantes y hoteles cercanos.</p>
+        <p data-revela="2">Cada municipio tiene su sabor: platillos, bebidas y mercados que puedes ubicar en esta guía.</p>
       </div>
       <div class="pizarron" data-revela>
         <ul class="menu">
@@ -1653,13 +1657,31 @@
     </div>
   </section>
 
+  <!-- ============ Guías ============ -->
+  <section class="distrito" id="guias" aria-labelledby="t-guias">
+    <div class="envoltura">
+      <div class="letrero">
+        <h2 class="rotulo colgante" id="t-guias" data-revela><a href="/guias">Guías de viaje</a></h2>
+        <p data-revela="2">Itinerarios, playas, pueblos, fiestas y comida típica, escritos con datos de cada lugar y enlaces a sus fichas.</p>
+      </div>
+      <ul class="guias-lista" data-revela>
+        <li><a href="/guias/fin-de-semana-en-colima">Fin de semana en Colima: itinerario de 2 días</a></li>
+        <li><a href="/guias/mejores-playas-para-surfear">Las mejores playas de Colima para surfear</a></li>
+        <li><a href="/guias/que-hacer-en-comala">Qué hacer en Comala, el Pueblo Blanco de América</a></li>
+        <li><a href="/guias/que-comer-en-colima">Qué comer en Colima: platillos típicos y dónde probarlos</a></li>
+        <li><a href="/guias/fiestas-del-pueblo-en-colima-mes-por-mes">Fiestas del pueblo en Colima mes por mes</a></li>
+      </ul>
+      <p class="ver-todo"><a class="btn-pintado" href="/guias"><span>Ver todas las guías</span></a></p>
+    </div>
+  </section>
+
   <!-- ============ Cierre ============ -->
   <section class="cierre" id="descargar" aria-labelledby="t-cierre">
     <div class="envoltura">
       <div class="guirnalda" data-focos="40" data-comba="0.7" aria-hidden="true"></div>
       <span class="perro" aria-hidden="true"></span>
-      <h2 class="rotulo" id="t-cierre" data-revela>Llévate Colima a donde vayas</h2>
-      <p data-revela="2">Descárgala gratis y empieza a descubrir playas, rincones, fiestas y los diez municipios desde hoy.</p>
+      <h2 class="rotulo" id="t-cierre" data-revela>Colima Go también como app</h2>
+      <p data-revela="2">Si prefieres llevar la guía en el celular, la app de Colima Go es gratis para iPhone y Android.</p>
       <div class="tiendas" data-revela="3">
         <a class="btn-pintado" href="https://apps.apple.com/mx/app/colima-go/id1665801713" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.12 7.31c1.35.07 2.29.74 3.08.8.99-.19 2.05-.85 3.16-.75 1.52.12 2.66.72 3.4 1.8-3.12 1.87-2.61 5.98.28 7.06-.61 1.6-1.4 3.15-2.99 4.06zM12.03 7.25c-.15-2.23 1.66-4.09 3.74-4.25.29 2.13-1.98 4.15-3.74 4.25z"/></svg>
@@ -1670,7 +1692,7 @@
           <span><small>Disponible en</small>Google Play</span>
         </a>
       </div>
-      <p class="guia-enlace" data-revela="3">¿Prefieres verla aquí? <a href="/inicio">Explora la guía de Colima en la web</a>.</p>
+      <p class="guia-enlace" data-revela="3">No la necesitas para usar este sitio: <a href="/inicio">explora la guía de Colima en la web</a>.</p>
     </div>
   </section>
 

@@ -145,3 +145,14 @@ dialog.visor::backdrop { background: var(--visor-fondo); }
 
 /* Guía de visita: columna de lectura (viñetas, enlaces y la lista de cercanos están en guia.css) */
 .lugar-guia .lectura { max-width: 62ch; }
+
+/* Datos concretos, fotos propias, fecha de revisión y borradores (solo se ven en desarrollo) */
+.lugar-datos { display: grid; gap: 10px; max-width: 62ch; margin: 0; }
+.lugar-datos > div { display: grid; grid-template-columns: minmax(120px, 170px) 1fr; gap: 4px 16px; padding-bottom: 10px; border-bottom: 1px solid var(--linea, rgba(127, 127, 127, 0.25)); }
+.lugar-datos dt { font-weight: 700; }
+.lugar-datos dd { margin: 0; }
+.lugar-galeria { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.lugar-galeria figure { margin: 0; }
+.lugar-galeria img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.lugar-actualizado { margin-top: 32px; }
+@media (max-width: 560px) { .lugar-datos > div { grid-template-columns: 1fr; } }

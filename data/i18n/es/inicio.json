@@ -47,8 +47,9 @@
     }
   },
   "cierre": {
-    "titulo": "Llévate Colima a donde vayas",
-    "texto": "Gratis para iPhone y Android: los diez municipios, las playas, los ríos y las fiestas del pueblo en tu bolsillo.",
+    "titulo": "Colima Go también en tu celular",
+    "texto": "Esta guía es gratis y no necesitas instalar nada para usarla. Si quieres llevarla en el celular, la app de Colima Go está disponible para iPhone y Android.",
     "sugerir": "Cuéntanos qué te parece"
-  }
+  },
+  "mapaDescripcion": "Mapa de los diez municipios de Colima, del mar al volcán: toca cada uno para ver su carácter y entrar a sus lugares, fiestas y eventos."
 }

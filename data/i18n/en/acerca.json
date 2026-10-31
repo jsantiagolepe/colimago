@@ -21,5 +21,47 @@
     "correo": "Email"
   },
   "creditoPre": "Developed by",
-  "creditoNombre": "InfraTec"
+  "creditoNombre": "InfraTec",
+  "mas": [
+    {
+      "titulo": "Who makes Colima Go",
+      "parrafos": [
+        "Colima Go is a guide to the ten municipalities of Colima: its beaches, rivers, lagoons, towns, festivals and dishes, brought together for people planning a visit and for those who want to know their own state better. It is developed by a person from Colima, with technical support from InfraTec.",
+        "[COMPLETAR] Who you are: your name, what you do and your relationship with Colima (where you were born or live, since when and what led you to make the guide).",
+        "[COMPLETAR] Since when Colima Go exists: the year the app was born and the year the web guide was published."
+      ]
+    },
+    {
+      "titulo": "Where the data comes from",
+      "parrafos": [
+        "The information comes from four sources: what the municipal governments and the tourism and culture offices of Colima publish; public sources such as INAH for museums and heritage; our own visits to the places; and suggestions from the people who use the guide. When a place or a festival cites its source, it names it.",
+        "The catalog descriptions are short and general. The longer text for each place, with concrete details such as fees, hours and prices, is added only once it is confirmed."
+      ]
+    },
+    {
+      "titulo": "How it is verified",
+      "parrafos": [
+        "Events that come from the municipal governments are reviewed before they appear in the guide. What we have not been able to confirm, such as an hour or a price, we do not write: we prefer to leave a detail empty rather than publish a doubtful one.",
+        "[COMPLETAR] How you verify a detail: against which source, how often you revisit a place and who reviews the text before it is published."
+      ]
+    },
+    {
+      "titulo": "How often it is updated",
+      "parrafos": [
+        "Every place page and every guide shows the date of its latest review (“Updated…”). The events calendar is fed by what the municipal governments publish, and the dates of the town festivals say where they come from.",
+        "[COMPLETAR] How often you actually review the content (for example, every month) and what you do before the big fairs."
+      ]
+    },
+    {
+      "titulo": "How to report an error",
+      "parrafos": [
+        "If you find a wrong detail, an hour that changed or a place that closed, let us know. You can write to {correo}, use the {contacto} or send a suggestion from the {sugerir}. We review every message and correct what is confirmed.",
+        "[COMPLETAR] Usual response time and who receives the message."
+      ]
+    }
+  ],
+  "enlaces": {
+    "contacto": "contact page",
+    "sugerir": "suggestions form"
+  }
 }

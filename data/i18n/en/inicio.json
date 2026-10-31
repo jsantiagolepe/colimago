@@ -47,8 +47,9 @@
     }
   },
   "cierre": {
-    "titulo": "Take Colima wherever you go",
-    "texto": "Free for iPhone and Android: the ten municipalities, beaches, rivers and town festivals in your pocket.",
+    "titulo": "Colima Go on your phone too",
+    "texto": "This guide is free and you don't need to install anything to use it. If you want it on your phone, the Colima Go app is available for iPhone and Android.",
     "sugerir": "Tell us what you think"
-  }
+  },
+  "mapaDescripcion": "Map of the ten municipalities of Colima, from the sea to the volcano: tap each one to see its character and explore its places, festivals and events."
 }

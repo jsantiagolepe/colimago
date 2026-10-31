@@ -8,7 +8,7 @@
   },
   "evento": {
     "titulo": "Sugerir un evento",
-    "intro": "¿Sabes de un concierto, feria o evento que no está en la app? Cuéntanos y lo revisamos para publicarlo.",
+    "intro": "¿Sabes de un concierto, feria o evento que no está en esta guía? Cuéntanos y lo revisamos para publicarlo.",
     "nombre": "Nombre del evento",
     "nombreEjemplo": "Concierto en el jardín",
     "fecha": "Fecha y hora",
@@ -19,12 +19,12 @@
   },
   "general": {
     "titulo": "Cuéntanos",
-    "intro": "Tu opinión nos ayuda a mejorar Colima Go. ¿Qué te parece la app? ¿Qué le falta?",
+    "intro": "Tu opinión nos ayuda a mejorar Colima Go. ¿Qué te parece Colima Go? ¿Qué le falta?",
     "tipo": "¿Qué quieres contarnos?",
     "idea": "Tengo una idea",
     "falta": "Falta algo (lugar, fiesta o evento)",
     "error": "Algo no funciona",
-    "opinion": "Qué me parece la app",
+    "opinion": "Qué me parece Colima Go",
     "otro": "Otra cosa",
     "calificacion": "¿Cómo la calificas? (opcional)",
     "calificacionValor": "{n} de {max}",

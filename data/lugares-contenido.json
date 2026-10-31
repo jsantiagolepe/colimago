@@ -1,0 +1,636 @@
+{
+  "boca-de-pascuales": {
+    "descripcion_larga": [
+      "Boca de Pascuales es la playa de surf más conocida de Colima. Está en el municipio de Tecomán, a unos 5 km al oeste de la cabecera municipal, frente al Pacífico, y su fama viene del oleaje: olas fuertes que rompen muy cerca de la orilla sobre una playa de arena oscura de origen volcánico.",
+      "El ambiente es rústico y sin pretensiones. A lo largo de la playa hay palapas y restaurantes donde se sirven mariscos y pescado fresco, y el plan más común es ver el mar desde una mesa a la sombra, mirar a los surfistas y esperar el atardecer, que aquí se ve completo sobre el horizonte.",
+      "Conviene tener claro que no es una playa para nadar con calma. El mismo oleaje que atrae a los surfistas forma corrientes cerca de la orilla, así que quien no tiene experiencia en el mar abierto lo disfruta mejor desde la arena o metiéndose solo hasta donde el agua le llega a la cintura. Para quienes sí surfean, es un destino de olas potentes que pide experiencia.",
+      "[VERIFICAR] Boca de Pascuales suele describirse como una de las olas más tubulares de México y ha recibido competencias de surf; confirma qué torneos se han celebrado y en qué fechas antes de publicarlo.",
+      "Por su ubicación, a pocos kilómetros de Tecomán, es una buena parada para quien recorre la costa colimense de este a oeste y quiere combinar varias playas en un mismo día: Tecuanillo y El Real quedan en el mismo municipio."
+    ],
+    "como_llegar": "La playa está a unos 5 km al oeste de la cabecera de Tecomán, en la costa. Desde la ciudad de Colima se llega a Tecomán por la carretera y de ahí se toma el camino hacia la playa. [VERIFICAR] Ruta exacta desde Colima, tiempo de traslado y estado del último tramo.",
+    "mejor_epoca": "De noviembre a mayo suele haber más días secos y despejados, ideales para ver el mar y el atardecer. En verano y otoño el oleaje del Pacífico suele ser más fuerte, lo que atrae a surfistas pero exige más precaución. [VERIFICAR] Meses con mejores condiciones para surfear según los surfistas locales.",
+    "consejos": [
+      "Antes de entrar al agua observa un rato el mar: si las olas rompen muy cerca de la orilla y con fuerza, quédate en la arena o entra solo hasta la cintura.",
+      "Si vas a surfear sin conocer la zona, pregunta a los surfistas locales por las corrientes y por el lugar donde conviene entrar y salir.",
+      "En la playa la sombra son las palapas: llega temprano en fines de semana y vacaciones para encontrar mesa."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar si hay cobro de estacionamiento y cuánto.",
+      "horarios": "[VERIFICAR] Horario de las palapas y restaurantes; suelen abrir de día.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo de pescado o marisco por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso a la arena y a las palapas para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas o vigilancia permanente.",
+      "renta_equipo": "[VERIFICAR] Si hay renta de tablas o clases de surf en la playa y su precio."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "tecuanillo": {
+    "descripcion_larga": [
+      "Tecuanillo es una playa tranquila de la costa de Tecomán, a unos 10 km al suroeste de la cabecera municipal. Su arena es oscura, de origen volcánico, y el oleaje es moderado, más amable que el de Boca de Pascuales, que queda a pocos kilómetros.",
+      "Lo que la distingue es lo que la rodea. A su espalda hay esteros y manglares con una biodiversidad notable, y la zona forma parte del Santuario Boca de Apiza–El Chupadero–El Tecuanillo, un humedal reconocido internacionalmente como sitio Ramsar. Por eso es un lugar bueno para el ecoturismo y para observar aves, además de la pesca, una actividad tradicional de la costa.",
+      "Hay palapas, restaurantes, baños, estacionamiento y servicio de limpieza, así que se puede pasar el día completo sin complicaciones. Es una opción para quien busca una playa más calmada, sin el ruido de los destinos más turísticos de la bahía de Manzanillo.",
+      "Las tortugas marinas anidan en varios tramos de este litoral y existen campamentos tortugueros cercanos, como el de El Chupadero. [VERIFICAR] Si en Tecuanillo mismo hay campamento o recorridos de observación de nido y en qué meses."
+    ],
+    "como_llegar": "Tecuanillo está a unos 10 km al suroeste de la cabecera de Tecomán, en la costa del Pacífico. [VERIFICAR] Ruta desde Colima y desde Tecomán, y si el acceso es pavimentado todo el camino.",
+    "mejor_epoca": "La temporada seca, de noviembre a mayo, es la más cómoda para caminar por la playa y recorrer el estero. Las mañanas y las últimas horas de la tarde son las mejores para ver aves. [VERIFICAR] Temporada de anidación de tortugas en esta zona.",
+    "consejos": [
+      "Si vas a recorrer el estero o el manglar, lleva repelente de insectos: al atardecer los mosquitos se notan.",
+      "Los esteros de la costa colimense pueden tener cocodrilos: observa desde la orilla y a distancia, y no te metas al agua en zonas de manglar.",
+      "Para ver aves lleva binoculares y llega temprano, cuando hay menos gente y más actividad."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar si hay cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de palapas y restaurantes.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo de pescado o marisco por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso a la arena para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas o vigilancia.",
+      "renta_equipo": "[VERIFICAR] Si hay renta de equipo o paseos en lancha por el estero."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "el-real": {
+    "descripcion_larga": [
+      "El Real es una de las playas más populares de Tecomán, a unos 8 km al suroeste de la ciudad, sobre el Pacífico. Tiene arena oscura de origen volcánico y un oleaje moderado, de modo que sirve tanto para nadar con cuidado como para surfear.",
+      "Es una playa pensada para pasar el día en familia: hay palapas, restaurantes de mariscos, baños, estacionamiento, sombrillas y servicio de limpieza. Entre semana se ve tranquila y los fines de semana y las vacaciones se llena de familias de Tecomán y de la ciudad de Colima.",
+      "Conviene recordar que «moderado» es relativo: el Pacífico en esta costa tiene corrientes de retorno, y la arena oscura se calienta mucho al mediodía. Quien va con niños hace bien en llevar calzado para la arena y en no perderlos de vista en el agua.",
+      "Es fácil combinarla con otras playas del municipio, como Tecuanillo, o con el estero y los campamentos tortugueros de la zona de El Chupadero."
+    ],
+    "como_llegar": "Desde la ciudad de Tecomán son unos 8 km hacia el suroeste. [VERIFICAR] Ruta desde Colima, tiempo de traslado y señalización del último tramo.",
+    "mejor_epoca": "De noviembre a mayo hay más días despejados y secos. Semana Santa, el verano y diciembre son las temporadas con más gente; si prefieres tranquilidad, ve entre semana. [VERIFICAR] Fechas en que suele haber más afluencia.",
+    "consejos": [
+      "La arena oscura quema al mediodía: lleva sandalias para cruzarla y busca la sombra de una palapa.",
+      "Pregunta en la palapa dónde conviene meterse al agua y si hay corriente ese día.",
+      "Lleva efectivo: no todas las palapas aceptan tarjeta."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de palapas y restaurantes.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo de pescado o marisco por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas y en qué temporadas.",
+      "renta_equipo": "[VERIFICAR] Renta de sombrillas, sillas o tablas y su precio."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "el-paraiso": {
+    "descripcion_larga": [
+      "Playa El Paraíso está en el municipio de Armería, a unos 7 km de la cabecera y 15 km de Tecomán, en la costa del Pacífico. Tiene arena oscura de origen volcánico y un oleaje fuerte, por lo que es de las playas de Colima más buscadas por los surfistas.",
+      "Detrás de la playa corre el estero, y de ahí salen paseos en lancha. Este es uno de los puntos desde donde se recorre el manglar del Estero Palo Verde, junto con el Tortugario de Cuyutlán y La Compuerta, para ver garzas, pelícanos y, con suerte, cocodrilos desde la lancha.",
+      "En la playa hay restaurantes con mariscos frescos, baños, estacionamiento, sombrillas y limpieza. Los atardeceres son uno de sus principales atractivos, y se ven bien desde cualquiera de las mesas frente al mar.",
+      "No debe confundirse con el balneario El Paraíso de Coquimatlán, que es un balneario de río en otra parte del estado."
+    ],
+    "como_llegar": "La playa está a unos 7 km de Armería y 15 km de Tecomán, sobre la costa. Está cerca de Cuyutlán, de donde se llega por el camino hacia la playa. [VERIFICAR] Ruta exacta desde Colima y desde Manzanillo, y tiempo de traslado.",
+    "mejor_epoca": "En temporada seca, de noviembre a mayo, es más fácil llegar y recorrer el estero. En verano y otoño el oleaje es más fuerte. [VERIFICAR] Meses de mejor oleaje para surfear.",
+    "consejos": [
+      "Para el paseo en lancha por el estero, ve temprano: es cuando hay más aves a la vista.",
+      "En el estero puede haber cocodrilos: mantén las manos dentro de la lancha y sigue las indicaciones del lanchero.",
+      "El oleaje fuerte de esta playa es para surfistas con experiencia; si no lo eres, disfrútala desde la orilla."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de restaurantes y de los paseos en lancha.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo de pescado o marisco.",
+      "accesibilidad": "[VERIFICAR] Acceso para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas.",
+      "renta_equipo": "[VERIFICAR] Precio y duración del paseo en lancha; renta de tablas."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "la-boquita": {
+    "descripcion_larga": [
+      "La Boquita es una playa tranquila de Manzanillo, a pocos minutos del centro de la ciudad, en la bahía de Santiago. Su arena es dorada, sus aguas son cálidas y su carácter es el de una playa de familia, lejos del ruido de los destinos más turísticos.",
+      "Es una de las playas de Manzanillo donde más gente se anima a nadar y practicar deportes acuáticos, y por su ambiente relajado funciona bien para quien viaja con niños. Hay palapas y restaurantes donde se comen pescado y mariscos mientras se ve el paisaje, además de baños, estacionamiento, internet, sombrillas y servicio de limpieza.",
+      "Está entre otras playas de la bahía, como Miramar y Olas Altas, así que se puede comparar el carácter de cada una en una misma visita: La Boquita es la más calmada de las tres, Olas Altas la de más oleaje.",
+      "Si buscas una playa para pasar el día entero sin complicaciones logísticas, es de las más fáciles de Manzanillo: se llega en auto por la carretera hacia el sur y hay estacionamiento cerca de la arena."
+    ],
+    "como_llegar": "Se encuentra a unos minutos del centro de Manzanillo, tomando la carretera hacia el sur; es fácil llegar en auto y hay estacionamiento cerca de la playa. [VERIFICAR] Transporte público desde el centro de Manzanillo y costo.",
+    "mejor_epoca": "De noviembre a mayo hay más días despejados. En verano y otoño llegan las lluvias y puede haber más oleaje. [VERIFICAR] Temporadas con más afluencia en la bahía.",
+    "consejos": [
+      "Revisa el color de la bandera y pregunta por el estado del mar antes de entrar, aunque la playa sea tranquila.",
+      "En las lagunas y esteros cercanos de la bahía hay cocodrilos: no te metas al agua fuera de la zona de playa y respeta los avisos.",
+      "Los fines de semana la ocupan muchas familias; llega temprano para encontrar mesa."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de palapas y restaurantes.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo de pescado o marisco por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso a la arena y a las palapas para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas.",
+      "renta_equipo": "[VERIFICAR] Renta de sombrillas, kayaks u otro equipo y su precio."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "playa-de-cuyutlan": {
+    "descripcion_larga": [
+      "Cuyutlán es una playa de arena negra de origen volcánico frente a un pueblo salinero del municipio de Armería. Es de mar abierto, con oleaje fuerte, muy buscada por quienes practican surf y windsurf, y poco recomendable para quien no sabe nadar.",
+      "En primavera es famosa por la «Ola Verde», un oleaje de varios metros que ha dado fama al pueblo. Es un fenómeno que atrae visitantes de todo el estado, y quien lo busca debe saber que no se trata de una ola para meterse a nadar, sino para mirar desde la orilla con respeto.",
+      "El pueblo tiene una tradición de siglos ligada a la sal, y la playa convive con las salinas y la laguna de Cuyutlán. Hay enramadas donde se sirven pescados y mariscos, hoteles y restaurantes, y los atardeceres son muy buenos.",
+      "Cuyutlán es también una buena base para recorrer la zona: a pocos kilómetros están el Tortugario, el estero Palo Verde y el Museo Comunitario de la Sal, que cuenta cómo se produce la sal en esta costa."
+    ],
+    "como_llegar": "Cuyutlán está a unos 20 km de Armería, por la desviación desde la autopista Colima–Manzanillo. Desde Manzanillo son unos 42 km (alrededor de 30 minutos) y desde la ciudad de Colima unos 64 km (cerca de 50 minutos).",
+    "mejor_epoca": "La Ola Verde es famosa en primavera. [VERIFICAR] Meses exactos en que suele presentarse y si hay avisos oficiales del oleaje para los visitantes.",
+    "consejos": [
+      "Si no sabes nadar o no conoces el mar abierto, no entres al agua en esta playa: el oleaje es fuerte y hay corrientes.",
+      "Para ver la Ola Verde, ponte a una distancia segura de la orilla y haz caso de las banderas y de Protección Civil.",
+      "Aprovecha el viaje para visitar el Museo Comunitario de la Sal y, en temporada, la ruta de las salinas."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de enramadas y restaurantes.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo de pescado o marisco por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso a la playa y a las enramadas para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas y en qué temporadas.",
+      "renta_equipo": "[VERIFICAR] Renta o clases de surf y windsurf."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "playa-el-chupadero": {
+    "descripcion_larga": [
+      "El Chupadero es una playa de arena oscura y mar abierto en la costa de Tecomán, dentro del Santuario Boca de Apiza–El Chupadero–El Tecuanillo, un humedal reconocido como sitio Ramsar. Es una de las playas más importantes de Colima para el desove de las tortugas marinas: aquí llegan la golfina, la laúd y la prieta.",
+      "Desde hace décadas opera en esta playa el Campamento Tortuguero El Chupadero, que protege los nidos y libera crías. Es un lugar para ver de cerca el trabajo de conservación, más que una playa con servicios turísticos.",
+      "Junto a la playa está el Estero El Chupadero, rodeado de manglar poco alterado con cuatro especies de mangle. Se recorre en lancha para ver pelícanos, patos buzo, águilas pescadoras e iguanas; también hay cocodrilos, por lo que se recomienda guardar distancia.",
+      "No se confirmaron servicios en la playa: conviene llevar agua, comida, sombra y protector solar, y avisar a alguien a dónde vas."
+    ],
+    "como_llegar": "Desde Tecomán se toma la carretera a Cerro de Ortega, la desviación a El Ahijadero y se sigue unos 9 km más hasta el estero y la playa; en total son unos 20 a 25 km desde Tecomán.",
+    "mejor_epoca": "[VERIFICAR] Meses de la temporada de anidación y liberación de crías en El Chupadero, y si el campamento recibe visitantes.",
+    "consejos": [
+      "Lleva todo lo que necesites: agua, comida, sombra y efectivo; no hay servicios confirmados.",
+      "Si visitas el campamento tortuguero, sigue las indicaciones del personal y no uses luz blanca ni flash cerca de los nidos.",
+      "En el estero hay cocodrilos: observa desde la lancha y no te metas al agua."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Si el campamento pide donativo o cuota y cuánto.",
+      "horarios": "[VERIFICAR] Horario de visita del campamento tortuguero.",
+      "precios_comida": "[VERIFICAR] Si hay comida en la zona del estero y su precio.",
+      "accesibilidad": "[VERIFICAR] Estado del camino y de los accesos a la playa.",
+      "salvavidas": "[VERIFICAR] Playa de mar abierto sin vigilancia confirmada.",
+      "renta_equipo": "[VERIFICAR] Paseos en lancha por el estero: precio y duración."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "playa-la-audiencia": {
+    "descripcion_larga": [
+      "La Audiencia es una pequeña caleta de arena rodeada de cerros con palmeras en la península de Santiago, en Manzanillo. Tiene poca pendiente y oleaje moderado, y es de las playas más visitadas del municipio para ir en familia.",
+      "Es una buena playa para el snorkel, el kayak, el esquí acuático y los paseos en lancha, y hay renta de equipo. Alrededor hay hoteles y restaurantes, y desde la orilla se ve la bahía protegida por los cerros.",
+      "Su nombre recuerda una audiencia que se habría celebrado en 1531 con la población local, según el turismo municipal, de modo que además de playa tiene un guiño de historia local.",
+      "Por ser una caleta pequeña se llena rápido en temporada alta; conviene llegar temprano y entender que, por su tamaño, tiene menos espacio que las playas largas de la bahía."
+    ],
+    "como_llegar": "Está en la península de Santiago, unos 3 km al sur del pueblo de Santiago por la carretera federal 200. Desde el centro histórico de Manzanillo son unos 40 minutos en auto.",
+    "mejor_epoca": "De noviembre a mayo hay más días despejados y el agua está más tranquila para el snorkel. [VERIFICAR] Visibilidad del agua en cada temporada.",
+    "consejos": [
+      "Llega temprano en fines de semana y vacaciones: la caleta es pequeña y se llena.",
+      "Para el snorkel, pregunta dónde está la mejor zona y si hay corrientes ese día.",
+      "Si rentas kayak o lancha, pide chaleco salvavidas para todos, incluidos los adultos."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de restaurantes y de renta de equipo.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso a la caleta para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas.",
+      "renta_equipo": "[VERIFICAR] Precios de kayak, snorkel y paseo en lancha."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "playa-las-brisas": {
+    "descripcion_larga": [
+      "Las Brisas es una playa de arena clara en la bahía de Manzanillo, junto a la zona portuaria, con oleaje moderado. Es de las más tranquilas y menos concurridas de la bahía, por lo que la visitan familias con niños.",
+      "Lo curioso de esta playa es el paisaje: desde la orilla se ven entrar y salir los barcos del puerto, y el muelle Las Brisas es muy usado para pescar. No es una playa de ambiente turístico, sino de vida cotidiana de Manzanillo, con hoteles y puestos de comida cerca.",
+      "Queda en la zona de Las Brisas–Salagua, sobre la ruta de Manzanillo hacia Santiago, así que es fácil sumarla a un recorrido por la bahía junto a la playa Azul y el Tortugario de Salagua.",
+      "Es una buena opción para quien prefiere un día sencillo, con menos gente, y no necesita ni palapas ni servicios de playa más turística."
+    ],
+    "como_llegar": "Está en la zona de Las Brisas–Salagua, junto al puerto, sobre la ruta de Manzanillo hacia Santiago. [VERIFICAR] Transporte público desde el centro y puntos de estacionamiento.",
+    "mejor_epoca": "De noviembre a mayo hay más días despejados; en la tarde, cuando baja el calor, es agradable para caminar. [VERIFICAR] Temporada de pesca desde el muelle.",
+    "consejos": [
+      "Si pescas desde el muelle, pregunta si se necesita permiso y respeta las áreas del puerto.",
+      "Por la cercanía al puerto, evita meterte al agua en zonas de maniobra de embarcaciones.",
+      "Lleva agua y comida: la oferta cerca de la playa es limitada."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar acceso y estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de los puestos de comida.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida en los puestos cercanos.",
+      "accesibilidad": "[VERIFICAR] Acceso a la arena y al muelle para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas.",
+      "renta_equipo": "[VERIFICAR] Si hay renta de equipo."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "playa-miramar": {
+    "descripcion_larga": [
+      "Miramar es una larga playa de arena suave en el extremo oeste de la bahía de Santiago, en Manzanillo, entre Olas Altas y La Boquita. Es conocida por sus palapas de pescados y mariscos, los paseos a caballo, el windsurf y el surf, y por sus atardeceres.",
+      "Al ser larga, tiene espacio para caminar, y las palapas se reparten a lo largo de la arena. Es una buena playa para comer sin prisa: el pescado a la talla, el ceviche y los mariscos son lo que más se pide en la costa.",
+      "Cerca de la playa hay lagunas y esteros donde viven cocodrilos. Por eso es importante respetar las banderas y los avisos de Protección Civil y no meterse al agua donde haya bandera de peligro.",
+      "Está entre Olas Altas, de oleaje más intenso, y La Boquita, más calmada, por lo que sirve de punto medio para quien quiere conocer la bahía."
+    ],
+    "como_llegar": "Está en la zona de Miramar, entre las playas Olas Altas y La Boquita, en la bahía de Santiago; se llega por la carretera federal 200 o por la carretera Santiago–Miramar, en auto o camión desde Manzanillo.",
+    "mejor_epoca": "De noviembre a mayo hay más días despejados; los atardeceres de esos meses son de los mejores de la bahía. [VERIFICAR] Meses de mejor oleaje para windsurf y surf.",
+    "consejos": [
+      "Respeta las banderas: no te metas al agua si la bandera indica peligro.",
+      "No te acerques a las lagunas y esteros cercanos: hay cocodrilos.",
+      "Si vas a montar a caballo, pregunta el precio antes y revisa que el guía conozca el recorrido."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de las palapas.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo de pescado o marisco.",
+      "accesibilidad": "[VERIFICAR] Acceso a la arena y a las palapas.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas.",
+      "renta_equipo": "[VERIFICAR] Renta de caballos, tablas de windsurf o surf, y precios."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "playa-olas-altas": {
+    "descripcion_larga": [
+      "Olas Altas es una playa de arena dorada oscura en la bahía de Santiago, en Manzanillo, famosa por su oleaje intenso. Aquí se dan clases de surf y es de las playas más concurridas del municipio.",
+      "El fondo baja rápido cerca de la orilla, por lo que se recomienda precaución con el mar y las corrientes. En temporada alta hay salvavidas de la Marina. Cerca de la playa hay hoteles, bungalows y restaurantes, lo que la hace cómoda para quien se hospeda en la zona.",
+      "Se llega por la carretera Santiago–Miramar o caminando desde el pueblo de Santiago por la carretera federal 200, de modo que es una playa a la que se puede ir sin coche si se está en la zona.",
+      "Es la playa de la bahía donde más sentido tiene tomar una primera clase de surf: el oleaje es parejo y las escuelas están acostumbradas a trabajar con principiantes."
+    ],
+    "como_llegar": "Está en la bahía de Santiago: se llega por la carretera Santiago–Miramar o caminando desde el pueblo de Santiago por la carretera federal 200. [VERIFICAR] Transporte público desde el centro de Manzanillo.",
+    "mejor_epoca": "De noviembre a mayo hay más días despejados. El oleaje puede ser más fuerte en verano y otoño. [VERIFICAR] Meses con mejor oleaje para clases.",
+    "consejos": [
+      "El fondo baja rápido cerca de la orilla: entra con cuidado y no pierdas de vista a los niños.",
+      "Si tomas clase de surf, verifica que la escuela te dé tabla y, si es necesario, chaleco.",
+      "Haz caso de las banderas y de los salvavidas, en temporada alta."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de restaurantes y de las escuelas de surf.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de un platillo.",
+      "accesibilidad": "[VERIFICAR] Acceso a la playa para personas con movilidad reducida.",
+      "salvavidas": "Según el turismo municipal, en temporada alta hay salvavidas de la Marina. [VERIFICAR] Fechas y horario.",
+      "renta_equipo": "[VERIFICAR] Precio de clase de surf y de renta de tabla."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "playa-pena-blanca": {
+    "descripcion_larga": [
+      "Peña Blanca es una playa extensa y semivirgen al noroeste de Manzanillo, frente a una gran roca blanca cubierta de guano que le da nombre. Es un lugar de ecoturismo para caminar, andar en bicicleta o cuatrimoto y ver aves marinas, con fuerte oleaje.",
+      "Según el turismo municipal, fue un antiguo sitio de llegada de barcos piratas. Hoy es, sobre todo, una playa para quien busca soledad y paisaje: no es la playa de las palapas y los restaurantes, sino una playa abierta.",
+      "No hay servicios confirmados. Quien va debe llevar agua, comida, sombra y protector solar, y tener en cuenta que el oleaje es fuerte, por lo que no es una playa para nadar con tranquilidad.",
+      "La roca blanca, que de lejos parece de cal, es en realidad guano acumulado por las aves marinas, lo que da una idea de la cantidad de aves que usan la zona como descanso."
+    ],
+    "como_llegar": "Sobre la carretera federal 200, poco después del pueblo de La Central, se toma el camino hacia la costa y se recorre uno o dos kilómetros hasta la playa; está a unos 30 a 40 km al noroeste del centro de Manzanillo.",
+    "mejor_epoca": "De noviembre a mayo hay más días despejados y el camino es más fácil. [VERIFICAR] Estado del camino en temporada de lluvias.",
+    "consejos": [
+      "Lleva agua, comida y sombra para todo el día: no hay servicios confirmados.",
+      "El oleaje es fuerte: disfruta la playa caminando por la orilla y evita nadar.",
+      "Avisa a alguien a dónde vas y a qué hora piensas regresar; la señal del celular puede ser débil."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Si hay cobro de acceso o estacionamiento.",
+      "horarios": "[VERIFICAR] Si hay horario o si el acceso es libre.",
+      "precios_comida": "No hay servicios de comida confirmados: conviene llevar la propia. [VERIFICAR]",
+      "accesibilidad": "[VERIFICAR] Estado del camino y acceso a la arena.",
+      "salvavidas": "[VERIFICAR] Sin vigilancia confirmada.",
+      "renta_equipo": "[VERIFICAR] Si hay renta de bicicletas o cuatrimotos y su precio."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "playa-santiago": {
+    "descripcion_larga": [
+      "Playa Santiago es una playa de arena oscura y oleaje moderado frente al pueblo de Santiago, en la bahía del mismo nombre y junto a la península de Santiago, en Manzanillo.",
+      "Es una de las playas de la bahía donde hay escuela de surf y de paddle board, y queda en una zona con hoteles, cerca de otras playas como Olas Altas y Miramar. Por la facilidad de acceso, es una buena opción para quien se hospeda en el pueblo de Santiago.",
+      "El pueblo de Santiago, a pocos kilómetros al noroeste del centro de Manzanillo, concentra restaurantes, tiendas y hoteles, de modo que la playa se puede combinar con una comida o una caminata por el pueblo.",
+      "Para quien quiere probar el paddle board, el oleaje moderado la hace una buena opción de inicio, siempre con instrucción de una escuela."
+    ],
+    "como_llegar": "Está en el pueblo de Santiago, sobre la carretera federal 200 a pocos kilómetros al noroeste del centro de Manzanillo. [VERIFICAR] Transporte público desde el centro de Manzanillo.",
+    "mejor_epoca": "De noviembre a mayo hay más días despejados. [VERIFICAR] Temporada de clases de surf y paddle.",
+    "consejos": [
+      "Si tomas clase de paddle board o surf, pide chaleco y revisa que la escuela esté establecida.",
+      "El oleaje es moderado pero hay corriente: pregunta por el estado del mar ese día.",
+      "Combina la playa con un recorrido por el pueblo de Santiago, a pie."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Playa pública; confirmar cobro de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario de escuelas y restaurantes.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida en la zona.",
+      "accesibilidad": "[VERIFICAR] Acceso a la playa.",
+      "salvavidas": "[VERIFICAR] Si hay salvavidas.",
+      "renta_equipo": "[VERIFICAR] Precio de clase y renta de tabla o paddle board."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "centro-ecologico-de-cuyutlan-el-tortugario": {
+    "descripcion_larga": [
+      "El Centro Ecológico de Cuyutlán, conocido como el Tortugario, es un campamento tortuguero y centro de educación ambiental a orillas del Estero Palo Verde, cerca de Cuyutlán, en el municipio de Armería. Protege a las tortugas marinas que anidan en la costa de Colima y ha liberado más de dos millones de crías.",
+      "Además del campamento, tiene cocodrilario, iguanario y un sendero para ver aves, y de su muelle salen los paseos en lancha por el manglar. Es una visita completa para quien quiere entender el ecosistema costero de Colima en un solo lugar, y funciona bien con niños.",
+      "El estero que lo rodea es el extremo sur de la Laguna de Cuyutlán, muy cerca de la desembocadura del río Armería, y se recorre entre túneles de raíces de mangle e islotes para ver garzas, pelícanos y águilas pescadoras.",
+      "La entrada tiene cuota. Quien visite en temporada de liberación de crías puede, según el campamento, participar en una liberación; confirma antes de ir."
+    ],
+    "como_llegar": "Está a unos 3 o 4 km del pueblo de Cuyutlán rumbo a la playa El Paraíso. Desde Manzanillo son unos 40 minutos en auto y desde la ciudad de Colima cerca de una hora.",
+    "mejor_epoca": "[VERIFICAR] Meses de anidación y de liberación de crías, y horarios de las liberaciones.",
+    "consejos": [
+      "Llega con tiempo si quieres hacer el paseo en lancha por el manglar: las salidas dependen de la marea y de la cantidad de gente.",
+      "Si vas a una liberación de crías, no uses flash ni luz blanca, y sigue las indicaciones del personal.",
+      "Lleva repelente y gorra: el estero es caluroso y con mosquitos."
+    ],
+    "datos": {
+      "costo_entrada": "Tiene cuota de entrada. [VERIFICAR] Monto actual, y si el paseo en lancha se cobra aparte.",
+      "horarios": "[VERIFICAR] Horario de visita y de las liberaciones.",
+      "precios_comida": "[VERIFICAR] Si hay venta de comida dentro y su precio.",
+      "accesibilidad": "[VERIFICAR] Acceso al sendero, al muelle y a las instalaciones para personas con movilidad reducida.",
+      "salvavidas": "No aplica: no es zona de baño.",
+      "renta_equipo": "[VERIFICAR] Precio y duración del paseo en lancha."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "tortugario-manzanillo-playa-azul-salagua": {
+    "descripcion_larga": [
+      "El Tortugario de Manzanillo es un campamento tortuguero en la playa Azul de Salagua, en la bahía de Manzanillo, que protege nidos de tortuga marina desde 2001. Está sobre la calle Santo Domingo, en la colonia Salagua.",
+      "En temporada los visitantes asisten a una plática y participan en la liberación de crías al atardecer. Funciona con apoyo de voluntarios y donativos, y permite conocer de cerca el trabajo de conservación en la costa de Colima, sin salir de la zona urbana de Manzanillo.",
+      "Quien visita debe saber que no es un parque con horarios fijos: la actividad depende de la temporada de anidación y de cuándo nacen las crías, por lo que conviene confirmar antes.",
+      "Es una experiencia especialmente valiosa para niños, y es una de las actividades de naturaleza más fáciles de combinar con un día de playa en la bahía."
+    ],
+    "como_llegar": "Los visitantes se reúnen en el propio campamento, sobre la calle Santo Domingo, en la colonia Salagua, a la altura de la playa Azul. [VERIFICAR] Cómo llegar desde el centro de Manzanillo y transporte público.",
+    "mejor_epoca": "[VERIFICAR] Meses de anidación y liberación de crías en Manzanillo, y horario de las liberaciones al atardecer.",
+    "consejos": [
+      "Confirma antes de ir si hay liberación ese día: depende de cuándo nacen las crías.",
+      "Deja un donativo: el campamento funciona con voluntarios y apoyo de los visitantes.",
+      "Sigue las indicaciones del personal: no toques a las crías con protector solar ni repelente en las manos."
+    ],
+    "datos": {
+      "costo_entrada": "Funciona con apoyo de voluntarios y donativos. [VERIFICAR] Si hay donativo sugerido.",
+      "horarios": "[VERIFICAR] Horario de la plática y de la liberación al atardecer.",
+      "precios_comida": "No aplica: no hay venta de comida confirmada.",
+      "accesibilidad": "[VERIFICAR] Acceso a la playa y al campamento para personas con movilidad reducida.",
+      "salvavidas": "No aplica: no es zona de baño.",
+      "renta_equipo": "No aplica."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "carrizalillo": {
+    "descripcion_larga": [
+      "La Laguna Carrizalillo es un cuerpo de agua rodeado de vegetación y montañas en el municipio de Comala, a unos 25 km de la ciudad de Colima. Por su cercanía a la capital, es una escapada posible de un día o de un fin de semana.",
+      "El ambiente es el de un lugar para quedarse: se puede acampar, pasear en kayak, pescar, caminar alrededor de la laguna y hacer una comida a la orilla. El sitio cuenta con restaurante, baños, estacionamiento, asadores, áreas verdes, renta de kayaks y cabañas, y admite mascotas.",
+      "Desde sus orillas, en días despejados, se ve el Volcán de Colima, y esa es una de las razones por las que mucha gente lo elige: la combinación de agua tranquila y un volcán activo al fondo. El volcán se admira de lejos; la cumbre y las laderas altas no son visitables.",
+      "A poca distancia está la Laguna La María, de carácter parecido, por lo que muchas personas visitan las dos en el mismo día o en el mismo fin de semana, y desde ambas se llega a Comala en unos 20 a 25 minutos.",
+      "Es un lugar pensado para el descanso. Los fines de semana y en vacaciones se llena de familias, y entre semana se siente mucho más tranquilo, buen momento para quien busca silencio o fotografía."
+    ],
+    "como_llegar": "La laguna está a unos 25 km de la ciudad de Colima, en el municipio de Comala, al pie del volcán. Desde Comala se toma el camino hacia las lagunas y se siguen las señales; el trayecto es de unos 20 a 25 minutos en auto. [VERIFICAR] Estado del último tramo y si hay transporte público.",
+    "mejor_epoca": "La temporada seca, de noviembre a mayo, da cielos más despejados para ver el volcán y el reflejo en la laguna. En lluvias el paisaje es más verde pero hay más nubes por la tarde. [VERIFICAR] Temporadas de mayor afluencia y fines de semana de más gente.",
+    "consejos": [
+      "Sal temprano si quieres ver el volcán despejado: por la tarde suelen formarse nubes.",
+      "Si vas a acampar, lleva abrigo: de noche puede refrescar.",
+      "Si rentas kayak, pide chaleco salvavidas y no te alejes de la orilla.",
+      "Haz caso de los avisos de Protección Civil sobre el volcán y de las indicaciones del personal del lugar."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Costo de entrada o de estacionamiento por vehículo, y de acampar.",
+      "horarios": "[VERIFICAR] Horario real de apertura y cierre (el catálogo lo da de 8:00 a 20:00, sin confirmar).",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida por persona en el restaurante.",
+      "accesibilidad": "[VERIFICAR] Acceso al restaurante y a la orilla para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay vigilancia en el área de kayaks.",
+      "renta_equipo": "Hay renta de kayaks y de cabañas, según el catálogo. [VERIFICAR] Precios y duración."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "laguna-la-maria": {
+    "descripcion_larga": [
+      "La Laguna La María es un cuerpo de agua natural rodeado de vegetación y montañas en el municipio de Comala, en las faldas del Volcán de Colima. Es un destino para los amantes de la naturaleza: la calma de sus aguas, el paisaje y la posibilidad de caminar alrededor de la laguna son lo que atrae a la mayoría de visitantes.",
+      "Se puede observar aves, pasear en bote o kayak, pescar y caminar. El sitio cuenta con restaurante, baños, estacionamiento, asadores y áreas verdes, además de renta de cabañas y de kayaks, y admite mascotas.",
+      "Desde la laguna se ve el volcán en días despejados. Como la cumbre no es visitable por la actividad volcánica, estos miradores de agua son una de las mejores formas de acercarse al volcán de manera segura.",
+      "Desde Comala se tarda unos 20 minutos en llegar, por lo que se combina muy bien con una visita al centro del Pueblo Mágico, al ecoparque o al Museo Rangel Hidalgo en Nogueras, y con la Laguna Carrizalillo."
+    ],
+    "como_llegar": "Desde Comala se toma la carretera hacia la laguna y se siguen las señales; el trayecto dura unos 20 minutos en coche. [VERIFICAR] Estado del camino y si hay transporte público desde Comala.",
+    "mejor_epoca": "De noviembre a mayo hay cielos más despejados. En temporada de lluvias el entorno está más verde, pero las tardes suelen ser nubladas. [VERIFICAR] Fechas de mayor afluencia.",
+    "consejos": [
+      "Lleva binoculares si te gusta observar aves: la laguna es buen sitio para eso.",
+      "Si caminas alrededor de la laguna, usa calzado cerrado: el suelo puede estar húmedo.",
+      "Haz caso de los avisos de Protección Civil sobre la actividad del volcán."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Costo de entrada o de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario real (el catálogo lo da de 8:00 a 20:00, sin confirmar).",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso al restaurante y a la orilla para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay vigilancia en el área de kayaks.",
+      "renta_equipo": "Hay renta de kayaks y cabañas, según el catálogo. [VERIFICAR] Precios."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "manantiales-de-zacualpan": {
+    "descripcion_larga": [
+      "Los Manantiales de Zacualpan están en la comunidad de Zacualpan, en el municipio de Comala, a pocos kilómetros del Pueblo Mágico. Son aguas cristalinas y frescas que brotan entre vegetación, y son uno de los lugares donde la gente de Colima va a refrescarse sin irse lejos.",
+      "El plan es sencillo: nadar en el agua fresca, descansar a la sombra y comer en el restaurante del lugar. Hay baños y vista a un paisaje verde, y es un destino bueno para ir en familia.",
+      "Por su cercanía a Comala se combina fácilmente con un recorrido por el centro histórico, el jardín de Juan Soriano o las lagunas Carrizalillo y La María, en el mismo día.",
+      "El agua de manantial es fresca todo el año, lo que lo hace atractivo tanto en abril y mayo, cuando más calor hace en el valle, como en los meses de lluvia."
+    ],
+    "como_llegar": "Los manantiales están en la comunidad de Zacualpan, municipio de Comala, a pocos kilómetros del centro del Pueblo Mágico. [VERIFICAR] Ruta desde Comala y desde Colima, y tiempo aproximado.",
+    "mejor_epoca": "Con calor, de marzo a junio, el agua fresca es lo que más se agradece. En temporada de lluvias el agua puede ponerse turbia y subir. [VERIFICAR] Meses con mejor claridad del agua.",
+    "consejos": [
+      "Lleva traje de baño, toalla y una muda de ropa; el agua de manantial es fría al entrar.",
+      "Usa calzado antiderrapante: las rocas del fondo pueden resbalar.",
+      "Si llovió en la sierra, evita meterte al agua: puede subir el nivel sin aviso."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Costo de entrada y de estacionamiento.",
+      "horarios": "[VERIFICAR] Horario real de apertura y cierre.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso a las pozas y al restaurante para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay vigilancia en las pozas.",
+      "renta_equipo": "[VERIFICAR] Si hay renta de salvavidas, mesas o asadores."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "el-sauce": {
+    "descripcion_larga": [
+      "El Sauce es un balneario y restaurante en la comunidad de Jala, en el municipio de Coquimatlán, a unos 15 minutos del centro de Coquimatlán. Está rodeado de naturaleza y ofrece aguas cristalinas para nadar, áreas de descanso y comida típica de la región.",
+      "Forma parte de la zona de balnearios de río de Coquimatlán, cerca de otros de la misma zona, como Las Peñitas, Poksika y Las Trancas, que aparecen en la Ruta del Agua del municipio. Eso permite comparar y, si se quiere, visitar más de uno en el mismo día.",
+      "Es un plan de día completo en familia: se llega, se come, se mete uno al agua y se descansa a la sombra. Los fines de semana y en vacaciones se llena, así que entre semana es mucho más tranquilo.",
+      "La comida típica de la región es parte del atractivo del lugar; conviene preguntar qué hay ese día."
+    ],
+    "como_llegar": "Está en Jala, a unos 15 minutos del centro de Coquimatlán. [VERIFICAR] Ruta desde Colima, tiempo aproximado (alrededor de 30 minutos) y señalización.",
+    "mejor_epoca": "En temporada de calor, de marzo a junio, es cuando más se agradece. En lluvias el río puede subir y el agua ponerse turbia. [VERIFICAR] Meses de mejor claridad del agua.",
+    "consejos": [
+      "Lleva traje de baño, toalla y efectivo: no todos los balnearios aceptan tarjeta.",
+      "Pregunta por la profundidad antes de que los niños entren al agua.",
+      "Si llovió en la sierra, evita el río: las crecientes llegan sin aviso."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Costo de entrada.",
+      "horarios": "[VERIFICAR] Horario real de apertura y cierre.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso al agua y al restaurante para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay vigilancia en el agua.",
+      "renta_equipo": "[VERIFICAR] Renta de salvavidas, mesas o asadores."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "los-amiales": {
+    "descripcion_larga": [
+      "Los Amiales es un balneario natural en el municipio de Coquimatlán, de aguas cristalinas y frescas que brotan de manantiales y forman pozas para nadar. Está rodeado de vegetación, con sombra natural y un ambiente tranquilo que lo hace uno de los lugares preferidos para ir en familia.",
+      "Las aguas son poco profundas y la corriente es suave, lo que lo hace adecuado para todas las edades. Además de las pozas hay espacios para picnic y descanso, restaurante, baños, estacionamiento, wifi y guías, según el catálogo.",
+      "Queda a unos 15 km al suroeste del centro de Colima: se sigue la ruta hacia Coquimatlán y se toma el desvío hacia Jala. Es un destino cercano a la capital, lo que explica que sea de los balnearios más visitados.",
+      "En los alrededores hay otros balnearios de río de la zona, y el balneario El Paraíso de Coquimatlán queda junto al mismo río de Los Amiales.",
+      "Conviene ir con calma y entender que, por su fama, los fines de semana y en vacaciones se llena de gente."
+    ],
+    "como_llegar": "Queda a unos 15 km al suroeste del centro de Colima: se sigue la ruta hacia Coquimatlán y se toma el desvío hacia Jala. [VERIFICAR] Tiempo aproximado y transporte público.",
+    "mejor_epoca": "En temporada de calor, de marzo a junio, es cuando más gente va. De noviembre a febrero el agua es más fresca y el lugar está más tranquilo. [VERIFICAR] Fechas de mayor afluencia.",
+    "consejos": [
+      "Lleva traje de baño, toalla y efectivo.",
+      "Las aguas son poco profundas, pero vigila siempre a los niños pequeños.",
+      "Entre semana el balneario está mucho más tranquilo que los fines de semana."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Costo de entrada.",
+      "horarios": "[VERIFICAR] Horario real de apertura y cierre.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida por persona.",
+      "accesibilidad": "[VERIFICAR] Acceso a las pozas y al restaurante para personas con movilidad reducida.",
+      "salvavidas": "[VERIFICAR] Si hay vigilancia.",
+      "renta_equipo": "[VERIFICAR] Renta de salvavidas, mesas o asadores."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "centro-historico-de-comala-pueblo-magico": {
+    "descripcion_larga": [
+      "Comala, conocido como el Pueblo Blanco de América, es Pueblo Mágico desde 2002 y su centro histórico es zona de monumentos históricos. Casas encaladas con tejados rojos, calles empedradas y portales con fondas y cafés componen un paseo que se hace caminando y sin prisa.",
+      "El centro del pueblo es su jardín principal, con un quiosco forjado en Alemania, bancas a la sombra y la iglesia de San Miguel Arcángel, de fachada blanca con torres amarillas. En la plaza hay una escultura de Juan Rulfo, el escritor ligado a Comala, cuya novela Pedro Páramo comienza con una llegada a un pueblo con ese nombre.",
+      "Los portales son el centro de la vida del pueblo: ahí se come, se toma un café, un helado o un ponche, y se compran artesanías. Es costumbre sentarse en los portales a comer de manera prolongada, con un trago y botanas.",
+      "Alrededor del centro hay mucho que ver: el Jardín Escultórico Juan Soriano, a la entrada del pueblo; la Ex Hacienda de Nogueras con el Museo Alejandro Rangel Hidalgo; el Ecoparque Nogueras; y la Sala de la Gráfica de Occidente.",
+      "Un poco más arriba están Suchitlán, la Zona Mágica y las lagunas La María y Carrizalillo, de modo que Comala es la puerta de entrada de un recorrido más amplio al pie del volcán."
+    ],
+    "como_llegar": "Comala se llega fácilmente desde Colima y Villa de Álvarez, a pocos kilómetros hacia el norte. [VERIFICAR] Distancia exacta desde el centro de Colima, tiempo y transporte público.",
+    "mejor_epoca": "De noviembre a mayo suele haber más días despejados; el mediodía de abril a junio es caluroso, así que conviene salir temprano o ir al atardecer. [VERIFICAR] Fechas de festividades que llenen el pueblo.",
+    "consejos": [
+      "Llega a comer sin prisa: la costumbre de los portales es sentarse un buen rato.",
+      "Prueba el café de la región y el ponche de la zona; pregunta en cada portal.",
+      "Combina el paseo con un museo, un jardín o una laguna para completar el día."
+    ],
+    "datos": {
+      "costo_entrada": "El paseo por el centro es gratuito. [VERIFICAR] Costo de entrada a museos y jardines cercanos.",
+      "horarios": "[VERIFICAR] Horario de portales, fondas y museos.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de una comida en los portales por persona.",
+      "accesibilidad": "[VERIFICAR] Estado de calles empedradas y banquetas para personas con movilidad reducida.",
+      "salvavidas": "No aplica.",
+      "renta_equipo": "No aplica."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "volcan-de-colima-volcan-de-fuego": {
+    "descripcion_larga": [
+      "El Volcán de Colima, conocido como Volcán de Fuego, es uno de los volcanes más activos de México y se eleva a más de 3,800 metros sobre el valle de Colima, en el límite con Jalisco. Junto al Nevado de Colima forma parte de un parque nacional.",
+      "El acceso a la cumbre y a las laderas altas está prohibido por su actividad: no es un volcán que se suba. Lo que sí se puede hacer es verlo a distancia, y eso se hace bien desde Comala, Suchitlán y las lagunas Carrizalillo y La María; en días despejados se ven fumarolas.",
+      "Desde la ciudad de Colima también se ve, y es un elemento del paisaje cotidiano: el volcán marca el norte del valle.",
+      "Su actividad es vigilada de forma permanente y los avisos oficiales de Protección Civil son los que mandan: si piensas acercarte a la zona, consulta antes el estado actual del semáforo volcánico.",
+      "El Nevado de Colima, de mayor altura y en territorio de Jalisco, se visita aparte, por Ciudad Guzmán; no debe confundirse con el Volcán de Fuego."
+    ],
+    "como_llegar": "Se ve desde la ciudad de Colima y, más de cerca, desde Comala, Suchitlán y las lagunas Carrizalillo y La María, a unos 25 minutos de Comala. La cumbre y las laderas altas no son visitables.",
+    "mejor_epoca": "La temporada seca, de noviembre a mayo, da los cielos más despejados. Todo el año conviene ir temprano: por la tarde se forman nubes que tapan la cima.",
+    "consejos": [
+      "No intentes subir al volcán ni acercarte a sus laderas altas: está prohibido por su actividad.",
+      "Consulta los avisos de Protección Civil y el semáforo de alerta volcánica antes de visitar la zona.",
+      "Para verlo despejado, ve temprano a las lagunas o a Suchitlán y lleva una cámara con zoom."
+    ],
+    "datos": {
+      "costo_entrada": "No aplica: se observa desde miradores públicos y lagunas. [VERIFICAR] Costo de entrada a las lagunas desde donde se ve.",
+      "horarios": "No aplica.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida en Suchitlán o en las lagunas.",
+      "accesibilidad": "[VERIFICAR] Accesibilidad de los miradores y lagunas.",
+      "salvavidas": "No aplica.",
+      "renta_equipo": "No aplica."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "zona-arqueologica-el-chanal": {
+    "descripcion_larga": [
+      "El Chanal fue uno de los asentamientos más extensos del Posclásico en el valle de Colima, con su mayor esplendor entre los siglos XII y XIV. Está en el poblado de El Chanal, unos 4 km al norte de la ciudad de Colima.",
+      "El recorrido incluye la Plaza de los Altares, el Juego de Pelota, la Plaza del Día y de la Noche, la Plaza del Tiempo y la Plaza del Agua, con bloques de petroglifos. El sitio cuenta con administración y museo de sitio, y la visita puede hacerse con guía.",
+      "Es una buena forma de entender la historia de Colima antes de la llegada de los españoles: complementa el Museo Regional de Historia y el Museo de las Culturas de Occidente, en la ciudad.",
+      "Conviene ir temprano, porque el recorrido es al aire libre y con poca sombra; el sol de mediodía en Colima es fuerte durante gran parte del año."
+    ],
+    "como_llegar": "Está en la calle Bonampak, en el poblado de El Chanal, unos 4 km al norte de la ciudad de Colima: desde la plaza principal se toma el camino a El Chanal (prolongación Venustiano Carranza) hasta el Tercer Anillo Periférico.",
+    "mejor_epoca": "Por la mañana, de noviembre a mayo, hace menos calor. Según el catálogo abre de martes a domingo y cierra los lunes. [VERIFICAR] Horario vigente.",
+    "consejos": [
+      "Lleva gorra, agua y protector solar: el recorrido es al aire libre y con poca sombra.",
+      "No te subas a las estructuras ni toques los petroglifos.",
+      "Combina la visita con el Museo Regional de Historia, en el centro de Colima."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Costo de entrada y tarifas para visitantes locales y extranjeros.",
+      "horarios": "Según el catálogo: martes a domingo, de 9:00 a 18:00; cerrado los lunes. [VERIFICAR] Horario vigente.",
+      "precios_comida": "No hay servicio de comida confirmado en el sitio.",
+      "accesibilidad": "[VERIFICAR] Accesibilidad de los senderos y plazas para personas con movilidad reducida.",
+      "salvavidas": "No aplica.",
+      "renta_equipo": "No aplica."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "plaza-de-toros-la-petatera": {
+    "descripcion_larga": [
+      "La Petatera es una plaza de toros singular, construida cada año con madera, petate e ixtle mediante técnicas artesanales con más de 160 años de tradición. Se levanta en febrero para la Feria Charro-Taurina de Villa de Álvarez y se desmonta al terminar la fiesta.",
+      "Tiene un ruedo de 60 metros y capacidad para unas 5,000 personas. Es patrimonio cultural inmaterial del estado de Colima desde 2013, por lo que es mucho más que un recinto: es un símbolo de Villa de Álvarez.",
+      "Su construcción cada año es una tradición en sí misma, con carpinteros y artesanos que levantan la estructura con materiales tradicionales. Fuera de temporada, la plaza no está en pie, de modo que no se puede visitar como un edificio permanente.",
+      "Quien quiere conocer la tradición todo el año puede visitar el Museo Charro Taurino, en la Casa de la Cultura de Villa de Álvarez, y el jardín principal, donde está el monumento «La Cabalgata».",
+      "El resto del año se puede recorrer el municipio de Villa de Álvarez, con su jardín principal, la Parroquia de San Francisco de Asís y las famosas «Paletas de la Villa»."
+    ],
+    "como_llegar": "Está en la avenida Agustín Martell Valencia, colonia Villa Flores, en Villa de Álvarez, rumbo a Minatitlán, a unos 5 km al noroeste del centro de Colima.",
+    "mejor_epoca": "La plaza solo existe en la temporada de la feria, en febrero. [VERIFICAR] Fechas de la Feria Charro-Taurina del próximo año.",
+    "consejos": [
+      "Revisa las fechas de la feria y los horarios de los festejos antes de planear el viaje.",
+      "Si no coincides con la feria, visita el Museo Charro Taurino y el jardín principal de Villa de Álvarez.",
+      "En temporada de feria llega con tiempo: hay mucha gente y el estacionamiento cercano se llena."
+    ],
+    "datos": {
+      "costo_entrada": "[VERIFICAR] Costo de boletos de los festejos taurinos y de los eventos de la feria.",
+      "horarios": "[VERIFICAR] Horarios de los festejos en la feria.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de comida en la feria.",
+      "accesibilidad": "[VERIFICAR] Accesibilidad de la plaza para personas con movilidad reducida.",
+      "salvavidas": "No aplica.",
+      "renta_equipo": "No aplica."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  },
+  "centro-historico-de-colima-jardin-libertad-y-portales": {
+    "descripcion_larga": [
+      "El corazón de la capital gira en torno al Jardín Libertad, con su kiosco belga de 1891, la Catedral, el Palacio de Gobierno y los portales con heladerías y cafés. Todo se recorre caminando, y es el mejor punto de partida para conocer Colima.",
+      "A pocos pasos están el Museo Regional de Historia, la Pinacoteca Universitaria Alfonso Michel, el Teatro Hidalgo y el andador Constitución, peatonal y con música. En 2024 el centro recibió la distinción de Barrio Mágico.",
+      "La Catedral Basílica Menor, del siglo XVI y reconstruida varias veces tras los sismos, tiene dos torres gemelas y una gran cúpula. Por dentro destacan las tallas de madera de cedro y la antigua escultura de San Felipe de Jesús, patrono de Colima.",
+      "En el Palacio de Gobierno, de estilo neoclásico, hay murales sobre la historia de México en su escalera principal, y en la planta baja el Museo de Palacio, de entrada gratuita.",
+      "Detrás de la Catedral está el Jardín Gregorio Torres Quintero, con puestos de artesanías, antojitos y bebidas típicas como el bate, y a un par de cuadras el Jardín Hidalgo, con su reloj solar.",
+      "Los fines de semana suele haber música en vivo en el Jardín Libertad, y al caer la tarde se llena de familias, de modo que es un buen momento para sentarse en los portales."
+    ],
+    "como_llegar": "Es el centro de la ciudad de Colima; el punto de referencia es el Jardín Libertad (Reforma s/n), junto a la Catedral. Todo se recorre caminando. [VERIFICAR] Estacionamientos cercanos y transporte público.",
+    "mejor_epoca": "Por la mañana o al atardecer, para evitar el calor de mediodía, sobre todo de abril a junio. [VERIFICAR] Fechas de eventos y festivales en el centro.",
+    "consejos": [
+      "Recorre el centro a pie y empieza por el Jardín Libertad; todo lo demás queda a pocas cuadras.",
+      "Visita los museos por la mañana: algunos cierran un día a la semana.",
+      "Prueba el bate y los antojitos del Jardín Torres Quintero."
+    ],
+    "datos": {
+      "costo_entrada": "El centro es de acceso libre. El Museo de Palacio es gratuito, según el catálogo. [VERIFICAR] Costo de otros museos del centro.",
+      "horarios": "[VERIFICAR] Horario de los museos y de la Catedral.",
+      "precios_comida": "[VERIFICAR] Precio aproximado de una comida o un helado en los portales.",
+      "accesibilidad": "[VERIFICAR] Estado de banquetas y rampas en el centro.",
+      "salvavidas": "No aplica.",
+      "renta_equipo": "No aplica."
+    },
+    "galeria": [],
+    "actualizado": "2026-10-31"
+  }
+}

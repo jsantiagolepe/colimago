@@ -178,7 +178,7 @@ async function main() {
   const menu = (html) => enlaces((html.match(/<ul class="distritos">[\s\S]*?<\/ul>/) || [""])[0]).map((e) => e.href);
   const menuPortada = menu((await pedir("/")).html);
   const etiquetasMenu = (html) => [...((html.match(/<ul class="distritos">[\s\S]*?<\/ul>/) || [""])[0]).matchAll(/<a [^>]*>([^<]*)<\/a>/g)].map((m) => m[1]);
-  comprobar(menuPortada.length === 8, `portada: el menú tiene 8 opciones (${menuPortada.join(" ")})`);
+  comprobar(menuPortada.length === 9, `portada: el menú tiene 9 opciones (${menuPortada.join(" ")})`);
   for (const ruta of ["/inicio", "/explorar", "/calendario", "/favoritos", "/ajustes", "/playas", "/municipios", "/fiestas-del-pueblo", "/lugar/el-paraiso", "/acerca-de", "/privacidad", "/contacto"]) {
     const html = (await pedir(ruta)).html;
     comprobar(JSON.stringify(menu(html)) === JSON.stringify(menuPortada) && JSON.stringify(etiquetasMenu(html)) === JSON.stringify(etiquetasMenu((await pedir("/")).html)), `${ruta}: el menú de arriba es idéntico al de la portada (mismas opciones, mismo orden)`, `${menu(html).join(" ")} · ${etiquetasMenu(html).join("/")}`);
@@ -193,7 +193,7 @@ async function main() {
   const portadaHtml = (await pedir("/")).html;
   comprobar(/class="btn-idioma" href="\/en\/inicio"[^>]*aria-label="Cambiar a inglés">EN</.test(portadaHtml) && /class="btn-icono btn-favoritos" href="\/favoritos"/.test(portadaHtml) && /class="btn-icono btn-usuario" id="btn-usuario" href="\/yo"/.test(portadaHtml), "portada: EN lleva a la guía en inglés, el corazón a /favoritos y la cuenta a /yo");
   const menuEn = menu((await pedir("/en/inicio")).html);
-  comprobar(menuEn.length === 8 && menuEn.every((h, i) => h === (menuPortada[i] === "/" ? "/" : `/en${menuPortada[i]}`)), "/en/inicio: el menú tiene las mismas 8 opciones, con su ruta en inglés", menuEn.join(" "));
+  comprobar(menuEn.length === 9 && menuEn.every((h, i) => h === (menuPortada[i] === "/" ? "/" : `/en${menuPortada[i]}`)), "/en/inicio: el menú tiene las mismas 9 opciones, con su ruta en inglés", menuEn.join(" "));
   const marcado = async (ruta) => [...((await pedir(ruta)).html.match(/<ul class="distritos">[\s\S]*?<\/ul>/)[0]).matchAll(/<a href="([^"]+)" aria-current="[^"]+">/g)].map((m) => m[1]);
   comprobar((await marcado("/inicio")).join() === "/inicio" && (await marcado("/playas")).join() === "/playas" && (await marcado("/lugar/el-paraiso")).join() === "/inicio" && (await marcado("/rincones-naturales/rios")).join() === "/rincones-naturales" && (await marcado("/privacidad")).length === 0, "el menú marca la opción de la página en la que estás (y ninguna en privacidad)");
   comprobar((await pedir("/inicio")).html.includes('class="btn-icono btn-favoritos" href="/favoritos"') && (await pedir("/inicio")).html.includes('id="btn-usuario" href="/yo"'), "Favoritos y Ajustes siguen a un clic: iconos de corazón y de cuenta");
@@ -275,7 +275,9 @@ async function main() {
   const indexables = datos.lugares.filter((x) => lugarIndexable(x, "es")).length;
   comprobar(cortas.length === 0, `las ${indexables} fichas indexables tienen al menos ${MIN_PALABRAS_LUGAR} palabras (la más corta: ${minimo.slug}, ${minimo.n})`, cortas.slice(0, 8).join(", "));
   const ficha = (await pedir("/lugar/el-paraiso")).html;
-  comprobar(["Cómo llegar", "Mejor época para visitarlo", "Consejos para tu visita", "Qué hay cerca", "Más en Armería"].every((s) => ficha.includes(s)), "la ficha trae descripción, cómo llegar, mejor época, consejos, qué hay cerca y enlaces al municipio");
+  // Solo texto propio: lo que aún lleva [VERIFICAR] no se publica, así que Cómo llegar / Mejor época / Consejos
+  // no salen con texto genérico (lib/guia/contenido.js).
+  comprobar(["Sobre El Paraiso", "Distancias", "Qué hay cerca", "Más en Armería"].every((s) => ficha.includes(s)) && !/Mejor época para visitarlo/.test(ficha), "la ficha trae su descripción larga, distancias, qué hay cerca y enlaces al municipio, y no la Mejor época genérica (la de El Paraíso sigue en borrador)")
   comprobar(/href="\/municipios\/armeria"/.test(ficha) && (ficha.match(/href="\/lugar\/[^"]+"/g) || []).length >= 5, "la ficha enlaza al municipio y a otros lugares");
   comprobar(!/guia\.[a-z]+Titulo|lugarguia\./.test(texto(ficha)), "la ficha no muestra claves de texto sin traducir");
 

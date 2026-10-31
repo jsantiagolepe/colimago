@@ -8,7 +8,7 @@
   },
   "evento": {
     "titulo": "Suggest an event",
-    "intro": "Do you know about a concert, fair or event that is not in the app? Tell us and we will review it before publishing.",
+    "intro": "Do you know about a concert, fair or event that is not in this guide? Tell us and we will review it before publishing.",
     "nombre": "Event name",
     "nombreEjemplo": "Concert in the garden",
     "fecha": "Date and time",
@@ -19,12 +19,12 @@
   },
   "general": {
     "titulo": "Tell us",
-    "intro": "Your opinion helps us improve Colima Go. What do you think of the app? What is missing?",
+    "intro": "Your opinion helps us improve Colima Go. What do you think of Colima Go? What is missing?",
     "tipo": "What do you want to tell us?",
     "idea": "I have an idea",
     "falta": "Something is missing (place, festival or event)",
     "error": "Something is not working",
-    "opinion": "What I think of the app",
+    "opinion": "What I think of Colima Go",
     "otro": "Something else",
     "calificacion": "How would you rate it? (optional)",
     "calificacionValor": "{n} of {max}",
