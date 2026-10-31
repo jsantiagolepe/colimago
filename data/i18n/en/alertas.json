@@ -1,0 +1,27 @@
+{
+  "alertas": {
+    "title": "Civil protection alerts",
+    "hint": "Rain, hurricanes and other emergencies in Colima.",
+    "franja": "Civil protection alert",
+    "mas": "{count} more",
+    "gravedad": {
+      "informativo": "Information",
+      "precaucion": "Caution",
+      "alerta": "Warning"
+    },
+    "tipo": {
+      "lluvias": "Rain",
+      "huracan": "Hurricane",
+      "otro": "Alert"
+    },
+    "vigenteHasta": "In effect until {fecha}",
+    "fuente": "Source: {nombre}",
+    "verFuente": "See source",
+    "vacioTitulo": "No active alerts",
+    "vacioTexto": "When there is a rain warning, a hurricane or another emergency, it will appear here.",
+    "errorTitulo": "We could not check the alerts",
+    "errorTexto": "Check your connection and try again.",
+    "reintentar": "Try again",
+    "nota": "These alerts are published by the Colima Go team from the source shown. In an emergency, call 911."
+  }
+}

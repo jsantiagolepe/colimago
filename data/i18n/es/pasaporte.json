@@ -1,0 +1,29 @@
+{
+  "passport": {
+    "title": "Pasaporte Colima",
+    "cardSubtitle": "Sella los lugares que visitas",
+    "cardPitch": "Playas, ríos, montañas y más: sella cada lugar cuando llegues y mira cuánto has recorrido de Colima.",
+    "intro": "Sella cada lugar natural o turístico cuando llegues. Tus sellos se guardan en este navegador.",
+    "progress": "{done} de {total} lugares",
+    "categories": {
+      "playas": "Playas",
+      "rios": "Ríos y lagos",
+      "montanas": "Montañas",
+      "cultura": "Cultura y patrimonio",
+      "parques": "Parques y rutas",
+      "balnearios": "Balnearios"
+    },
+    "stampHere": "Sellar donde estoy",
+    "stamp": "Sellar mi pasaporte",
+    "hint": "Cuando estés aquí, sella tu pasaporte. Te pediremos tu ubicación solo en ese momento y no la guardamos.",
+    "stamped": "Sellado el {date}",
+    "justStamped": "¡Listo! Sellaste {name}.",
+    "tooFar": "Estás a unos {meters} m de este lugar. Acércate para sellarlo.",
+    "nothingNear": "No estás a menos de {meters} m de un lugar por sellar.",
+    "denied": "Sin permiso de ubicación no podemos sellar. Actívalo en la configuración del sitio de tu navegador.",
+    "locationError": "No pudimos leer tu ubicación. Inténtalo de nuevo.",
+    "open": "Ver mi pasaporte",
+    "mine": "Mis sellos",
+    "empty": "Todavía no tienes sellos. Cuando llegues a un lugar, toca “Sellar donde estoy”."
+  }
+}

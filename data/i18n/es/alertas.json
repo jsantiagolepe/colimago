@@ -1,0 +1,27 @@
+{
+  "alertas": {
+    "title": "Avisos de protección civil",
+    "hint": "Lluvias, huracanes y otras emergencias en Colima.",
+    "franja": "Aviso de protección civil",
+    "mas": "{count} más",
+    "gravedad": {
+      "informativo": "Informativo",
+      "precaucion": "Precaución",
+      "alerta": "Alerta"
+    },
+    "tipo": {
+      "lluvias": "Lluvias",
+      "huracan": "Huracán",
+      "otro": "Aviso"
+    },
+    "vigenteHasta": "Vigente hasta {fecha}",
+    "fuente": "Fuente: {nombre}",
+    "verFuente": "Ver fuente",
+    "vacioTitulo": "No hay avisos vigentes",
+    "vacioTexto": "Cuando haya una alerta de lluvias, un huracán u otra emergencia, aparecerá aquí.",
+    "errorTitulo": "No pudimos revisar los avisos",
+    "errorTexto": "Revisa tu conexión e inténtalo de nuevo.",
+    "reintentar": "Reintentar",
+    "nota": "Estos avisos los publica el equipo de Colima Go tomándolos de la fuente que se indica. En una emergencia, llama al 911."
+  }
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "id": "sopitos",
+    "tipo": "antojito",
+    "destacado": true,
+    "foto": "/img/gastronomia/sopitos01",
+    "lugares": []
+  },
+  {
+    "id": "tatemado",
+    "tipo": "platillo",
+    "destacado": false,
+    "foto": null,
+    "lugares": [
+      "mercado-alvaro-obregon"
+    ]
+  },
+  {
+    "id": "ceviche",
+    "tipo": "platillo",
+    "destacado": false,
+    "foto": null,
+    "lugares": [
+      "malecon-de-manzanillo-paseo-del-espiritu-santo",
+      "mercado-municipal-5-de-mayo"
+    ]
+  },
+  {
+    "id": "tuba",
+    "tipo": "bebida",
+    "destacado": false,
+    "foto": "/img/gastronomia/tuba01",
+    "lugares": [
+      "tianguis-de-las-pulgas-domingos-feria-de-colima"
+    ]
+  },
+  {
+    "id": "tejuino",
+    "tipo": "bebida",
+    "destacado": false,
+    "foto": "/img/gastronomia/tejuino01",
+    "lugares": [
+      "tianguis-de-las-pulgas-domingos-feria-de-colima",
+      "tianguis-navideno-de-villa-de-alvarez"
+    ]
+  },
+  {
+    "id": "ponche",
+    "tipo": "bebida",
+    "destacado": false,
+    "foto": null,
+    "lugares": [
+      "tianguis-artesanal-los-domingos-vamos-a-comala-portales-de-la-presidencia"
+    ]
+  },
+  {
+    "id": "cocada",
+    "tipo": "postre",
+    "destacado": false,
+    "foto": "/img/gastronomia/cocada01",
+    "lugares": []
+  }
+]

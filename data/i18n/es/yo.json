@@ -1,0 +1,23 @@
+{
+  "me": {
+    "tab": "Yo",
+    "title": "Yo",
+    "settings": "Ajustes",
+    "seeAll": "Ver todas",
+    "passportHint": "Toca para ver tus sellos y sellar donde estás"
+  },
+  "homeCards": {
+    "fiestas": "Fiestas patronales y ferias, mes por mes",
+    "rincones": "Ríos, lagunas, montañas y parques",
+    "playas": "Mar y arena en la costa de Colima",
+    "municipios": "Los diez, del mar al volcán",
+    "tianguis": "Qué día y dónde se pone cada uno",
+    "pasaporte": "Sella los lugares que visitas",
+    "gastronomia": "Platillos y bebidas típicas"
+  },
+  "municipalitiesMap": {
+    "title": "Mapa de Municipios",
+    "cardHint": "Los diez municipios, del mar al volcán",
+    "intro": "Toca un municipio para ver su ficha."
+  }
+}

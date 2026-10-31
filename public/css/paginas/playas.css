@@ -3,7 +3,7 @@
    es solo texto y manda la foto grande; en móvil cada fila lleva su miniatura. */
 
 .playas { padding-bottom: 40px; }
-.playas-contador { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; color: var(--acento-texto); font-variant-numeric: tabular-nums; margin-top: 12px; }
+.playas-contador { font-family: var(--fuente); font-weight: 600; font-size: 17px; color: var(--acento-texto); font-variant-numeric: tabular-nums; margin-top: 12px; }
 
 .playas-rejilla { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 48px; align-items: start; padding-bottom: 40px; }
 .playas-foto { position: sticky; top: calc(var(--barra-alto) + 24px); margin: 0; }
@@ -27,8 +27,8 @@
   display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 20px 4px 20px 0; text-decoration: none; color: inherit;
 }
 .playa-miniatura { display: none; }
-.playa-nombre { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.05; letter-spacing: .01em; transition: color .2s; overflow-wrap: anywhere; }
-.playa-muni { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; color: var(--tinta-tenue); align-self: center; text-align: right; }
+.playa-nombre { font-family: var(--fuente); font-weight: 700; font-size: clamp(26px, 2.6vw, 34px); line-height: 1.05; transition: color .2s; overflow-wrap: anywhere; }
+.playa-muni { font-family: var(--fuente); font-weight: 600; font-size: 14px; color: var(--tinta-tenue); align-self: center; text-align: right; }
 .playa-dato { grid-column: 1 / -1; color: var(--tinta-suave); font-size: 16px; max-width: 34em; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .playa-fila > a:hover .playa-nombre { color: var(--acento-texto); }
 @media (min-width: 861px) {

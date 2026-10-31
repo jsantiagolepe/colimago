@@ -1,0 +1,1354 @@
+{
+  "titulo": "Feria de Todos los Santos",
+  "edicion": 87,
+  "lugarId": "f6fed523b82fcd5da4f19b90",
+  "inicio": "2026-10-30",
+  "fin": "2026-11-16",
+  "color": "#2b9a9c",
+  "firmante": "Indira Vizcaíno Silva",
+  "cargoFirmante": "Gobernadora del Estado de Colima",
+  "bienvenida": "Hay momentos del año que las y los colimenses esperamos con especial entusiasmo, y uno de ellos es, sin duda, la llegada de nuestra Feria de Todos los Santos. Es tiempo de reunirnos con nuestras familias y amistades, de disfrutar nuestras tradiciones y de compartir todo aquello que nos hace sentir orgullosas y orgullosos de ser de Colima.\n\nNuestra Feria es mucho más que una fiesta: es parte de nuestra identidad, un espacio de encuentro entre generaciones y una oportunidad para mostrar todo lo que nuestro estado tiene para ofrecer, como nuestra riqueza cultural, gastronómica y productiva.\n\nEste 2026 hemos preparado una gran variedad de actividades y espectáculos para todas las edades y todos los gustos. Tendremos grandes artistas en el Foro Principal, con presentaciones completamente gratuitas, porque estamos convencidas y convencidos de que la cultura, la diversión y el esparcimiento deben estar al alcance de todas las personas.\n\nSabemos que para muchas familias asistir a un espectáculo de esta calidad representa un gasto difícil de cubrir. Por eso hemos decidido destinar recursos públicos a hacer posibles estas experiencias, porque bienestar también significa tener oportunidades para convivir y construir recuerdos felices.\n\nTambién tendremos novedades en el área de juegos mecánicos, como El Blizzard, una nueva atracción que seguramente despertará muchas emociones. Y los días 10 y 12 de noviembre, las niñas y los niños podrán disfrutar de juegos gratuitos.\n\nDetrás de esta gran fiesta está el trabajo y el talento de muchas personas: artistas, comerciantes, artesanas y artesanos, productores, emprendedores y todas y todos quienes hacen posible que nuestra Feria siga siendo una de las tradiciones más queridas de nuestra Colima.\n\nLes invito a recorrer sus espacios, disfrutar sus espectáculos, conocer sus exposiciones, probar nuestros sabores y, sobre todo, aprovechar estos días para convivir y pasarla bien.\n\nQue esta Feria de Todos los Santos 2026 nos regale grandes momentos, nuevas experiencias y muchos recuerdos felices.\n\n¡Disfrutemos juntas y juntos de nuestra Feria!",
+  "lugares": [
+    {
+      "id": "escenario-principal",
+      "nombre": "Escenario Principal",
+      "logo": "/img/feria-santos/escenario-principal.webp",
+      "estelar": true
+    },
+    {
+      "id": "palenque",
+      "nombre": "Palenque",
+      "logo": "/img/feria-santos/palenque.webp",
+      "estelar": true
+    },
+    {
+      "id": "teatro-pueblo",
+      "nombre": "Teatro del Pueblo",
+      "logo": "/img/feria-santos/teatro-pueblo.webp",
+      "estelar": false
+    },
+    {
+      "id": "plaza-bohemia",
+      "nombre": "Plaza Bohemia",
+      "logo": "/img/feria-santos/bohemia.webp",
+      "estelar": false
+    },
+    {
+      "id": "zona-arbolada",
+      "nombre": "Zona Arbolada",
+      "logo": "/img/feria-santos/zona-arbolada.webp",
+      "estelar": false
+    },
+    {
+      "id": "zona-picnic",
+      "nombre": "Zona Picnic",
+      "logo": "/img/feria-santos/zona-picnic.webp",
+      "estelar": false
+    },
+    {
+      "id": "teatro-caballo",
+      "nombre": "Teatro del Caballo",
+      "logo": "/img/feria-santos/teatro-caballo.webp",
+      "estelar": false
+    },
+    {
+      "id": "lienzo-charro",
+      "nombre": "Lienzo Charro Camino Real",
+      "logo": "/img/feria-santos/lienzo-charro.webp",
+      "estelar": false
+    },
+    {
+      "id": "feria",
+      "nombre": "Toda la Feria",
+      "logo": "/img/feria-santos/feria.webp",
+      "estelar": false
+    }
+  ],
+  "programa": [
+    {
+      "fecha": "2026-10-30",
+      "eventos": [
+        {
+          "hora": "18:00",
+          "lugar": "feria",
+          "nombre": "Inauguración de la edición 87 de la Feria de Todos los Santos Colima 2026"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ballet Folklórico Mitoteliztli de la Universidad de Colima"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupo de Cuerdas Albatros"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ballet Folklórico de la Universidad de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-picnic",
+          "nombre": "Colectivo Zopilote"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-31",
+      "eventos": [
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Velada con DJ Ana Julia"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite Cuauhtémoc"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Gran noche de peludos frisones: ¡Ven a conocerlos!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Melvin: ¡Súbele a la feria!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Cuauhtémoc en escena"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Velada con Lili Hernández"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Dance Project: ¡This is Carnaval!"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-picnic",
+          "nombre": "Colectivo Zopilote"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Enrique Chávez: La gran fiesta"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Melvin: ¡Que siga el baile!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-01",
+      "eventos": [
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Otsido: Noche bohemia"
+        },
+        {
+          "hora": "16:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Rancho Betania: Lo mejor del campo"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite de Villa de Álvarez"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Daniel Barreda: ¡La pista es tuya!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Talento de Villa de Álvarez"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Pequeños grandes jinetes: Talento a caballo"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Velada con Lili Hernández"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "¡Celebra con Mariachi Los 7 Tesoros!"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "¡Conoce el Rancho Las Marías y amigos!"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "escenario-principal",
+          "nombre": "La Feria canta con Yuri Icónica"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-picnic",
+          "nombre": "Grupo Ramé: Una noche para disfrutar"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ballet Folklórico Tzome"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "teatro-caballo",
+          "nombre": "¡Al ritmo del caballo bailador! Exhibición de caballos bailadores de cuadras y ranchos de Colima"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "La Feria baila con DJ Daniel Barreda"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-02",
+      "eventos": [
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Va de Retro en vivo"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Éxitos de Ronny Dreams"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "La Feria baila con DJ Daniel Barreda"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "feria",
+          "nombre": "Dinámicas en zonas: ¡Participa y diviértete!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "¡El show de Lua y Astrid llegó a la Feria!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-caballo",
+          "nombre": "¡Acércate a los caballos con Hermanas Vargas!"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Concurso de catrinas: ¡Que viva la tradición!"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ballet Folklórico Villa de Álvarez A.C.: De los volcanes al mar"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "¡Aplaude al talento del SNT 6!"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "escenario-principal",
+          "nombre": "El Gran Silencio"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ramiro Martínez \"Recordando a los grandes\""
+        },
+        {
+          "hora": "22:00",
+          "lugar": "palenque",
+          "nombre": "Banda La Arrolladora"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-03",
+      "eventos": [
+        {
+          "hora": "15:30",
+          "lugar": "teatro-caballo",
+          "nombre": "¡Primer concurso de habilidades mulares!"
+        },
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "DJYO: Una noche con estilo"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Koneme Mijtotiyani: Mosaico de mi tierra"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Daniel Barreda: ¡La pista es tuya!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "CBTIS 157 presenta: Ballet Folklórico Cambi"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Rodeo mixto 2026: ¡Amarre de chiva con Hermanas Vargas!"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupo Piel Canela, la especia de la noche"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Seguridad Social presume talento: Tecomán y Griselda Álvarez"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Noche de mulas: ¡Paso firme y mucho show!"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "¿Listos para el zapateo? Colima Ballet Folklórico"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-04",
+      "eventos": [
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Cherr Terries: ¡Ven a vivir el show!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Daniel Barreda: ¡La pista es tuya!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Casa de Día ISSSTE: ¡Talento con experiencia!"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de la Escuela de Talentos"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Compañía Juvenil de Danza del H. Ayuntamiento de Colima"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Presentación de cuadras o ranchos"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Talentos de San Sebastián: Noche regional mexicano"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-05",
+      "eventos": [
+        {
+          "hora": "14:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Comida de cuadras: Andariegos"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "¡Arranca el Convite Colima!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de Colima"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Rodeo mixto 2026: ¡Amarre de chiva con Hermanas Vargas!"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Danza Mía: Estudio de movimiento"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Presentación de cuadras: Andariegos"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Banda de rock con Zentauro: Música para el alma"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-06",
+      "eventos": [
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Jackson: Música en vivo"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "feria",
+          "nombre": "Dinámicas en zonas: ¡Participa y diviértete!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Pista abierta con DJ Wiken"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Jazz Connection Compañía: Todo un espectáculo"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Rodeo mixto 2026: Carrera de barriles"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Los Uribe: Serenata para ti"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Velada con Lili Hernández"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Academia New Steps: ¡A moverse!"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Presentación de cuadras o ranchos"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-picnic",
+          "nombre": "Grupo Ramé: Una noche para disfrutar"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "César Eduardo: Versos de media noche"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica"
+        },
+        {
+          "hora": "22:00",
+          "lugar": "palenque",
+          "nombre": "Julión Álvarez y su Norteño Banda"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Pista abierta con DJ Wiken"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-07",
+      "eventos": [
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "¡Súmate a Bohemia con Dudelión!"
+        },
+        {
+          "hora": "16:00",
+          "lugar": "lienzo-charro",
+          "nombre": "Concurso caballo bailador"
+        },
+        {
+          "hora": "16:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Rodeotlón: Hermanas Vargas"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite Comala"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "feria",
+          "nombre": "Dinámicas en zonas: ¡Participa y diviértete!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Pista abierta con DJ Wiken"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Melvin: ¡Que siga el baile!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de Comala"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Academia: Angels All Star"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Velada con Lili Hernández"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ballet Folklórico Itzae"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-picnic",
+          "nombre": "Grupo Ramé: Una noche para disfrutar"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Compañía de Teatro Interdisciplinaria Código de Barras"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupo de danza Folklor y Sentimiento"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "22:00",
+          "lugar": "palenque",
+          "nombre": "Julión Álvarez y su Norteño Banda"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Pista abierta con DJ Wiken"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Melvin: ¡Que siga el baile!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-08",
+      "eventos": [
+        {
+          "hora": "12:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Puerco encebado: ¡Atrápalo si puedes!"
+        },
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Vianey Dosg en vivo"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite Ixtlahuacán"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Pista abierta con DJ Wiken"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de Ixtlahuacán"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Final rodeo mixto: Hermanas Vargas"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "feria",
+          "nombre": "Dinámicas en zonas: ¡Participa y diviértete!"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Lili Hernández sube al escenario"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Un sueño llamado ballet"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Presentación de cuadras o ranchos"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Colectivo Zopilote"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "escenario-principal",
+          "nombre": "Bronco"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "I Love Salsa: Ritmos sin fronteras"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Pista abierta con DJ Wiken"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-09",
+      "eventos": [
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "DJ Gletzzi Gletzzi en vivo"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ballet inclusivo Amor y Esperanza"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Pista abierta con DJ Wiken"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "feria",
+          "nombre": "Dinámicas en zonas: ¡Participa y diviértete!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Daniel Barreda"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Lani Nani: Del cempasúchil al paraíso polinesio"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-caballo",
+          "nombre": "¡Aprende a montar con Hermanas Vargas! Gratis y cupo limitado"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "KPop Showcase: Seoul Academy"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Banda Sinfónica Infantil y Juvenil de la Subsecretaría de Cultura"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Asociación de Autores, Compositores e Intérpretes"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-10",
+      "eventos": [
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Daniel Barreda: ¡La pista es tuya!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "STK DC: Renacer... un nuevo comienzo, el mismo sueño"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de la Sección 39"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Dansilla: Movimiento continuo"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Presentación de Cuadra JA"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Te Ori Tiare: Entre flores y eternidad"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "escenario-principal",
+          "nombre": "Mix Kids: El gran show"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-11",
+      "eventos": [
+        {
+          "hora": "12:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Comida Día del Ganadero"
+        },
+        {
+          "hora": "17:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Iván Chávez: Tarde de oro y orgullo colimense"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Bastoneras y pomponeras de Villa de Álvarez"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupo de danza Alma Huasteca Manzanillo"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "CEDART \"Juan Rulfo\": La fiesta Xantolos, el alma de los muertos"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ballet Jamal Danzas Árabes: Fantasías orientales"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-12",
+      "eventos": [
+        {
+          "hora": "14:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Plática de nutrición para propietarios y arrendadores, impartida por Royal Horse"
+        },
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "DJ Miktlan en vivo"
+        },
+        {
+          "hora": "16:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Primera gran subasta estatal equina"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite Minatitlán"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "¡Todos a la pista con DJ Richard!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de Minatitlán"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de los CAS del DIF Estatal Colima"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Exhibición de cuadras"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Instituto de Investigación y Difusión de la Danza Mexicana A.C."
+        },
+        {
+          "hora": "22:00",
+          "lugar": "palenque",
+          "nombre": "Función de lucha libre del CMLL"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-13",
+      "eventos": [
+        {
+          "hora": "15:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Concurso morfológico de hembras españolas"
+        },
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "DJ Camux: ¡Dale volumen a la Feria!"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite Tecomán"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Melvin: ¡Que siga el baile!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de Tecomán"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Noche de mujeres y caballos: Sueño a la mexicana"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "feria",
+          "nombre": "Dinámicas en zonas: ¡Participa y diviértete!"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Lili Hernández sube al escenario"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Academia Yazar: Rostros del alma"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-picnic",
+          "nombre": "Colectivo Zopilote"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Banda Sinfónica del Gobierno del Estado"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "escenario-principal",
+          "nombre": "Banda El Recodo"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "22:00",
+          "lugar": "palenque",
+          "nombre": "Banda MS"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Melvin: ¡Que siga el baile!"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-14",
+      "eventos": [
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Laylattice en vivo"
+        },
+        {
+          "hora": "16:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Concurso morfológico de machos PRE"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite Armería"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Acme sube el ritmo"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Melvin: ¡Que siga el baile!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de Armería"
+        },
+        {
+          "hora": "19:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "Lili Hernández sube al escenario"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Ritmos Latinos ECO: Ritmos sin fronteras"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-caballo",
+          "nombre": "Parranda de patrones"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-picnic",
+          "nombre": "Grupo Ramé: Una noche para disfrutar"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Taller de iniciación a la danza clásica Isadora Duncan"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "escenario-principal",
+          "nombre": "Ricardo Montaner"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "22:00",
+          "lugar": "palenque",
+          "nombre": "Yuridia"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Acme sube el ritmo"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Melvin: ¡Que siga el baile!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-15",
+      "eventos": [
+        {
+          "hora": "16:00",
+          "lugar": "plaza-bohemia",
+          "nombre": "DJ Volbinho"
+        },
+        {
+          "hora": "17:00",
+          "lugar": "teatro-caballo",
+          "nombre": "Exhibición de potros (potras) montados y bailadores, con participación de AMCCI (Asociación Mexicana de Criadores del Caballo Iberoamericano)"
+        },
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite Coquimatlán"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Acme sube el ritmo"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de Coquimatlán"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Alebrijes, Estudio de Arte: Mosaicos en movimiento. El arte de unir historias"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Folkloristas Unidos de Colima: X aniversario en la Feria"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-arbolada",
+          "nombre": "Chilakiles de Colima"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "zona-picnic",
+          "nombre": "Grupo Ramé: Una noche para disfrutar"
+        },
+        {
+          "hora": "21:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "22:00",
+          "lugar": "palenque",
+          "nombre": "Herencia de Grandes"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Acme sube el ritmo"
+        },
+        {
+          "hora": "00:00",
+          "lugar": "zona-picnic",
+          "nombre": "Baila con DJ Betos: ¡Aquí no se sienta nadie!"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-11-16",
+      "eventos": [
+        {
+          "hora": "17:30",
+          "lugar": "teatro-pueblo",
+          "nombre": "Convite Manzanillo"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-arbolada",
+          "nombre": "DJ Acme sube el ritmo"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "zona-picnic",
+          "nombre": "DJ Melvin: ¡Que siga el baile!"
+        },
+        {
+          "hora": "18:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Grupos artísticos de Manzanillo"
+        },
+        {
+          "hora": "20:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Sonata Academia de Música y Arte: Recuerdos del ayer"
+        },
+        {
+          "hora": "20:30",
+          "lugar": "plaza-bohemia",
+          "nombre": "Grupo Acústica: Sonido con alma"
+        },
+        {
+          "hora": "21:00",
+          "lugar": "teatro-pueblo",
+          "nombre": "Lesly Sofía: La voz del corazón"
+        }
+      ]
+    }
+  ]
+}

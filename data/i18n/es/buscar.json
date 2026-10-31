@@ -1,0 +1,46 @@
+{
+  "search": {
+    "open": "Buscar",
+    "placeholder": "Busca lugares, eventos, la feria y comida",
+    "clear": "Borrar búsqueda",
+    "filtersLabel": "Filtros",
+    "filter": {
+      "esteSemana": "Esta semana",
+      "abiertoHoy": "Abierto hoy",
+      "mascotas": "Pet-friendly"
+    },
+    "tab": {
+      "all": "Todo",
+      "lugar": "Lugares",
+      "evento": "Eventos",
+      "feria": "Feria",
+      "fiesta": "Fiestas",
+      "platillo": "Gastronomía"
+    },
+    "hintTitle": "¿Qué quieres encontrar?",
+    "hint": "Escribe el nombre de un lugar, un evento, un artista de la feria, una fiesta o un platillo, o elige un filtro.",
+    "emptyTitle": "No encontramos nada",
+    "emptyHint": "Prueba con otra palabra o quita algún filtro.",
+    "openToday": "Abierto hoy",
+    "today": "Hoy",
+    "thisWeek": "Esta semana",
+    "kind": {
+      "10": "Río",
+      "11": "Playa",
+      "12": "Laguna",
+      "13": "Montaña",
+      "14": "Zona arqueológica",
+      "15": "Parque",
+      "16": "Patrimonio",
+      "17": "Balneario",
+      "18": "Ruta",
+      "20": "Hotel",
+      "21": "Restaurante",
+      "30": "Tianguis",
+      "31": "Mercado",
+      "event": "Evento",
+      "feria": "Feria",
+      "festival": "Fiesta del pueblo"
+    }
+  }
+}

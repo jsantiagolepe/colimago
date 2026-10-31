@@ -29,7 +29,9 @@
     "explorar": "Explorar",
     "calendario": "Calendario",
     "favoritos": "Favoritos",
-    "ajustes": "Ajustes"
+    "ajustes": "Ajustes",
+    "comer": "Comer y dormir",
+    "yo": "Yo"
   },
   "cambiarIdioma": "Cambiar a inglés",
   "temaOscuro": "Encender la noche (tema oscuro)",
@@ -54,5 +56,6 @@
   "verMenos": "Ver menos",
   "volver": "Volver",
   "sugerir": "Sugerir",
-  "ver": "Ver"
+  "ver": "Ver",
+  "buscar": "Buscar"
 }

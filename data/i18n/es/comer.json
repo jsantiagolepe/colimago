@@ -1,0 +1,22 @@
+{
+  "eat": {
+    "tab": "Comer y dormir",
+    "title": "Comer y dormir",
+    "sectionEat": "Comer",
+    "sectionSleep": "Dormir",
+    "emptyEatTitle": "Aún no hay restaurantes",
+    "emptySleepTitle": "Aún no hay alojamientos",
+    "emptyHint": "Estamos sumando negocios. Vuelve pronto.",
+    "call": "Llamar a {name}",
+    "kindEat": "Restaurante",
+    "kindSleep": "Hotel",
+    "ctaTitle": "¿Tienes un negocio?",
+    "ctaText": "Anúnciate aquí y llega a quien visita Colima.",
+    "ctaButton": "Quiero anunciarme",
+    "contactTitle": "Contacto",
+    "contactCall": "Llamar",
+    "contactWhatsApp": "WhatsApp",
+    "contactWeb": "Sitio web",
+    "address": "Dirección"
+  }
+}

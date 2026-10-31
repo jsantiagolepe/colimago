@@ -16,7 +16,7 @@
 /* Cabeza de la categoría */
 .rincones-cabeza { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 18px; }
 .rincones-cabeza .tablero-titulo { font-size: clamp(32px, 3.4vw, 46px); }
-.rincones-contador { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; color: var(--acento-texto); font-variant-numeric: tabular-nums; }
+.rincones-contador { font-family: var(--fuente); font-weight: 600; font-size: 17px; color: var(--acento-texto); font-variant-numeric: tabular-nums; }
 .rincones-intro { margin-top: 10px; margin-bottom: 36px; max-width: 62ch; color: var(--tinta-suave); font-size: 18px; }
 
 @media (max-width: 520px) {

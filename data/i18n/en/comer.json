@@ -1,0 +1,22 @@
+{
+  "eat": {
+    "tab": "Eat & stay",
+    "title": "Eat & stay",
+    "sectionEat": "Eat",
+    "sectionSleep": "Stay",
+    "emptyEatTitle": "No restaurants yet",
+    "emptySleepTitle": "No places to stay yet",
+    "emptyHint": "We are adding businesses. Check back soon.",
+    "call": "Call {name}",
+    "kindEat": "Restaurant",
+    "kindSleep": "Hotel",
+    "ctaTitle": "Own a business?",
+    "ctaText": "Advertise here and reach people visiting Colima.",
+    "ctaButton": "I want to advertise",
+    "contactTitle": "Contact",
+    "contactCall": "Call",
+    "contactWhatsApp": "WhatsApp",
+    "contactWeb": "Website",
+    "address": "Address"
+  }
+}

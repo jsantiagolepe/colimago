@@ -195,9 +195,21 @@ function evaluarTS(fuente, retorno, nombre) {
 
 // ─── Medidas de imágenes (sin dependencias) ─────────────────────────────────
 
-function dimensionesJPEG(ruta) {
+// La app guarda sus imágenes en JPEG, PNG o WebP (VP8, VP8L o VP8X)
+function dimensionesImagen(ruta) {
   const buf = fs.readFileSync(ruta);
-  if (buf[0] !== 0xff || buf[1] !== 0xd8) fail(`${ruta} no es un JPEG`);
+  if (buf.toString("ascii", 0, 4) === "RIFF" && buf.toString("ascii", 8, 12) === "WEBP") {
+    const tipo = buf.toString("ascii", 12, 16);
+    if (tipo === "VP8X") return { ancho: 1 + buf.readUIntLE(24, 3), alto: 1 + buf.readUIntLE(27, 3) };
+    if (tipo === "VP8L") {
+      const bits = buf.readUInt32LE(21);
+      return { ancho: 1 + (bits & 0x3fff), alto: 1 + ((bits >> 14) & 0x3fff) };
+    }
+    if (tipo === "VP8 ") return { ancho: buf.readUInt16LE(26) & 0x3fff, alto: buf.readUInt16LE(28) & 0x3fff };
+    return fail(`${ruta} es un WebP de tipo desconocido`);
+  }
+  if (buf.toString("ascii", 1, 4) === "PNG") return { ancho: buf.readUInt32BE(16), alto: buf.readUInt32BE(20) };
+  if (buf[0] !== 0xff || buf[1] !== 0xd8) fail(`${ruta} no es JPEG, PNG ni WebP`);
   let i = 2;
   while (i + 9 < buf.length) {
     if (buf[i] !== 0xff) {
@@ -393,7 +405,7 @@ const agregarImagen = (entrada) => plan.push(entrada);
 function construirMunicipios(mapper, es, en) {
   const html = fs.readFileSync(enRepo("public/index.html"), "utf8");
   const apodosEs = {};
-  for (const m of html.matchAll(/<div class="ficha-texto" data-muni="(\w+)"[^>]*>\s*<h3>[^<]*<\/h3>\s*<p class="apodo">([^<]+)<\/p>/g)) {
+  for (const m of html.matchAll(/<div class="ficha-texto" data-muni="(\w+)"[^>]*>\s*<h3>(?:<a [^>]*>)?[^<]*(?:<\/a>)?<\/h3>\s*<p class="apodo">([^<]+)<\/p>/g)) {
     apodosEs[m[1]] = m[2].trim();
   }
 
@@ -434,14 +446,15 @@ function leerMapaFeria() {
     posiciones[Number(m[1])] = { x: Number(m[2]), y: Number(m[3]), lado: m[4] };
   }
   const volcan = /const VOLCAN: Punto = \{x: ([\d.]+), y: ([\d.]+)\}/.exec(fuente);
+  // El estilo simple de la app quitó los cables: sin bloque CABLES, la lista queda vacía
   const bloqueCables = /const CABLES: \[number, number\]\[\] = \[([\s\S]*?)\n\];/.exec(fuente);
   const proporcion = /const PROPORCION = ([\d.]+);/.exec(fuente);
   const costa = /Costa del Pacifico[\s\S]*?d=\{`([^`]+)`\}/.exec(fuente);
   const curvatura = /\+ largo \* ([\d.]+)\}/.exec(fuente);
-  if (Object.keys(posiciones).length !== 10 || !volcan || !bloqueCables || !proporcion || !costa || !curvatura) {
-    fail("No pude leer MapaFeria.tsx (posiciones, volcán, cables, proporción, costa o curvatura)");
+  if (Object.keys(posiciones).length !== 10 || !volcan || !proporcion || !costa) {
+    fail("No pude leer MapaFeria.tsx (posiciones, volcán, proporción o costa)");
   }
-  const cables = [...bloqueCables[1].matchAll(/\[(\d+),\s*(\d+)\]/g)].map((m) => [Number(m[1]), Number(m[2])]);
+  const cables = bloqueCables ? [...bloqueCables[1].matchAll(/\[(\d+),\s*(\d+)\]/g)].map((m) => [Number(m[1]), Number(m[2])]) : [];
   // `M0,${alto * 0.6} C${ancho * 0.06},${alto * 0.73} …` → fracciones del ancho (x) y del alto (y)
   const trazo = costa[1].replace(/\$\{(?:ancho|alto) \* ([\d.]+)\}/g, "$1");
   if (/[${}]/.test(trazo)) fail(`No pude normalizar la costa de MapaFeria.tsx: ${trazo}`);
@@ -452,7 +465,7 @@ function leerMapaFeria() {
       cables,
       costa: trazo,
       aspecto: Number(proporcion[1]),
-      curvatura: Number(curvatura[1]),
+      curvatura: curvatura ? Number(curvatura[1]) : 0,
     },
   };
 }
@@ -497,7 +510,7 @@ function construirLugares(mapper, municipios) {
       const ilustracion = sinFoto.has(l.imageKey);
       const cred = creditos[l.imageKey];
       if (ilustracion && cred) fail(`${l.imageKey} es ilustración y tiene crédito`);
-      const dim = dimensionesJPEG(enOrigen(rutaApp));
+      const dim = dimensionesImagen(enOrigen(rutaApp));
       imagen = {
         clave: l.imageKey,
         tipo: ilustracion ? "ilustracion" : "foto",
@@ -845,7 +858,7 @@ function construirI18n(es, en, fiestas) {
 
 function planearCategorias(mapper) {
   for (const c of CATEGORIAS) {
-    const origen = `assets/images/${c.carpeta}/${c.carpeta}.jpg`;
+    const origen = `assets/images/${c.carpeta}/${c.carpeta}.webp`;
     if (!fs.existsSync(enOrigen(origen))) fail(`No existe ${origen}`);
     agregarImagen({ origen, salida: `c/${c.slug}`, cuadrado: 160, calidad: Q_MINIATURA, nota: `Square 160x160 center-cropped thumbnail of the "${c.slug}" category tab.` });
   }
@@ -913,7 +926,7 @@ function convertirImagenes() {
     if (vigente) {
       resumen.omitidas += 1;
     } else {
-      const dim = dimensionesJPEG(origen);
+      const dim = dimensionesImagen(origen);
       const opciones = ["-quiet", "-m", "6", "-mt", "-q", String(t.e.calidad)];
       if (t.cuadrado) {
         const lado = Math.min(dim.ancho, dim.alto);

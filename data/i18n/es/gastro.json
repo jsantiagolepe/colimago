@@ -1,0 +1,56 @@
+{
+  "gastronomy": "Gastronomía",
+  "gastronomySubtitle": "Sabores de Colima",
+  "gastronomyPitch": "Platillos y bebidas típicas, y dónde probarlos.",
+  "gastronomyFeatured": "Platillo destacado",
+  "gastronomyTry": "Para probar",
+  "gastronomyCount": "{n} opciones",
+  "gastronomyPlacesOne": "1 lugar",
+  "gastronomyPlacesMany": "{n} lugares",
+  "gastronomyWhere": "Dónde probarlo",
+  "gastronomyWhereEmpty": "Aún no tenemos lugares para este platillo. Pronto los agregamos.",
+  "gastronomyEmpty": "No hay platillos en esta categoría.",
+  "gastronomyMissing": "No encontramos este platillo.",
+  "dishFilter": {
+    "platillo": "Platillos",
+    "antojito": "Antojitos",
+    "bebida": "Bebidas",
+    "postre": "Postres"
+  },
+  "dishType": {
+    "platillo": "Platillo",
+    "antojito": "Antojito",
+    "bebida": "Bebida",
+    "postre": "Postre"
+  },
+  "dishes": {
+    "sopitos": {
+      "name": "Sopitos",
+      "desc": "Sopes pequeños de maíz, fritos, con carne molida, col, cebolla, rábano y queso de Comala, con salsa picante. El estilo de Villa de Álvarez se asocia con doña Minga, que los vendió por décadas en la plaza. Se encuentran en cenadurías de todo el estado."
+    },
+    "tatemado": {
+      "name": "Tatemado",
+      "desc": "Carne de cerdo en un adobo de chile guajillo y pasilla con vinagre de tuba y especias. Su nombre viene de que los ingredientes del adobo se doran antes de licuarse. Es uno de los platillos más emblemáticos de Colima."
+    },
+    "ceviche": {
+      "name": "Ceviche de pescado",
+      "desc": "Pescado fresco curtido en limón, típico de la costa. Se sirve en tostada o en copa, y es de lo más fácil de encontrar junto al mar."
+    },
+    "tuba": {
+      "name": "Tuba",
+      "desc": "Bebida de la savia de la palma de coco. Se toma fresca, con cacahuates y trocitos de fruta, y también fermentada. Su vinagre es la base del adobo del tatemado."
+    },
+    "tejuino": {
+      "name": "Tejuino",
+      "desc": "Bebida fría de maíz fermentado, con muy poco alcohol (no más de 2 %). Se toma bien fría y se vende en tianguis y puestos de la calle."
+    },
+    "ponche": {
+      "name": "Ponche de granada",
+      "desc": "Ponche artesanal: una bebida suave a base de fruta, aquí de granada, con alcohol de caña o de tuxca. Se vende en los tianguis artesanales de Comala."
+    },
+    "cocada": {
+      "name": "Cocada",
+      "desc": "Dulce de coco, tradicional en plazas y portales de México. Se vende en carritos y puestos, en barras de varios sabores."
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "vivo": {
+    "title": "Cómo está ahora",
+    "empty": "Nadie ha reportado todavía. Cuéntanos cómo está.",
+    "report": "Reportar cómo está",
+    "change": "Cambiar mi reporte",
+    "yours": "Tu reporte",
+    "hiddenOwn": "Tu reporte está oculto por la moderación. Solo tú lo ves.",
+    "near": "Cerca del lugar",
+    "more": "{count} más",
+    "ago": {
+      "now": "Ahora",
+      "min": "Hace {count} min",
+      "hour": "Hace {count} h"
+    },
+    "tipos": {
+      "mucha_gente": "Mucha gente",
+      "poca_gente": "Poca gente",
+      "hay_sombra_agua": "Hay sombra y agua",
+      "rio_crecido": "Río crecido",
+      "oleaje_fuerte": "Oleaje fuerte",
+      "cerrado": "Cerrado"
+    },
+    "writeTitle": "¿Cómo está?",
+    "pickType": "Elige qué pasa",
+    "pickError": "Elige qué pasa.",
+    "duration": "Se muestra durante {hours} h",
+    "notePlaceholder": "Una nota corta (opcional)",
+    "shareLocation": "Marcar que estoy aquí",
+    "shareLocationHint": "Usa tu ubicación una sola vez para comprobar que estás cerca. No se guarda.",
+    "locSearching": "Buscando tu ubicación…",
+    "locReady": "Listo: saldrá \"Cerca del lugar\" si estás a menos de 1 km.",
+    "locDenied": "No pudimos usar tu ubicación; el reporte saldrá sin la marca \"Cerca del lugar\".",
+    "publish": "Publicar",
+    "update": "Actualizar",
+    "remove": "Quitar mi reporte",
+    "published": "Reporte publicado",
+    "removed": "Reporte retirado",
+    "publishError": "No pudimos publicar tu reporte. Inténtalo de nuevo.",
+    "reported": "Gracias. Revisaremos el reporte.",
+    "reportedHidden": "Gracias. El reporte se ocultó mientras lo revisamos.",
+    "reportError": "No pudimos enviar el reporte.",
+    "loginTitle": "Inicia sesión para reportar",
+    "loginText": "Entra con tu cuenta en Ajustes para reportar cómo está un lugar o denunciar un reporte."
+  }
+}

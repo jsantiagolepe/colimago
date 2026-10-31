@@ -1,8 +1,9 @@
 # Guía web de Colima Go (contraparte web de la app)
 
-La app móvil (React Native, repo `ColimagoMovil`) tiene cinco pestañas: Inicio,
-Explorar, Calendario, Favoritos y Ajustes, más las fichas de lugares,
-municipios, fiestas y eventos. La guía web las replica en colimago.mx. La
+La app móvil (React Native, repo `ColimagoMovil`) tiene cinco pestañas: Explorar, Comer y dormir,
+Inicio (al centro), Calendario y Yo, más las fichas de lugares, municipios, fiestas y eventos y las
+pantallas nuevas (Feria de Todos los Santos, Gastronomía, Buscar, Cerca de mí, Mapa, Pasaporte, Mis
+listas, Mis planes). La guía web las replica en colimago.mx. La
 portada (`/`) no cambia; la guía vive en rutas propias.
 
 Sin framework ni build: HTML renderizado en el servidor (Express, plantillas
@@ -23,7 +24,7 @@ el nombre del otro idioma (`/en/privacidad`, `/privacy`) redirige con un 301.
 | `/explorar` | Explorar (feed): eventos + lugares intercalados | backend + local |
 | `/calendario` | Calendario | backend |
 | `/favoritos` | Favoritos | localStorage + cuenta |
-| `/ajustes` | Ajustes | local |
+| `/ajustes` | Ajustes (se llega desde Yo) | local |
 | `/ajustes/cuenta` | Cuenta (eliminar cuenta) | cuenta |
 | `/acerca-de` | Acerca de | local |
 | `/privacidad` | Política de privacidad (AdSense la exige en el propio dominio) | `data/i18n/*/privacidad.json` |
@@ -35,6 +36,14 @@ el nombre del otro idioma (`/en/privacidad`, `/privacy`) redirige con un 301.
 | `/fiestas-del-pueblo` y `/fiestas-del-pueblo/:id` | Fiestas del Pueblo y su hoja | local |
 | `/fiestas-charrotaurinas` | Feria Charrotaurina | local |
 | `/tianguis-y-mercados` | Tianguis y mercados | local |
+| `/feria-de-todos-los-santos` | Feria de Todos los Santos 2026: programa por día, lugar y estelares, y "Al calendario" (.ics) | `data/feria-santos.json` |
+| `/gastronomia` y `/gastronomia/:id` | Gastronomía típica y dónde probarla | `data/gastronomia.json` |
+| `/comer-y-dormir` | Restaurantes y hoteles (datos de ejemplo: `noindex`) | local |
+| `/buscar` | Búsqueda global (lugares, eventos, feria, fiestas, platillos) | `/catalogo-<idioma>.json` |
+| `/cerca-de-mi` | Lugares por distancia (ubicación del navegador, no se envía) | `/catalogo-<idioma>.json` |
+| `/mapa` | Mapa general con pines por categoría (Leaflet + OpenStreetMap) | `/catalogo-<idioma>.json` |
+| `/mapa-de-municipios` | El mapa de los diez municipios (antes vivía en `/inicio`) | local |
+| `/yo`, `/yo/pasaporte`, `/yo/listas`, `/yo/planes` | Yo: Pasaporte, Mis listas y Mis planes, **solo en este navegador** (localStorage) | navegador |
 | `/lugar/:slug` | Detalle de lugar | local + backend (contadores, comentarios) |
 | `/evento/:id` | Detalle de evento / portada | backend |
 
@@ -47,10 +56,10 @@ Categorías de Rincones (`:categoria`): `rios` (10), `playas` (11), `lagunas`
 `/` (la portada, un HTML estático) y `/inicio` (el inicio de la guía) son páginas
 distintas, pero la barra de arriba es la misma en las dos y en toda la guía (es y en):
 
-- **Menú:** La guía · Explorar · Calendario · Playas · Rincones · Fiestas · Municipios.
+- **Menú:** La guía · Explorar · Comer y dormir · Calendario · Playas · Rincones · Fiestas · Municipios.
   Vive en `MENU` de `lib/guia/layout.js`; cada opción se resalta sola según la ruta
   (`prefijos`).
-- **Botones de la derecha, en este orden:** idioma (EN/ES), tema claro/oscuro, favoritos
+- **Botones de la derecha, en este orden:** idioma (EN/ES), tema claro/oscuro, búsqueda, favoritos
   (corazón), cuenta y Descargar. En la portada, EN lleva a `/en/inicio` (no tiene versión
   en inglés propia) y la cuenta muestra la foto si la persona ya entró en la guía (la lee de
   `localStorage`, sin pedirle nada al servidor).
@@ -58,10 +67,10 @@ distintas, pero la barra de arriba es la misma en las dos y en toda la guía (es
 La portada repite la barra a mano en `public/index.html`; `npm run verificar:sitio`
 comprueba que el menú y los botones coincidan. Si se agrega una opción o un botón, hay que
 tocar `layout.js`, la portada, `data/i18n/*/comun.json` y los anchos de `css/guia.css` y de la
-portada (el menú se compacta bajo 1320 px y se oculta bajo 1120 px, igual en las dos).
+portada (el menú se compacta bajo 1440 px y se oculta bajo 1240 px, igual en las dos).
 
 En pantalla chica (≤ 860 px) se ocultan Descargar y el corazón, en las dos, y la guía usa la
-barra de pestañas de abajo (Favoritos, Explorar, Inicio, Calendario, Ajustes). El logo lleva a `/`
+barra de pestañas de abajo (Explorar, Comer y dormir, Inicio, Calendario, Yo). El logo lleva a `/`
 (en inglés, que no tiene portada, a `/en/inicio`) y deja la dirección sin `#`; un enlace viejo con
 `/#inicio` se limpia solo.
 
@@ -168,3 +177,21 @@ public/js/paginas/*.js       interacción propia de cada página
   información y sus alternos, los enlaces del pie, la portada, el sitemap, qué se
   indexa, las 300 palabras por ficha de lugar, los enlaces internos rotos y las
   claves de texto sin traducir. No necesita red (usa el backend falso).
+
+
+## Lo que viene de la app (2026-10-31)
+
+- **Inicio** (`/inicio`) ahora es el de la app: tarjeta de la feria (de 14 días antes a que termine), accesos
+  en tarjetas, Top 10 y la franja de avisos de protección civil (`/g/alertas`).
+- **Fichas de lugar:** botones "Guardar en lista" y "Agregar al plan" (`public/js/mis.js`), "Ahora en la playa"
+  (clima y oleaje, `/g/clima-mar/:id`, solo playas), "Cómo está ahora", Reseñas y "Pregúntale a un local"
+  (`public/js/paginas/lugar-comunidad.js`). Las fichas de municipio llevan también "Pregúntale a un local".
+  Todo eso habla con el backend a través de `lib/guia/api-extra.js` (lectura pública; escribir, borrar y reportar
+  piden sesión con Google). No se devuelve el `_id` de quien escribe, así que la web **no** ofrece bloquear
+  personas (solo reportar), y los reportes en vivo se publican sin ubicación.
+- **Sin equivalente en la web:** "Mis avisos" (push y notificaciones locales) y "Agregar al calendario del
+  teléfono" (la web baja un `.ics`).
+- **Datos:** `scripts/importar-app-movil.js` (catálogo, municipios, fiestas, feria charrotaurina) y
+  `scripts/importar-extras.js` (Feria de Todos los Santos, gastronomía y los textos traducidos de la app, que
+  pasan a `data/i18n/*/<espacio>.json` con `{var}` en vez de `{{var}}`). Las pantallas nuevas leen sus textos de
+  esos espacios y de `guiaapp.json` (propio de la web). Pasa `ns: [...]` en la página para mandarlos al navegador.

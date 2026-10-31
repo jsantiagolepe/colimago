@@ -1,0 +1,26 @@
+{
+  "nearby": {
+    "button": "Near me",
+    "cardHint": "Places by distance",
+    "title": "Near you",
+    "placesOne": "1 place",
+    "places": "{count} places",
+    "radiusLabel": "Search radius",
+    "radius": "{km} km",
+    "summary": "{places} · {km} km",
+    "away": "{municipio} · {distance}",
+    "openToday": "Open today",
+    "loading": "Finding your location…",
+    "deniedTitle": "We need your location",
+    "deniedText": "Without your location we can't sort places by distance. Allow it in your browser's site settings or pick a municipality.",
+    "openSettings": "Open settings",
+    "pickMunicipality": "Pick a municipality",
+    "errorTitle": "We couldn't get your location",
+    "errorText": "Check that your phone's location is on and that you have a signal.",
+    "retry": "Try again",
+    "emptyTitle": "No places nearby",
+    "emptyText": "We found no places in this radius.",
+    "widen": "Show within {km} km",
+    "emptyMaxText": "We found no places near where you are."
+  }
+}

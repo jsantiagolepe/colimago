@@ -11,7 +11,7 @@
 
 /* Migas: navegación, no título */
 .lugar-migas { margin-top: 18px; }
-.lugar-migas ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0 4px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; color: var(--tinta-tenue); }
+.lugar-migas ol { display: flex; flex-wrap: wrap; align-items: center; gap: 0 4px; font-family: var(--fuente); font-weight: 600; font-size: 15px; color: var(--tinta-tenue); }
 .lugar-migas li { display: inline-flex; align-items: center; min-width: 0; }
 .lugar-migas li + li::before { content: '/'; margin-right: 4px; color: var(--cable); }
 .lugar-migas a { display: inline-flex; align-items: center; min-height: 32px; padding: 0 2px; color: var(--tinta-suave); text-decoration: none; }
@@ -43,7 +43,7 @@
 /* ============ Cabeza: nombre, municipio, acciones ============ */
 .lugar-nombre { font-size: clamp(32px, 3.6vw, 48px); line-height: 1.02; overflow-wrap: anywhere; text-wrap: balance; }
 .lugar-muni { margin-top: 10px; }
-.lugar-muni a, .lugar-muni > span { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 17px; letter-spacing: .05em; text-transform: uppercase; color: var(--acento-texto); text-decoration: none; }
+.lugar-muni a, .lugar-muni > span { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-family: var(--fuente); font-weight: 600; font-size: 17px; color: var(--acento-texto); text-decoration: none; }
 .lugar-muni a:hover span { text-decoration: underline; text-underline-offset: 4px; }
 .lugar-muni .ic { width: 20px; height: 20px; }
 .lugar-barra { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 6px 0 26px; padding: 10px 0; border-block: 1px solid var(--linea); min-height: 66px; }
@@ -61,11 +61,11 @@
 .lugar-acciones { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 16px; }
 
 /* Cuándo se pone (tianguis y mercados) */
-.lugar-cuando-linea { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15; letter-spacing: .01em; }
+.lugar-cuando-linea { font-family: var(--fuente); font-weight: 700; font-size: 24px; line-height: 1.15; }
 .lugar-dias { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; max-width: 460px; margin-top: 14px; }
 .lugar-dias li {
   display: grid; place-items: center; height: 40px; padding: 0 4px; border-radius: 999px; border: 1px solid var(--linea); color: var(--tinta-tenue);
-  font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 16px; letter-spacing: .03em; text-transform: uppercase;
+  font-family: var(--fuente); font-weight: 600; font-size: 16px;
 }
 .lugar-dias li.activo { background: var(--tinta); border-color: var(--tinta); color: var(--suelo); }
 .lugar-cuando-nota { margin-top: 12px; color: var(--tinta-suave); font-size: 15.5px; }
@@ -84,7 +84,7 @@
 .lugar-horarios td { color: var(--tinta-suave); text-align: right; }
 .lugar-horarios td[colspan] { text-align: left; }
 .lugar-cerrado { color: var(--tinta-tenue); }
-.lugar-hoy { display: inline-flex; margin-left: 10px; padding: 2px 9px; border-radius: 999px; background: var(--foco); color: var(--sobre-foco); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+.lugar-hoy { display: inline-flex; margin-left: 10px; padding: 2px 9px; border-radius: 999px; background: var(--foco); color: var(--sobre-foco); font-family: var(--fuente); font-weight: 700; font-size: 13px; }
 .lugar-horarios tr.es-hoy th, .lugar-horarios tr.es-hoy td { color: var(--tinta); }
 
 /* Ubicación y mapa bajo demanda */
@@ -108,7 +108,7 @@
 
 /* Avisos: ¿Cambió algo?, ¿Tienes una foto? */
 .lugar-aviso { display: grid; justify-items: start; gap: 10px; margin-top: 40px; padding: 20px 22px 22px; border: 1px solid var(--linea); border-radius: 12px; background: var(--suelo-2); }
-.lugar-aviso h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 26px; line-height: 1.1; letter-spacing: .01em; }
+.lugar-aviso h2 { font-family: var(--fuente); font-weight: 700; font-size: 26px; line-height: 1.1; }
 .lugar-aviso p { color: var(--tinta-suave); max-width: 40em; font-size: 16.5px; }
 .lugar-aviso .btn-pintado, .lugar-aviso .btn-contorno { margin-top: 8px; }
 

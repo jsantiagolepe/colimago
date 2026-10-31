@@ -178,7 +178,7 @@ async function main() {
   const menu = (html) => enlaces((html.match(/<ul class="distritos">[\s\S]*?<\/ul>/) || [""])[0]).map((e) => e.href);
   const menuPortada = menu((await pedir("/")).html);
   const etiquetasMenu = (html) => [...((html.match(/<ul class="distritos">[\s\S]*?<\/ul>/) || [""])[0]).matchAll(/<a [^>]*>([^<]*)<\/a>/g)].map((m) => m[1]);
-  comprobar(menuPortada.length === 7, `portada: el menú tiene 7 opciones (${menuPortada.join(" ")})`);
+  comprobar(menuPortada.length === 8, `portada: el menú tiene 8 opciones (${menuPortada.join(" ")})`);
   for (const ruta of ["/inicio", "/explorar", "/calendario", "/favoritos", "/ajustes", "/playas", "/municipios", "/fiestas-del-pueblo", "/lugar/el-paraiso", "/acerca-de", "/privacidad", "/contacto"]) {
     const html = (await pedir(ruta)).html;
     comprobar(JSON.stringify(menu(html)) === JSON.stringify(menuPortada) && JSON.stringify(etiquetasMenu(html)) === JSON.stringify(etiquetasMenu((await pedir("/")).html)), `${ruta}: el menú de arriba es idéntico al de la portada (mismas opciones, mismo orden)`, `${menu(html).join(" ")} · ${etiquetasMenu(html).join("/")}`);
@@ -186,17 +186,17 @@ async function main() {
   // Los botones de la derecha (idioma, tema, favoritos, cuenta, descargar): los mismos y en el mismo orden.
   const botones = (html) => [...((html.match(/<div class="barra-acciones">[\s\S]*?<\/div>\s*<\/div>\s*<\/nav>/) || [""])[0]).matchAll(/<(?:a|button) class="([^"]*)"[^>]*>/g)].map((m) => m[1]);
   const botonesPortada = botones((await pedir("/")).html);
-  comprobar(botonesPortada.join("|") === "btn-idioma|interruptor|btn-icono btn-favoritos|btn-icono btn-usuario|btn-pintado btn-descargar-nav", `portada: la barra trae idioma, tema, favoritos, cuenta y descargar (${botonesPortada.length} botones)`, botonesPortada.join("|"));
+  comprobar(botonesPortada.join("|") === "btn-idioma|interruptor|btn-icono btn-buscar|btn-icono btn-favoritos|btn-icono btn-usuario|btn-pintado btn-descargar-nav", `portada: la barra trae idioma, tema, búsqueda, favoritos, cuenta y descargar (${botonesPortada.length} botones)`, botonesPortada.join("|"));
   for (const ruta of ["/inicio", "/explorar", "/lugar/el-paraiso", "/privacidad", "/en/inicio"]) {
     comprobar(botones((await pedir(ruta)).html).join("|") === botonesPortada.join("|"), `${ruta}: los botones de la barra son los mismos que los de la portada, en el mismo orden`, botones((await pedir(ruta)).html).join("|"));
   }
   const portadaHtml = (await pedir("/")).html;
-  comprobar(/class="btn-idioma" href="\/en\/inicio"[^>]*aria-label="Cambiar a inglés">EN</.test(portadaHtml) && /class="btn-icono btn-favoritos" href="\/favoritos"/.test(portadaHtml) && /class="btn-icono btn-usuario" id="btn-usuario" href="\/ajustes"/.test(portadaHtml), "portada: EN lleva a la guía en inglés, el corazón a /favoritos y la cuenta a /ajustes");
+  comprobar(/class="btn-idioma" href="\/en\/inicio"[^>]*aria-label="Cambiar a inglés">EN</.test(portadaHtml) && /class="btn-icono btn-favoritos" href="\/favoritos"/.test(portadaHtml) && /class="btn-icono btn-usuario" id="btn-usuario" href="\/yo"/.test(portadaHtml), "portada: EN lleva a la guía en inglés, el corazón a /favoritos y la cuenta a /yo");
   const menuEn = menu((await pedir("/en/inicio")).html);
-  comprobar(menuEn.length === 7 && menuEn.every((h, i) => h === (menuPortada[i] === "/" ? "/" : `/en${menuPortada[i]}`)), "/en/inicio: el menú tiene las mismas 7 opciones, con su ruta en inglés", menuEn.join(" "));
+  comprobar(menuEn.length === 8 && menuEn.every((h, i) => h === (menuPortada[i] === "/" ? "/" : `/en${menuPortada[i]}`)), "/en/inicio: el menú tiene las mismas 8 opciones, con su ruta en inglés", menuEn.join(" "));
   const marcado = async (ruta) => [...((await pedir(ruta)).html.match(/<ul class="distritos">[\s\S]*?<\/ul>/)[0]).matchAll(/<a href="([^"]+)" aria-current="[^"]+">/g)].map((m) => m[1]);
   comprobar((await marcado("/inicio")).join() === "/inicio" && (await marcado("/playas")).join() === "/playas" && (await marcado("/lugar/el-paraiso")).join() === "/inicio" && (await marcado("/rincones-naturales/rios")).join() === "/rincones-naturales" && (await marcado("/privacidad")).length === 0, "el menú marca la opción de la página en la que estás (y ninguna en privacidad)");
-  comprobar((await pedir("/inicio")).html.includes('class="btn-icono btn-favoritos" href="/favoritos"') && (await pedir("/inicio")).html.includes('id="btn-usuario" href="/ajustes"'), "Favoritos y Ajustes siguen a un clic: iconos de corazón y de cuenta");
+  comprobar((await pedir("/inicio")).html.includes('class="btn-icono btn-favoritos" href="/favoritos"') && (await pedir("/inicio")).html.includes('id="btn-usuario" href="/yo"'), "Favoritos y Ajustes siguen a un clic: iconos de corazón y de cuenta");
   comprobar(enlaces((await pedir("/")).html.match(/<a class="marca"[^>]*>/g).join("")).every((e) => e.href === "/") && /<a class="marca" href="\/"/.test((await pedir("/inicio")).html) && /<a class="marca" href="\/en\/inicio"/.test((await pedir("/en/inicio")).html), "el logo lleva a «/» en la portada y en la guía en español (en inglés, a /en/inicio)");
   const portada = (await pedir("/")).html;
   const pPie = enlaces(pie(portada)).map((e) => e.href);

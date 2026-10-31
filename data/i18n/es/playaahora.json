@@ -1,0 +1,18 @@
+{
+  "beachNow": {
+    "title": "Ahora en la playa",
+    "weather": "Clima",
+    "waves": "Oleaje",
+    "waveHeight": "Altura",
+    "period": "Periodo",
+    "updated": "Actualizado {time}",
+    "sourceWeather": "Clima: {source}",
+    "sourceWaves": "Oleaje: {source}",
+    "disclaimer": "El oleaje es de un modelo con celdas de unos 50 km: playas cercanas comparten el mismo dato y en la bahía puede variar. No sustituye las banderas ni las indicaciones de los salvavidas.",
+    "noWaves": "El oleaje no está disponible por ahora.",
+    "loading": "Consultando el clima y el mar…",
+    "errorTitle": "No pudimos obtener el clima y el mar",
+    "errorText": "Intenta de nuevo en un momento.",
+    "retry": "Reintentar"
+  }
+}

@@ -1,0 +1,6 @@
+.plato-destacado { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 20px; align-items: center; text-decoration: none; background: var(--suelo-2); border: 1px solid var(--linea); border-radius: 14px; padding: 14px; }
+.plato-destacado > span:last-child { display: grid; gap: 8px; padding: 6px 8px; }
+.plato-destacado strong { font-size: 26px; line-height: 1.15; }
+.plato-destacado > span span { color: var(--tinta-suave); }
+.migas { padding-top: 24px; } .migas a { display: inline-flex; align-items: center; gap: 4px; color: var(--tinta-suave); text-decoration: none; font-weight: 600; }
+@media (max-width: 700px) { .plato-destacado { grid-template-columns: 1fr; } }
