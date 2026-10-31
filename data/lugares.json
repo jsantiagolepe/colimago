@@ -349,8 +349,8 @@
       "clave": "parajes01",
       "tipo": "foto",
       "archivo": "l/parajes01",
-      "ancho": 1400,
-      "alto": 1050,
+      "ancho": 1200,
+      "alto": 900,
       "credito": null
     },
     "ubicacion": {
@@ -542,8 +542,8 @@
       "clave": "elparaiso01",
       "tipo": "foto",
       "archivo": "l/elparaiso01",
-      "ancho": 1400,
-      "alto": 789,
+      "ancho": 1200,
+      "alto": 677,
       "credito": null
     },
     "ubicacion": {
@@ -1042,8 +1042,8 @@
       "clave": "tecuanillo01",
       "tipo": "foto",
       "archivo": "l/tecuanillo01",
-      "ancho": 1400,
-      "alto": 1050,
+      "ancho": 1200,
+      "alto": 900,
       "credito": null
     },
     "ubicacion": {
@@ -1214,8 +1214,8 @@
       "clave": "elnaranjal01",
       "tipo": "foto",
       "archivo": "l/elnaranjal01",
-      "ancho": 1400,
-      "alto": 1050,
+      "ancho": 1200,
+      "alto": 900,
       "credito": null
     },
     "ubicacion": {
@@ -1969,8 +1969,8 @@
       "clave": "lagloriaescondida01",
       "tipo": "foto",
       "archivo": "l/lagloriaescondida01",
-      "ancho": 1400,
-      "alto": 1050,
+      "ancho": 1200,
+      "alto": 900,
       "credito": null
     },
     "ubicacion": {
@@ -2547,6 +2547,51 @@
       "facebook": "https://www.facebook.com/ecoparquenoguerasucol",
       "phone": "312 315 5717"
     },
+    "direccion": null,
+    "telefono": null,
+    "sitioWeb": null,
+    "calificacion": null,
+    "rango": null,
+    "dias": null,
+    "semanasDelMes": null,
+    "temporada": null
+  },
+  {
+    "id": "f6fed523b82fcd5da4f19b90",
+    "slug": "feria-de-colima",
+    "tipo": 15,
+    "municipioId": 1,
+    "titulo": "Feria de Colima",
+    "subtitulo": "Colima",
+    "descripcion": {
+      "es": "Recinto de la Feria de Todos los Santos de Colima, la fiesta más grande del estado: este 2026 celebra su edición 87, del 30 de octubre al 16 de noviembre. Tiene varios escenarios y zonas, cada uno con su propio programa: el Escenario Principal y el Palenque con los artistas estelares, el Teatro del Pueblo, la Plaza Bohemia, el Teatro del Caballo, el Lienzo Charro Camino Real, y la Zona Arbolada y la Zona Picnic para bailar con DJ. También hay juegos mecánicos, con la novedad de El Blizzard, y los días 10 y 12 de noviembre las niñas y los niños disfrutan de juegos gratuitos. Las presentaciones de los escenarios son gratuitas. En Colima Go encuentras el programa completo, día por día y por lugar.",
+      "en": "Home of the Feria de Todos los Santos in Colima, the state's biggest fair: in 2026 it celebrates its 87th edition, from October 30 to November 16. It has several stages and zones, each with its own program: the Main Stage and the Palenque with the headliners, the Teatro del Pueblo, Plaza Bohemia, the Teatro del Caballo, the Lienzo Charro Camino Real, and the Zona Arbolada and Zona Picnic for dancing with DJs. There are also carnival rides, with the new El Blizzard, and on November 10 and 12 children enjoy free rides. Stage performances are free. In Colima Go you will find the full program, by day and by place."
+    },
+    "imagen": {
+      "clave": "feriadecolima01",
+      "tipo": "foto",
+      "archivo": "l/feriadecolima01",
+      "ancho": 1000,
+      "alto": 948,
+      "credito": null
+    },
+    "ubicacion": {
+      "lat": 19.2357578,
+      "lng": -103.6825236,
+      "nombre": "Recinto Ferial de Colima, Av. Niños Héroes de Chapultepec s/n",
+      "descripcion": "Está sobre la avenida Niños Héroes de Chapultepec, en la ciudad de Colima. Durante la feria, los escenarios abren por la tarde; consulta el programa del día."
+    },
+    "ubicacionTexto": null,
+    "servicios": ["food_drink"],
+    "horario": [
+      {
+        "dia": "general",
+        "horas": "Del 30 de octubre al 16 de noviembre de 2026. Consulta el programa de cada día."
+      }
+    ],
+    "abiertoTodoElDia": false,
+    "tiktok": null,
+    "redes": {},
     "direccion": null,
     "telefono": null,
     "sitioWeb": null,

@@ -71,15 +71,15 @@ const cuenta = (lista, clave) => lista.reduce((acc, x) => ((acc[clave(x)] = (acc
 
 console.log("Conteos y forma de los datos");
 
-prueba("178 lugares, por tipo y por municipio como en la app", () => {
-  assert.strictEqual(lugares.length, 178);
-  assert.deepStrictEqual(cuenta(lugares, (l) => l.tipo), { 10: 9, 11: 15, 12: 10, 13: 13, 14: 4, 15: 16, 16: 21, 17: 11, 18: 5, 20: 2, 21: 2, 30: 54, 31: 16 });
-  assert.deepStrictEqual(cuenta(lugares, (l) => l.municipioId), { 1: 59, 2: 22, 3: 25, 4: 22, 5: 6, 6: 18, 7: 7, 8: 12, 9: 5, 10: 2 });
+prueba("179 lugares, por tipo y por municipio como en la app", () => {
+  assert.strictEqual(lugares.length, 179);
+  assert.deepStrictEqual(cuenta(lugares, (l) => l.tipo), { 10: 9, 11: 15, 12: 10, 13: 13, 14: 4, 15: 17, 16: 21, 17: 11, 18: 5, 20: 2, 21: 2, 30: 54, 31: 16 });
+  assert.deepStrictEqual(cuenta(lugares, (l) => l.municipioId), { 1: 60, 2: 22, 3: 25, 4: 22, 5: 6, 6: 18, 7: 7, 8: 12, 9: 5, 10: 2 });
 });
 
 prueba("ids y slugs únicos; slug en kebab sin acentos", () => {
-  assert.strictEqual(new Set(lugares.map((l) => l.id)).size, 178);
-  assert.strictEqual(new Set(lugares.map((l) => l.slug)).size, 178);
+  assert.strictEqual(new Set(lugares.map((l) => l.id)).size, 179);
+  assert.strictEqual(new Set(lugares.map((l) => l.slug)).size, 179);
   for (const l of lugares) assert(/^[a-z0-9]+(-[a-z0-9]+)*$/.test(l.slug), `slug inválido: ${l.slug}`);
   for (const l of lugares) assert.strictEqual(datos.lugarPorSlug(l.slug).id, l.id);
   for (const l of lugares) assert.strictEqual(datos.lugarPorId(l.id).slug, l.slug);
@@ -123,9 +123,9 @@ prueba("10 municipios con slug, apodo, textos, estampa, foto y posición en el m
   }
 });
 
-prueba("mapa de feria: 13 cables entre ids 0..10, volcán, costa y proporción", () => {
+prueba("mapa de feria: sin cables (estilo simple), volcán, costa y proporción", () => {
   const mapa = datos.mapaFeria;
-  assert.strictEqual(mapa.cables.length, 13);
+  assert.strictEqual(mapa.cables.length, 0);
   for (const [a, b] of mapa.cables) assert(a >= 0 && a <= 10 && b >= 0 && b <= 10 && a !== b);
   assert.deepStrictEqual([mapa.volcan.x, mapa.volcan.y, mapa.aspecto], [0.86, 0.07, 0.8]);
   assert(mapa.costa.startsWith("M0,") && !/[${}]/.test(mapa.costa));
@@ -151,9 +151,9 @@ prueba("sin datos de relleno: hoteles/restaurantes sin teléfono, calificación 
   assert.strictEqual(lugares.filter((l) => l.abiertoTodoElDia).length, 39);
 });
 
-prueba("ubicación: 167 con coordenadas válidas (ninguna 0,0); 9 tianguis solo con texto; 2 sin nada", () => {
+prueba("ubicación: 168 con coordenadas válidas (ninguna 0,0); 9 tianguis solo con texto; 2 sin nada", () => {
   const con = lugares.filter((l) => l.ubicacion);
-  assert.strictEqual(con.length, 167);
+  assert.strictEqual(con.length, 168);
   for (const l of con) assert(Number.isFinite(l.ubicacion.lat) && Number.isFinite(l.ubicacion.lng) && !(l.ubicacion.lat === 0 && l.ubicacion.lng === 0), l.slug);
   const soloTexto = lugares.filter((l) => !l.ubicacion && l.ubicacionTexto);
   assert.strictEqual(soloTexto.length, 9);
@@ -165,8 +165,8 @@ prueba("ubicación: 167 con coordenadas válidas (ninguna 0,0); 9 tianguis solo 
 
 console.log("\nImágenes");
 
-prueba("imágenes: 56 fotos, 118 ilustraciones, 4 sin archivo; 41 con crédito de Wikimedia", () => {
-  assert.deepStrictEqual(cuenta(lugares, (l) => l.imagen.tipo), { foto: 56, ilustracion: 118, ninguna: 4 });
+prueba("imágenes: 57 fotos, 118 ilustraciones, 4 sin archivo; 41 con crédito de Wikimedia", () => {
+  assert.deepStrictEqual(cuenta(lugares, (l) => l.imagen.tipo), { foto: 57, ilustracion: 118, ninguna: 4 });
   const creditos = lugares.filter((l) => l.imagen.credito);
   assert.strictEqual(creditos.length, 41);
   for (const l of creditos) {
@@ -193,7 +193,7 @@ prueba("cada imagen de lugar existe en -480 y -800 (con sidecar) y nunca se ampl
     }
     assert.strictEqual(datos.rutaImagen(l.imagen, 480), `/img/${archivo}-480.webp`);
   }
-  assert.strictEqual(revisadas, 348);
+  assert.strictEqual(revisadas, 350);
   assert.strictEqual(datos.rutaImagen(lugares.find((l) => l.imagen.tipo === "ninguna").imagen, 800), null);
 });
 
@@ -222,7 +222,7 @@ prueba("las imágenes nuevas (l, m, c, feria) pesan menos de 12 MB", () => {
       assert(fs.existsSync(enImg(carpeta, `${f}.json`)), `${carpeta}/${f} sin sidecar`);
     }
   }
-  assert.strictEqual(archivos, 419);
+  assert.strictEqual(archivos, 421);
   assert(bytes < 12 * 1024 * 1024, `${(bytes / 1048576).toFixed(2)} MB`);
 });
 
@@ -277,7 +277,7 @@ prueba("catálogo de consultas: categorías de rincones, lugares por tipo y por 
   assert.strictEqual(datos.categoriaPorSlug("lagunas").tipo, 12);
   assert.strictEqual(datos.lugaresPorTipo(11).length, 15);
   const m1 = datos.lugaresDeMunicipio(1);
-  assert.deepStrictEqual([m1.atracciones.length, m1.hoteles.length, m1.restaurantes.length, m1.tianguis.length, m1.mercados.length], [24, 2, 1, 26, 6]);
+  assert.deepStrictEqual([m1.atracciones.length, m1.hoteles.length, m1.restaurantes.length, m1.tianguis.length, m1.mercados.length], [25, 2, 1, 26, 6]);
   assert.strictEqual(datos.lugaresDeMunicipio(3).restaurantes.length, 1);
   assert.strictEqual(datos.lugaresDeMunicipio(10).tianguis.length + datos.lugaresDeMunicipio(10).mercados.length, 0);
   const tipos = m1.atracciones.map((l) => l.tipo);
