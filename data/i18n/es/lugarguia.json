@@ -8,7 +8,8 @@
     "municipio": "Más en {municipio}",
     "distancias": "Distancias",
     "datos": "Datos para tu visita",
-    "galeria": "Fotos"
+    "galeria": "Fotos",
+    "llevar": "Qué llevar"
   },
   "llegar": {
     "centro": "{lugar} está en la ciudad de Colima, a unos {kmColima} km en línea recta del Jardín Libertad, el centro histórico, así que llegas con un trayecto corto desde cualquier punto de la ciudad.",
@@ -38,6 +39,10 @@
     "accesibilidad": "Accesibilidad",
     "salvavidas": "Salvavidas",
     "rentaEquipo": "Renta de equipo"
+  },
+  "llevar": {
+    "sinEnlace": "Sin enlace de afiliado: no se publica hasta que se agregue",
+    "aviso": "Algunos enlaces son de afiliados de Mercado Libre: si compras desde ellos, Colima Go puede recibir una comisión, sin costo extra para ti."
   },
   "actualizado": "Actualizado el {fecha}",
   "borrador": "Borrador: este texto no se publica hasta que se confirme"

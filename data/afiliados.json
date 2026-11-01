@@ -1,0 +1,74 @@
+{
+  "_ayuda": "Cada producto sale de la búsqueda de Mercado Libre indicada en 'busqueda'. Para activarlo: genera el enlace de afiliado en el panel de Mercado Libre y pégalo en 'url' (o usa npm run afiliados). Un producto sin 'url' NO se publica.",
+  "por_tipo": {
+    "10": ["rio"],
+    "11": ["playa"],
+    "12": ["pesca"],
+    "13": ["senderismo"],
+    "14": ["paseo"],
+    "15": ["paseo"],
+    "16": ["paseo"],
+    "17": ["balneario"],
+    "18": ["senderismo"]
+  },
+  "por_lugar": {},
+  "kits": {
+    "playa": {
+      "intro": "Lo que más se agradece en la playa, por el sol y el calor de la costa de Colima.",
+      "items": [
+        { "id": "playa-bloqueador", "nombre": "Bloqueador solar FPS 50+", "nota": "El sol de la costa pega fuerte desde media mañana.", "busqueda": "bloqueador solar fps 50", "url": "https://meli.la/2V2nmm5" },
+        { "id": "playa-sombrilla", "nombre": "Sombrilla de playa con filtro UV", "nota": "Casi no hay sombra natural en muchas playas.", "busqueda": "sombrilla de playa uv", "url": "https://meli.la/1HsoV51" },
+        { "id": "playa-hielera", "nombre": "Hielera eléctrica de 12 V para el auto", "nota": "Mantiene frías las bebidas y la comida del día.", "busqueda": "hielera electrica 12v", "url": "https://meli.la/2i3VnHt" },
+        { "id": "playa-lentes", "nombre": "Lentes de sol polarizados", "nota": "Reducen el reflejo del sol sobre el agua y la arena.", "busqueda": "lentes de sol polarizados", "url": "https://meli.la/22f6AFL" },
+        { "id": "playa-silla", "nombre": "Silla de playa plegable", "nota": "Cómoda de cargar y sin sentarte en la arena caliente.", "busqueda": "silla de playa plegable", "url": "https://meli.la/11DsCh9" },
+        { "id": "playa-snorkel", "nombre": "Máscara de snorkel", "nota": "Para las zonas de aguas tranquilas.", "busqueda": "gafas snorkel adulto", "url": "https://meli.la/2LAAJ8i" },
+        { "id": "playa-bolsa-seca", "nombre": "Bolsa impermeable para celular y llaves", "nota": "Evita que la arena y el agua arruinen el teléfono.", "busqueda": "bolsa impermeable celular", "url": "" }
+      ]
+    },
+    "pesca": {
+      "intro": "Equipo básico para pescar desde la orilla o en lancha.",
+      "items": [
+        { "id": "pesca-cana", "nombre": "Caña de pescar telescópica", "nota": "Cabe en cualquier maleta o cajuela.", "busqueda": "caña de pescar telescopica", "url": "" },
+        { "id": "pesca-carrete", "nombre": "Carrete para pesca", "nota": "Un spinning mediano sirve para casi todo.", "busqueda": "carrete spinning pesca", "url": "" },
+        { "id": "pesca-senuelos", "nombre": "Kit de señuelos y anzuelos", "nota": "Variedad para probar qué pica.", "busqueda": "kit señuelos pesca", "url": "" },
+        { "id": "pesca-gorra", "nombre": "Gorra con protección UV", "nota": "Horas al sol en el agua.", "busqueda": "gorra pesca proteccion uv", "url": "" }
+      ]
+    },
+    "senderismo": {
+      "intro": "Para caminar con comodidad y seguridad en senderos y montaña.",
+      "items": [
+        { "id": "sender-calzado", "nombre": "Tenis o botas de senderismo", "nota": "El terreno es irregular y puede estar húmedo.", "busqueda": "botas senderismo", "url": "" },
+        { "id": "sender-mochila", "nombre": "Mochila de hidratación", "nota": "Llevas agua sin detenerte a sacarla.", "busqueda": "mochila de hidratacion", "url": "" },
+        { "id": "sender-impermeable", "nombre": "Chamarra cortavientos impermeable", "nota": "En la altura hace viento y en lluvias el clima cambia rápido.", "busqueda": "impermeable ligero plegable", "url": "https://meli.la/2ivSNUq" },
+        { "id": "sender-repelente", "nombre": "Repelente de insectos", "nota": "Mosquitos en zonas de vegetación.", "busqueda": "repelente de insectos", "url": "" }
+      ]
+    },
+    "rio": {
+      "intro": "Para pasar el día junto al río sin batallar con el terreno.",
+      "items": [
+        { "id": "rio-sandalias", "nombre": "Sandalias o zapatos acuáticos", "nota": "Las piedras del río resbalan y lastiman.", "busqueda": "zapatos acuaticos", "url": "https://meli.la/2qifCc1" },
+        { "id": "rio-bolsa-seca", "nombre": "Bolsa seca impermeable", "nota": "Para ropa y electrónicos.", "busqueda": "bolsa seca impermeable", "url": "" },
+        { "id": "rio-repelente", "nombre": "Repelente de insectos", "nota": "Mosquitos cerca del agua.", "busqueda": "repelente de insectos", "url": "" },
+        { "id": "rio-toalla", "nombre": "Toalla de microfibra", "nota": "Seca rápido y ocupa poco.", "busqueda": "toalla microfibra", "url": "https://meli.la/2arKyo2" }
+      ]
+    },
+    "balneario": {
+      "intro": "Lo que conviene llevar para un día de balneario en familia.",
+      "items": [
+        { "id": "balneario-toalla", "nombre": "Toalla de microfibra", "nota": "Seca rápido y ocupa poco.", "busqueda": "toalla microfibra", "url": "https://meli.la/2arKyo2" },
+        { "id": "balneario-chanclas", "nombre": "Chanclas antiderrapantes", "nota": "Los pisos mojados resbalan.", "busqueda": "chanclas antiderrapantes", "url": "" },
+        { "id": "balneario-bloqueador", "nombre": "Bloqueador solar FPS 50+", "nota": "Para grandes y chicos.", "busqueda": "bloqueador solar fps 50", "url": "https://meli.la/2V2nmm5" },
+        { "id": "balneario-bolsa", "nombre": "Bolsa impermeable para celular", "nota": "Para usar el teléfono cerca del agua.", "busqueda": "bolsa impermeable celular", "url": "" }
+      ]
+    },
+    "paseo": {
+      "intro": "Para recorrer con calma un día de calor en Colima.",
+      "items": [
+        { "id": "paseo-botella", "nombre": "Botella térmica", "nota": "Agua fría durante todo el recorrido.", "busqueda": "botella termica", "url": "" },
+        { "id": "paseo-gorra", "nombre": "Gorra o sombrero para el sol", "nota": "Mucho tramo a cielo abierto.", "busqueda": "gorra proteccion solar", "url": "" },
+        { "id": "paseo-bateria", "nombre": "Batería portátil para el celular", "nota": "Fotos y mapa gastan mucha pila.", "busqueda": "bateria portatil power bank", "url": "" },
+        { "id": "paseo-bloqueador", "nombre": "Bloqueador solar FPS 50+", "nota": "Aunque esté nublado.", "busqueda": "bloqueador solar fps 50", "url": "https://meli.la/2V2nmm5" }
+      ]
+    }
+  }
+}

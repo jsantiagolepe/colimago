@@ -16,7 +16,8 @@
     "verificar:datos": "node scripts/verificar-datos.js",
     "verificar:sitio": "node scripts/verificar-sitio.js",
     "verificar:contenido": "node scripts/verificar-contenido.js",
-    "pendientes": "node scripts/pendientes.js"
+    "pendientes": "node scripts/pendientes.js",
+    "afiliados": "node scripts/afiliados.js"
   },
   "dependencies": {
     "cookie-session": "^2.1.1",

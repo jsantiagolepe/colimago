@@ -8,7 +8,8 @@
     "municipio": "More in {municipio}",
     "distancias": "Distances",
     "datos": "Details for your visit",
-    "galeria": "Photos"
+    "galeria": "Photos",
+    "llevar": "What to bring"
   },
   "llegar": {
     "centro": "{lugar} is in the city of Colima, about {kmColima} km as the crow flies from Jardín Libertad, the historic center, so it is a short trip from anywhere in the city.",
@@ -38,6 +39,10 @@
     "accesibilidad": "Accessibility",
     "salvavidas": "Lifeguards",
     "rentaEquipo": "Equipment rental"
+  },
+  "llevar": {
+    "sinEnlace": "No affiliate link: not published until one is added",
+    "aviso": "Some links are Mercado Libre affiliate links: if you buy through them, Colima Go may earn a commission at no extra cost to you. The store is in Spanish."
   },
   "actualizado": "Updated {fecha}",
   "borrador": "Draft: this text is not published until confirmed"
