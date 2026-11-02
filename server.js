@@ -4,7 +4,7 @@ const path = require("path");
 const express = require("express");
 const cookieSession = require("cookie-session");
 const { llamarBackend, BackendError } = require("./lib/colima-backend");
-const { armarEvento, esBot, idValido } = require("./lib/visitas");
+const { armarLog, leerEvento, esBot } = require("./lib/analitica");
 
 const app = express();
 app.use(express.json());
@@ -165,35 +165,62 @@ app.get("/login", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// --- Registro de visitas: el `app_opened` de la web ---
-// La portada avisa aquí, una vez por visita (ver el script del final de
-// public/index.html), y este servidor lo manda a POST /logs del backend: la
-// misma colección `logs` donde la app móvil guarda el suyo, con platform
-// "web". El navegador no habla con el backend (ver README), solo aporta su
-// id de visitante; lib/visitas.js arma el resto. No usa el interruptor del
-// panel: el registro de visitas no depende de él.
+// --- Analítica anónima: visitas y clicks de la web ---
+// El navegador avisa aquí de cada página vista y de cada click que cuenta
+// (public/js/analitica.js), y este servidor lo manda a POST /colimago-logs del
+// backend, que lo guarda en su propia colección `colimago_logs`. Es el mismo
+// esquema de registro que usa realestatecolima.mx. El navegador no habla con
+// el backend (ver README): solo manda la ruta y el origen de la visita;
+// lib/analitica.js agrega el dispositivo, la ubicación aproximada y un hash de
+// visitante que cambia cada día. La IP y el user agent no salen de aquí.
 //
-// Solo se registra en producción de Vercel (VERCEL_ENV), para que ni tu
-// computadora ni los deploys de prueba ensucien los datos reales; en local,
-// VISITAS_ACTIVO=1 lo prende para probarlo contra un backend de desarrollo.
-// Al navegador nunca se le explica un fallo: la respuesta existe para
-// depurar y la portada la ignora.
-const REGISTRAR_VISITAS = process.env.VERCEL_ENV === "production" || process.env.VISITAS_ACTIVO === "1";
+// COLIMAGO_LOGS_KEY es la clave compartida con el backend (el mismo valor en
+// Heroku y en Vercel); sin ella no se manda nada. Solo se registra en
+// producción de Vercel (VERCEL_ENV), para que ni tu computadora ni los deploys
+// de prueba ensucien los datos reales; en local, ANALITICA_ACTIVO=1 lo prende
+// para probarlo contra un backend de desarrollo. Siempre responde 204, incluso
+// si el evento se descarta: un fallo nunca se nota en la página.
+const REGISTRAR_ANALITICA = process.env.VERCEL_ENV === "production" || process.env.ANALITICA_ACTIVO === "1";
+const COLIMAGO_LOGS_KEY = process.env.COLIMAGO_LOGS_KEY;
+const ANALITICA_MAX_CUERPO = 2048;
+const ANALITICA_TIMEOUT_MS = 4000;
+const DOMINIOS_PROPIOS = ["colimago.mx", "www.colimago.mx"];
 
-app.post("/visita", async (req, res) => {
-  const userId = req.body && req.body.userId;
-  if (!idValido(userId)) return res.status(400).end();
+// Los navegadores siempre mandan Origin en un POST. Tiene que ser este mismo
+// sitio (o el dominio de producción): un script de otro sitio no puede llenar
+// los logs.
+function origenPropio(req) {
+  const origen = req.get("origin");
+  if (!origen) return true; // no es un navegador; las demás comprobaciones siguen aplicando
+  try {
+    const host = new URL(origen).host;
+    return host === req.get("host") || host === req.get("x-forwarded-host") || DOMINIOS_PROPIOS.includes(host);
+  } catch {
+    return false;
+  }
+}
 
-  const userAgent = req.get("user-agent");
-  if (!REGISTRAR_VISITAS || !COLIMA_BACKEND_URL || esBot(userAgent)) return res.status(204).end();
+app.post("/e", async (req, res) => {
+  if (!REGISTRAR_ANALITICA || !COLIMAGO_LOGS_KEY || !COLIMA_BACKEND_URL) return res.status(204).end();
+  if (!origenPropio(req)) return res.status(403).end();
+  if (esBot(req.get("user-agent"))) return res.status(204).end();
+  if (Number(req.get("content-length") || 0) > ANALITICA_MAX_CUERPO) return res.status(413).end();
+
+  const evento = leerEvento(req.body);
+  if (!evento) return res.status(400).end();
 
   try {
-    await llamarBackend(null, "/logs", { method: "POST", body: armarEvento(userId, userAgent) });
-    res.status(204).end();
+    await llamarBackend(null, "/colimago-logs", {
+      method: "POST",
+      body: armarLog(evento, (nombre) => req.get(nombre), COLIMAGO_LOGS_KEY),
+      cabeceras: { "x-logs-key": COLIMAGO_LOGS_KEY },
+      timeoutMs: ANALITICA_TIMEOUT_MS,
+    });
   } catch (err) {
-    console.error("No se pudo registrar la visita:", err instanceof BackendError ? err.message : err);
-    res.status(502).end();
+    // El evento se pierde, la visita no se afecta.
+    console.error("No se pudo registrar el evento:", err instanceof BackendError ? err.message : err);
   }
+  res.status(204).end();
 });
 
 // Links cortos para las publicaciones en redes, en vez del URL largo de cada

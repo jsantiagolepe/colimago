@@ -23,7 +23,7 @@ const path = require("path");
 
 process.env.NODE_ENV = "test";
 process.env.SESSION_SECRET = "secreto-de-prueba-guia";
-delete process.env.VISITAS_ACTIVO;
+delete process.env.ANALITICA_ACTIVO;
 
 // --- Datos reales de producción (solo lectura, copiados al repo) ---
 

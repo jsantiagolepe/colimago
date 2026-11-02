@@ -26,7 +26,7 @@
         "It depends on what you do on the site or in the app:"
       ],
       "lista": [
-        "**Home page visit.** When you open the home page of colimago.mx we record a visit with a random identifier stored in your browser (it is not your name or your email), the browser and operating system you use (for example, “Chrome 126” and “Android”), the site version, and the date and time. We do not include your IP address in that record or use it to identify you.",
+        "**Usage statistics.** Every page you open on colimago.mx and every tap on a link we want to count (downloading the app, opening a map, a Mercado Libre product, our social networks, calling or writing to us) is recorded anonymously: the page, the date and time, the type of device, the system and the browser, your approximate location (country, state and city) and where you came from (a search engine, a social network, an ad or a direct link). To count how many different people visit us we use a code that is calculated on our server from your device and the day, and that changes every day: it cannot be used to recognize you from one day to the next. We do not store your IP address or identify you, and no cookies are used for this. If your browser has “Do Not Track” or the Global Privacy Control turned on, we record nothing.",
         "**Sign-in with Google.** If you sign in to like, comment or save favorites to your account, Google shares your name, email address, profile photo and account identifier with us. We never receive your password. We keep you signed in with an encrypted cookie that lasts 30 days and goes away when you sign out.",
         "**Comments, likes, favorites and reports.** What you write in a comment (up to 500 characters) is published together with your Google name and profile photo, and anyone can see it. Likes, favorites and reports are stored linked to your account; reports (up to 1,000 characters) are seen only by the Colima Go team. Without an account, your favorites are stored only in your browser; if you sign in later, they can be merged with your account's favorites.",
         "**Views.** We count how many times the page of a place or event is opened so we can show its counters. That count does not identify you.",
@@ -67,7 +67,7 @@
       "titulo": "5. Cookies and similar technologies",
       "lista": [
         "**Our own session cookie.** It exists only if you sign in: it holds your encrypted session, the page's code cannot read it, and it lasts 30 days or until you sign out. It is needed for your account to work.",
-        "**Browser storage.** We store your theme (light or dark), the random identifier of the home page visit and, if you do not use an account, your favorites. We also note in the browser session which pages you have already counted so the same view is not added twice.",
+        "**Browser storage.** We store your theme (light or dark), the origin of your visit (where you came from, for 30 minutes) and, if you do not use an account, your favorites. We also note in the browser session which pages you have already counted so the same view is not added twice.",
         "**Google cookies.** They are used by AdSense ads and, only when you tap “Sign in”, by Google sign-in.",
         "**Map and video on demand.** The OpenStreetMap map and TikTok videos load only when you press the corresponding button; those providers may set their own cookies, under their own policies.",
         "**Analytics.** We do not use Google Analytics or social-media tracking pixels on the site."
@@ -96,7 +96,7 @@
       "id": "conservacion",
       "titulo": "7. How long we keep your data",
       "parrafos": [
-        "We keep your data for as long as needed for the purposes of this policy. If you delete your account in Settings, we delete your account and the data associated with it and sign you out. Visit records do not identify you and are kept for as long as they are useful for statistics."
+        "We keep your data for as long as needed for the purposes of this policy. If you delete your account in Settings, we delete your account and the data associated with it and sign you out. Usage records do not identify you and are kept for 36 months, after which they are deleted automatically."
       ]
     },
     {

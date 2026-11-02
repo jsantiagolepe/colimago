@@ -10,7 +10,7 @@ const http = require("http");
 
 process.env.NODE_ENV = "test";
 process.env.SESSION_SECRET = "secreto-de-prueba-contenido";
-delete process.env.VISITAS_ACTIVO;
+delete process.env.ANALITICA_ACTIVO;
 
 const app = require("../server");
 const datos = require("../lib/guia/datos");

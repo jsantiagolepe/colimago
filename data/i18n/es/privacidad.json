@@ -26,7 +26,7 @@
         "Depende de lo que hagas en el sitio o en la app:"
       ],
       "lista": [
-        "**Visita a la portada.** Al abrir la portada de colimago.mx registramos una visita con un identificador aleatorio guardado en tu navegador (no es tu nombre ni tu correo), el navegador y el sistema operativo que usas (por ejemplo, «Chrome 126» y «Android»), la versión del sitio y la fecha y hora. No incluimos tu dirección IP en ese registro ni lo usamos para identificarte.",
+        "**Estadísticas de uso.** Cada página que abres en colimago.mx y cada toque en un enlace que nos interesa contar (descargar la app, abrir un mapa, un producto de Mercado Libre, nuestras redes, llamar o escribir) se registra de forma anónima: la página, la fecha y hora, el tipo de dispositivo, el sistema y el navegador, tu ubicación aproximada (país, estado y ciudad) y de dónde llegaste (buscador, red social, un anuncio o un enlace directo). Para contar cuántas personas distintas nos visitan usamos un código que se calcula en nuestro servidor a partir de tu dispositivo y del día, y que cambia cada día: no sirve para reconocerte de un día a otro. No guardamos tu dirección IP ni te identificamos, y no se usan cookies para esto. Si tu navegador tiene activado «No rastrear» o el control de privacidad global, no registramos nada.",
         "**Inicio de sesión con Google.** Si inicias sesión para dar Me gusta, comentar o guardar favoritos en tu cuenta, Google nos comparte tu nombre, tu correo electrónico, tu foto de perfil y el identificador de tu cuenta. No recibimos tu contraseña. Mantenemos tu sesión con una cookie cifrada de 30 días que desaparece al cerrar sesión.",
         "**Comentarios, Me gusta, favoritos y reportes.** Lo que escribes en un comentario (hasta 500 caracteres) se publica junto con tu nombre y tu foto de perfil de Google, y cualquiera puede verlo. Los Me gusta, los favoritos y los reportes se guardan asociados a tu cuenta; los reportes (hasta 1,000 caracteres) solo los ve el equipo de Colima Go. Sin cuenta, tus favoritos se guardan únicamente en tu navegador; si luego inicias sesión, pueden fusionarse con los de tu cuenta.",
         "**Vistas.** Contamos cuántas veces se abre la ficha de un lugar o de un evento para mostrar sus contadores. Ese conteo no te identifica.",
@@ -67,7 +67,7 @@
       "titulo": "5. Cookies y tecnologías similares",
       "lista": [
         "**Cookie propia de sesión.** Solo existe si inicias sesión: guarda tu sesión cifrada, no la puede leer el código de la página y dura 30 días o hasta que cierres sesión. Es necesaria para que la cuenta funcione.",
-        "**Almacenamiento del navegador.** Guardamos tu tema (claro u oscuro), el identificador aleatorio de la visita a la portada y, si no usas cuenta, tus favoritos. También anotamos en la sesión del navegador qué fichas ya contaste para no sumar dos veces la misma vista.",
+        "**Almacenamiento del navegador.** Guardamos tu tema (claro u oscuro), el origen de tu visita (de dónde llegaste, durante 30 minutos) y, si no usas cuenta, tus favoritos. También anotamos en la sesión del navegador qué fichas ya contaste para no sumar dos veces la misma vista.",
         "**Cookies de Google.** Las usan los anuncios de AdSense y, solo cuando tocas «Iniciar sesión», el acceso con Google.",
         "**Mapa y video bajo demanda.** El mapa de OpenStreetMap y los videos de TikTok solo se cargan cuando pulsas el botón correspondiente; esos proveedores pueden poner sus propias cookies, según sus políticas.",
         "**Analítica.** No usamos Google Analytics ni píxeles de seguimiento de redes sociales en el sitio."
@@ -96,7 +96,7 @@
       "id": "conservacion",
       "titulo": "7. Cuánto tiempo guardamos tus datos",
       "parrafos": [
-        "Conservamos tus datos el tiempo necesario para los fines de esta política. Si borras tu cuenta desde Ajustes, eliminamos tu cuenta y los datos asociados a ella y cerramos tu sesión. Los registros de visitas no te identifican y se conservan mientras sirvan para estadísticas."
+        "Conservamos tus datos el tiempo necesario para los fines de esta política. Si borras tu cuenta desde Ajustes, eliminamos tu cuenta y los datos asociados a ella y cerramos tu sesión. Los registros de visitas no te identifican y se conservan 36 meses y después se borran solos."
       ]
     },
     {
