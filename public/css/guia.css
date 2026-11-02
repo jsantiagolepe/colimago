@@ -613,3 +613,6 @@ body::before { display: none; }
 
 /* Texto en borrador (con [VERIFICAR] o [COMPLETAR]): solo se ve fuera de producción, ver lib/guia/contenido.js */
 .borrador { outline: 2px dashed #c77d00; outline-offset: 3px; background: rgba(199, 125, 0, 0.1); }
+
+/* Qué llevar: subtítulo de "Para ir más lejos" (productos de afiliados, ver lib/guia/afiliados.js) */
+.llevar-mas { margin: 22px 0 0; font-size: 15px; font-weight: 700; color: var(--tinta-suave); }
