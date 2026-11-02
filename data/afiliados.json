@@ -1,73 +1,99 @@
 {
-  "_ayuda": "Cada producto sale de la búsqueda de Mercado Libre indicada en 'busqueda'. Para activarlo: genera el enlace de afiliado en el panel de Mercado Libre y pégalo en 'url' (o usa npm run afiliados). Un producto sin 'url' NO se publica.",
-  "por_tipo": {
-    "10": ["rio"],
-    "11": ["playa"],
-    "12": ["pesca"],
-    "13": ["senderismo"],
-    "14": ["paseo"],
-    "15": ["paseo"],
-    "16": ["paseo"],
-    "17": ["balneario"],
-    "18": ["senderismo"]
-  },
-  "por_lugar": {},
+  "_ayuda": "Mismos productos y enlaces de afiliado que la app (ColimagoMovil/src/config/queLlevar.ts). Cada ficha ve 3 productos básicos y 1 de 'Para ir más lejos' (mejora), elegidos de forma estable por lugar. Un producto sin 'url' NO se publica. Ver npm run afiliados.",
+  "por_tipo": {"10":["rio"],"11":["playa"],"12":["pesca","rio"],"13":["senderismo"],"14":["paseo"],"15":["senderismo"],"16":["paseo"],"17":["balneario"],"18":["senderismo"],"30":["tianguis"],"31":["tianguis"]},
   "kits": {
     "playa": {
-      "intro": "Lo que más se agradece en la playa, por el sol y el calor de la costa de Colima.",
+      "intro": {"es":"Lo que más se agradece en la playa, por el sol y el calor de la costa de Colima.","en":"What you will appreciate most at the beach, with the sun and heat of the Colima coast."},
       "items": [
-        { "id": "playa-bloqueador", "nombre": "Bloqueador solar FPS 50+", "nota": "El sol de la costa pega fuerte desde media mañana.", "busqueda": "bloqueador solar fps 50", "url": "https://meli.la/2V2nmm5" },
-        { "id": "playa-sombrilla", "nombre": "Sombrilla de playa con filtro UV", "nota": "Casi no hay sombra natural en muchas playas.", "busqueda": "sombrilla de playa uv", "url": "https://meli.la/1HsoV51" },
-        { "id": "playa-hielera", "nombre": "Hielera eléctrica de 12 V para el auto", "nota": "Mantiene frías las bebidas y la comida del día.", "busqueda": "hielera electrica 12v", "url": "https://meli.la/2i3VnHt" },
-        { "id": "playa-lentes", "nombre": "Lentes de sol polarizados", "nota": "Reducen el reflejo del sol sobre el agua y la arena.", "busqueda": "lentes de sol polarizados", "url": "https://meli.la/22f6AFL" },
-        { "id": "playa-silla", "nombre": "Silla de playa plegable", "nota": "Cómoda de cargar y sin sentarte en la arena caliente.", "busqueda": "silla de playa plegable", "url": "https://meli.la/11DsCh9" },
-        { "id": "playa-snorkel", "nombre": "Máscara de snorkel", "nota": "Para las zonas de aguas tranquilas.", "busqueda": "gafas snorkel adulto", "url": "https://meli.la/2LAAJ8i" },
-        { "id": "playa-bolsa-seca", "nombre": "Bolsa impermeable para celular y llaves", "nota": "Evita que la arena y el agua arruinen el teléfono.", "busqueda": "bolsa impermeable celular", "url": "" }
-      ]
-    },
-    "pesca": {
-      "intro": "Equipo básico para pescar desde la orilla o en lancha.",
-      "items": [
-        { "id": "pesca-cana", "nombre": "Caña de pescar telescópica", "nota": "Cabe en cualquier maleta o cajuela.", "busqueda": "caña de pescar telescopica", "url": "" },
-        { "id": "pesca-carrete", "nombre": "Carrete para pesca", "nota": "Un spinning mediano sirve para casi todo.", "busqueda": "carrete spinning pesca", "url": "" },
-        { "id": "pesca-senuelos", "nombre": "Kit de señuelos y anzuelos", "nota": "Variedad para probar qué pica.", "busqueda": "kit señuelos pesca", "url": "" },
-        { "id": "pesca-gorra", "nombre": "Gorra con protección UV", "nota": "Horas al sol en el agua.", "busqueda": "gorra pesca proteccion uv", "url": "" }
-      ]
-    },
-    "senderismo": {
-      "intro": "Para caminar con comodidad y seguridad en senderos y montaña.",
-      "items": [
-        { "id": "sender-calzado", "nombre": "Tenis o botas de senderismo", "nota": "El terreno es irregular y puede estar húmedo.", "busqueda": "botas senderismo", "url": "" },
-        { "id": "sender-mochila", "nombre": "Mochila de hidratación", "nota": "Llevas agua sin detenerte a sacarla.", "busqueda": "mochila de hidratacion", "url": "" },
-        { "id": "sender-impermeable", "nombre": "Chamarra cortavientos impermeable", "nota": "En la altura hace viento y en lluvias el clima cambia rápido.", "busqueda": "impermeable ligero plegable", "url": "https://meli.la/2ivSNUq" },
-        { "id": "sender-repelente", "nombre": "Repelente de insectos", "nota": "Mosquitos en zonas de vegetación.", "busqueda": "repelente de insectos", "url": "" }
+        {"id":"playa-bloqueador","nombre":{"es":"Bloqueador solar FPS 50+","en":"SPF 50+ sunscreen"},"nota":{"es":"El sol de la costa pega fuerte desde media mañana.","en":"The coastal sun is strong from mid-morning."},"busqueda":"bloqueador solar fps 50","url":"https://meli.la/2V2nmm5"},
+        {"id":"playa-sombrilla","nombre":{"es":"Sombrilla de playa con filtro UV","en":"UV beach umbrella"},"nota":{"es":"Casi no hay sombra natural en muchas playas.","en":"Many beaches have almost no natural shade."},"busqueda":"sombrilla de playa uv","url":"https://meli.la/1HsoV51"},
+        {"id":"playa-hielera","nombre":{"es":"Hielera eléctrica de 12 V para el auto","en":"12 V electric cooler for the car"},"nota":{"es":"Mantiene frías las bebidas y la comida del día.","en":"Keeps drinks and food cold all day."},"busqueda":"hielera electrica 12v","url":"https://meli.la/2i3VnHt"},
+        {"id":"playa-lentes","nombre":{"es":"Lentes de sol polarizados","en":"Polarized sunglasses"},"nota":{"es":"Reducen el reflejo del sol sobre el agua y la arena.","en":"They cut the glare off the water and sand."},"busqueda":"lentes de sol polarizados","url":"https://meli.la/22f6AFL"},
+        {"id":"playa-silla","nombre":{"es":"Silla de playa plegable","en":"Folding beach chair"},"nota":{"es":"Cómoda de cargar y sin sentarte en la arena caliente.","en":"Easy to carry, and no hot sand to sit on."},"busqueda":"silla de playa plegable","url":"https://meli.la/11DsCh9"},
+        {"id":"playa-snorkel","nombre":{"es":"Máscara de snorkel","en":"Snorkel mask"},"nota":{"es":"Para las zonas de aguas tranquilas.","en":"For calm-water areas."},"busqueda":"gafas snorkel adulto","url":"https://meli.la/2LAAJ8i"},
+        {"id":"playa-bolsa-seca","nombre":{"es":"Funda impermeable para celular","en":"Waterproof phone pouch"},"nota":{"es":"Evita que la arena y el agua arruinen el teléfono.","en":"Keeps sand and water away from your phone."},"busqueda":"bolsa impermeable celular","url":"https://meli.la/2GtsDVh"},
+        {"id":"playa-toalla","nombre":{"es":"Toallas de microfibra de secado rápido","en":"Quick-dry microfiber towels"},"nota":{"es":"Secan rápido y ocupan poco espacio.","en":"They dry fast and take little space."},"busqueda":"toallas de microfibra de secado rápido","url":"https://meli.la/2xbp8u3"},
+        {"id":"playa-flotador","nombre":{"es":"Flotador inflable gigante","en":"Giant inflatable float"},"nota":{"es":"Para flotar un buen rato en las zonas tranquilas.","en":"To float for a while in the calm areas."},"busqueda":"flotador inflable gigante","url":"https://meli.la/1WByMGV"},
+        {"id":"playa-paddle","nombre":{"es":"Tabla de paddle inflable","en":"Inflatable paddle board"},"nota":{"es":"Se guarda en una mochila y sirve para laguna y mar tranquilo.","en":"Packs into a backpack and works on lagoons and calm sea."},"etiqueta":{"es":"Si vas seguido","en":"If you go often"},"busqueda":"tabla de paddle inflable","url":"https://meli.la/2LJzxyY","mejora":true},
+        {"id":"playa-camara","nombre":{"es":"Cámara de acción sumergible","en":"Waterproof action camera"},"nota":{"es":"Resiste agua y arena; graba el oleaje y el atardecer.","en":"Handles water and sand; records the waves and the sunset."},"etiqueta":{"es":"Para recordarlo","en":"To remember it"},"busqueda":"cámara de acción sumergible","url":"https://meli.la/2vqtjfi","mejora":true}
       ]
     },
     "rio": {
-      "intro": "Para pasar el día junto al río sin batallar con el terreno.",
+      "intro": {"es":"Para pasarla bien en el río, la poza o la laguna sin lastimarte ni mojar lo importante.","en":"To enjoy the river, pool or lagoon without getting hurt or soaking your things."},
       "items": [
-        { "id": "rio-sandalias", "nombre": "Sandalias o zapatos acuáticos", "nota": "Las piedras del río resbalan y lastiman.", "busqueda": "zapatos acuaticos", "url": "https://meli.la/2qifCc1" },
-        { "id": "rio-bolsa-seca", "nombre": "Bolsa seca impermeable", "nota": "Para ropa y electrónicos.", "busqueda": "bolsa seca impermeable", "url": "" },
-        { "id": "rio-repelente", "nombre": "Repelente de insectos", "nota": "Mosquitos cerca del agua.", "busqueda": "repelente de insectos", "url": "" },
-        { "id": "rio-toalla", "nombre": "Toalla de microfibra", "nota": "Seca rápido y ocupa poco.", "busqueda": "toalla microfibra", "url": "https://meli.la/2arKyo2" }
+        {"id":"rio-zapatos","nombre":{"es":"Zapatos acuáticos","en":"Water shoes"},"nota":{"es":"Las rocas del río resbalan y lastiman los pies.","en":"River rocks are slippery and hurt your feet."},"busqueda":"zapatos acuáticos","url":"https://meli.la/2sgssRP"},
+        {"id":"rio-repelente","nombre":{"es":"Repelente de insectos","en":"Insect repellent"},"nota":{"es":"En la ribera hay mosquitos a toda hora.","en":"There are mosquitoes at all hours by the water."},"busqueda":"repelente de insectos","url":"https://meli.la/2pCxY3m"},
+        {"id":"rio-hamaca","nombre":{"es":"Hamaca tipo paracaídas","en":"Parachute-style hammock"},"nota":{"es":"Se cuelga entre dos árboles para descansar a la sombra.","en":"Hang it between two trees and rest in the shade."},"busqueda":"hamaca tipo paracaídas","url":"https://meli.la/1rS7HuX"},
+        {"id":"rio-kayak","nombre":{"es":"Kayak inflable para 2 personas","en":"Inflatable 2-person kayak"},"nota":{"es":"Para recorrer lagunas como El Carrizalillo y La María.","en":"To paddle lagoons like El Carrizalillo and La María."},"etiqueta":{"es":"Para la laguna","en":"For the lagoon"},"busqueda":"kayak inflable para 2 personas","url":"https://meli.la/2GUEowf","mejora":true}
+      ]
+    },
+    "pesca": {
+      "intro": {"es":"Equipo básico para pescar desde la orilla o en lancha.","en":"Basic gear for fishing from the shore or a boat."},
+      "items": [
+        {"id":"pesca-cana","nombre":{"es":"Caña telescópica con carrete","en":"Telescopic rod with reel"},"nota":{"es":"Cabe en cualquier maleta o cajuela; ideal para empezar.","en":"Fits in any suitcase or trunk; great to start with."},"busqueda":"caña de pescar telescopica","url":"https://meli.la/13YwR8o"},
+        {"id":"pesca-carrete","nombre":{"es":"Carrete spinning cargado con línea","en":"Spinning reel loaded with line"},"nota":{"es":"Un spinning mediano sirve para casi todo.","en":"A medium spinning reel works for almost anything."},"busqueda":"carrete spinning pesca","url":"https://meli.la/2ZmJRRh"},
+        {"id":"pesca-senuelos","nombre":{"es":"Kit de 108 señuelos y anzuelos","en":"108-piece lure and hook kit"},"nota":{"es":"Variedad para probar qué pica.","en":"Plenty of variety to see what bites."},"busqueda":"kit señuelos pesca","url":"https://meli.la/2FwFyJc"},
+        {"id":"pesca-hielera","nombre":{"es":"Hielera rígida de 141 litros","en":"141-liter rigid cooler"},"nota":{"es":"Conserva la pesca del día hasta que llegues.","en":"Keeps the day's catch fresh until you get home."},"etiqueta":{"es":"Para la pesca grande","en":"For the big catch"},"busqueda":"hielera rígida de 141 litros","url":"https://meli.la/2Q8Pktb","mejora":true}
       ]
     },
     "balneario": {
-      "intro": "Lo que conviene llevar para un día de balneario en familia.",
+      "intro": {"es":"Para el día de balneario: agua, sombra y comodidad.","en":"For a day at the spa pools: water, shade and comfort."},
       "items": [
-        { "id": "balneario-toalla", "nombre": "Toalla de microfibra", "nota": "Seca rápido y ocupa poco.", "busqueda": "toalla microfibra", "url": "https://meli.la/2arKyo2" },
-        { "id": "balneario-chanclas", "nombre": "Chanclas antiderrapantes", "nota": "Los pisos mojados resbalan.", "busqueda": "chanclas antiderrapantes", "url": "" },
-        { "id": "balneario-bloqueador", "nombre": "Bloqueador solar FPS 50+", "nota": "Para grandes y chicos.", "busqueda": "bloqueador solar fps 50", "url": "https://meli.la/2V2nmm5" },
-        { "id": "balneario-bolsa", "nombre": "Bolsa impermeable para celular", "nota": "Para usar el teléfono cerca del agua.", "busqueda": "bolsa impermeable celular", "url": "" }
+        {"id":"balneario-chanclas","nombre":{"es":"Sandalias para alberca","en":"Pool sandals"},"nota":{"es":"Evitan resbalones en pisos mojados.","en":"They prevent slips on wet floors."},"busqueda":"chanclas antiderrapantes","url":"https://meli.la/2UmjPPd"},
+        {"id":"balneario-flotador","nombre":{"es":"Flotador inflable para niños","en":"Kids' inflatable float"},"nota":{"es":"Para que los niños se diviertan en las pozas.","en":"So the kids can have fun in the pools."},"busqueda":"flotador inflable para niños","url":"https://meli.la/2k8T5rU"},
+        {"id":"balneario-googles","nombre":{"es":"Googles de natación","en":"Swim goggles"},"nota":{"es":"Para ver bajo el agua sin que arda.","en":"To see underwater without stinging eyes."},"busqueda":"googles de natación","url":"https://meli.la/1xw1Pru"},
+        {"id":"balneario-carpa","nombre":{"es":"Carpa plegable de 3x3","en":"3x3 folding canopy"},"nota":{"es":"Sombra para toda la familia mientras comen.","en":"Shade for the whole family while they eat."},"etiqueta":{"es":"Sombra para todos","en":"Shade for everyone"},"busqueda":"carpa plegable de 3x3","url":"https://meli.la/2MfWwLe","mejora":true}
+      ]
+    },
+    "senderismo": {
+      "intro": {"es":"Para caminar con comodidad y seguridad en senderos y montaña.","en":"To hike comfortably and safely on trails and mountains."},
+      "items": [
+        {"id":"sender-mochila","nombre":{"es":"Mochila de hidratación","en":"Hydration pack"},"nota":{"es":"Llevas agua sin detenerte a sacarla.","en":"Carry water without stopping to get it out."},"busqueda":"mochila de hidratacion","url":"https://meli.la/2VMN2tW"},
+        {"id":"sender-impermeable","nombre":{"es":"Chamarra cortavientos impermeable","en":"Waterproof windbreaker"},"nota":{"es":"En la altura hace viento y en lluvias el clima cambia.","en":"It gets windy up high and the weather turns in the rains."},"busqueda":"impermeable ligero plegable","url":"https://meli.la/2sU9y9Z"},
+        {"id":"sender-bastones","nombre":{"es":"Bastones de trekking plegables","en":"Folding trekking poles"},"nota":{"es":"Cuidan las rodillas en bajadas y pendientes.","en":"They spare your knees on descents and slopes."},"busqueda":"bastones de trekking plegables","url":"https://meli.la/2jL1hTh"},
+        {"id":"sender-lampara","nombre":{"es":"Lámpara frontal recargable","en":"Rechargeable headlamp"},"nota":{"es":"Por si anochece en el camino.","en":"Just in case night falls on the trail."},"busqueda":"lámpara frontal recargable","url":"https://meli.la/1wvR8q1"},
+        {"id":"sender-binoculares","nombre":{"es":"Binoculares compactos","en":"Compact binoculars"},"nota":{"es":"Para ver aves y el volcán de lejos.","en":"To spot birds and see the volcano from afar."},"etiqueta":{"es":"Para ver más lejos","en":"To see farther"},"busqueda":"binoculares compactos","url":"https://meli.la/2H8yBYz","mejora":true},
+        {"id":"sender-gps","nombre":{"es":"Reloj deportivo con GPS","en":"GPS sports watch"},"nota":{"es":"Registra la ruta y no te pierdes.","en":"Records the route so you don't get lost."},"etiqueta":{"es":"Para no perderte","en":"So you don't get lost"},"busqueda":"reloj deportivo con gps","url":"https://meli.la/2b9WXdu","mejora":true}
+      ]
+    },
+    "camping": {
+      "intro": {"es":"Para pasar la noche al aire libre sin batallar.","en":"To spend the night outdoors without a hassle."},
+      "items": [
+        {"id":"camp-carpa","nombre":{"es":"Casa de campaña para 3 o 4 personas","en":"3-4 person tent"},"nota":{"es":"Rápida de armar y con dos entradas.","en":"Quick to set up, with two entrances."},"busqueda":"casa de campaña para 3 o 4 personas","url":"https://meli.la/2r6ZbTK"},
+        {"id":"camp-cama","nombre":{"es":"Cama de camping inflable","en":"Inflatable camping bed"},"nota":{"es":"Evita dormir sobre el piso duro.","en":"Spares you from sleeping on hard ground."},"busqueda":"cama de camping inflable","url":"https://meli.la/1exYzEf"},
+        {"id":"camp-bolsa","nombre":{"es":"Bolsa de dormir","en":"Sleeping bag"},"nota":{"es":"Para las noches frescas de la montaña.","en":"For the cool mountain nights."},"busqueda":"bolsa de dormir","url":"https://meli.la/2ZhUfNu"},
+        {"id":"camp-lampara","nombre":{"es":"Lámpara de camping recargable","en":"Rechargeable camping lantern"},"nota":{"es":"Ilumina todo el campamento.","en":"Lights up the whole camp."},"busqueda":"lámpara de camping recargable","url":"https://meli.la/2Z8tUnt"},
+        {"id":"camp-roja","nombre":{"es":"Lámpara frontal con luz roja","en":"Headlamp with red light"},"nota":{"es":"En campamentos tortugueros no se usa luz blanca.","en":"White light is not used at turtle camps."},"busqueda":"lámpara frontal con luz roja","url":"https://meli.la/1KGpWa6"},
+        {"id":"camp-estufa","nombre":{"es":"Estufa portátil de camping","en":"Portable camping stove"},"nota":{"es":"Para el café y la cena.","en":"For the coffee and dinner."},"busqueda":"estufa portátil de camping","url":"https://meli.la/1M72gqs"},
+        {"id":"camp-power","nombre":{"es":"Estación de energía portátil","en":"Portable power station"},"nota":{"es":"Carga celulares y luces sin electricidad.","en":"Charges phones and lights without electricity."},"etiqueta":{"es":"Sin electricidad","en":"Off the grid"},"busqueda":"estación de energía portátil","url":"https://meli.la/24AKLuZ","mejora":true},
+        {"id":"camp-hielera","nombre":{"es":"Hielera rígida de 113 litros","en":"113-liter rigid cooler"},"nota":{"es":"Mantiene el hielo varios días.","en":"Keeps ice for several days."},"etiqueta":{"es":"Hielo por días","en":"Ice for days"},"busqueda":"hielera rígida de 113 litros","url":"https://meli.la/1F9sw8S","mejora":true}
       ]
     },
     "paseo": {
-      "intro": "Para recorrer con calma un día de calor en Colima.",
+      "intro": {"es":"Para recorrer pueblos, plazas y sitios con calma.","en":"To explore towns, plazas and sites at an easy pace."},
       "items": [
-        { "id": "paseo-botella", "nombre": "Botella térmica", "nota": "Agua fría durante todo el recorrido.", "busqueda": "botella termica", "url": "" },
-        { "id": "paseo-gorra", "nombre": "Gorra o sombrero para el sol", "nota": "Mucho tramo a cielo abierto.", "busqueda": "gorra proteccion solar", "url": "" },
-        { "id": "paseo-bateria", "nombre": "Batería portátil para el celular", "nota": "Fotos y mapa gastan mucha pila.", "busqueda": "bateria portatil power bank", "url": "" },
-        { "id": "paseo-bloqueador", "nombre": "Bloqueador solar FPS 50+", "nota": "Aunque esté nublado.", "busqueda": "bloqueador solar fps 50", "url": "https://meli.la/2V2nmm5" }
+        {"id":"paseo-calzado","nombre":{"es":"Tenis cómodos para caminar","en":"Comfortable walking shoes"},"nota":{"es":"Mucho recorrido en empedrado y calles.","en":"Lots of walking on cobblestones and streets."},"busqueda":"tenis cómodos para caminar","url":"https://meli.la/1JZKNCB"},
+        {"id":"paseo-gorra","nombre":{"es":"Gorra con protección solar UPF 50","en":"UPF 50 sun cap"},"nota":{"es":"El sol de medio día pega en plazas y calles.","en":"The midday sun beats down on plazas and streets."},"busqueda":"gorra proteccion solar","url":"https://meli.la/1BSwdje"},
+        {"id":"paseo-botella","nombre":{"es":"Termo de acero inoxidable","en":"Stainless steel thermos"},"nota":{"es":"Agua fría en todo el recorrido.","en":"Cold water throughout the walk."},"busqueda":"botella termica","url":"https://meli.la/2yzcQb1"},
+        {"id":"paseo-bolso","nombre":{"es":"Bolso cruzado","en":"Crossbody bag"},"nota":{"es":"Cartera y celular a la mano y a salvo entre la gente.","en":"Wallet and phone close at hand in a crowd."},"busqueda":"bolso cruzado","url":"https://meli.la/29KgCpN"}
+      ]
+    },
+    "tianguis": {
+      "intro": {"es":"Para ir de compras al tianguis y llevar todo a casa.","en":"To shop at the market and carry everything home."},
+      "items": [
+        {"id":"tianguis-bolsa","nombre":{"es":"Bolsas de mandado reutilizables","en":"Reusable shopping bags"},"nota":{"es":"Ahorras bolsas y aguantan el peso.","en":"You save on bags and they hold the weight."},"busqueda":"bolsas de mandado reutilizables","url":"https://meli.la/2v9rWrW"},
+        {"id":"tianguis-carrito","nombre":{"es":"Carrito de mandado plegable","en":"Folding shopping cart"},"nota":{"es":"Cargar la fruta y las verduras sin esfuerzo.","en":"Carry the fruit and vegetables without effort."},"busqueda":"carrito de mandado plegable","url":"https://meli.la/2dwZQND"},
+        {"id":"tianguis-canasta","nombre":{"es":"Canasta de mimbre","en":"Wicker basket"},"nota":{"es":"Clásica, bonita y resistente.","en":"Classic, pretty and sturdy."},"busqueda":"canasta de mimbre","url":"https://meli.la/2j1Mn5e"},
+        {"id":"tianguis-hielera","nombre":{"es":"Hielera rígida de 28 litros","en":"28-liter rigid cooler"},"nota":{"es":"Para llevar a casa todo lo del mercado fresco.","en":"To bring all your market goods home fresh."},"etiqueta":{"es":"Para todo el mandado","en":"For the whole shop"},"busqueda":"hielera rígida de 28 litros","url":"https://meli.la/23zDnr8","mejora":true}
+      ]
+    },
+    "feria": {
+      "intro": {"es":"Para disfrutar la feria y los eventos de principio a fin.","en":"To enjoy the fair and events from start to finish."},
+      "items": [
+        {"id":"feria-banco","nombre":{"es":"Silla plegable ligera","en":"Lightweight folding chair"},"nota":{"es":"Para los conciertos y desfiles largos.","en":"For long concerts and parades."},"busqueda":"silla plegable ligera","url":"https://meli.la/1hHGyE6"},
+        {"id":"feria-powerbank","nombre":{"es":"Batería externa de 10000 mAh","en":"10000 mAh power bank"},"nota":{"es":"Una noche de feria deja el celular sin pila.","en":"A night at the fair drains your phone."},"busqueda":"batería externa de 10000 mah","url":"https://meli.la/1M6Jr6g"},
+        {"id":"feria-rinonera","nombre":{"es":"Riñonera deportiva impermeable","en":"Waterproof waist pack"},"nota":{"es":"Cartera y celular a la mano entre la multitud.","en":"Wallet and phone at hand in the crowd."},"busqueda":"riñonera deportiva impermeable","url":"https://meli.la/1BPUg9W"},
+        {"id":"feria-camara","nombre":{"es":"Cámara compacta con zoom óptico","en":"Compact camera with optical zoom"},"nota":{"es":"Para los desfiles y el show desde lejos.","en":"For the parades and shows from afar."},"etiqueta":{"es":"Para recordarlo","en":"To remember it"},"busqueda":"cámara compacta con zoom óptico","url":"https://meli.la/2LnCFFU","mejora":true}
       ]
     }
   }

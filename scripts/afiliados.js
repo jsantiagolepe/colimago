@@ -55,7 +55,7 @@ function estado() {
     if (marca === "○") faltan++;
     if (marca === "✗") malos++;
     usadas.set(p.busqueda, (usadas.get(p.busqueda) || 0) + 1);
-    console.log(`${marca} ${p.id.padEnd(22)} ${p.nombre}`);
+    console.log(`${marca} ${p.id.padEnd(22)} ${p.nombre.es}${p.mejora ? "  (para ir más lejos)" : ""}`);
     if (marca !== "✓") console.log(`    busca en Mercado Libre: ${urlDeBusqueda(p.busqueda)}`);
     if (marca === "✗") console.log(`    url inválida: ${p.url}`);
   }
