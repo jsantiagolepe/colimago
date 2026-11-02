@@ -185,8 +185,8 @@ Y en Google Cloud Console, en el cliente OAuth web que usa `public/index.html`
 proyecto. Sin eso el botón de Google no carga en producción.
 
 El backend de Heroku no necesita CORS: el navegador nunca le habla directo,
-siempre lo hace este servidor. Lo único que necesita es aceptar
-`platform: "web"` en `POST /logs` (ver [Registro de visitas](#registro-de-visitas)).
+siempre lo hace este servidor. Lo único que necesita es el endpoint
+`POST /colimago-logs` (ver [Analítica](#analítica)).
 
 ### Estructura
 
@@ -203,68 +203,71 @@ siempre lo hace este servidor. Lo único que necesita es aceptar
   llegó con la cabecera `Authorization` y sin `token` en query/body (y que
   `POST /images` manda los campos `image` y `folder`). No necesita el
   backend real, y prende el panel solo para su prueba (`PANEL_ACTIVO=1`).
-- `lib/visitas.js` — arma el evento `app_opened` de una visita (navegador,
-  sistema, versión del sitio) y descarta bots.
-- `scripts/verificar-visitas.js` — `npm run verificar:visitas`: con un
-  backend falso, comprueba que cada visita llega a `POST /logs` con
-  `platform: "web"` y solo los campos que ese endpoint acepta.
+- `lib/analitica.js` — arma el log de cada visita o click (dispositivo,
+  ubicación, canal, hash de visitante) y descarta bots.
+- `scripts/verificar-analitica.js` — `npm run verificar:analitica`: con un
+  backend falso, comprueba que cada evento llega a `POST /colimago-logs` con
+  los campos exactos que ese endpoint acepta y la clave `x-logs-key`.
 - `api/index.js` — punto de entrada para Vercel (solo exporta `server.js`).
 - `public/` — lo público: `index.html` (página + login).
 - `views/` — lo privado: `dashboard.html`, servido por Express solo con
   sesión iniciada (por eso no está en `public/`).
 
-## Registro de visitas
+## Analítica
 
-Cada visita a la portada (`/`) guarda un `app_opened` en la colección `logs`
-de Mongo, la misma donde la app móvil guarda el suyo, con `platform: "web"`:
+Cada página vista y cada click que cuenta se guardan de forma anónima en
+`colimago_logs`, una colección propia de la base de colimaapp (no la `logs` de
+la app móvil, ni la de realestate). Es el mismo esquema que usa
+realestatecolima.mx: el navegador avisa a `POST /e` de este servidor, que
+agrega lo que sabe de la petición y lo manda a `POST /colimago-logs` de
+`backColimaApp` (módulo `src/colimago-logs`, con clave compartida en la
+cabecera `x-logs-key`).
 
 ```js
 {
-  event: 'app_opened',
-  userId: '6acd5bfd8677ca46b7ae4296',  // id aleatorio que guarda el navegador
+  event: 'click',                  // 'page_view' o 'click'
   platform: 'web',
-  deviceModel: 'Chrome 126',           // el navegador (o 'Facebook', 'Instagram')
-  osVersion: 'iOS 17.5',               // el sistema; 'Android', 'Windows', 'macOS' sin versión
-  appVersion: '1.0.0',                 // versión de package.json
-  appBuild: '3669c93',                 // commit desplegado; 'local' fuera de Vercel
-  timestamp: ISODate('2026-10-12T22:15:24.662Z')
+  ts: ISODate('2026-11-01T18:25:43.511Z'),
+  path: '/lugar/playa-cuyutlan',
+  target: 'mercadolibre',          // solo click: qué se tocó
+  place: 'ficha',                  // dónde: 'ficha', 'footer', 'home'…
+  item: 'playa-cuyutlan',          // lugar, evento, fiesta o guía de la ruta
+  channel: 'meta_ads',             // direct | search | social | referral | meta_ads | google_ads | campaign
+  referrer: 'l.instagram.com',     // solo el dominio
+  utmSource: 'meta', utmMedium: 'paid_social', utmCampaign: 'colima-go',
+  device: 'mobile', os: 'iOS', browser: 'Instagram',
+  country: 'MX', region: 'COL', city: 'Colima',   // cabeceras de Vercel
+  visitor: 'a1b2…',                // hash que cambia cada día
+  lang: 'es'
 }
 ```
 
-**Cómo llega ahí:** el script del final de `public/index.html` manda
-`POST /visita` con solo el `userId`; `server.js` lo completa con
-`lib/visitas.js` y lo envía a `POST /logs` del backend, sin
-`Authorization` (el endpoint es público). Igual que en la app, no se guarda
-IP, user agent, cookies ni nada de una cuenta.
-
-**Qué cuenta como una visita:**
-
-- Una por pestaña: recargar la página no suma, abrirla en otra pestaña sí.
-- `userId` se guarda en `localStorage` (`colimago-visitante`); si el
-  navegador no deja guardarlo, no se registra nada (la app hace lo mismo
-  con su id).
-- Solo la portada. `/app`, `/ios`, `/android` y `/realestate` no registran.
-- Se descartan los bots (Googlebot, Lighthouse, Chrome headless, curl…) por
-  su user agent.
-
-**Cuándo está prendido:** en Vercel solo en Production (`VERCEL_ENV`), para
-que los deploys de prueba no ensucien los datos. En local queda apagado; para
-probarlo, `VISITAS_ACTIVO=1` en `.env` y un `COLIMA_BACKEND_URL` de
-desarrollo. `npm run verificar:visitas` lo prueba sin backend real.
-
-**Límites que conviene saber:**
-
-- Chrome oculta la versión de Android (siempre dice 10), y Windows y macOS
-  tampoco la dan en el user agent, por eso `osVersion` es solo `Android`,
-  `Windows` o `macOS` en esos casos. El iPad en modo escritorio se ve como
-  `macOS`.
-- Todas las visitas llegan al backend desde este servidor, así que su límite
-  de 30 por minuto por IP (`THROTTLE_LOGS` en `backColimaApp`) cuenta a todos
-  los visitantes juntos. Más de 30 portadas abiertas en un minuto pierden
-  eventos (el backend responde 429; queda en los logs de Vercel).
-- Requiere que `backColimaApp` acepte `platform: "web"` (`LOG_PLATFORMS` en
-  `src/logs/entities/log.entity.ts`); mientras no esté desplegado, el backend
-  rechaza el evento con 400 y no se guarda nada.
+- **Código:** `public/js/analitica.js` (navegador: portada y guía),
+  `lib/analitica.js` y la ruta `/e` de `server.js` (servidor).
+- **Qué se cuenta como click:** un enlace a la App Store o Google Play
+  (`app_store`, `google_play`), Mercado Libre (`mercadolibre`), mapas (`maps`),
+  WhatsApp, Facebook, Instagram, TikTok, teléfono o correo, o cualquier elemento
+  con `data-track="nombre"`. El dónde sale de `data-place` del elemento más
+  cercano, del pie o la cabecera, o de la ruta.
+- **Privacidad:** no se guarda la IP ni el user agent: el servidor los usa para
+  calcular `visitor` (HMAC del día, la IP y el navegador con el secreto
+  `COLIMAGO_LOGS_KEY`; no sirve para seguir a nadie de un día a otro) y
+  `device`/`os`/`browser`, y ahí se quedan. «No rastrear» y Global Privacy
+  Control apagan todo. Los bots se descartan. Los logs caducan a los 36 meses
+  (índice TTL). Si cambia lo que se mide, hay que actualizar
+  `data/i18n/*/privacidad.json`.
+- **Anuncios:** basta con `?utm_source=meta&utm_medium=paid_social&utm_campaign=…`
+  en la URL del anuncio; no hace falta ningún pixel. El origen se recuerda 30
+  minutos.
+- **Cuándo está prendida:** en Vercel solo en Production (`VERCEL_ENV`) y solo si
+  existe `COLIMAGO_LOGS_KEY` (el mismo valor en Vercel y en Heroku; nunca en el
+  repo). En local, `ANALITICA_ACTIVO=1` y un `COLIMA_BACKEND_URL` de desarrollo.
+  `npm run verificar:analitica` la prueba sin backend real.
+- **Lectura:** `GET /colimago-analytics/logs` y `/summary` en el backend (solo
+  admin), para el panel.
+- **Límite:** todos los eventos llegan al backend desde este servidor, así que su
+  límite de 600 por minuto por IP (`THROTTLE_COLIMAGO_LOGS`) cuenta a todos los
+  visitantes juntos; lo que pase de ahí se pierde sin afectar la página.
 
 ## Qué hace
 

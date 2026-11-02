@@ -28,7 +28,7 @@ const { spawn } = require("child_process");
 
 process.env.NODE_ENV = "test";
 process.env.SESSION_SECRET = "secreto-de-prueba-sitio";
-delete process.env.VISITAS_ACTIVO;
+delete process.env.ANALITICA_ACTIVO;
 
 const RAIZ = path.join(__dirname, "..");
 const MIN_PALABRAS_LUGAR = 300;

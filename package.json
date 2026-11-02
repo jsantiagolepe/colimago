@@ -11,7 +11,7 @@
   "scripts": {
     "start": "node server.js",
     "verificar": "node scripts/verificar-backend.js",
-    "verificar:visitas": "node scripts/verificar-visitas.js",
+    "verificar:analitica": "node scripts/verificar-analitica.js",
     "verificar:guia": "node scripts/verificar-guia.js",
     "verificar:datos": "node scripts/verificar-datos.js",
     "verificar:sitio": "node scripts/verificar-sitio.js",
