@@ -1,6 +1,9 @@
 import { Link, Route, Routes, useParams } from 'react-router';
-import { ModuleBadge } from '../../features/home/HomePage';
-import { EmptySectionPage, HubCardContent, HubLayout, type HubSection } from '../../features/home/hub';
+import { HomeBar, ModuleBadge } from '../../features/home/HomePage';
+import { BackLink, EmptySectionPage, HubCardContent, HubLayout, type HubSection } from '../../features/home/hub';
+import AllHousesPage from './AllHousesPage';
+import EditHousePage from './EditHousePage';
+import HouseFormPage from './HouseFormPage';
 import './magenta.css';
 
 /** Los proyectos de Magenta, cada uno con su tarjeta. */
@@ -10,10 +13,20 @@ const SECTIONS: readonly HubSection[] = [
   { id: 'crm', title: 'CRM Magenta', description: 'Clientes y seguimiento.', icon: 'users', color: '#5a57c9' },
 ];
 
+/** Las acciones del CRM, cada una con su tarjeta. */
+const CRM_ACTIONS: readonly HubSection[] = [
+  { id: 'new-house', title: 'New House', description: 'Agregar una casa nueva.', icon: 'house', color: '#5a57c9' },
+  { id: 'all-houses', title: 'All Houses', description: 'Ver, editar y eliminar las casas.', icon: 'layout-list', color: '#2f7f9e' },
+];
+
 export default function MagentaPage() {
   return (
     <Routes>
       <Route index element={<MagentaHome />} />
+      <Route path="crm" element={<MagentaCrm />} />
+      <Route path="crm/new-house" element={<HouseFormPage />} />
+      <Route path="crm/all-houses" element={<AllHousesPage />} />
+      <Route path="crm/all-houses/:id" element={<EditHousePage />} />
       <Route path=":seccion" element={<MagentaSection />} />
     </Routes>
   );
@@ -58,6 +71,28 @@ function MagentaHome() {
         ))}
       </ul>
     </HubLayout>
+  );
+}
+
+function MagentaCrm() {
+  return (
+    <div className="home">
+      <HomeBar>
+        <BackLink to="/magenta">Magenta</BackLink>
+      </HomeBar>
+      <main className="home__main">
+        <h1 className="magenta-crm__title">CRM Magenta</h1>
+        <ul className="home__grid hub-grid">
+          {CRM_ACTIONS.map((a) => (
+            <li key={a.id} className="hub-card">
+              <Link to={a.id} className="home-card">
+                <HubCardContent section={a} />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </div>
   );
 }
 
