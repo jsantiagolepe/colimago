@@ -2,7 +2,7 @@
 // disco o el Llavero pasa por un comando de Rust; aquí solo se llama y se
 // normaliza el error que regresa ({ kind, message }, ver error.rs).
 
-import { invoke } from '@tauri-apps/api/core';
+import { invoke, type InvokeArgs, type InvokeOptions } from '@tauri-apps/api/core';
 
 export type AppErrorKind = 'notAuthenticated' | 'signIn' | 'cancelled' | 'network' | 'invalidRequest' | 'internal';
 
@@ -20,9 +20,14 @@ function esErrorDeRust(err: unknown): err is { kind: AppErrorKind; message: stri
   return typeof err === 'object' && err !== null && 'kind' in err && 'message' in err;
 }
 
-export async function command<T>(nombre: string, args?: Record<string, unknown>): Promise<T> {
+/**
+ * Llama un comando de Rust. `args` es el objeto de argumentos o, para mandar
+ * un archivo sin pasarlo por JSON, los bytes crudos (con los datos sueltos en
+ * `opciones.headers`).
+ */
+export async function command<T>(nombre: string, args?: InvokeArgs, opciones?: InvokeOptions): Promise<T> {
   try {
-    return await invoke<T>(nombre, args);
+    return await invoke<T>(nombre, args, opciones);
   } catch (err) {
     if (esErrorDeRust(err)) throw new AppError(err.kind, String(err.message));
     throw new AppError('internal', typeof err === 'string' ? err : 'Ocurrió un error inesperado.');

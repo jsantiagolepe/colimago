@@ -29,7 +29,7 @@ log = "0.4"
 thiserror = "2"
 tokio = { version = "1", features = ["sync", "time", "macros"] }
 # Cliente HTTP hacia el backend remoto. TLS nativo de macOS (Security.framework).
-reqwest = { version = "0.12", features = ["json"] }
+reqwest = { version = "0.12", features = ["json", "multipart"] }
 # Sesión guardada en el Llavero de macOS.
 keyring = { version = "3", features = ["apple-native"] }
 # Servidor loopback efímero para el inicio de sesión con Google (RFC 8252).

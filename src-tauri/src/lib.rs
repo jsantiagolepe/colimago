@@ -76,6 +76,7 @@ pub fn run() {
             auth::auth_reopen_sign_in,
             auth::auth_sign_out,
             backend::backend_request,
+            backend::backend_upload_image,
             maps::resolve_maps_link,
             files::save_text_file,
             storage::data_read,

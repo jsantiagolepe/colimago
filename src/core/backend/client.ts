@@ -59,25 +59,19 @@ function textoMensaje(message: unknown): string {
   return typeof message === 'string' && message.trim() ? message : '';
 }
 
-export async function llamarBackend<T extends DatosBackend = DatosBackend>(
-  ruta: string,
-  opciones: OpcionesBackend = {},
-): Promise<T> {
-  const { method = 'GET', query = {}, body, mensajeError } = opciones;
-  const params = Object.fromEntries(
-    Object.entries(query)
-      .filter(([, valor]) => valor !== undefined && valor !== null)
-      .map(([clave, valor]) => [clave, String(valor)]),
-  );
-
+/**
+ * Ejecuta una llamada nativa al backend y aplica la semántica de errores de
+ * arriba. Compartido por las llamadas JSON y por la subida de imágenes.
+ */
+async function datosDelBackend(
+  llamar: () => Promise<RespuestaCruda>,
+  mensajeError: string | undefined,
+  /** Mensajes propios de la llamada por status; reciben el "message" del backend ('' si no mandó). */
+  mensajesPorStatus: Record<number, (delBackend: string) => string> = {},
+): Promise<DatosBackend> {
   let respuesta: RespuestaCruda;
   try {
-    respuesta = await command<RespuestaCruda>('backend_request', {
-      method,
-      path: ruta,
-      query: params,
-      body: method === 'GET' ? null : (body ?? {}),
-    });
+    respuesta = await llamar();
   } catch (err) {
     if (err instanceof AppError && err.kind === 'notAuthenticated') {
       throw new BackendError(401, err.message);
@@ -89,6 +83,10 @@ export async function llamarBackend<T extends DatosBackend = DatosBackend>(
   const datos: DatosBackend =
     respuesta.body && typeof respuesta.body === 'object' ? (respuesta.body as DatosBackend) : {};
 
+  const mensajePropio = mensajesPorStatus[status];
+  if (mensajePropio) {
+    throw new BackendError(status, mensajePropio(textoMensaje(datos.message)), status);
+  }
   if (STATUS_CON_MENSAJE.has(status)) {
     throw new BackendError(status, textoMensaje(datos.message) || MENSAJES_POR_STATUS[status], status);
   }
@@ -100,5 +98,73 @@ export async function llamarBackend<T extends DatosBackend = DatosBackend>(
   if (datos.response === false) {
     throw new BackendError(400, textoMensaje(datos.message) || mensajeError || MENSAJES_POR_STATUS[400], status);
   }
+  return datos;
+}
+
+export async function llamarBackend<T extends DatosBackend = DatosBackend>(
+  ruta: string,
+  opciones: OpcionesBackend = {},
+): Promise<T> {
+  const { method = 'GET', query = {}, body, mensajeError } = opciones;
+  const params = Object.fromEntries(
+    Object.entries(query)
+      .filter(([, valor]) => valor !== undefined && valor !== null)
+      .map(([clave, valor]) => [clave, String(valor)]),
+  );
+
+  const datos = await datosDelBackend(
+    () =>
+      command<RespuestaCruda>('backend_request', {
+        method,
+        path: ruta,
+        query: params,
+        body: method === 'GET' ? null : (body ?? {}),
+      }),
+    mensajeError,
+  );
   return datos as T;
+}
+
+/**
+ * A dónde se sube una imagen. Cada app tiene su propia cuenta de Cloudinary
+ * y el backend guarda las credenciales (nunca van en la app):
+ *   - `/images`: la cuenta principal (ColimaApp).
+ *   - `/magentagroup/images`: la cuenta de Magenta Group; solo admin. Todo lo
+ *     de Magenta (fotos del catálogo, CRM) sube por aquí.
+ * Debe coincidir con UPLOAD_ENDPOINTS en src-tauri/src/backend.rs.
+ */
+export type DestinoImagen = '/images' | '/magentagroup/images';
+
+// Errores de la subida que merecen un texto más claro que el genérico.
+const MENSAJES_DE_SUBIDA: Record<number, (delBackend: string) => string> = {
+  413: () => 'La foto pesa más de 8 MB. Elige una más ligera.',
+  429: () => 'Se alcanzó el límite de 10 fotos por minuto. Espera un momento e inténtalo de nuevo.',
+  // El backend avisa qué variables de Cloudinary le faltan; no es culpa de esta computadora.
+  503: (delBackend) =>
+    delBackend
+      ? `El servidor de fotos no está configurado: ${delBackend}`
+      : 'El servidor de fotos no está disponible (503). Es un problema del servidor, no de tu computadora; inténtalo en un momento.',
+};
+
+/**
+ * Sube una imagen del disco a Cloudinary a través del backend y regresa su
+ * URL pública. Los bytes viajan crudos hacia Rust, que los manda como
+ * multipart con el JWT; `carpeta` solo admite letras, números, `_`, `-` y `/`
+ * (la misma regla del backend). El backend limita a 8 MB por imagen y a 10
+ * subidas por minuto: pasado el límite responde 429.
+ */
+export async function subirImagen(destino: DestinoImagen, carpeta: string, archivo: Blob): Promise<string> {
+  const bytes = new Uint8Array(await archivo.arrayBuffer());
+  const datos = await datosDelBackend(
+    () =>
+      command<RespuestaCruda>('backend_upload_image', bytes, {
+        headers: { 'x-endpoint': destino, 'x-folder': carpeta },
+      }),
+    'No se pudo subir la imagen.',
+    MENSAJES_DE_SUBIDA,
+  );
+  if (typeof datos.url !== 'string' || !datos.url) {
+    throw new BackendError(502, 'El backend no devolvió la dirección de la imagen.');
+  }
+  return datos.url;
 }

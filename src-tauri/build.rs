@@ -13,6 +13,7 @@ fn main() {
             "auth_reopen_sign_in",
             "auth_sign_out",
             "backend_request",
+            "backend_upload_image",
             "resolve_maps_link",
             "save_text_file",
             "data_read",

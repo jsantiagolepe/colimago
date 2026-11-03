@@ -16,6 +16,7 @@
     "allow-auth-reopen-sign-in",
     "allow-auth-sign-out",
     "allow-backend-request",
+    "allow-backend-upload-image",
     "allow-resolve-maps-link",
     "allow-save-text-file",
     "allow-data-read",
