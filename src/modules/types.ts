@@ -28,6 +28,11 @@ export interface AppModule {
   pending?: PendingSource;
   /** Mostrar en su tarjeta del inicio cuántos de sus pendientes de hoy faltan. */
   showPendingCount?: boolean;
+  /**
+   * Sin tarjeta en el inicio: su ruta sigue abierta y sus pendientes siguen
+   * saliendo en la tarjeta de Pendientes (p. ej. Calendar).
+   */
+  hidden?: boolean;
 }
 
 /** Un pendiente de hoy en la tarjeta grande del inicio. */

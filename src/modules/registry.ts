@@ -9,6 +9,7 @@ import { colimaGoWebModule } from './colima-go-web';
 import { coursesModule } from './courses';
 import { englishModule } from './english';
 import { financesModule } from './finances';
+import { grcModule } from './grc';
 import { magentaModule } from './magenta';
 import { scoreModule } from './score';
 import { tasksModule } from './tasks';
@@ -20,8 +21,10 @@ export const modules: readonly AppModule[] = [
   colimaGoWebModule,
   englishModule,
   financesModule,
-  calendarModule,
+  grcModule,
   tasksModule,
   coursesModule,
   scoreModule,
+  // Sin tarjeta en el inicio (hidden), pero con su ruta y sus pendientes.
+  calendarModule,
 ];

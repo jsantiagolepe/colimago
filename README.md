@@ -12,10 +12,13 @@ día quedó resuelto: los checks de Calendar de ese día y las tareas con esa
 fecha terminadas a tiempo); abajo, una tarjeta por módulo. Hoy son
 **ColimaGo** (el panel de administración que antes vivía en colimago.mx:
 eventos, producción, posts locales, lugares y directorio), **MagentaApp**,
-**MagentaWeb**, **ColimaGoWeb**, **English**, **Finances**, **Calendar**
-(el mes a pantalla completa con checks diarios: inglés, correr,
-estudiar…), **Tareas** (con fecha, hechas y por hacer) y **Cursos**. Los
-que no son ColimaGo, Calendar ni Tareas están vacíos por ahora.
+**MagentaWeb**, **ColimaGoWeb**, **English**, **Finances**, **GRC** (ruta
+de 6 meses para entrar a GRC en ciberseguridad: SGSI e ISO 27001, práctica
+en una empresa ficticia, portafolio, CV y Lead Implementer, semana por
+semana y con cada paso para palomear), **Tareas** (con fecha, hechas y por
+hacer), **Cursos** y **Score**. **Calendar** (el mes a pantalla completa
+con checks diarios) ya no tiene tarjeta en el inicio, pero sigue en
+`#/calendar` y sus checks siguen saliendo en Pendientes.
 
 ## Requisitos
 

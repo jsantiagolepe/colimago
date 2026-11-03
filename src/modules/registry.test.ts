@@ -9,10 +9,17 @@ describe('registro de módulos', () => {
 
   it('ColimaGo va primero; los módulos con pantalla', () => {
     expect(modules[0].id).toBe('colima-go');
-    expect(modules.filter((m) => m.component).map((m) => m.id)).toEqual(['colima-go', 'magenta', 'english', 'calendar', 'tasks', 'score']);
+    expect(modules.filter((m) => m.component).map((m) => m.id)).toEqual(['colima-go', 'magenta', 'english', 'grc', 'tasks', 'score', 'calendar']);
   });
 
-  it('English, Calendar, Tareas y Score alimentan la tarjeta de pendientes', () => {
-    expect(modules.filter((m) => m.pending).map((m) => m.id)).toEqual(['english', 'calendar', 'tasks', 'score']);
+  it('English, GRC, Tareas, Score y Calendar alimentan la tarjeta de pendientes', () => {
+    expect(modules.filter((m) => m.pending).map((m) => m.id)).toEqual(['english', 'grc', 'tasks', 'score', 'calendar']);
+  });
+
+  it('GRC ocupa en el inicio el lugar de Calendar, que ya no tiene tarjeta', () => {
+    const enInicio = modules.filter((m) => !m.hidden).map((m) => m.id);
+    expect(enInicio).toContain('grc');
+    expect(enInicio).not.toContain('calendar');
+    expect(enInicio).toHaveLength(9);
   });
 });

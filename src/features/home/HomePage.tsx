@@ -71,7 +71,7 @@ export function HomePage() {
         </div>
 
         <ul className="home__grid">
-          {modules.map((module) => (
+          {modules.filter((m) => !m.hidden).map((module) => (
             <li key={module.id}>
               <Link to={module.path} className={`home-card${module.component ? '' : ' home-card--empty'}`}>
                 <ModuleBadge module={module} />

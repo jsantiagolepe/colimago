@@ -11,4 +11,6 @@ export const calendarModule: AppModule = {
   color: '#c97a14',
   component: lazy(() => import('./CalendarPage')),
   pending: calendarPending,
+  // Su lugar en el inicio ahora es de GRC; sus checks siguen en Pendientes.
+  hidden: true,
 };
