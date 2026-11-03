@@ -15,7 +15,11 @@ eventos, producción, posts locales, lugares y directorio), **MagentaApp**,
 **MagentaWeb**, **ColimaGoWeb**, **English**, **Finances**, **GRC** (ruta
 de 6 meses para entrar a GRC en ciberseguridad: SGSI e ISO 27001, práctica
 en una empresa ficticia, portafolio, CV y Lead Implementer, semana por
-semana y con cada paso para palomear), **Tareas** (con fecha, hechas y por
+semana y con cada paso para palomear; cada paso abre su guía de estudio
+—qué aprender primero, qué buscar, cursos y videos, qué practicar, tips y
+plantillas— y una biblioteca propia de conceptos, apuntes, enlaces y
+entregables, con búsqueda, glosario, 10 proyectos de portafolio y
+exportación a Markdown), **Tareas** (con fecha, hechas y por
 hacer), **Cursos** y **Score**. **Calendar** (el mes a pantalla completa
 con checks diarios) ya no tiene tarjeta en el inicio, pero sigue en
 `#/calendar` y sus checks siguen saliendo en Pendientes.

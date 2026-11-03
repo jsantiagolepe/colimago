@@ -1,5 +1,5 @@
 import { useState, type CSSProperties } from 'react';
-import { parseDateKey } from '../../core/dates';
+import { Link, Route, Routes } from 'react-router';
 import { useDocument } from '../../core/platform/document-store';
 import { useToday } from '../../core/useToday';
 import { IconCheck } from '../../core/ui/icons';
@@ -11,6 +11,7 @@ import {
   isDone,
   milestones,
   nextTask,
+  notesOf,
   pace,
   percent,
   phaseCounts,
@@ -34,22 +35,38 @@ import {
   type RoadmapTask,
   type RoadmapWeek,
 } from './roadmap';
+import { LibraryView, ProjectsView } from './LibraryView';
 import { grcStore } from './store';
+import { ProjectPage, TaskPage } from './StudyPage';
+import { CheckButton, fechaCorta, fechaLarga } from './ui';
 import '../../features/home/home.css';
 import './grc.css';
+import './grc-study.css';
 
-const corta = new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'short' });
-const larga = new Intl.DateTimeFormat('es-MX', { day: 'numeric', month: 'long', year: 'numeric' });
-const fechaCorta = (key: string) => corta.format(parseDateKey(key)).replace('.', '');
-const fechaLarga = (key: string) => larga.format(parseDateKey(key));
+type Tab = string; // id de una fase, 'proyectos', 'biblioteca', 'recursos' o 'metodo'
 
-type Tab = string; // id de una fase, 'recursos' o 'metodo'
+// La pestaña que dejaste abierta, para que al volver de un paso sigas ahí.
+let ultimaPestana: Tab | null = null;
 
-/** GRC: tu ruta de 6 meses, semana por semana, con cada paso para palomear. */
+/** GRC: tu ruta de 6 meses, la guía de estudio de cada paso y tu biblioteca. */
 export default function GrcPage() {
+  return (
+    <Routes>
+      <Route index element={<RoadmapHome />} />
+      <Route path="paso/:id" element={<TaskPage />} />
+      <Route path="proyecto/:id" element={<ProjectPage />} />
+    </Routes>
+  );
+}
+
+function RoadmapHome() {
   const { data, error, update } = useDocument(grcStore);
   const hoy = useToday();
-  const [tab, setTab] = useState<Tab | null>(null);
+  const [tab, setTabState] = useState<Tab | null>(ultimaPestana);
+  const setTab = (t: Tab) => {
+    ultimaPestana = t;
+    setTabState(t);
+  };
 
   const alternar = (taskId: string) => update((d) => setTaskDone(d, taskId, !isDone(d, taskId), hoy));
   const pestana = tab ?? (data ? currentPhase(data).id : PHASES[0].id);
@@ -83,7 +100,11 @@ export default function GrcPage() {
             />
             <Milestones data={data} onGoToWeek={irASemana} />
             <Tabs data={data} current={pestana} onChange={setTab} />
-            {pestana === 'recursos' ? (
+            {pestana === 'proyectos' ? (
+              <ProjectsView data={data} />
+            ) : pestana === 'biblioteca' ? (
+              <LibraryView data={data} />
+            ) : pestana === 'recursos' ? (
               <ResourcesView />
             ) : pestana === 'metodo' ? (
               <MethodView data={data} today={hoy} onReschedule={() => update((d) => reschedule(d, hoy))} />
@@ -179,9 +200,14 @@ function Hero({
                 {paso.detail && <p className="grc-next__detail">{paso.detail}</p>}
               </div>
             </div>
-            <button type="button" className="grc-link-button" onClick={() => onGoToWeek(semanaPaso.n)}>
-              Semana {semanaPaso.n}: {semanaPaso.title} →
-            </button>
+            <div className="grc-next__actions">
+              <Link to={`paso/${paso.id}`} className="grc-button">
+                Abrir guía de estudio
+              </Link>
+              <button type="button" className="grc-link-button" onClick={() => onGoToWeek(semanaPaso.n)}>
+                Semana {semanaPaso.n} →
+              </button>
+            </div>
           </>
         ) : (
           <p className="grc-next__title">Terminaste toda la ruta. Felicidades.</p>
@@ -267,6 +293,8 @@ function Tabs({ data, current, onChange }: { data: GrcData; current: Tab; onChan
       })}
       <span className="grc-tabs__sep" aria-hidden="true" />
       {[
+        ['proyectos', 'Proyectos'],
+        ['biblioteca', 'Biblioteca'],
         ['recursos', 'Recursos'],
         ['metodo', 'Método'],
       ].map(([id, nombre]) => (
@@ -358,20 +386,41 @@ function WeekCard({
       </header>
       <ul className="grc-tasks">
         {week.tasks.map((t) => (
-          <TaskRow key={t.id} task={t} done={isDone(data, t.id)} onToggle={() => onToggle(t.id)} />
+          <TaskRow
+            key={t.id}
+            task={t}
+            done={isDone(data, t.id)}
+            notes={notesOf(data, t.id).length}
+            onToggle={() => onToggle(t.id)}
+          />
         ))}
       </ul>
     </li>
   );
 }
 
-function TaskRow({ task, done, onToggle }: { task: RoadmapTask; done: boolean; onToggle: () => void }) {
+function TaskRow({
+  task,
+  done,
+  notes,
+  onToggle,
+}: {
+  task: RoadmapTask;
+  done: boolean;
+  notes: number;
+  onToggle: () => void;
+}) {
   const tipo = KINDS[task.kind];
   return (
     <li className={`grc-task${done ? ' is-done' : ''}`}>
       <CheckButton done={done} color={tipo.color} label={task.title} onToggle={onToggle} />
       <div className="grc-task__body">
-        <p className="grc-task__title">{task.title}</p>
+        <Link to={`paso/${task.id}`} className="grc-task__title grc-task__open">
+          {task.title}
+          <span className="grc-task__guide">
+            {notes > 0 ? `Guía · ${notes} ${notes === 1 ? 'nota' : 'notas'}` : 'Abrir guía'} →
+          </span>
+        </Link>
         {task.detail && <p className="grc-task__detail">{task.detail}</p>}
         <p className="grc-task__meta">
           <span className="grc-kind" style={{ '--k': tipo.color } as CSSProperties}>
@@ -386,34 +435,6 @@ function TaskRow({ task, done, onToggle }: { task: RoadmapTask; done: boolean; o
         </p>
       </div>
     </li>
-  );
-}
-
-function CheckButton({
-  done,
-  color,
-  label,
-  onToggle,
-  large = false,
-}: {
-  done: boolean;
-  color: string;
-  label: string;
-  onToggle: () => void;
-  large?: boolean;
-}) {
-  return (
-    <button
-      type="button"
-      role="checkbox"
-      aria-checked={done}
-      aria-label={label}
-      className={`grc-check${done ? ' is-done' : ''}${large ? ' grc-check--large' : ''}`}
-      style={{ '--c': color } as CSSProperties}
-      onClick={onToggle}
-    >
-      {done && <IconCheck />}
-    </button>
   );
 }
 
