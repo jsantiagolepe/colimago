@@ -481,7 +481,83 @@ table.tabla-directorio td.celda-id { font-family: ui-monospace, "SF Mono", Menlo
 .btn-secundario:hover { background: var(--teal-soft); }
 .badge-activo { background: var(--ok-soft); color: var(--ok); padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; }
 .badge-inactivo { background: var(--coral-soft); color: var(--coral); padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; }
-tr.fila-inactiva { opacity: 0.65; }
+tr.fila-inactiva, .fila-local.fila-inactiva { opacity: 0.65; }
+
+/* Posts locales: tarjetas de categoría → lista con foto → detalle */
+.resumen-locales { margin: 0; align-self: center; font-size: 13.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.grid-categorias { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.tarjeta-categoria {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px; text-align: left;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 18px;
+  font: inherit; color: var(--ink); cursor: pointer; transition: border-color .12s, background .12s, transform .12s;
+}
+.tarjeta-categoria:hover { border-color: var(--line-strong); background: var(--hover); }
+.tarjeta-categoria:active { transform: scale(0.985); }
+.tarjeta-categoria-icono {
+  width: 44px; height: 44px; margin-bottom: 8px; border-radius: 12px; background: var(--teal-soft); color: var(--teal-ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.tarjeta-categoria-icono .ico, .cabecera-local-icono .ico { width: 22px; height: 22px; }
+.tarjeta-categoria-nombre { font-size: 16px; font-weight: 700; }
+.tarjeta-categoria-cuenta { font-size: 12.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+.cabecera-local { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+.btn-volver {
+  display: inline-flex; align-items: center; gap: 4px; border: none; background: none; color: var(--ink-soft);
+  font-size: 13.5px; font-weight: 600; cursor: pointer; padding: 6px 10px 6px 6px; border-radius: 8px;
+}
+.btn-volver:hover { background: var(--hover); color: var(--ink); }
+.cabecera-local-titulo { display: flex; align-items: center; gap: 10px; margin: 0; font-size: 20px; font-weight: 700; }
+.cabecera-local-icono {
+  width: 36px; height: 36px; border-radius: 10px; background: var(--teal-soft); color: var(--teal-ink);
+  display: flex; align-items: center; justify-content: center;
+}
+.cabecera-local-cuenta { font-size: 13px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+.lista-locales { display: flex; flex-direction: column; gap: 10px; }
+.fila-local {
+  display: flex; align-items: center; gap: 14px; width: 100%; text-align: left;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 10px 14px 10px 10px;
+  font: inherit; color: var(--ink); cursor: pointer; transition: border-color .12s, background .12s;
+}
+.fila-local:hover { border-color: var(--line-strong); background: var(--hover); }
+.fila-local-texto { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.fila-local-titulo { font-size: 15px; font-weight: 600; overflow-wrap: anywhere; }
+.fila-local-sub { font-size: 12.5px; color: var(--ink-soft); }
+.fila-local-flecha { color: var(--ink-faint); display: flex; }
+
+/* La foto va encima del ícono de la categoría: si no hay foto o no carga, se ve el ícono */
+.foto-local, .foto-local-grande {
+  position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden;
+  background: var(--teal-soft); color: var(--teal-ink); flex-shrink: 0;
+}
+.foto-local { width: 72px; height: 72px; border-radius: 12px; }
+.foto-local .ico { width: 26px; height: 26px; opacity: 0.7; }
+.foto-local-grande { width: 320px; height: 240px; border-radius: 16px; }
+.foto-local-grande .ico { width: 56px; height: 56px; opacity: 0.55; }
+.foto-local img, .foto-local-grande img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+.detalle-local {
+  display: flex; gap: 24px; align-items: flex-start;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px;
+}
+.detalle-local.fila-inactiva .foto-local-grande { opacity: 0.6; }
+.detalle-local-cuerpo { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+.detalle-local-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.detalle-local-municipio { font-size: 13px; color: var(--ink-soft); }
+.detalle-local-titulo { margin: 0; font-size: 24px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.detalle-local-subtitulo { margin: -4px 0 0; font-size: 14px; color: var(--ink-soft); }
+.detalle-local-descripcion { margin: 0; font-size: 14px; line-height: 1.55; white-space: pre-line; }
+.detalle-local-datos { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; margin: 4px 0 0; font-size: 13.5px; }
+.detalle-local-datos dt { color: var(--ink-soft); font-weight: 600; }
+.detalle-local-datos dd { margin: 0; overflow-wrap: anywhere; }
+.acciones-detalle { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.btn-baja-local {
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--coral); background: var(--panel); color: var(--coral);
+  padding: 9px 18px; border-radius: 999px; font-size: 13.5px; font-weight: 700; cursor: pointer;
+}
+.btn-baja-local:hover { background: var(--coral-soft); }
 
 .modal-box-local { max-width: 640px; }
 .form-local { display: flex; flex-direction: column; gap: 14px; }
@@ -552,6 +628,10 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.92em
   .form-directorio > .campo, .form-directorio input { flex: 1 1 100%; width: 100% !important; }
   .form-directorio > button, .barra-locales .acciones, .barra-locales .acciones > button { width: 100%; }
   .barra-locales .filtros { width: 100%; }
+  .grid-categorias { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .tarjeta-categoria { padding: 14px; }
+  .detalle-local { flex-direction: column; padding: 14px; gap: 16px; }
+  .foto-local-grande { width: 100%; height: 200px; }
   .modal-overlay { padding: 12px; align-items: flex-end; }
   .modal-box { max-height: 90vh; padding: 18px; }
 }

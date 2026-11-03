@@ -286,15 +286,35 @@ export function montarDashboard(raiz, opciones) {
   };
 
   // Categorías de posts locales (contrato §5). 10-13 ya existen en la app;
-  // 20-21 son hoteles/restaurantes.
+  // 20-21 son hoteles/restaurantes; 14, 30 y 31 son las más nuevas (zonas
+  // arqueológicas, tianguis y mercados). Cada una es una tarjeta en la
+  // sección; una categoría que llegue del backend y no esté aquí también
+  // sale, como "Categoría N", para que ningún post quede escondido.
   const CATEGORIAS_LOCAL = {
     10: 'Ríos',
     11: 'Playas',
     12: 'Lagos',
     13: 'Montañas',
+    14: 'Zonas arqueológicas',
     20: 'Hoteles',
     21: 'Restaurantes',
+    30: 'Tianguis',
+    31: 'Mercados',
   };
+
+  const ICONOS_CATEGORIA_LOCAL = {
+    10: svgIcono('<path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path>'),
+    11: svgIcono('<path d="M22 12a10.06 10.06 1 0 0-20 0Z"></path><path d="M12 12v8a2 2 0 0 0 4 0"></path><path d="M12 2v1"></path>'),
+    12: svgIcono('<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>'),
+    13: svgIcono('<path d="m8 3 4 8 5-5 5 15H2L8 3z"></path>'),
+    14: svgIcono('<polyline points="2 21 2 17 6 17 6 13 9 13 9 9 15 9 15 13 18 13 18 17 22 17 22 21 2 21"></polyline>'),
+    20: svgIcono('<path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path>'),
+    21: svgIcono('<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>'),
+    30: svgIcono('<path d="M19 20 10 4"></path><path d="m5 20 9-16"></path><path d="M3 20h18"></path><path d="m12 15-3 5"></path><path d="m12 15 3 5"></path>'),
+    31: svgIcono('<path d="M3 9l2-5h14l2 5"></path><path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0"></path><path d="M5 12v8h14v-8"></path>'),
+  };
+  const iconoCategoriaLocal = (tipo) => ICONOS_CATEGORIA_LOCAL[tipo] || ICONOS.pin;
+  const nombreCategoriaLocal = (tipo) => CATEGORIAS_LOCAL[tipo] || `Categoría ${tipo}`;
 
   // Claves de "services" que ya usa la app (contrato §4).
   const SERVICIOS_LOCAL = {
@@ -319,6 +339,7 @@ export function montarDashboard(raiz, opciones) {
     tab.classList.add('active');
     tab.setAttribute('aria-current', 'page');
     estatusActual = tab.dataset.estatus;
+    if (estatusActual === 'locales') reiniciarVistaLocales();
     document.getElementById('titulo-pagina').textContent = tab.dataset.titulo;
     cargarEventos();
   });
@@ -780,105 +801,249 @@ export function montarDashboard(raiz, opciones) {
   // Ver docs/local-catalog-contract.md en el repo de la app: es la única
   // fuente de verdad de los campos, códigos y ciclo de vida de esta sección.
 
-  let filtroLocalTipo = '';
+  // La sección tiene tres pantallas, todas armadas con el catálogo completo
+  // (una sola petición): las tarjetas de categoría, la lista de una
+  // categoría con la foto de cada post, y el detalle de un post, que es
+  // donde están Editar, Dar de baja y Reactivar.
+  let localesTodos = [];
   let filtroLocalMunicipio = '';
+  let vistaLocalTipo = null; // categoría abierta; null = pantalla de tarjetas
+  let vistaLocalId = null; // post abierto; null = lista de la categoría
+
+  function reiniciarVistaLocales() {
+    vistaLocalTipo = null;
+    vistaLocalId = null;
+    filtroLocalMunicipio = '';
+  }
+
+  const plural = (n, uno, varios) => `${n} ${n === 1 ? uno : varios}`;
 
   async function cargarLocales() {
     try {
-      const params = new URLSearchParams();
-      if (filtroLocalTipo) params.set('type', filtroLocalTipo);
-      if (filtroLocalMunicipio) params.set('municipalityId', filtroLocalMunicipio);
-      const res = await fetch(`/api/locales?${params}`);
+      const res = await fetch('/api/locales');
       const data = await res.json();
+      // Si en lo que llegaba la respuesta se cambió de sección, no pisar la otra.
+      if (estatusActual !== 'locales') return;
       if (!res.ok) {
         lista.innerHTML = `<div class="estado-vacio">${escapeHtml(data.error || 'No se pudo cargar el catálogo local.')}</div>`;
         return;
       }
-      renderLocales(data);
+      localesTodos = data;
+      renderLocales();
     } catch (err) {
       lista.innerHTML = '<div class="estado-vacio">No se pudo conectar con el servidor.</div>';
     }
   }
 
-  function renderLocales(locales) {
-    const filasHtml = locales.length
-      ? locales.map(loc => `
-          <tr data-id="${escapeHtml(loc._id)}" class="${loc.status ? '' : 'fila-inactiva'}">
-            <td>${escapeHtml(loc.title || 'Sin título')}</td>
-            <td>${CATEGORIAS_LOCAL[loc.type] || loc.type}</td>
-            <td>${MUNICIPIOS[loc.municipalityId] || '—'}</td>
-            <td>${loc.status ? '<span class="badge-activo">Activo</span>' : '<span class="badge-inactivo">Inactivo</span>'}</td>
-            <td>
-              <div class="acciones-fila">
-                <button class="btn-editar-fila" data-accion="editar">Editar</button>
-                ${loc.status
-                  ? '<button class="btn-borrar-fila" data-accion="baja">Dar de baja</button>'
-                  : '<button class="btn-editar-fila" data-accion="reactivar">Reactivar</button>'}
-              </div>
-            </td>
-          </tr>
-        `).join('')
-      : `<tr><td colspan="5" class="vacio">No hay posts locales con este filtro.</td></tr>`;
+  function renderLocales() {
+    if (vistaLocalId) {
+      const loc = localesTodos.find(l => l._id === vistaLocalId);
+      if (loc) return renderDetalleLocal(loc);
+      vistaLocalId = null;
+    }
+    if (vistaLocalTipo !== null) return renderCategoriaLocal(vistaLocalTipo);
+    renderCategoriasLocales();
+  }
+
+  // La foto del post es la primera de "images" (URLs), si el backend la
+  // trae. Sin foto, o si falla al cargar, se queda el ícono de la categoría.
+  function htmlFotoLocal(loc, clase) {
+    const url = Array.isArray(loc.images) ? loc.images.find(u => typeof u === 'string' && u) : null;
+    return `<span class="${clase}">${iconoCategoriaLocal(loc.type)}${url ? `<img src="${escapeHtml(url)}" alt="" loading="lazy" />` : ''}</span>`;
+  }
+
+  function quitarFotosRotas() {
+    lista.querySelectorAll('.foto-local img, .foto-local-grande img').forEach(img => {
+      img.addEventListener('error', () => img.remove(), { once: true });
+    });
+  }
+
+  const badgeEstatusLocal = (loc) => loc.status ? '<span class="badge-activo">Activo</span>' : '<span class="badge-inactivo">Inactivo</span>';
+
+  // ----- Pantalla 1: una tarjeta por categoría -----
+
+  function renderCategoriasLocales() {
+    const cuenta = {};
+    localesTodos.forEach(loc => {
+      if (!cuenta[loc.type]) cuenta[loc.type] = { activos: 0, bajas: 0 };
+      if (loc.status) cuenta[loc.type].activos++; else cuenta[loc.type].bajas++;
+    });
+    const tipos = [
+      ...Object.keys(CATEGORIAS_LOCAL),
+      ...Object.keys(cuenta).filter(tipo => !(tipo in CATEGORIAS_LOCAL)),
+    ];
+
+    const tarjetasHtml = tipos.map(tipo => {
+      const { activos, bajas } = cuenta[tipo] || { activos: 0, bajas: 0 };
+      const detalle = activos + bajas === 0
+        ? 'Sin posts'
+        : `${plural(activos, 'activo', 'activos')}${bajas ? ` · ${bajas} de baja` : ''}`;
+      return `
+        <button type="button" class="tarjeta-categoria" data-tipo="${escapeHtml(tipo)}">
+          <span class="tarjeta-categoria-icono">${iconoCategoriaLocal(tipo)}</span>
+          <span class="tarjeta-categoria-nombre">${escapeHtml(nombreCategoriaLocal(tipo))}</span>
+          <span class="tarjeta-categoria-cuenta">${detalle}</span>
+        </button>
+      `;
+    }).join('');
 
     lista.innerHTML = `
       <div class="barra-locales">
-        <div class="filtros">
-          <div class="campo-select">
-            <label for="loc-filtro-tipo">Categoría</label>
-            <select id="loc-filtro-tipo">
-              <option value="">Todas</option>
-              ${Object.entries(CATEGORIAS_LOCAL).map(([id, nombre]) => `<option value="${id}" ${filtroLocalTipo == id ? 'selected' : ''}>${nombre}</option>`).join('')}
-            </select>
-          </div>
-          <div class="campo-select">
-            <label for="loc-filtro-municipio">Municipio</label>
-            <select id="loc-filtro-municipio">
-              <option value="">Todos</option>
-              ${Object.entries(MUNICIPIOS).map(([id, nombre]) => `<option value="${id}" ${filtroLocalMunicipio == id ? 'selected' : ''}>${nombre}</option>`).join('')}
-            </select>
-          </div>
-        </div>
+        <p class="resumen-locales">${plural(localesTodos.length, 'post local', 'posts locales')} en ${plural(tipos.length, 'categoría', 'categorías')}</p>
         <div class="acciones">
           <button class="btn-secundario" id="btn-exportar-catalogo">${ICONOS.descarga}<span>Exportar catálogo para la app</span></button>
           <button class="btn-agregar-directorio" id="btn-agregar-local">${ICONOS.mas}<span>Agregar post local</span></button>
         </div>
       </div>
-      <div class="tabla-wrap">
-        <table class="tabla-directorio">
-          <thead>
-            <tr><th>Título</th><th>Categoría</th><th>Municipio</th><th>Estatus</th><th><span class="sr-only">Acciones</span></th></tr>
-          </thead>
-          <tbody id="tbody-locales">${filasHtml}</tbody>
-        </table>
-      </div>
+      <div class="grid-categorias">${tarjetasHtml}</div>
     `;
 
-    document.getElementById('loc-filtro-tipo').addEventListener('change', (e) => {
-      filtroLocalTipo = e.target.value;
-      cargarLocales();
+    document.getElementById('btn-agregar-local').addEventListener('click', () => abrirModalLocal(null));
+    document.getElementById('btn-exportar-catalogo').addEventListener('click', exportarCatalogoLocal);
+    lista.querySelectorAll('.tarjeta-categoria').forEach(tarjeta => {
+      tarjeta.addEventListener('click', () => {
+        vistaLocalTipo = tarjeta.dataset.tipo;
+        filtroLocalMunicipio = '';
+        renderLocales();
+      });
+    });
+  }
+
+  // ----- Pantalla 2: los posts de una categoría, con su foto -----
+
+  function renderCategoriaLocal(tipo) {
+    const nombre = nombreCategoriaLocal(tipo);
+    const delTipo = localesTodos.filter(loc => String(loc.type) === String(tipo));
+    const visibles = filtroLocalMunicipio
+      ? delTipo.filter(loc => String(loc.municipalityId) === filtroLocalMunicipio)
+      : delTipo;
+
+    const filasHtml = visibles.length
+      ? visibles.map(loc => {
+          const municipio = MUNICIPIOS[loc.municipalityId] || 'Sin municipio';
+          const zona = loc.subtitle && loc.subtitle !== municipio ? ` · ${escapeHtml(loc.subtitle)}` : '';
+          return `
+            <button type="button" class="fila-local ${loc.status ? '' : 'fila-inactiva'}" data-id="${escapeHtml(loc._id)}">
+              ${htmlFotoLocal(loc, 'foto-local')}
+              <span class="fila-local-texto">
+                <span class="fila-local-titulo">${escapeHtml(loc.title || 'Sin título')}</span>
+                <span class="fila-local-sub">${escapeHtml(municipio)}${zona}</span>
+              </span>
+              ${badgeEstatusLocal(loc)}
+              <span class="fila-local-flecha">${ICONOS.siguiente}</span>
+            </button>
+          `;
+        }).join('')
+      : `<div class="estado-vacio">${delTipo.length ? 'No hay posts de esta categoría en ese municipio.' : `Todavía no hay posts en ${escapeHtml(nombre)}.`}</div>`;
+
+    lista.innerHTML = `
+      <div class="cabecera-local">
+        <button type="button" class="btn-volver" id="loc-volver">${ICONOS.anterior}<span>Categorías</span></button>
+        <h2 class="cabecera-local-titulo"><span class="cabecera-local-icono">${iconoCategoriaLocal(tipo)}</span>${escapeHtml(nombre)}</h2>
+        <span class="cabecera-local-cuenta">${plural(visibles.length, 'post', 'posts')}</span>
+      </div>
+      <div class="barra-locales">
+        <div class="filtros">
+          <div class="campo-select">
+            <label for="loc-filtro-municipio">Municipio</label>
+            <select id="loc-filtro-municipio">
+              <option value="">Todos</option>
+              ${Object.entries(MUNICIPIOS).map(([id, nombreMunicipio]) => `<option value="${id}" ${filtroLocalMunicipio === id ? 'selected' : ''}>${nombreMunicipio}</option>`).join('')}
+            </select>
+          </div>
+        </div>
+        <div class="acciones">
+          <button class="btn-agregar-directorio" id="btn-agregar-local">${ICONOS.mas}<span>Agregar en ${escapeHtml(nombre)}</span></button>
+        </div>
+      </div>
+      <div class="lista-locales">${filasHtml}</div>
+    `;
+
+    document.getElementById('loc-volver').addEventListener('click', () => {
+      vistaLocalTipo = null;
+      renderLocales();
     });
     document.getElementById('loc-filtro-municipio').addEventListener('change', (e) => {
       filtroLocalMunicipio = e.target.value;
+      renderLocales();
+    });
+    document.getElementById('btn-agregar-local').addEventListener('click', () => abrirModalLocal(null, tipo));
+    lista.querySelectorAll('.fila-local').forEach(fila => {
+      fila.addEventListener('click', () => {
+        vistaLocalId = fila.dataset.id;
+        renderLocales();
+      });
+    });
+    quitarFotosRotas();
+  }
+
+  // ----- Pantalla 3: un post, con sus acciones -----
+
+  function renderDetalleLocal(loc) {
+    const nombre = nombreCategoriaLocal(loc.type);
+    const municipio = MUNICIPIOS[loc.municipalityId] || 'Sin municipio';
+    const ubicacion = loc.location || {};
+    const coordenadas = ubicacion.latitude != null && ubicacion.longitude != null ? `${ubicacion.latitude}, ${ubicacion.longitude}` : '';
+    const horario = loc.openAllDay
+      ? 'Abierto todo el día'
+      : (Array.isArray(loc.schedule) ? loc.schedule : []).map(item => `${item.day}: ${item.hours}`).join(' · ');
+
+    const datos = [
+      ['Servicios', (Array.isArray(loc.services) ? loc.services : []).map(clave => SERVICIOS_LOCAL[clave] || clave).join(', ')],
+      ['Horario', horario],
+      ['Ubicación', [ubicacion.name, coordenadas].filter(Boolean).join(' · ')],
+      ['Dirección', loc.address],
+      ['Teléfono', loc.phone],
+      ['Clave de imagen', loc.imageKey],
+      ['ID permanente', loc._id],
+    ].filter(([, valor]) => valor);
+
+    lista.innerHTML = `
+      <div class="cabecera-local">
+        <button type="button" class="btn-volver" id="loc-volver">${ICONOS.anterior}<span>${escapeHtml(nombre)}</span></button>
+      </div>
+      <article class="detalle-local ${loc.status ? '' : 'fila-inactiva'}">
+        ${htmlFotoLocal(loc, 'foto-local-grande')}
+        <div class="detalle-local-cuerpo">
+          <div class="detalle-local-meta">
+            <span class="badge">${escapeHtml(nombre)}</span>
+            <span class="detalle-local-municipio">${escapeHtml(municipio)}</span>
+            ${badgeEstatusLocal(loc)}
+          </div>
+          <h2 class="detalle-local-titulo">${escapeHtml(loc.title || 'Sin título')}</h2>
+          ${loc.subtitle && loc.subtitle !== municipio ? `<p class="detalle-local-subtitulo">${escapeHtml(loc.subtitle)}</p>` : ''}
+          <p class="detalle-local-descripcion">${escapeHtml(loc.description || '')}</p>
+          <dl class="detalle-local-datos">
+            ${datos.map(([etiqueta, valor]) => `<dt>${etiqueta}</dt><dd>${escapeHtml(valor)}</dd>`).join('')}
+          </dl>
+          <div class="acciones-detalle">
+            <button type="button" class="btn-agregar-directorio" data-accion="editar">Editar</button>
+            ${loc.status
+              ? '<button type="button" class="btn-baja-local" data-accion="baja">Dar de baja</button>'
+              : '<button type="button" class="btn-secundario" data-accion="reactivar">Reactivar</button>'}
+          </div>
+        </div>
+      </article>
+    `;
+
+    document.getElementById('loc-volver').addEventListener('click', () => {
+      vistaLocalId = null;
+      vistaLocalTipo = String(loc.type);
+      renderLocales();
+    });
+    lista.querySelector('[data-accion="editar"]').addEventListener('click', () => abrirModalLocal(loc));
+    lista.querySelector('[data-accion="baja"]')?.addEventListener('click', async () => {
+      if (!(await confirmar(`¿Dar de baja "${loc.title}"? No se borra: solo deja de exportarse a la app y se puede reactivar después.`, { textoAceptar: 'Dar de baja' }))) return;
+      const res = await fetch(`/api/locales/${loc._id}/baja`, { method: 'POST' });
+      if (!(await respuestaOk(res))) return;
       cargarLocales();
     });
-    document.getElementById('btn-agregar-local').addEventListener('click', () => abrirModalLocal(null));
-    document.getElementById('btn-exportar-catalogo').addEventListener('click', exportarCatalogoLocal);
-
-    document.querySelectorAll('#tbody-locales tr[data-id]').forEach((fila, i) => {
-      const loc = locales[i];
-      fila.querySelector('[data-accion="editar"]')?.addEventListener('click', () => abrirModalLocal(loc));
-      fila.querySelector('[data-accion="baja"]')?.addEventListener('click', async () => {
-        if (!(await confirmar(`¿Dar de baja "${loc.title}"? No se borra: solo deja de exportarse a la app y se puede reactivar después.`, { textoAceptar: 'Dar de baja' }))) return;
-        const res = await fetch(`/api/locales/${loc._id}/baja`, { method: 'POST' });
-        if (!(await respuestaOk(res))) return;
-        cargarLocales();
-      });
-      fila.querySelector('[data-accion="reactivar"]')?.addEventListener('click', async () => {
-        const res = await fetch(`/api/locales/${loc._id}/reactivar`, { method: 'POST' });
-        if (!(await respuestaOk(res))) return;
-        cargarLocales();
-      });
+    lista.querySelector('[data-accion="reactivar"]')?.addEventListener('click', async () => {
+      const res = await fetch(`/api/locales/${loc._id}/reactivar`, { method: 'POST' });
+      if (!(await respuestaOk(res))) return;
+      cargarLocales();
     });
+    quitarFotosRotas();
   }
 
   async function exportarCatalogoLocal() {
@@ -918,11 +1083,18 @@ export function montarDashboard(raiz, opciones) {
     contenedor.appendChild(fila);
   }
 
-  function abrirModalLocal(local) {
+  // "tipoInicial" preselecciona la categoría al agregar desde la lista de una.
+  function abrirModalLocal(local, tipoInicial) {
     const esNuevo = !local;
 
-    const opcionesCategoria = Object.entries(CATEGORIAS_LOCAL)
-      .map(([id, nombre]) => `<option value="${id}" ${local && String(local.type) === id ? 'selected' : ''}>${nombre}</option>`)
+    const tipoSeleccionado = String(local ? local.type : (tipoInicial ?? ''));
+    // Un post con una categoría que no está en la lista (ver CATEGORIAS_LOCAL)
+    // conserva la suya en el select; si no, guardar lo obligaría a cambiarla.
+    const categoriaAjena = tipoSeleccionado && !(tipoSeleccionado in CATEGORIAS_LOCAL)
+      ? `<option value="${escapeHtml(tipoSeleccionado)}" selected>${escapeHtml(nombreCategoriaLocal(tipoSeleccionado))}</option>`
+      : '';
+    const opcionesCategoria = categoriaAjena + Object.entries(CATEGORIAS_LOCAL)
+      .map(([id, nombre]) => `<option value="${id}" ${tipoSeleccionado === id ? 'selected' : ''}>${nombre}</option>`)
       .join('');
     const opcionesMunicipio = Object.entries(MUNICIPIOS)
       .map(([id, nombre]) => `<option value="${id}" ${local && String(local.municipalityId) === id ? 'selected' : ''}>${nombre}</option>`)
@@ -1215,6 +1387,9 @@ export function montarDashboard(raiz, opciones) {
       }
 
       if (esNuevo && data.post && data.post._id) {
+        // El modal se queda abierto mostrando el id; la lista de atrás ya
+        // puede traer el post nuevo (y el conteo de su tarjeta).
+        cargarLocales();
         const idAsignadoEl = overlay.querySelector('#loc-id-asignado');
         idAsignadoEl.innerHTML = `
           <div class="id-asignado">

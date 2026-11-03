@@ -173,6 +173,105 @@ describe('panel de Colima Go dentro de la app', () => {
     expect(JSON.parse(contenido)).toEqual({ response: true, catalog: [1, 2] });
   });
 
+  describe('posts locales por categoría', () => {
+    const locales = [
+      { _id: 'r1', type: 10, municipalityId: 4, title: 'El Naranjal', description: 'Río bonito', status: true, images: ['https://img.test/naranjal.jpg'] },
+      { _id: 'r2', type: 10, municipalityId: 8, title: 'Parajes', description: 'Otro río', status: false },
+      { _id: 'z1', type: 14, municipalityId: 1, title: 'Zona Arqueológica El Chanal', description: 'Ruinas', status: true },
+      { _id: 't1', type: 30, municipalityId: 3, title: 'Tianguis de Santiago (sábados)', description: 'Sábados', status: true },
+      { _id: 'm1', type: 31, municipalityId: 1, title: 'Mercado Álvaro Obregón', description: 'Mercado', status: true },
+      { _id: 'x1', type: 99, municipalityId: 1, title: 'Algo nuevo', description: 'Sin nombre', status: true },
+    ];
+    const tarjeta = (nombre: string) =>
+      [...document.querySelectorAll('.tarjeta-categoria')].find(
+        (t) => t.querySelector('.tarjeta-categoria-nombre')?.textContent === nombre,
+      ) as HTMLButtonElement;
+
+    async function abrirLocales(respuestas: Record<string, unknown> = {}) {
+      const montado = montar({ 'GET /api/locales': locales, ...respuestas });
+      pestana('locales').click();
+      await hastaQue(() => !!document.querySelector('.tarjeta-categoria'));
+      return montado;
+    }
+
+    it('muestra una tarjeta por categoría, con nombre para 14, 30 y 31, y cuenta activos y bajas', async () => {
+      await abrirLocales();
+      const nombres = [...document.querySelectorAll('.tarjeta-categoria-nombre')].map((n) => n.textContent);
+      expect(nombres).toEqual([
+        'Ríos', 'Playas', 'Lagos', 'Montañas', 'Zonas arqueológicas', 'Hoteles', 'Restaurantes', 'Tianguis', 'Mercados',
+        'Categoría 99', // una categoría que no está en la lista no esconde sus posts
+      ]);
+      expect(tarjeta('Ríos').textContent).toContain('1 activo · 1 de baja');
+      expect(tarjeta('Mercados').textContent).toContain('1 activo');
+      expect(tarjeta('Playas').textContent).toContain('Sin posts');
+      expect(tarjeta('Tianguis').querySelector('svg')).not.toBeNull();
+    });
+
+    it('una categoría lista sus posts con la foto y se puede filtrar por municipio', async () => {
+      await abrirLocales();
+      tarjeta('Ríos').click();
+      await hastaQue(() => !!document.querySelector('.fila-local'));
+
+      const filas = [...document.querySelectorAll<HTMLElement>('.fila-local')];
+      expect(filas.map((f) => f.querySelector('.fila-local-titulo')?.textContent)).toEqual(['El Naranjal', 'Parajes']);
+      expect(filas[0].querySelector('img')?.getAttribute('src')).toBe('https://img.test/naranjal.jpg');
+      expect(filas[1].querySelector('img')).toBeNull(); // sin foto: queda el ícono de la categoría
+      expect(filas[1].querySelector('svg')).not.toBeNull();
+
+      const filtro = document.getElementById('loc-filtro-municipio') as HTMLSelectElement;
+      filtro.value = '4';
+      filtro.dispatchEvent(new Event('change'));
+      expect([...document.querySelectorAll('.fila-local-titulo')].map((t) => t.textContent)).toEqual(['El Naranjal']);
+
+      boton('Categorías').click();
+      expect(document.querySelector('.grid-categorias')).not.toBeNull();
+    });
+
+    it('el detalle trae Editar y Dar de baja, y dar de baja pide confirmación', async () => {
+      const { backend } = await abrirLocales();
+      tarjeta('Mercados').click();
+      await hastaQue(() => !!document.querySelector('.fila-local'));
+      (document.querySelector('.fila-local') as HTMLButtonElement).click();
+      await hastaQue(() => !!document.querySelector('.detalle-local'));
+      expect(document.querySelector('.detalle-local-titulo')?.textContent).toBe('Mercado Álvaro Obregón');
+      expect(boton('Editar')).toBeDefined();
+
+      boton('Dar de baja').click();
+      await hastaQue(() => !!document.querySelector('.modal-overlay'));
+      boton('Cancelar').click();
+      await esperar();
+      expect(backend.peticiones.some((p) => p.metodo === 'POST')).toBe(false);
+
+      boton('Dar de baja').click();
+      await hastaQue(() => !!document.querySelector('.modal-overlay'));
+      (document.querySelector('.modal-overlay [data-dialogo="aceptar"]') as HTMLButtonElement).click();
+      await hastaQue(() => backend.peticiones.some((p) => p.metodo === 'POST'));
+      expect(backend.peticiones.find((p) => p.metodo === 'POST')?.url).toBe('/api/locales/m1/baja');
+    });
+
+    it('un post de baja se puede reactivar desde su detalle', async () => {
+      const { backend } = await abrirLocales();
+      tarjeta('Ríos').click();
+      await hastaQue(() => !!document.querySelector('.fila-local'));
+      (document.querySelectorAll('.fila-local')[1] as HTMLButtonElement).click();
+      await hastaQue(() => !!document.querySelector('.detalle-local'));
+      expect(document.querySelector('.badge-inactivo')).not.toBeNull();
+
+      boton('Reactivar').click();
+      await hastaQue(() => backend.peticiones.some((p) => p.metodo === 'POST'));
+      expect(backend.peticiones.find((p) => p.metodo === 'POST')?.url).toBe('/api/locales/r2/reactivar');
+    });
+
+    it('agregar desde una categoría la deja preseleccionada', async () => {
+      await abrirLocales();
+      tarjeta('Tianguis').click();
+      await hastaQue(() => !!document.getElementById('btn-agregar-local'));
+      (document.getElementById('btn-agregar-local') as HTMLButtonElement).click();
+      await hastaQue(() => !!document.getElementById('loc-type'));
+      expect((document.getElementById('loc-type') as HTMLSelectElement).value).toBe('30');
+    });
+  });
+
   it('al desmontarse no deja estilos, modales ni listeners', async () => {
     const { desmontar, raiz } = montar({ 'GET /api/lugares': [{ _id: 'l1', nombre: 'Jardín' }] });
     pestana('lugares').click();
