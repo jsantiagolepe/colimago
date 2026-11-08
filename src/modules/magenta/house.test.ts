@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CASA_VACIA, coloniaExistente, coloniasDe, filtrarCasas, formDeCasa, miniatura, ordenarCasas, validarCasa, type Casa, type CasaForm } from './house';
+import { CASA_VACIA, ciudadCanonica, CIUDADES, coloniaExistente, coloniasDe, filtrarCasas, formDeCasa, miniatura, ordenarCasas, validarCasa, type Casa, type CasaForm } from './house';
 
 // La casa del ejemplo (NN-HGS118), tal como se captura en el formulario.
 const COMPLETA: CasaForm = {
@@ -276,7 +276,11 @@ describe('coloniasDe y coloniaExistente', () => {
   it('con ciudad, solo las de esa ciudad (sin importar acentos ni mayúsculas)', () => {
     expect(coloniasDe(casas, 'colima')).toEqual(['Álamos', 'Centro', 'Las Palmas']);
     expect(coloniasDe(casas, 'villa de alvarez')).toEqual(['Alfredo V. Bonfil']);
-    expect(coloniasDe(casas, 'Comala')).toEqual([]);
+  });
+
+  it('una ciudad sin colonias o escrita a medias no deja la lista vacía: regresa todas', () => {
+    expect(coloniasDe(casas, 'Comala')).toHaveLength(4);
+    expect(coloniasDe(casas, 'Villa de')).toHaveLength(4);
   });
 
   it('una ciudad en blanco no filtra', () => {
@@ -290,5 +294,19 @@ describe('coloniasDe y coloniaExistente', () => {
     expect(coloniaExistente(lista, '  las   PALMAS ')).toBe('Las Palmas');
     expect(coloniaExistente(lista, 'Centro')).toBeUndefined();
     expect(coloniaExistente(lista, '   ')).toBeUndefined();
+  });
+});
+
+describe('ciudadCanonica', () => {
+  it('lleva cualquier escritura de las 3 ciudades a la de la lista', () => {
+    expect(ciudadCanonica('villa de alvarez')).toBe('Villa de Álvarez');
+    expect(ciudadCanonica('  COLIMA ')).toBe('Colima');
+    expect(ciudadCanonica('comala')).toBe('Comala');
+    expect(CIUDADES).toHaveLength(3);
+  });
+
+  it('una ciudad desconocida se conserva (limpia) y formDeCasa normaliza la guardada', () => {
+    expect(ciudadCanonica('  Manzanillo  ')).toBe('Manzanillo');
+    expect(formDeCasa({ _id: '1', code: 'A', city: 'villa de alvarez', colony: 'X', typeHouse: 'Casa', price: 1, rooms: 0, toilets: 0, status: true, photos: [] }).city).toBe('Villa de Álvarez');
   });
 });

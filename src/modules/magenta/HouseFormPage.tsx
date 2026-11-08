@@ -5,7 +5,7 @@ import { IconCheck, IconClose, IconPlus } from '../../core/ui/icons';
 import { BackLink } from '../../features/home/hub';
 import { HomeBar } from '../../features/home/HomePage';
 import { reducirFoto } from './house-photo';
-import { CASA_VACIA, coloniaExistente, coloniasDe, formDeCasa, miniatura, TIPOS, validarCasa, type Casa, type CasaForm, type Colonia, type ErroresCasa, type TipoCasa } from './house';
+import { CASA_VACIA, CIUDADES, coloniaExistente, coloniasDe, formDeCasa, miniatura, TIPOS, validarCasa, type Casa, type CasaForm, type Colonia, type ErroresCasa, type TipoCasa } from './house';
 import {
   actualizarCasa,
   guardarCasa,
@@ -21,7 +21,6 @@ import {
 import './magenta.css';
 
 const MAX_FOTOS = 30;
-const CIUDADES = ['Colima', 'Villa de Álvarez', 'Comala'];
 const FORMATOS = /\.(jpe?g|png|webp|gif|heic|heif)$/i;
 /** Valor de la opción «Agregar colonia…» del select (no es una colonia). */
 const NUEVA_COLONIA = '__nueva__';
@@ -77,16 +76,30 @@ export default function HouseFormPage({ casa }: { casa?: Casa }) {
     };
   }, []);
 
+  // Carga la lista; un fallo suelto de red se reintenta una vez solo, y si sigue
+  // fallando queda el botón «Reintentar» (sin lista aún se puede agregar la colonia).
+  const [recarga, setRecarga] = useState(0);
   useEffect(() => {
     let vivo = true;
-    listarColonias().then(
-      (lista) => vivo && setColonias(lista),
-      () => vivo && (setColonias([]), setColoniasFallo(true)), // sin lista, aún se puede intentar agregar la colonia
-    );
+    setColoniasFallo(false);
+    const cargar = (reintentos: number): void => {
+      listarColonias().then(
+        (lista) => vivo && setColonias(lista),
+        () => {
+          if (!vivo) return;
+          if (reintentos > 0) setTimeout(() => cargar(reintentos - 1), 1500);
+          else {
+            setColonias((actuales) => actuales ?? []);
+            setColoniasFallo(true);
+          }
+        },
+      );
+    };
+    cargar(1);
     return () => {
       vivo = false;
     };
-  }, []);
+  }, [recarga]);
 
   function cambiar<K extends keyof CasaForm>(campo: K, valor: CasaForm[K]) {
     setForm((f) => ({ ...f, [campo]: valor }));
@@ -262,17 +275,31 @@ export default function HouseFormPage({ casa }: { casa?: Casa }) {
                   </select>
                 </Campo>
                 <Campo id="city" label="Ciudad" error={errores.city}>
-                  <input id="mh-city" list="mh-ciudades" value={form.city} onChange={(e) => cambiar('city', e.target.value)} placeholder="Villa de Álvarez" autoComplete="off" {...ariaCampo('city', errores)} />
-                  <datalist id="mh-ciudades">
-                    {CIUDADES.map((c) => (
-                      <option key={c} value={c} />
+                  <select id="mh-city" value={form.city} onChange={(e) => cambiar('city', e.target.value)} {...ariaCampo('city', errores)}>
+                    <option value="" disabled>
+                      Elige la ciudad
+                    </option>
+                    {/* Una casa con otra ciudad guardada la conserva como opción. */}
+                    {[...(form.city && !CIUDADES.some((c) => c === form.city) ? [form.city] : []), ...CIUDADES].map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
                     ))}
-                  </datalist>
+                  </select>
                 </Campo>
                 <Campo
                   id="colony"
                   label="Colonia"
-                  hint={coloniasFallo ? 'No se pudo cargar la lista de colonias.' : undefined}
+                  hint={
+                    coloniasFallo ? (
+                      <>
+                        No se pudo cargar la lista de colonias.{' '}
+                        <button type="button" className="mh-link" onClick={() => setRecarga((n) => n + 1)}>
+                          Reintentar
+                        </button>
+                      </>
+                    ) : undefined
+                  }
                   error={errores.colony}
                 >
                   <SelectorColonia
@@ -579,7 +606,7 @@ function Campo({
   label: string;
   opcional?: boolean;
   /** Ayuda debajo del campo; si hay error, se muestra el error en su lugar. */
-  hint?: string;
+  hint?: ReactNode;
   error?: string;
   wide?: boolean;
   children: ReactNode;

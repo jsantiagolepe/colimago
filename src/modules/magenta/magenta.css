@@ -397,3 +397,14 @@
 @media (prefers-reduced-motion: reduce) {
   .ah-row--ghost { animation: none; }
 }
+
+/* Botón con aspecto de enlace (p. ej. «Reintentar» en los avisos). */
+.mh-link {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}

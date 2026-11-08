@@ -8,6 +8,16 @@
 export const TIPOS = ['Casa', 'Departamento', 'Local', 'Bodega', 'Terreno'] as const;
 export type TipoCasa = (typeof TIPOS)[number];
 
+/** Los únicos municipios donde Magenta compra (así se guardan en `city`). */
+export const CIUDADES = ['Colima', 'Villa de Álvarez', 'Comala'] as const;
+
+/** La ciudad de la lista que es la misma que `texto` (sin importar acentos, mayúsculas ni espacios), o el texto limpio si no está. */
+export function ciudadCanonica(texto: string): string {
+  const limpio = (texto ?? '').trim().replace(/\s+/g, ' ');
+  const clave = sinAcentos(limpio);
+  return CIUDADES.find((c) => sinAcentos(c) === clave) ?? limpio;
+}
+
 /** Lo que se captura, tal cual lo escribe la persona (todo texto). */
 export interface CasaForm {
   code: string;
@@ -174,6 +184,9 @@ export interface Casa {
   status: boolean;
   photos: string[];
   cp?: number;
+  /** Pin aproximado de la casa (0 o ausente = sin ubicar). */
+  latitude?: number;
+  longitude?: number;
   street?: string;
   m2build?: number;
   m2terrain?: number;
@@ -192,7 +205,7 @@ export function formDeCasa(casa: Casa): CasaForm {
   return {
     code: casa.code ?? '',
     typeHouse: TIPOS.find((t) => t.toLowerCase() === String(casa.typeHouse).toLowerCase()) ?? 'Casa',
-    city: casa.city ?? '',
+    city: ciudadCanonica(casa.city ?? ''),
     colony: casa.colony ?? '',
     cp: positivo(casa.cp),
     price: positivo(casa.price),
@@ -243,12 +256,35 @@ export function filtrarCasas(casas: Casa[], texto: string, estado: FiltroEstado)
   });
 }
 
-/** Una colonia con su ciudad, como la guarda el backend (magentagroup.colonias). */
-export type Colonia = Pick<Casa, 'city' | 'colony'>;
+/**
+ * Una colonia con su ciudad y su ubicación, como la guarda el backend
+ * (magentagroup.colonias). La ubicación es opcional: se dibuja como polígono
+ * (`boundary`) o, si no hay, como círculo de `radius` metros alrededor del
+ * centro (`latitude`/`longitude`).
+ */
+export type Colonia = Pick<Casa, 'city' | 'colony'> & {
+  municipality?: string;
+  latitude?: number | null;
+  longitude?: number | null;
+  radius?: number | null;
+  boundary?: { lat: number; lng: number }[];
+  /** 'osm-polygon' | 'osm-point' | 'estimado' | 'manual' */
+  geoSource?: string;
+  /** true cuando ya se revisó en el mapa que es correcta. */
+  geoVerified?: boolean;
+};
 
-/** Cada colonia una sola vez (sin importar acentos ni mayúsculas), en orden alfabético, solo las de la ciudad si se da una. */
+/**
+ * Cada colonia una sola vez (sin importar acentos ni mayúsculas), en orden
+ * alfabético, solo las de la ciudad si se da una. Si la ciudad no coincide
+ * con ninguna colonia (escrita a medias, o sin colonias aún), se regresan
+ * todas: una lista vacía hacía parecer que las colonias no cargaron.
+ */
 export function coloniasDe(colonias: Colonia[], ciudad = ''): string[] {
   const ciudadBuscada = sinAcentos(ciudad.trim());
+  if (ciudadBuscada && !colonias.some((c) => sinAcentos((c.city ?? '').trim()) === ciudadBuscada && c.colony?.trim())) {
+    return coloniasDe(colonias);
+  }
   const vistas = new Map<string, string>();
   for (const { city, colony } of colonias) {
     const nombre = colony?.trim();
